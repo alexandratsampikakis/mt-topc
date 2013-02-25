@@ -1,8 +1,3 @@
-  function test(hej) {
-      var he = hej*hej;
-      console.log(he);
-    }
-
 if (Meteor.isClient) {
 
   Template.youtube.rendered = function() {
