@@ -58,15 +58,6 @@ N.API.getRooms(function (roomlist) {
     }
 });
 
-N.API.getUsers(myRoom, function(users) {
-    var usersList = JSON.parse(users);
-    console.log('This room has ', usersList.length, 'users');
-
-    for(var i in usersList) {
-        console.log('User ', i, ':', usersList[i].name, 'with role: ', usersList[i].role);
-    }
-});
-
 app.post('/createToken/', function (req, res) {
     "use strict";
     var room = myRoom,
@@ -75,6 +66,15 @@ app.post('/createToken/', function (req, res) {
     N.API.createToken(room, username, role, function (token) {
         console.log(token);
         res.send(token);
+    });
+
+    N.API.getUsers(myRoom, function(users) {
+        var usersList = JSON.parse(users);
+        console.log('This room has ', usersList.length, 'users');
+
+        for(var i in usersList) {
+            console.log('User ', i, ':', usersList[i].name, 'with role: ', usersList[i].role);
+        }
     });
 });
 
