@@ -24,6 +24,7 @@ window.onload = function () {
 
     createToken("user", "role", function (response) {
         var token = response;
+        console.log("Token:");
         console.log(token);
         room = Erizo.Room({token: token});
 
