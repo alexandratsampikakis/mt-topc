@@ -64,7 +64,7 @@ app.post('/createToken/', function (req, res) {
         username = req.body.username,
         role = req.body.role;
     N.API.createToken(room, username, role, function (token) {
-        console.log(token);
+        console.log("token: " + token);
         res.send(token);
     });
 
