@@ -46,6 +46,7 @@ N.API.getRooms(function (roomlist) {
     "use strict";
     var rooms = JSON.parse(roomlist);
     console.log(rooms.length);
+    console.log("HARVARDETBAJS");
     if (rooms.length === 0) {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
