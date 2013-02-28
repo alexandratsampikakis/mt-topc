@@ -68,7 +68,7 @@ app.post('/createToken/', function (req, res) {
         res.send(token);
     });
 
-    N.API.getUsers(myRoom, function(users) {
+    N.API.getUsers(myRoom._id, function(users) {
         var usersList = JSON.parse(users);
         console.log('This room has ', usersList.length, 'users');
 
