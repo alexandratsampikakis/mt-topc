@@ -67,15 +67,6 @@ app.post('/createToken/', function (req, res) {
         console.log("token: ", token);
         res.send(token);
     });
-
-    N.API.getUsers(myRoom._id, function(users) {
-        var usersList = JSON.parse(users);
-        console.log('This room has ', usersList.length, 'users');
-
-        for(var i in usersList) {
-            console.log('User ', i, ':', usersList[i].name, 'with role: ', usersList[i].role);
-        }
-    });
 });
 
 app.get('/getRooms/', function (req, res) {
