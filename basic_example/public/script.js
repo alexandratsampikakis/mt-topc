@@ -28,7 +28,7 @@ window.onload = function () {
         room = Erizo.Room({token: token});
 
         localStream.addEventListener("access-accepted", function () {
-            
+            console.log("access-accepted");
             var subscribeToStreams = function (streams) {
                 for (var index in streams) {
                     var stream = streams[index];
@@ -39,12 +39,13 @@ window.onload = function () {
             };
 
             room.addEventListener("room-connected", function (roomEvent) {
-
+                console.log("room-connected");
                 room.publish(localStream);
                 subscribeToStreams(roomEvent.streams);
             });
 
             room.addEventListener("stream-subscribed", function(streamEvent) {
+                console.log("stream-subscribed");
                 var stream = streamEvent.stream;
                 var div = document.createElement('div');
                 div.setAttribute("style", "width: 320px; height: 240px;");
@@ -56,12 +57,14 @@ window.onload = function () {
             });
 
             room.addEventListener("stream-added", function (streamEvent) {
+                console.log("stream-added");
                 var streams = [];
                 streams.push(streamEvent.stream);
                 subscribeToStreams(streams);
             });
 
             room.addEventListener("stream-removed", function (streamEvent) {
+                console.log("stream-removed");
                 // Remove stream from DOM
                 var stream = streamEvent.stream;
                 if (stream.elementID !== undefined) {
