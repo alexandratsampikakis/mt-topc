@@ -15,6 +15,10 @@ var app = express();
 
 app.use(express.bodyParser());
 
+app.get('/public/room.html', function(req, res) {
+    res.sendfile(__dirname + '/public/room.html');
+});
+
 app.configure(function () {
     "use strict";
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
