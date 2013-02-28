@@ -23,10 +23,10 @@ window.onload = function () {
     };
 
     createToken("user", "role", function (response) {
-        //var token = "5007cf9aa8946ac114000117";
-        //console.log("Token:");
-        //console.log(token);
-        room = Erizo.Room({token: "5007cf9aa8946ac114000117"});
+        var token = response;
+        console.log("Token:")
+        console.log(token);
+        room = Erizo.Room({token: token});
 
         localStream.addEventListener("access-accepted", function () {
             console.log("access-accepted");
