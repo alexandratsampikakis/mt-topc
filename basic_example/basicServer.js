@@ -51,7 +51,6 @@ N.API.getRooms(function (roomlist) {
     "use strict";
     var rooms = JSON.parse(roomlist);
     console.log(rooms.length);
-    console.log("HARVARDETBAJS");
     if (rooms.length === 0) {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
@@ -61,11 +60,9 @@ N.API.getRooms(function (roomlist) {
     } else {
         myRoom = rooms[0]._id;
         console.log('Using room ', myRoom);
-        console.log("negerfisk2");
-        N.API.createRoom('myRoom2', function (roomID) {
-            myRoom2 = roomID._id;
-            console.log('Created room ', myRoom2);
-        });
+       for (var i = rooms.length - 1; i >= 0; i--) {
+           console.log('Room',i,': ',rooms[i]._id);
+       };
     }
 });
 
