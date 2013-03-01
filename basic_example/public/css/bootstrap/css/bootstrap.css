@@ -228,7 +228,7 @@ body {
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 a {
@@ -3981,6 +3981,7 @@ input[type="submit"].btn.btn-mini {
   padding-right: 15px;
   padding-left: 15px;
   margin-bottom: 0;
+  background-color: rgb(245,245,245);
 }
 
 .nav-list > li > a,
