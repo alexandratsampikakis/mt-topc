@@ -45,6 +45,7 @@ app.use(function (req, res, next) {
 N.API.init(config.nuve.superserviceID, config.nuve.superserviceKey, 'http://localhost:3000/');
 
 var myRoom;
+var myRoom2;
 
 N.API.getRooms(function (roomlist) {
     "use strict";
