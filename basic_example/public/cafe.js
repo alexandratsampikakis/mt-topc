@@ -107,7 +107,7 @@ try {
     checkUsers();
 
     room1.onclick = function(evt) {
-        log.console("Klickade på room1");
+        console.log("Klickade på room1");
         initialize(roomId1);
     };
 
