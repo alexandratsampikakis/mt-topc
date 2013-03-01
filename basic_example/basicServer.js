@@ -66,7 +66,7 @@ N.API.getRooms(function (roomlist) {
     }
 });
 
-app.post('/createToken/', function (req, res) {
+app.post('/createToken/:room', function (req, res) {
     "use strict";
     var room = myRoom,
         username = req.body.username,
