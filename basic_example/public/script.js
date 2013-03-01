@@ -24,8 +24,7 @@ window.onload = function () {
 
     createToken("user", "role", function (response) {
         var token = response;
-        console.log("Token:")
-        console.log(token);
+        console.log('token: ', token);
         room = Erizo.Room({token: token});
 
         localStream.addEventListener("access-accepted", function () {
