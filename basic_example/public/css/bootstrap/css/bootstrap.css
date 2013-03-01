@@ -112,6 +112,10 @@ img {
   max-width: none;
 }
 
+.buttonCafe {
+  width: 200px;
+}
+
 button,
 input,
 select,
