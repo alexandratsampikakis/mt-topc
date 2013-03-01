@@ -11,7 +11,7 @@ var options = {
     cert: fs.readFileSync('cert/cert.pem').toString()
 };
 
-var app = express();
+var app = express.createServer();
 
 app.use(express.bodyParser());
 
