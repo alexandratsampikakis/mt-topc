@@ -147,6 +147,7 @@
   }
   .span8 {
     width: 770px;
+    color: blue;
   }
   .span7 {
     width: 670px;
@@ -165,6 +166,7 @@
   }
   .span2 {
     width: 170px;
+    color: grey;
   }
   .span1 {
     width: 70px;
