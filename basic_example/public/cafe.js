@@ -79,7 +79,6 @@ try {
             number = users; 
         } else {
             number = JSON.parse(users).length;
-Uncaught SyntaxError: Unexpected token E (repeated 5 times)
         }
         if (id == 4) {
             room.childNodes[1].innerText = "CUBE!!! - (" + number + " users)";
