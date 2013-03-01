@@ -1,14 +1,15 @@
 var serverUrl = "/";
 var localStream, room;
+roomId = "512dea742628dd4376000001";
 
 window.onload = function () {
 
 		localStream = Erizo.Stream({audio: true, video: true, data: true});
 
-    var createToken = function(userName, role, callback) {
+    var createToken = function(roomId, userName, role, callback) {
 
         var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/';
+        var url = serverUrl + 'createToken/' + roomId;
         var body = {username: userName, role: role};
 
         req.onreadystatechange = function () {
@@ -22,7 +23,7 @@ window.onload = function () {
         req.send(JSON.stringify(body));
     };
 
-    createToken("user", "role", function (response) {
+    createToken(roomId, "user", "role", function (response) {
         var token = response;
         console.log('token: ', token);
         room = Erizo.Room({token: token});
