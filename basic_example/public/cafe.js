@@ -79,6 +79,7 @@ try {
             number = users; 
         } else {
             number = JSON.parse(users).length;
+Uncaught SyntaxError: Unexpected token E (repeated 5 times)
         }
         if (id == 4) {
             room.childNodes[1].innerText = "CUBE!!! - (" + number + " users)";
@@ -107,7 +108,6 @@ try {
     checkUsers();
 
     room1.onclick = function(evt) {
-        console.log("Klickade på room1");
         initialize(roomId1);
     };
 
