@@ -154,6 +154,16 @@ N.API.getRooms(function (roomlist) {
     } else {
         myRoom = rooms[0]._id;
         console.log('Using room ', myRoom);
+        var roomId = myRoom;
+ 
+        N.API.getUsers(roomId, function(users) {
+          var usersList = JSON.parse(users);
+          console.log('This room has ', usersList.length, 'users');
+         
+          for(var i in usersList) {
+            console.log('User ', i, ':', usersList[i].name, 'with role: ', usersList[i].role);
+          }
+        });
     }
 });
 
