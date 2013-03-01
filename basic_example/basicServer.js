@@ -56,13 +56,14 @@ N.API.getRooms(function (roomlist) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
         });
+
+    } else {
+        myRoom = rooms[0]._id;
+        console.log('Using room ', myRoom);
         N.API.createRoom('myRoom2', function (roomID) {
             myRoom2 = roomID._id;
             console.log('Created room ', myRoom2);
         });
-    } else {
-        myRoom = rooms[0]._id;
-        console.log('Using room ', myRoom);
     }
 });
 
