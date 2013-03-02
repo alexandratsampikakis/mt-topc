@@ -6163,10 +6163,28 @@ a.badge:focus {
   position: fixed;
 }
 
-.tableBox {
+.tableBoxBlue {
   width: 220px;
+  height: 180px;
   padding: 10px;
   border: 0px solid gray;
   margin: 30px;
-  background-color: #0088cc;
+  /*background-color: #5bc0de;*/
+  background-color: rgb(181, 229, 248);
+}
+.tableBoxPink {
+  width: 220px;
+  height: 180px;
+  padding: 10px;
+  border: 0px solid gray;
+  margin: 30px;
+  background-color: rgb(240, 152, 240);
+}
+.tableBoxGreen {
+  width: 220px;
+  height: 180px;
+  padding: 10px;
+  border: 0px solid gray;
+  margin: 30px;
+  background-color: rgb(181, 248, 205);
 }
