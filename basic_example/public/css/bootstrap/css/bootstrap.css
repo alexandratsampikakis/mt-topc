@@ -6168,7 +6168,7 @@ a.badge:focus {
   height: 100px;
   padding: 10px;
   border: 0px solid gray;
-  margin: 30px;
+  margin: 0px;
   /*background-color: #5bc0de;*/
   background-color: rgb(181, 229, 248);
 }
@@ -6177,7 +6177,7 @@ a.badge:focus {
   height: 100px;
   padding: 10px;
   border: 0px solid gray;
-  margin: 30px;
+  margin: 0px;
   background-color: rgb(240, 152, 240);
 }
 .tableBoxGreen {
@@ -6185,6 +6185,6 @@ a.badge:focus {
   height: 100px;
   padding: 10px;
   border: 0px solid gray;
-  margin: 30px;
+  margin: 0px;
   background-color: rgb(181, 248, 205);
 }
