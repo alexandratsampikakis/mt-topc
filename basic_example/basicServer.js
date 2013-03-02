@@ -93,7 +93,8 @@ app.listen(3001,'130.240.231.95');
 var server = https.createServer(options, app);
 server.listen(3004);
 
-console.log('Server listening to port 3001.');*/
+console.log('Server listening to port 3001.');
+
 /*global require, __dirname, console
 
 /*var express = require('express'),
