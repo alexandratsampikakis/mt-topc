@@ -1,5 +1,5 @@
 /*global require, __dirname, console*/
-/*var express = require('express'),
+var express = require('express'),
     net = require('net'),
     N = require('./nuve'),
     fs = require("fs"),
@@ -94,8 +94,9 @@ var server = https.createServer(options, app);
 server.listen(3004);
 
 console.log('Server listening to port 3001.');*/
-/*global require, __dirname, console*/
-var express = require('express'),
+/*global require, __dirname, console
+
+/*var express = require('express'),
     net = require('net'),
     N = require('./nuve'),
     fs = require("fs"),
@@ -193,4 +194,4 @@ app.get('/getUsers/:room', function (req, res) {
 app.listen(3001);
 
 var server = https.createServer(options, app);
-server.listen(3004);
+server.listen(3004); */
