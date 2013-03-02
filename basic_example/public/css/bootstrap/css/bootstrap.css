@@ -6163,28 +6163,18 @@ a.badge:focus {
   position: fixed;
 }
 
-.tableBoxBlue {
+.tableBox {
   width: 150px;
   height: 100px;
   padding: 10px;
-  border: 0px solid gray;
-  margin: 0px;
-  /*background-color: #5bc0de;*/
+}
+.tableBoxColorBlue {
+   /*background-color: #5bc0de;*/
   background-color: rgb(181, 229, 248);
 }
-.tableBoxPink {
-  width: 150px;
-  height: 100px;
-  padding: 10px;
-  border: 0px solid gray;
-  margin: 0px;
+.tableBoxColorPink {
   background-color: rgb(240, 152, 240);
 }
-.tableBoxGreen {
-  width: 150px;
-  height: 100px;
-  padding: 10px;
-  border: 0px solid gray;
-  margin: 0px;
+.tableBoxColorGreen {
   background-color: rgb(181, 248, 205);
 }
