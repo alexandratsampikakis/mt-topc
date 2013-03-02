@@ -6162,3 +6162,11 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+.tableBox {
+  width: 220px;
+  padding: 10px;
+  border: 0px solid gray;
+  margin: 30px;
+  background-color: #0088cc;
+}
