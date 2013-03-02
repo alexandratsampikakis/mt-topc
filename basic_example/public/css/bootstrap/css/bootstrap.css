@@ -114,7 +114,7 @@ img {
 
 .buttonCafe {
   width: 150px;
-  color: #0088cc;
+  color: #0088cc !important;
 }
 
 button,
