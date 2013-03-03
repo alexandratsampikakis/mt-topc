@@ -6167,14 +6167,11 @@ a.badge:focus {
   height: 150px;
   padding: 10px;
   margin-top: 20px;
-}
-.tableBoxColorBlue {
-   /*background-color: #5bc0de;*/
   background-color: #0088cc;
 }
-.tableBoxColorPink {
-  background-color: #FF47A3;
-}
-.tableBoxColorGreen {
-  background-color: #33CC33;
+
+.center {
+   float: none;
+   margin-left: auto;
+   margin-right: auto; }
 }
