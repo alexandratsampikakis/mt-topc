@@ -6170,11 +6170,11 @@ a.badge:focus {
 }
 .tableBoxColorBlue {
    /*background-color: #5bc0de;*/
-  background-color: rgb(181, 229, 248);
+  background-color: #0088cc;
 }
 .tableBoxColorPink {
-  background-color: rgb(240, 152, 240);
+  background-color: #FF47A3;
 }
 .tableBoxColorGreen {
-  background-color: rgb(181, 248, 205);
+  background-color: #33CC33;
 }
