@@ -3036,8 +3036,7 @@ button.btn.small, input[type="submit"].btn.small {
   margin-top: -5px;
 }
 .popover.right {
-  /*margin-left: 5px;*/
-  margin-left: -20px;
+  margin-left: 5px;
 }
 .popover.bottom {
   margin-top: 5px;
