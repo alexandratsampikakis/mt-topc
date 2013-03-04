@@ -6167,6 +6167,6 @@ a.badge:focus {
   height: 150px;
   padding: 10px;
   margin-top: 20px;
-  border-radius: 1em;
+  border-radius: 0.5em;
   background-color: rgb(97, 183, 226);
 }
