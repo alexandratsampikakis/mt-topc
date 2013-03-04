@@ -4418,6 +4418,16 @@ input[type="submit"].btn.btn-mini {
   color: #777777;
   text-shadow: 0 1px 0 #ffffff;
 }
+.navbar .smallBrand {
+  display: block;
+  float: right;
+  padding: 10px 20px 10px;
+  margin-left: -15px;
+  font-size: 11px;
+  font-weight: 200;
+  color: #777777;
+  text-shadow: 0 1px 0 #ffffff;
+}
 
 .navbar .brand:hover,
 .navbar .brand:focus {
