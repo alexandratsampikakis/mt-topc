@@ -4418,16 +4418,6 @@ input[type="submit"].btn.btn-mini {
   color: #777777;
   text-shadow: 0 1px 0 #ffffff;
 }
-.navbar .smallBrand {
-  display: block;
-  float: left;
-  padding: 10px 20px 10px;
-  margin-left: -15px;
-  font-size: 12px;
-  font-weight: 200;
-  color: #777777;
-  text-shadow: 0 1px 0 #ffffff;
-}
 
 .navbar .brand:hover,
 .navbar .brand:focus {
@@ -6185,10 +6175,4 @@ a.badge:focus {
   padding: 10px;
   margin-top: 20px;
   background-color: rgb(97, 183, 226);
-}
-
-.center {
-   float: none;
-   margin-left: auto;
-   margin-right: auto; }
 }
