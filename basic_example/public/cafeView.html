@@ -52,19 +52,31 @@
 	      		</p>
 
 	    	<div class="container">  
-			<h2>Example of creating Modal with Twitter Bootstrap</h2>  
+			<h2>Example of creating Popover with Twitter Bootstrap with placement option</h2>  
 			<div class="well">  
-				<a href="#" id="example" class="btn btn-danger" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>  
+			<a href="#" id="example" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltip for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>  
+			</div>  
+			<div class="well">  
+			<a href="#" id="example_left" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>  
+			</div>  
+			<div class="well">  
+			<a href="#" id="example_top" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>  
+			</div>  
+			<div class="well">  
+			<a href="#" id="example_bottom" class="btn btn-success" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>  
 			</div>  
 			</div>  
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 			<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
 			<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>  
 			<script>  
-				$(function ()  
-				{ $("#example").popover();  
-				});  
-			</script>  
+			$(function ()  
+			{ $("#example").popover();  
+			  $("#example_left").popover({placement:'left'});  
+			  $("#example_top").popover({placement:'top'});  
+			  $("#example_bottom").popover({placement:'bottom'});  
+			});  
+			</script>    
 
 			</div>
 
