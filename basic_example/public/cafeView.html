@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Café</title>
-    <script type="text/javascript" src="cafeView.js"></script>
+    <!--<script type="text/javascript" src="cafeView.js"></script> -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
 </head>
@@ -39,7 +39,8 @@
 	    		<center><p class="nav-header"><i class="icon-heart"></i><big> CAFÉ PARIS</big></p></center>
 
 	      		<p>
-	      			<div class="span3 offset1 tableBox"><b><big><a href="#" id="example" rel="popover" data-content="Popup test hihi" data-original-title="Title Café Paris">Table 1</a></big></b></div>
+	      			<div class="span3 offset1 tableBox"><b><big>Table 1</big></b></div>
+
 	      			<div class="span3 tableBox"><b><big>Table 2</big></b></div>
 	      			<div class="span3 tableBox"><b><big>Table 3</big></b></div>
 	      		</p>
@@ -52,9 +53,20 @@
 	      		
 	    	</div>
 
-	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+	    	<div class="container">  
+			<h2>Example of creating Modal with Twitter Bootstrap</h2>  
+			<div class="well">  
+				<a href="#" id="example" class="btn btn-danger" rel="popover" data-content="It's so simple to create a tooltop for my website!" data-original-title="Twitter Bootstrap Popover">hover for popover</a>  
+			</div>  
+			</div>  
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 			<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
-			<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
+			<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>  
+			<script>  
+				$(function ()  
+				{ $("#example").popover();  
+				});  
+			</script>  
 
 	    	<div class="span2">
 	      		<ul class="nav nav-list">
