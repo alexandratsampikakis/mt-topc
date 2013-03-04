@@ -1,4 +1,4 @@
-var serverUrl = "/";
+var serverUrl = "satin.research.ltu.se";
 var localStream, room;
 
 window.onload = function () {
