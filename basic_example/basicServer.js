@@ -93,7 +93,7 @@ app.get('/getUsers/:room', function (req, res) {
     });
 });
 
-app.listen(3001);
+app.listen(3001,'130.240.231.95');
 
 var server = https.createServer(options, app);
 server.listen(3004);
