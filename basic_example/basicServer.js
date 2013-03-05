@@ -27,7 +27,6 @@ app.configure(function () {
 app.all('/', function (req, res, next) {
     "use strict";
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With');
     if (req.method == 'OPTIONS') {
         res.send(200);
