@@ -51,7 +51,9 @@ window.onload = function () {
                 div.setAttribute("style", "width: 320px; height: 240px;");
                 div.setAttribute("id", "test" + stream.getID());
 
-                document.body.appendChild(div);
+                var videoTable = document.getElementById('videoTable');
+                videoTable.appendChild(div);
+                
                 stream.show("test" + stream.getID());
 
             });
