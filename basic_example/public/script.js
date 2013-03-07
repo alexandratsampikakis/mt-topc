@@ -48,7 +48,7 @@ window.onload = function () {
                 console.log("stream-subscribed");
                 var stream = streamEvent.stream;
                 var div = document.createElement('div');
-                div.setAttribute("style", "width: 320px; height: 240px;");
+                div.setAttribute("style", "width: 480px; height: 320px;");
                 div.setAttribute("id", "test" + stream.getID());
 
                 document.body.appendChild(div);
