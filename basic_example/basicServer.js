@@ -114,7 +114,7 @@ N.API.getRooms(function (roomlist) {
                 console.log("hej");
               if (err) console.log("Failed to create cafe");
             });
-            newCafe.findSimilarTypes(function (err, newCafes) {
+            cafeModel.find(function (err, newCafes) {
               if (err) // TODO handle err
               console.log(newCafes)
             });
