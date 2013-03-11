@@ -113,7 +113,7 @@ var cafeSchema = mongoose.Schema({
     table6: String
 });
 
-app.get('/createNewCafe/'), function (req, res) {
+app.get('/createNewCafe/', function (req, res) {
     "use strict";
     var tables = new Array();
     for (var i = 0; i <= 5; i++) {
