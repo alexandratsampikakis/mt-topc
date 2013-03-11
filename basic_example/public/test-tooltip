@@ -4,7 +4,8 @@
 <meta charset="utf-8"> 
 <title>Basic alerts with twitter bootstrap</title> 
 <meta name="description" content="Creating basic alerts with Twitter Bootstrap"> 
-<link href="bootstrap-1.0.0.css" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" /> 
 </head>
 <body>
  <div class="container">
