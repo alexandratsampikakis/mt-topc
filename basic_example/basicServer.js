@@ -14,6 +14,45 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
   // yay!
 });
+
+//########################### DATABASE ###########################
+//6 tables / room
+var cafeSchema = mongoose.Schema({
+    table1: String,
+    table2: String,
+    table3: String,
+    table4: String,
+    table5: String,
+    table6: String
+});
+
+app.get('/createNewCafe/', function (req, res) {
+    "use strict";
+    var tables = new Array();
+    for (var i = 0; i <= 5; i++) {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[i] = myRoom;
+        });
+    }
+    var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    var newCafe = new cafeModel({table1: tables[0], 
+                                 table2: tables[1],
+                                 table3: tables[2], 
+                                 table4: tables[3], 
+                                 table5: tables[4], 
+                                 table6: tables[5]
+    });
+    newCafe.save(function (err) {
+      if (err) console.log("Failed to create cafe");
+    });
+    cafeModel.find(function (err, newCafes) {
+      if (err) // TODO handle err
+      console.log(newCafes)
+    });
+});
+//################################################################
 //db END
 
 var options = {
@@ -60,6 +99,23 @@ N.API.getRooms(function (roomlist) {
             console.log('Created room ', myRoom);
         });
     } else {
+        var cafeModel = mongoose.model('cafeModel', cafeSchema);
+        for (var i = 0; i <= 36; i=i+6) {
+            var newCafe = new cafeModel({table1: tables[i], 
+                                         table2: tables[i+1],
+                                         table3: tables[i+2], 
+                                         table4: tables[i+3], 
+                                         table5: tables[i+4], 
+                                         table6: tables[i+5]
+            });
+            newCafe.save(function (err) {
+              if (err) console.log("Failed to create cafe");
+            });
+            cafeModel.find(function (err, newCafes) {
+              if (err) // TODO handle err
+              console.log(newCafes)
+            });
+        };
         myRoom = rooms[0]._id;
         console.log('Using room ', myRoom);
     }
@@ -101,89 +157,6 @@ app.get('/getUsers/:room', function (req, res) {
         console.log('users: ', users);
     });
 });
-
-//########################### DATABASE ###########################
-//6 tables / room
-var cafeSchema = mongoose.Schema({
-    table1: String,
-    table2: String,
-    table3: String,
-    table4: String,
-    table5: String,
-    table6: String
-});
-
-app.get('/createNewCafe/', function (req, res) {
-    "use strict";
-    var tables = new Array();
-     N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[0] = myRoom;
-        });
-    setTimeout((function() {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[1] = myRoom;
-        });
-    }), 1000);
-        setTimeout((function() {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[2] = myRoom;
-        });
-    }), 2000);
-            setTimeout((function() {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[3] = myRoom;
-        });
-    }), 3000);
-                setTimeout((function() {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[4] = myRoom;
-        });
-    }), 4000);
-                    setTimeout((function() {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[5] = myRoom;
-        });
-    }), 5000);
-   /* for (var i = 0; i <= 5; i++) {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[i] = myRoom;
-        });
-    }*/
-    setTimeout((function() {
-        console.log[tables];
-        var cafeModel = mongoose.model('cafeModel', cafeSchema);
-        var newCafe = new cafeModel({table1: tables[0], 
-                                     table2: tables[1],
-                                     table3: tables[2], 
-                                     table4: tables[3], 
-                                     table5: tables[4], 
-                                     table6: tables[5]
-        });
-        newCafe.save(function (err) {
-          if (err) console.log("Failed to create cafe");
-        });
-        cafeModel.find(function (err, newCafes) {
-          if (err) // TODO handle err
-          console.log(newCafes)
-        });
-    }), 6000);
-    
-});
-//################################################################
 
 
 app.listen(3001);
