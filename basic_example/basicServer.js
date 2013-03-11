@@ -15,6 +15,40 @@ db.once('open', function callback () {
   // yay!
 });
 
+var options = {
+    key: fs.readFileSync('cert/key.pem').toString(),
+    cert: fs.readFileSync('cert/cert.pem').toString()
+};
+
+var app = express();
+
+app.use(express.bodyParser());
+
+app.configure(function () {
+    "use strict";
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    app.use(express.logger());
+    app.use(express.static(__dirname + '/public'));
+    //app.set('views', __dirname + '/../views/');
+    //disable layout
+    //app.set("view options", {layout: false});
+});
+
+app.all('/', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    if (req.method == 'OPTIONS') {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+});
+
+N.API.init(config.nuve.superserviceID, config.nuve.superserviceKey, 'http://localhost:3000/');
+
+var myRoom;
+
 //########################### DATABASE ###########################
 //6 tables / room
 var cafeSchema = mongoose.Schema({
@@ -55,39 +89,7 @@ app.get('/createNewCafe/', function (req, res) {
 //################################################################
 //db END
 
-var options = {
-    key: fs.readFileSync('cert/key.pem').toString(),
-    cert: fs.readFileSync('cert/cert.pem').toString()
-};
 
-var app = express();
-
-app.use(express.bodyParser());
-
-app.configure(function () {
-    "use strict";
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    app.use(express.logger());
-    app.use(express.static(__dirname + '/public'));
-    //app.set('views', __dirname + '/../views/');
-    //disable layout
-    //app.set("view options", {layout: false});
-});
-
-app.all('/', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-    if (req.method == 'OPTIONS') {
-        res.send(200);
-    }
-    else {
-        next();
-    }
-});
-
-N.API.init(config.nuve.superserviceID, config.nuve.superserviceKey, 'http://localhost:3000/');
-
-var myRoom;
 
 N.API.getRooms(function (roomlist) {
     "use strict";
