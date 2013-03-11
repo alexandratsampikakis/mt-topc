@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Café</title>
+    <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" /> <!--måste ligga först-->
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
 </head>
@@ -51,7 +52,7 @@
 			   
 			    	<a href="#"><button class="buttonCafe btn btn btn-info" type="button"><i class="icon-glass"></i> Café Stockholm</button></a>
 			    
-			    	<a href="http://satin.research.ltu.se:3001/dropdown-test.html"><button class="buttonCafe btn btn btn-info" type="button"><i class="icon-heart"></i> Café Luleå</button></a>
+			    	<a href="http://satin.research.ltu.se:3001/test-tooltip.html"><button class="buttonCafe btn btn btn-info" type="button"><i class="icon-heart"></i> Café Luleå</button></a>
 			    </p></center>				
 	    	</div>
 	    	<div class="span2">
@@ -69,9 +70,17 @@
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
 
-  			<a class="btn btn-small btn-inverse" href="#" style="float:right; margin-right:15px; margin-top:10px;"><i class="icon-align-justify icon-white"></i></a>
+  			<a class="btn btn-small btn-inverse" id="example" href="#" style="float:right; margin-right:15px; margin-top:10px;"><i class="icon-align-justify icon-white"></i></a>
   		</div>
 	</div>
+
+	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+	<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>
+  	<script type="text/javascript">
+      $(document).ready(function () {
+          $('#example').tooltip(options);
+      });
+  	</script>
 
 </body>
 </html>
