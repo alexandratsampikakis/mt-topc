@@ -132,28 +132,28 @@ app.get('/createNewCafe/', function (req, res) {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
-            tables[1] = myRoom;
+            tables[2] = myRoom;
         });
     }), 2000);
             setTimeout((function() {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
-            tables[1] = myRoom;
+            tables[3] = myRoom;
         });
     }), 3000);
                 setTimeout((function() {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
-            tables[1] = myRoom;
+            tables[4] = myRoom;
         });
     }), 4000);
                     setTimeout((function() {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
-            tables[1] = myRoom;
+            tables[5] = myRoom;
         });
     }), 5000);
    /* for (var i = 0; i <= 5; i++) {
