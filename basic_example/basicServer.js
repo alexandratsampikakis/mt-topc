@@ -112,6 +112,23 @@ app.get("/api/getcafes", function (req, res) {
     });
 });
 
+app.get("/api/getcafenames", function (req, res) {
+    var cafe = [];
+
+    var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    cafeModel.find({}, function (err, records) {
+        records.forEach(function (post, i) {
+            cafe.push({
+                id: i,
+                name: post.name
+              });
+            });
+        res.json({
+            cafe: cafe
+        });
+    });
+});
+
 app.get("/api/getcafe/:name", function (req, res) {
     var cafeName = req.params.name;
 
@@ -119,6 +136,7 @@ app.get("/api/getcafe/:name", function (req, res) {
 
     cafeModel.findOne({name: cafeName }, function (err, records) {
         res.json({
+            name: records.name,
             table1: records.table1, 
             table2: records.table2,
             table3: records.table3, 
