@@ -1579,7 +1579,7 @@ table .span12 {
   left: 0;
   z-index: 1000;
   float: left;
-  display: none;
+  /*display: none;*/
   min-width: 160px;
   _width: 160px;
   padding: 4px 0;
