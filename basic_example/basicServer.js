@@ -97,11 +97,11 @@ var cafeModel = mongoose.model('cafeModel', cafeSchema);
             cafe.push({
                 id: i,
                 table1: post.table1, 
-                table2: post.tables2,
-                table3: post.tables3, 
-                table4: post.tables4, 
-                table5: post.tables5, 
-                table6: post.tables6
+                table2: post.table2,
+                table3: post.table3, 
+                table4: post.table4, 
+                table5: post.table5, 
+                table6: post.table6
               });
             });
         res.json({
