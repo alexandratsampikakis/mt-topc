@@ -174,7 +174,7 @@ app.get('/createNewCafe/', function (req, res) {
     newCafe.save(function (err) {
       if (err) console.log("Failed to create cafe");
     });
-    newCafe.find(function (err, newCafes) {
+    cafeModel.find(function (err, newCafes) {
       if (err) // TODO handle err
       console.log(newCafes)
     });}, 6000);
