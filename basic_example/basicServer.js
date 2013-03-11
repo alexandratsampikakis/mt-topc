@@ -163,7 +163,7 @@ app.get('/createNewCafe/', function (req, res) {
             tables[i] = myRoom;
         });
     }*/
-    set setTimeout(function() {var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    setTimeout(function() {var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
                                  table3: tables[2], 
