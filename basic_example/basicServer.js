@@ -119,12 +119,12 @@ app.get("/api/getcafe/:name", function (req, res) {
 
     cafeModel.findOne({name: cafeName }, function (err, records) {
         res.json({
-            table1: post.table1, 
-            table2: post.table2,
-            table3: post.table3, 
-            table4: post.table4, 
-            table5: post.table5, 
-            table6: post.table6
+            table1: records.table1, 
+            table2: records.table2,
+            table3: records.table3, 
+            table4: records.table4, 
+            table5: records.table5, 
+            table6: records.table6
         });
     });
 });
