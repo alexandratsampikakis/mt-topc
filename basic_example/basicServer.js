@@ -111,9 +111,10 @@ N.API.getRooms(function (roomlist) {
                                          table6: rooms[i+5]
             });
             newCafe.save(function (err) {
+                console.log("hej");
               if (err) console.log("Failed to create cafe");
             });
-            cafeModel.find(function (err, newCafes) {
+            newCafe.findSimilarTypes(function (err, newCafes) {
               if (err) // TODO handle err
               console.log(newCafes)
             });
