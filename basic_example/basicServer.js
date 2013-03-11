@@ -8,7 +8,7 @@ var express = require('express'),
 //Database
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/rooms');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -112,13 +112,11 @@ N.API.getRooms(function (roomlist) {
                                          table6: rooms[i+5]
             });
             newCafe.save(function (err) {
-                console.log("hej");
               if (err) console.log("Failed to create cafe");
             });
             cafeModel.find(function (err, newCafes) {
-                console.log("hihohoho");
               if (err); // TODO handle err
-              console.log(newCafes);
+              console.log("antal rum: ", newCafes.length);
             });
         };
         myRoom = rooms[0]._id;
