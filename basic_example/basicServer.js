@@ -102,7 +102,7 @@ N.API.getRooms(function (roomlist) {
             console.log('Created room ', myRoom);
         });
     } else {
-        var cafeModel = mongoose.model('cafeModel', cafeSchema);
+        /*var cafeModel = mongoose.model('cafeModel', cafeSchema);
         for (var i = 0; i <= 36; i=i+6) {
             var newCafe = new cafeModel({table1: rooms[i], 
                                          table2: rooms[i+1],
@@ -118,7 +118,7 @@ N.API.getRooms(function (roomlist) {
               if (err); // TODO handle err
               console.log("antal rum: ", newCafes.length);
             });
-        };
+        };*/
         myRoom = rooms[0]._id;
         console.log('Using room ', myRoom);
     }
