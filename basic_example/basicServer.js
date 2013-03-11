@@ -103,12 +103,12 @@ N.API.getRooms(function (roomlist) {
     } else {
         var cafeModel = mongoose.model('cafeModel', cafeSchema);
         for (var i = 0; i <= 36; i=i+6) {
-            var newCafe = new cafeModel({table1: tables[i], 
-                                         table2: tables[i+1],
-                                         table3: tables[i+2], 
-                                         table4: tables[i+3], 
-                                         table5: tables[i+4], 
-                                         table6: tables[i+5]
+            var newCafe = new cafeModel({table1: rooms[i], 
+                                         table2: rooms[i+1],
+                                         table3: rooms[i+2], 
+                                         table4: rooms[i+3], 
+                                         table5: rooms[i+4], 
+                                         table6: rooms[i+5]
             });
             newCafe.save(function (err) {
               if (err) console.log("Failed to create cafe");
