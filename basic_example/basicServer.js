@@ -51,7 +51,7 @@ var myRoom;
 
 //########################### DATABASE ###########################
 //6 tables / room
-var cafeSchema = mongoose.Schema({
+var cafeSchema = new Schema({
     table1: String,
     table2: String,
     table3: String,
