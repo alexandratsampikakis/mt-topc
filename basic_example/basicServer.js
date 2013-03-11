@@ -163,21 +163,24 @@ app.get('/createNewCafe/', function (req, res) {
             tables[i] = myRoom;
         });
     }*/
-    setTimeout((function() {var cafeModel = mongoose.model('cafeModel', cafeSchema);
-    var newCafe = new cafeModel({table1: tables[0], 
-                                 table2: tables[1],
-                                 table3: tables[2], 
-                                 table4: tables[3], 
-                                 table5: tables[4], 
-                                 table6: tables[5]
-    });
-    newCafe.save(function (err) {
-      if (err) console.log("Failed to create cafe");
-    });
-    cafeModel.find(function (err, newCafes) {
-      if (err) // TODO handle err
-      console.log(newCafes)
-    });}), 6000);
+    setTimeout((function() {
+        console.log[tables];
+        var cafeModel = mongoose.model('cafeModel', cafeSchema);
+        var newCafe = new cafeModel({table1: tables[0], 
+                                     table2: tables[1],
+                                     table3: tables[2], 
+                                     table4: tables[3], 
+                                     table5: tables[4], 
+                                     table6: tables[5]
+        });
+        newCafe.save(function (err) {
+          if (err) console.log("Failed to create cafe");
+        });
+        cafeModel.find(function (err, newCafes) {
+          if (err) // TODO handle err
+          console.log(newCafes)
+        });
+    }), 6000);
     
 });
 //################################################################
