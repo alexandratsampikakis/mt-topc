@@ -87,6 +87,29 @@ app.get('/createNewCafe/', function (req, res) {
       console.log(newCafes)
     });
 });
+
+app.get("/api/getcafes", function (req, res) {
+var cafe = [];
+
+var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    cafeModel.find({}, function (err, records) {
+        records.forEach(function (post, i) {
+            cafe.push({
+                id: i,
+                table1: post.table1, 
+                table2: post.tables2,
+                table3: post.tables3, 
+                table4: post.tables4, 
+                table5: post.tables5, 
+                table6: post.tables6
+              });
+            });
+        res.json({
+            track: track
+        });
+    });
+};
+
 //################################################################
 //db END
 
