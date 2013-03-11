@@ -116,14 +116,54 @@ var cafeSchema = mongoose.Schema({
 app.get('/createNewCafe/', function (req, res) {
     "use strict";
     var tables = new Array();
-    for (var i = 0; i <= 5; i++) {
+     N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[0] = myRoom;
+        });
+    setTimeout((function() {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[1] = myRoom;
+        });
+    }), 1000);
+        setTimeout((function() {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[1] = myRoom;
+        });
+    }), 2000);
+            setTimeout((function() {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[1] = myRoom;
+        });
+    }), 3000);
+                setTimeout((function() {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[1] = myRoom;
+        });
+    }), 4000);
+                    setTimeout((function() {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[1] = myRoom;
+        });
+    }), 5000);
+   /* for (var i = 0; i <= 5; i++) {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
             tables[i] = myRoom;
         });
-    }
-    var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    }*/
+    set setTimeout(function() {var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
                                  table3: tables[2], 
@@ -137,7 +177,8 @@ app.get('/createNewCafe/', function (req, res) {
     newCafe.find(function (err, newCafes) {
       if (err) // TODO handle err
       console.log(newCafes)
-    });
+    });}, 6000);
+    
 });
 //################################################################
 
