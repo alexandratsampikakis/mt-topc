@@ -53,6 +53,7 @@ var myRoom;
 //########################### DATABASE ###########################
 //6 tables / room
 var cafeSchema = new Schema({
+    name: String,
     table1: String,
     table2: String,
     table3: String,
@@ -89,13 +90,14 @@ app.get('/createNewCafe/', function (req, res) {
 });
 
 app.get("/api/getcafes", function (req, res) {
-var cafe = [];
+    var cafe = [];
 
-var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    var cafeModel = mongoose.model('cafeModel', cafeSchema);
     cafeModel.find({}, function (err, records) {
         records.forEach(function (post, i) {
             cafe.push({
                 id: i,
+                name: post.name,
                 table1: post.table1, 
                 table2: post.table2,
                 table3: post.table3, 
@@ -106,6 +108,23 @@ var cafeModel = mongoose.model('cafeModel', cafeSchema);
             });
         res.json({
             cafe: cafe
+        });
+    });
+});
+
+app.get("/api/getcafe/:name", function (req, res) {
+    var cafeName = req.params.name;
+
+    var cafeModel = mongoose.model('cafeModel', cafeSchema);
+
+    cafeModel.findOne({name: cafeName }, function (err, records) {
+        res.json({
+            table1: post.table1, 
+            table2: post.table2,
+            table3: post.table3, 
+            table4: post.table4, 
+            table5: post.table5, 
+            table6: post.table6
         });
     });
 });
