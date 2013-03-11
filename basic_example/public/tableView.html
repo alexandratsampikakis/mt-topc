@@ -4,14 +4,15 @@
     
     <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
+
     <script type="text/javascript" src="erizo.js"></script>
     <script type="text/javascript" src="script.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-dropdown.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
+    <script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-dropdown.js"></script>
 </head>
 
 <body>
@@ -23,13 +24,19 @@
   		</div>
 	</div>
 
-	<div class="btn-group">
-  		<button class="btn dropdown-toggle" data-toggle="dropdown" href="#">Action<span class="caret"></span>
-  		</button>
+	<div class="dropdown">
+  		<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">Dropdown<b class="caret"></b>
+  		</a>
   		<ul class="dropdown-menu">
     		<li><a tabindex="-1" href="#">Action</a></li>
   		</ul>
 	</div>
+
+	<script>  
+		$(function ()
+		{ $('.dropdown-toggle').dropdown();
+		});
+	</script>
 
 	<div class="container-fluid">
   		<div class="row-fluid">
