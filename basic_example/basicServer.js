@@ -116,8 +116,9 @@ N.API.getRooms(function (roomlist) {
               if (err) console.log("Failed to create cafe");
             });
             cafeModel.find(function (err, newCafes) {
-              if (err) // TODO handle err
-              console.log(newCafes)
+                console.log("hihohoho");
+              if (err); // TODO handle err
+              console.log(newCafes);
             });
         };
         myRoom = rooms[0]._id;
