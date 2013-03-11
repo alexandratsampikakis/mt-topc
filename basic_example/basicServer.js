@@ -8,7 +8,7 @@ var express = require('express'),
 //Database
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/rooms');
+mongoose.connect('mongodb://localhost/test');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
