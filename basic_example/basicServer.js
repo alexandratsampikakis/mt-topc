@@ -5,6 +5,17 @@ var express = require('express'),
     https = require("https"),
     config = require('./../../../lynckia_config');
 
+//Database
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+var db.mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  // yay!
+});
+//db END
+
 var options = {
     key: fs.readFileSync('cert/key.pem').toString(),
     cert: fs.readFileSync('cert/cert.pem').toString()
@@ -90,6 +101,46 @@ app.get('/getUsers/:room', function (req, res) {
         console.log('users: ', users);
     });
 });
+
+//########################### DATABASE ###########################
+//6 tables / room
+var cafeSchema = mongoose.Schema({
+    table1: String,
+    table2: String,
+    table3: String,
+    table4: String,
+    table5: String,
+    table6: String
+});
+
+app.get('/createNewCafe/'), function (req, res) {
+    "use strict";
+    var tables = new Array();
+    for (var i = 0; i <= 5; i++) {
+        N.API.createRoom('myRoom', function (roomID) {
+            myRoom = roomID._id;
+            console.log('Created room ', myRoom);
+            tables[i] = myRoom;
+        });
+    }
+    var cafeModel = mongoose.model('cafeModel', cafeSchema);
+    var newCafe = new cafeModel({table1: tables[0], 
+                                 table2: tables[1],
+                                 table3: tables[2], 
+                                 table4: tables[3], 
+                                 table5: tables[4], 
+                                 table6: tables[5]
+    });
+    newCafe.save(function (err) {
+      if (err) console.log("Failed to create cafe");
+    });
+    newCafe.find(function (err, newCafes) {
+      if (err) // TODO handle err
+      console.log(newCafes)
+    });
+});
+//################################################################
+
 
 app.listen(3001);
 
