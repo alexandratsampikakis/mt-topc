@@ -26,7 +26,6 @@ window.onload = function () {
             cafes
         };*/
         console.log(cafes);
-        console.log(JSON.parse(response.cafe));
         console.log(cafes.cafe);
         console.log(cafes.cafe[0]);
 
