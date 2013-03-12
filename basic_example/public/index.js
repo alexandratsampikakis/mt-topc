@@ -13,10 +13,9 @@ window.onload = function () {
         };
 
         req.open('POST', url, true);
-
-        req.setRequestHeader('Content-Type', 'application/json');
+        
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
-        req.send(JSON.stringify(body));
+        req.send();
     };
 
     
