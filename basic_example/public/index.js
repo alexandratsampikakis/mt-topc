@@ -21,7 +21,7 @@ window.onload = function () {
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
         var cb = document.getElementById("cafeButtons");
-        for (var i = 0; i < cafes.cafe[0].length; i++) {
+        for (var i = 0; i < cafes.cafe.length; i++) {
             var a = document.createElement('a');
             a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html");
             a.innerHTML += cafes.cafe[0].name;
