@@ -27,7 +27,7 @@ window.onload = function () {
         };*/
         console.log(cafes);
         console.log(cafes.cafe);
-        console.log(cafes.cafe[0]);
+        console.log(cafes.cafe[0].name);
 
     });
 };
