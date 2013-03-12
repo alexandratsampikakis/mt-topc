@@ -23,14 +23,10 @@ window.onload = function () {
         var cb = document.getElementById("cafeButtons");
         for (var i = 0; i < cafes.cafe.length; i++) {
             var a = document.createElement('a');
-            a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html");
-            a.innerHTML += cafes.cafe[0].name;
+            var cafeName = cafes.cafe[i].name;
+            a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html/?cafe="+cafeName);
+            a.innerHTML += cafeName;
             cb.appendChild(a);
-            
-            var btn = document.createElement('button');
-            btn.setAttribute("class", "buttonCafe btn btn btn-info");
-            btn.setAttribute("type", "button");
-            a.appendChild(btn);
         };
         console.log(cafes.cafe[0].name);
 
