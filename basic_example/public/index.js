@@ -12,8 +12,8 @@ window.onload = function () {
             }
         };
 
-        req.open('POST', url, true);
-        
+        req.open('GET', url, true);
+
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send();
     };
