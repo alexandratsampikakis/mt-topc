@@ -18,9 +18,6 @@ window.onload = function () {
         req.send();
     };
 
-    
-        <a href="http://satin.research.ltu.se:3001/cafeView.html"><button class="buttonCafe btn btn btn-info" type="button"><i class="icon-heart"></i> Café Paris</button></a>
-
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
         var cb = document.getElementById("cafeButtons");
