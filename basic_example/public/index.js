@@ -22,6 +22,6 @@ window.onload = function () {
 
     getCafeNames(function (response) {
         var cafes = response;
-        console.log(JSON.parse(response));
+        console.log(JSON.parse(response)[0][1]);
     });
 };
