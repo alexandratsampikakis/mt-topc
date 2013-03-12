@@ -19,16 +19,23 @@ window.onload = function () {
     };
 
     
+        <a href="http://satin.research.ltu.se:3001/cafeView.html"><button class="buttonCafe btn btn btn-info" type="button"><i class="icon-heart"></i> Café Paris</button></a>
 
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
-        /*for (var i = 0; i < cafes.length; i++) {
-            cafes
-        };*/
-        console.log(cafes);
-        console.log(cafes.cafe);
+        var cb = document.getElementById("cafeButtons");
+        for (var i = 0; i < cafes.cafe[0].length; i++) {
+            var a = document.createElement('a');
+            a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html");
+            a.innerHTML += cafes.cafe[0].name;
+            cb.appendChild(a);
+            
+            var btn = document.createElement('button');
+            btn.setAttribute("class", "buttonCafe btn btn btn-info");
+            btn.setAttribute("type", "button");
+            a.appendChild(btn);
+        };
         console.log(cafes.cafe[0].name);
-        console.log(cafes.cafe.length);
 
     });
 };
