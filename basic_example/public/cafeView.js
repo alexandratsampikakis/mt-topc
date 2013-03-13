@@ -114,7 +114,7 @@ window.onload = function () {
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
-     //   L.Logger.setLogLevel(L.Logger.DEBUG);
+            L.Logger.setLogLevel(L.Logger.DEBUG);
             //L.Logger.debug("Connected!");
             room = Erizo.Room({token: token});
 
