@@ -104,8 +104,8 @@ window.onload = function () {
     };
 
       var initialize = function(roomId) {
-        var roomContainer = document.getElementById("roomContainer");
-        roomContainer.setAttribute("class", "hide");
+        var tableContainer = document.getElementById("tableContainer");
+        tableContainer.setAttribute("class", "hide");
         var videoContainer = document.getElementById("videoContainer");
         videoContainer.setAttribute("class", "");
 
