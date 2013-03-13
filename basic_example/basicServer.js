@@ -147,6 +147,8 @@ app.get("/api/getcafe/:name", function (req, res) {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
 
     cafeModel.findOne({name: cafeName }, function (err, records) {
+        console.log(err);
+        console.log(records);
         if(err) {
             res.json({
                 error: 'Café does not exist.'
