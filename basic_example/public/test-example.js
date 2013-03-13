@@ -82,15 +82,15 @@ try {
     };
 
     room1.onclick = function(evt) {
-        initialize(roomId1);
+        initialize(tableId1);
     };
 
     room2.onclick = function(evt) {
-        initialize(roomId2);
+        initialize(tableId2);
     };
 
     room3.onclick = function(evt) {
-        initialize(roomId3);
+        initialize(tableId3);
     };
 
     room4.onclick = function(evt) {
