@@ -106,9 +106,9 @@ window.onload = function () {
 
       var initialize = function(roomId) {
         var tableContainer = document.getElementById("tableContainer");
-        tableContainer.setAttribute("class", "hide");
+        tableContainer.setAttribute("class", "span8 mute hide");
         var videoContainer = document.getElementById("videoContainer");
-        videoContainer.setAttribute("class", "");
+        videoContainer.setAttribute("class", "span8 mute");
 
         createToken(roomId, "user", "role", function (response) {
             var token = response;
