@@ -54,38 +54,6 @@ try {
         req.send(JSON.stringify(body));
     };
 
-    var getUsers = function(roomId, callback) {
-
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'getUsers/' + roomId;
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('GET', url, true);
-
-        //console.log("Sending  to " + url);
-        req.send();
-    };
-
-    var writeUsers = function(id, room, users) {
-        var number;
-        if(users == '?') {
-            number = users; 
-        } else {
-            number = JSON.parse(users).length;
-        }
-        if (id == 4) {
-            room.childNodes[1].innerText = "CUBE!!! - (" + number + " users)";
-        } else {
-            room.childNodes[1].innerText = "Room " + id + " - (" + number + " users)";
-        }
-    };
-
-
     room1.onclick = function(evt) {
         initialize(roomId1);
     };
