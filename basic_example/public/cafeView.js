@@ -3,7 +3,12 @@ var localStream, room;
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 //Retrieves querystrings. ex getQueryString('hello') on page 
 //http://www.mypage.se?hello=world returns 'world'
-
+tableId1 = '513dd08a07aa2f143700001f';
+tableId2 = '513dd08b07aa2f1437000020';
+tableId3 = '513dd08c07aa2f1437000021';
+tableId4 = '513dd08d07aa2f1437000022';
+tableId5 = '513dd08e07aa2f1437000023';
+tableId6 = '513dd08f07aa2f1437000024';
 
 window.onload = function () {
 
@@ -20,7 +25,7 @@ window.onload = function () {
     var table5 = document.getElementById('table5');
     var table6 = document.getElementById('table6');
 
-    var getQueryString = function getQueryString(key, default_) {
+  /*  var getQueryString = function getQueryString(key, default_) {
         if (default_==null) default_=""; 
         key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
         var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
@@ -64,7 +69,7 @@ window.onload = function () {
         }
         console.log(cafes.name);
 
-    });
+    });*/
 
     var createToken = function(roomId, userName, role, callback) {
 
