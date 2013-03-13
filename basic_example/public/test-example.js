@@ -11,7 +11,7 @@ window.onload = function () {
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
 } catch (error) {
-    console.log('erizo error: ' + error)
+    console.log('erizo error: ' + error);
 }
 
     var room1 = document.getElementById('room1');
@@ -85,24 +85,6 @@ try {
         }
     };
 
-    var checkUsers = function() {
-        getUsers(roomId1, function(users) {
-            writeUsers(1, room1, users);
-            getUsers(roomId2, function(users) {
-                writeUsers(2, room2, users);
-                getUsers(roomId3, function(users) {
-                    writeUsers(3, room3, users);
-                    getUsers(roomId4, function(users) {
-                        writeUsers(4, room4, users);
-                    });    
-                });
-            });
-        });
-    };
-
-    interval = setInterval(checkUsers, 10000);
-
-    checkUsers();
 
     room1.onclick = function(evt) {
         initialize(roomId1);
@@ -121,7 +103,6 @@ try {
     };
 
     var initialize = function(roomId) {
-        clearInterval(interval);
         var roomcontainer = document.getElementById("roomcontainer");
         roomcontainer.setAttribute("class", "hide");
         var vidcontainer = document.getElementById("vidcontainer");

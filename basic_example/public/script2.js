@@ -11,7 +11,7 @@ window.onload = function () {
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
 } catch (error) {
-    console.log('erizo error: ' + error)
+    console.log('erizo error: ' + error);
 }
 
     var room1 = document.getElementById('room1');
