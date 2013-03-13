@@ -96,6 +96,10 @@ app.get("/api/getcafes", function (req, res) {
     cafeModel.find({}, function (err, records) {
         if(err) {
             res.json({
+                error: 'Database error.'
+            });
+        } else if(records === null) {
+            res.json({
                 error: 'Café does not exist.'
             });
         } else {
@@ -125,6 +129,10 @@ app.get("/api/getcafenames", function (req, res) {
     cafeModel.find({}, function (err, records) {
         if(err) {
             res.json({
+                error: 'Database error.'
+            });
+        } else if(records === null) {
+            res.json({
                 error: 'Café does not exist.'
             });
         } else {
@@ -150,6 +158,10 @@ app.get("/api/getcafe/:name", function (req, res) {
         console.log(err);
         console.log(records);
         if(err) {
+            res.json({
+                error: 'Database error.'
+            });
+        } else if(records === null) {
             res.json({
                 error: 'Café does not exist.'
             });
