@@ -17,7 +17,7 @@ window.onload = function () {
     var getCafeTables = function(callback) {
 
         var req = new XMLHttpRequest();
-        var url = serverUrl + 'api/getcafe/' + getQueryString('cafe');
+        var url = serverUrl + 'api/getcafe/' + getQueryString('cafe','fisk');
 
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
