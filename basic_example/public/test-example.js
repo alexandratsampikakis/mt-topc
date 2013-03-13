@@ -57,6 +57,11 @@ try {
             tableId5 = cafes.table5;
             tableId6 = cafes.table6;
             console.log(tableId1);
+            console.log(tableId2);
+            console.log(tableId3);
+            console.log(tableId4);
+            console.log(tableId5);
+            console.log(tableId6);
         }
         console.log(cafes.name);
 
