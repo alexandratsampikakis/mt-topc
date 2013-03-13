@@ -59,6 +59,7 @@ window.onload = function () {
             tableId4 = cafes.table4;
             tableId5 = cafes.table5;
             tableId6 = cafes.table6;
+            console.log(tableId1);
         }
         console.log(cafes.name);
 
@@ -184,54 +185,5 @@ window.onload = function () {
             });
             localStream.init();
         });   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 };
