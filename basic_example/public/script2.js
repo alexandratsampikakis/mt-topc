@@ -5,20 +5,35 @@ roomId2 = "5007cf98a8946ac114000116";
 roomId3 = "5007cf9aa8946ac114000117";
 roomId4 = "5007cf9ca8946ac114000118";
 
-serverUrl = "http://chotis2.dit.upm.es/";
+serverUrl = "/";
 
 window.onload = function () {
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
 } catch (error) {
-  document.getElementById('howto').removeAttribute("class");
-  document.getElementById('rooms').setAttribute("class","hide");
+
 }
 
     var room1 = document.getElementById('room1');
     var room2 = document.getElementById('room2');
     var room3 = document.getElementById('room3');
     var room4 = document.getElementById('room4');
+
+    var getTables = function(callback) {
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'api/getcafes/';
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('GET', url, true);
+
+        //console.log("Sending  to " + url);
+        req.send();
+    }
 
     var createToken = function(roomId, userName, role, callback) {
 

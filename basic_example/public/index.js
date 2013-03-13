@@ -1,7 +1,7 @@
 var serverUrl = "/";
 
 window.onload = function () {
- var getCafeNames = function(callback) {
+    var getCafeNames = function(callback) {
 
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/getcafenames/';
