@@ -150,7 +150,9 @@ app.get("/api/getcafe/:name", function (req, res) {
 //################################################################
 //db END
 
-
+app.get('/cafeView.html', function(req, res){
+  res.send('cafe: ' + req.query.cafe);
+});
 
 N.API.getRooms(function (roomlist) {
     "use strict";
