@@ -1,0 +1,398 @@
+html, body {
+	margin: auto;
+	width: 640px;
+	background-color: #fff;
+	height: 480px;
+	background-attachment:fixed;
+	background-image: linear-gradient(bottom, #EDEDED 30%, #FAFAFA 60%, #FFFFFF 85%);
+	background-image: -o-linear-gradient(bottom, #EDEDED 30%, #FAFAFA 60%, #FFFFFF 85%);
+	background-image: -moz-linear-gradient(bottom, #EDEDED 30%, #FAFAFA 60%, #FFFFFF 85%);
+	background-image: -webkit-linear-gradient(bottom, #EDEDED 30%, #FAFAFA 60%, #FFFFFF 85%);
+	background-image: -ms-linear-gradient(bottom, #EDEDED 30%, #FAFAFA 60%, #FFFFFF 85%);
+
+	background-image: -webkit-gradient(
+		linear,
+		right bottom,
+		right top,
+		color-stop(0.39, #EDEDED),
+		color-stop(0.7, #FAFAFA),
+		color-stop(0.85, #FFFFFF)
+	);
+}
+
+#roomcontainer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.footerstyle {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	margin-left: -255px;
+	margin-top: 660px;
+	left: 50%;
+}
+
+.logostyle {
+	position:absolute;
+	left: 50%;
+    top: 53px;
+    width: 340px;
+    height: 204px;
+    margin-left: 10px;
+}
+
+#vidcontainer {
+	width: 640px;
+	height: 480px;
+}
+
+#textfoo {
+
+	font-family: Arial;
+	font-weight:bold;
+	color: 003675;
+	font-size: 16;
+
+	position: absolute;
+	width: 340px;
+	margin-left: -273px;
+	margin-top: 840px;
+	left: 50%;
+}
+
+#textexit {
+
+	font-family: Arial;
+	font-weight:bold;
+	color: 003675;
+	font-size: 18;
+
+	position: absolute;
+	width: 340px;
+	margin-left: 130px;
+	margin-top: 290px;
+	left: 50%;
+}
+
+#room1 {
+	background-color: #fff;
+	margin-top: 400px;
+	left: 50%;
+	margin-left: -170px;
+	width: 340px;
+	height: 60px;
+}
+
+#room2 {
+	background-color: #303;
+	margin-left: -170px;
+	margin-top: 490px;
+	left: 50%;
+	width: 340px;
+	height: 60px;
+}
+
+#room3 {
+	background-color: # C99;
+	margin-left: -170px;
+	margin-top: 580px;
+	left: 50%;
+	width: 340px;
+	height: 60px;;
+}
+
+#room4 {
+	background-color: # FC6;
+	margin-left: -170px;
+	margin-top: 670px;
+	left: 50%;
+	width: 340px;
+	height: 60px;
+}
+
+.room {
+	cursor: pointer;
+}
+
+.roomtext {
+
+	font-family: Arial;
+	font-weight:bold;
+	color: white;
+	font-size: 25;
+
+	position: absolute;
+	width: 340px;
+	margin-left: -125px;
+	margin-top: 15px;
+	left: 50%;
+}
+
+#titletext {
+
+	font-family: Arial;
+	font-weight:bold;
+	color: 003675;
+	font-size: 25;
+	text-align: center;
+
+	position: absolute;
+	width: 340px;
+	margin-left: -170px;
+	margin-top: 320px;
+	left: 50%;
+}
+
+#star {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	margin-left: 80px;
+	margin-top: 80px;
+	left: 50%;
+}
+
+#logo {
+	position:absolute;
+	left: 50%;
+    top: 53px;
+    width: 340px;
+    height: 204px;
+    margin-left: -220px;
+}
+
+#textfooindex {
+
+	font-family: Arial;
+	font-weight:bold;
+	color: 003675;
+	text-align: center;
+	font-size: 16;
+
+	position: absolute;
+	width: 340px;
+	margin-left: -170px;
+	margin-top: 780px;
+	left: 50%;
+}
+
+#texttitle {
+        font-family: Arial;
+        font-weight:bold;
+        color: 003675;
+        text-align: center;
+        font-size: 16;
+}
+
+#textinstructions {
+        font-family: Arial;
+        font-weight:bold;
+        color: 003675;
+        text-align: center;
+        font-size: 12;
+}
+	
+#vid3 {
+	background-color: #fff;
+	margin-top: 50px;
+	left: 50%;
+	margin-left: -345px;
+}
+
+#vid1 {
+	background-color: #303;
+	margin-left: -345px;
+	margin-top: 330px;
+	left: 50%;
+}
+
+#vid2 {
+	background-color: # C99;
+	margin-left: 10px;
+	margin-top: 330px;
+	left: 50%;
+}
+
+#vid4 {
+	background-color: # FC6;
+	margin-left: 10px;
+	margin-top: 610px;
+	left: 50%;
+}
+
+#vid5 {
+	background-color: #fff;
+	margin-top: 330px;
+	margin-left: -705px;
+	left: 50%;
+}
+
+#vid6 {
+	background-color: #303;
+	margin-left: 370px;
+	margin-top: 330px;
+	left: 50%;
+}
+
+#vid7 {
+	background-color: #fff;
+	margin-top: 50px;
+	margin-left: -705px;
+	left: 50%;
+}
+
+#vid8 {
+	background-color: #303;
+	margin-left: 370px;
+	margin-top: 610px;
+	left: 50%;
+}
+
+#vid9 {
+	background-color: #303;
+	margin-left: 370px;
+	margin-top: 50px;
+	left: 50%;
+}
+
+#vid10 {
+	background-color: #fff;
+	margin-top: 610px;
+	margin-left: -705px;
+	left: 50%;
+}
+
+.cam {
+	opacity: 0.2;
+	margin-left:45%;
+	margin-top:30%;
+}
+
+.coolstyle {
+
+	width: 340px;
+	height: 260px;
+
+	position: absolute;
+
+	border-radius: 15px;
+	moz-border-radius: 15px;
+	webkit-border-radius: 15px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+
+	background-image: linear-gradient(bottom, #001329 9%, #013066 44%, #003775 78%);
+	background-image: -o-linear-gradient(bottom, #001329 9%, #013066 44%, #003775 78%);
+	background-image: -moz-linear-gradient(bottom, #001329 9%, #013066 44%, #003775 78%);
+	background-image: -webkit-linear-gradient(bottom, #001329 9%, #013066 44%, #003775 78%);
+	background-image: -ms-linear-gradient(bottom, #001329 9%, #013066 44%, #003775 78%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.09, #001329),
+		color-stop(0.44, #013066),
+		color-stop(0.78, #003775)
+	);
+}
+
+.coolstyleCube {
+
+	width: 340px;
+	height: 260px;
+
+	position: absolute;
+
+	border-radius: 15px;
+	moz-border-radius: 15px;
+	webkit-border-radius: 15px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+
+	background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a90329), color-stop(44%,#8f0222), color-stop(100%,#6d0019)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%); /* IE10+ */
+background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+}
+
+.hide {
+	display: none;
+}
+
+.footer, .push {
+	position: relative;
+    height: 10%;
+	width: 100%;
+}
+
+.wrapper {
+	min-height: 91%;
+	height: auto !important;
+	height: 80%;
+	margin: 0 auto -4em;
+}
+
+#blur {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color:rgba(255,255,255,0.6);
+	width: 100%;
+	height: 100%;
+}
+
+#howto {
+	position: absolute;
+	width: 860px;
+	height: 410px;
+	left: 50%;
+	margin-left: -430px;
+	margin-top: 280px;
+}
+
+#instructions {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -438px;
+	margin-top: -140px;
+	width: 876px;
+	height: 438px;
+}
+
+#chrome {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -438px;
+	margin-top: -120px;
+	width: 208px;
+	height: 104px;
+}
+
+#chrome img {
+	width: 70%;
+	height: 70%;
+	margin-left: 15%;
+	opacity: 0.8;
+	border: 2px solid rgba(0,0,0,0);
+}
+
+#chrome img:hover {
+	border: 1px solid #ccc;
+	-moz-box-shadow: 5px 5px 5px grey;
+	-webkit-box-shadow: 5px 5px 5px grey;
+       box-shadow: 5px 5px 5px grey;
+	opacity: 1;
+}
