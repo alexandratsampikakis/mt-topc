@@ -97,7 +97,7 @@ app.get("/api/getcafes", function (req, res) {
         if(err) {
             res.json({
                 error: 'Café does not exist.'
-            })
+            });
         } else {
             records.forEach(function (post, i) {
                 cafe.push({
@@ -126,7 +126,7 @@ app.get("/api/getcafenames", function (req, res) {
         if(err) {
             res.json({
                 error: 'Café does not exist.'
-            })
+            });
         } else {
             records.forEach(function (post, i) {
                 cafe.push({
@@ -150,7 +150,7 @@ app.get("/api/getcafe/:name", function (req, res) {
         if(err) {
             res.json({
                 error: 'Café does not exist.'
-            })
+            });
         } else {
             res.json({
                 name: records.name,
