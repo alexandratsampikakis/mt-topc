@@ -54,23 +54,6 @@ try {
         req.send(JSON.stringify(body));
     };
 
-    var createTestRoom = function(callback) {
-
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'createTestRoom/';
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('POST', url, true);
-
-        //console.log("Sending to " + url + " - " + JSON.stringify(body));
-        req.send();
-    };
-
     var getUsers = function(roomId, callback) {
 
         var req = new XMLHttpRequest();
