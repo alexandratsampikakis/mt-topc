@@ -94,21 +94,27 @@ app.get("/api/getcafes", function (req, res) {
 
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     cafeModel.find({}, function (err, records) {
-        records.forEach(function (post, i) {
-            cafe.push({
-                id: i,
-                name: post.name,
-                table1: post.table1, 
-                table2: post.table2,
-                table3: post.table3, 
-                table4: post.table4, 
-                table5: post.table5, 
-                table6: post.table6
-              });
+        if(err) {
+            res.json({
+                error: 'Café does not exist.'
+            })
+        } else {
+            records.forEach(function (post, i) {
+                cafe.push({
+                    id: i,
+                    name: post.name,
+                    table1: post.table1, 
+                    table2: post.table2,
+                    table3: post.table3, 
+                    table4: post.table4, 
+                    table5: post.table5, 
+                    table6: post.table6
+                  });
+                });
+            res.json({
+                cafe: cafe
             });
-        res.json({
-            cafe: cafe
-        });
+        }
     });
 });
 
@@ -117,15 +123,21 @@ app.get("/api/getcafenames", function (req, res) {
 
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     cafeModel.find({}, function (err, records) {
-        records.forEach(function (post, i) {
-            cafe.push({
-                id: i,
-                name: post.name
-              });
+        if(err) {
+            res.json({
+                error: 'Café does not exist.'
+            })
+        } else {
+            records.forEach(function (post, i) {
+                cafe.push({
+                    id: i,
+                    name: post.name
+                  });
+                });
+            res.json({
+                cafe: cafe
             });
-        res.json({
-            cafe: cafe
-        });
+        }
     });
 });
 
@@ -135,15 +147,21 @@ app.get("/api/getcafe/:name", function (req, res) {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
 
     cafeModel.findOne({name: cafeName }, function (err, records) {
-        res.json({
-            name: records.name,
-            table1: records.table1, 
-            table2: records.table2,
-            table3: records.table3, 
-            table4: records.table4, 
-            table5: records.table5, 
-            table6: records.table6
-        });
+        if(err) {
+            res.json({
+                error: 'Café does not exist.'
+            })
+        } else {
+            res.json({
+                name: records.name,
+                table1: records.table1, 
+                table2: records.table2,
+                table3: records.table3, 
+                table4: records.table4, 
+                table5: records.table5, 
+                table6: records.table6
+            });
+        }
     });
 });
 
