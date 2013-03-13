@@ -1,10 +1,23 @@
 var serverUrl = "/";
 
+
 window.onload = function () {
- var getCafeTables = function(cafe, callback) {
+
+    var getQuerystring = function(key, default_) {
+        if (default_==null) default_=""; 
+        key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+        var qs = regex.exec(window.location.href);
+        if(qs == null)
+            return default_;
+        else
+            return qs[1];
+    };
+
+    var getCafeTables = function(callback) {
 
         var req = new XMLHttpRequest();
-        var url = serverUrl + 'api/getcafe/' + cafe;
+        var url = serverUrl + 'api/getcafe/' + getQueryString('cafe');
 
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -18,13 +31,13 @@ window.onload = function () {
         req.send();
     };
 
-    getCafeNames(function (response) {
+    getCafeTables(function (response) {
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tableContainer");
         if(cafes.hasOwnProperty('error')) {
             console.log(hejja);
         }
-        console.log(cafes.cafe[0].name);
+        console.log(cafes.name);
 
     });
 };
