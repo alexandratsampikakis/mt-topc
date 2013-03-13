@@ -1,6 +1,6 @@
 var serverUrl = "/";
-var localStream, room, roomId, table;
-
+var localStream, room, roomId;
+var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 //Retrieves querystrings. ex getQueryString('hello') on page 
 //http://www.mypage.se?hello=world returns 'world'
 function getQueryString(key, default_) {
@@ -22,14 +22,14 @@ window.onload = function () {
 
     }   
 
-    table1 = document.getElementById('table1');
-    table2 = document.getElementById('table2');
-    table3 = document.getElementById('table3');
-    table4 = document.getElementById('table4');
-    table5 = document.getElementById('table5');
-    table6 = document.getElementById('table6');
+    var table1 = document.getElementById('table1');
+    var table2 = document.getElementById('table2');
+    var table3 = document.getElementById('table3');
+    var table4 = document.getElementById('table4');
+    var table5 = document.getElementById('table5');
+    var table6 = document.getElementById('table6');
 
-    var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
+    
     var getCafeTables = function(cafe, callback) {
 
         var req = new XMLHttpRequest();
