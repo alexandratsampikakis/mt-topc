@@ -147,10 +147,10 @@ window.onload = function () {
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     var div = document.createElement('div');
-                    div.setAttribute("style", "width: 320px; height: 240px; position: absolute; top: 10px; left: 10px; background-color: black");
+                    div.setAttribute("style", "width: 320px; height: 240px;");
                     div.setAttribute("id", "test" + stream.getID());
 
-                    for (var i = 2; i < 5; i++) {
+                    for (var i = 2; i <= 6; i++) {
                         var elem = document.getElementById('vid'+i);
                         if (elem.childNodes.length === 1) {
                             elem.appendChild(div);
