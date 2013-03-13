@@ -1,5 +1,5 @@
 var serverUrl = "/";
-var localStream, room;
+var localStream, room, roomId;
 
 //Retrieves querystrings. ex getQueryString('hello') on page 
 //http://www.mypage.se?hello=world returns 'world'
