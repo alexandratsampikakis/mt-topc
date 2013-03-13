@@ -103,7 +103,6 @@ window.onload = function () {
     };
 
       var initialize = function(roomId) {
-        clearInterval(interval);
         var roomContainer = document.getElementById("roomContainer");
         roomContainer.setAttribute("class", "hide");
         var videoContainer = document.getElementById("videoContainer");
