@@ -182,6 +182,10 @@ app.get("/api/getcafe/:name", function (req, res) {
 //################################################################
 //db END
 
+app.get('/test-example.html', function(req, res){
+  res.send('cafe: ' + req.query.cafe);
+});
+
 app.get('/cafeView.html', function(req, res){
   res.send('cafe: ' + req.query.cafe);
 });

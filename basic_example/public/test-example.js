@@ -1,9 +1,5 @@
 var room, localStream, interval, serverUrl;
-
-roomId1 = "513dd08a07aa2f143700001f";
-roomId2 = "513dd08b07aa2f1437000020";
-roomId3 = "513dd08c07aa2f1437000021";
-roomId4 = "513dd08d07aa2f1437000022";
+var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 
 serverUrl = "/";
 
@@ -18,6 +14,53 @@ try {
     var room2 = document.getElementById('room2');
     var room3 = document.getElementById('room3');
     var room4 = document.getElementById('room4');
+  
+
+     var getQueryString = function getQueryString(key, default_) {
+        if (default_==null) default_=""; 
+        key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+        var qs = regex.exec(window.location.href);
+        if(qs == null)
+            return default_;
+        else
+            return qs[1];
+    }
+    
+    var getCafeTables = function(cafe, callback) {
+
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'api/getcafe/' + cafe;
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('GET', url, true);
+
+        //console.log("Sending to " + url + " - " + JSON.stringify(body));
+        req.send();
+    };
+
+    getCafeTables(getQueryString('cafe'), function (response) {
+        var cafes = JSON.parse(response);
+        var tc = document.getElementById("tableContainer");
+        if(cafes.hasOwnProperty('error')) {
+            console.log(cafes.error);
+        } else {
+            tableId1 = cafes.table1;
+            tableId2 = cafes.table2;
+            tableId3 = cafes.table3;
+            tableId4 = cafes.table4;
+            tableId5 = cafes.table5;
+            tableId6 = cafes.table6;
+            console.log(tableId1);
+        }
+        console.log(cafes.name);
+
+    });
 
     var createToken = function(roomId, userName, role, callback) {
 
