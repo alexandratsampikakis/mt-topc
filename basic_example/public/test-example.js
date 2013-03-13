@@ -1,4 +1,4 @@
-var room, roomId, localStream, interval, serverUrl;
+var room, localStream, interval, serverUrl;
 
 roomId1 = "513dd08a07aa2f143700001f";
 roomId2 = "513dd08b07aa2f1437000020";
