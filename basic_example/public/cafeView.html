@@ -1,112 +1,119 @@
 <html>
 <head>
-    <title>Café</title>
-    <!--<link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
-
-     <script type="text/javascript" src="erizo.js"></script>
+    <title>Lynckia Client Test</title>
+    <script type="text/javascript" src="erizo.js"></script>
     <script type="text/javascript" src="test-example.js"></script>
+    <link rel="stylesheet" type="text/css" href="test-example.css" />
 </head>
 
 <body>
 
-	<!--<div class="navbar navbar-fixed-top navbar-inverse">
-  		<div class="navbar-inner">
-    		<a class="brand" href="http://satin.research.ltu.se:3001/">The Online Paris Café</a>
-    		<a href="#" class="brand"style="float: right; font-size: 14px;">Login</a>
-  		</div>
+    <div id="roomcontainer">
+        
+        <img src="images/logo.svg" id="logo"/>
+        <img src="images/star.svg" id="star"/>
+
+	<div id="rooms">        
+        <div id="titletext">
+            Choose a videoconference room to join it:
+        </div>
+       
+        <div id="room1" class="coolstyle room">
+            <div class="roomtext">
+                Room 1
+            </div>
+        </div>
+
+        <div id="room2" class="coolstyle room">
+            <div class="roomtext">
+                Room 2
+            </div>
+        </div>
+
+        <div id="room3" class="coolstyle room">
+            <div class="roomtext">
+                Room 3
+            </div>
+        </div>
+
+        <div id="room4" class="coolstyleCube room">
+            <div class="roomtext">
+                CUBE!!!
+            </div>
+        </div>
+
+
+        <div id="textfooindex">
+            <br/><br/><br/>
+            Developed by <a href="http://www.dit.upm.es/">DIT UPM</a>.
+        </div>
 	</div>
 
-	<div class="container-fluid">
-  		<div class="row-fluid">
-    		<div class="span2">
-      			<ul class="nav nav-list">
-      				<li class="nav-header">Menu</li>
-      				<li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
-					<li class="nav-header">Café</li>
-					<li><a href="#">User guide</a></li>
-					<li><a href="#">Favorites</a></li>
-					<li><a href="#">Recent</a></li>
-					<li><a href="#">Hot</a></li>
-					<li><a href="#">Find cafés</a></li>
+    </div>
 
-					<li class="nav-header">Events</li>
-					<li><a href="#">Calendar</a></li>		
+    
+    <div id="vidcontainer" class="hide">
+	   <img src="images/logo.svg" class="logostyle"/>   
+        <div id="textexit">
+             <a href="http://chotis2.dit.upm.es/">Exit Room</a>
+        </div>
 
-					<li class="nav-header">My pages</li>
-					<li><a href="#">Profile</a></li>  
-					<li><a href="#">Friends</a></li> 
-				</ul>
-    		</div>-->
-    	<div id="roomcontainer">
-	    	<div class="span8 muted">
-	    		<center><p class="nav-header"><i class="icon-heart"></i><big> CAFÉ PARIS</big></p></center>
-	    		<div id="rooms">
-	      		<p>
-	      			<div class="span3 offset1 tableBox" id="room1" rel="popover" data-animation="true">
-	      				<b><big>Table 1</big></b>
-	      				<a href="http://satin.research.ltu.se:3001/tableView.html"><button class="btn btn-small" type="button" style="float:right; margin-top:105px;">Join</button></a>
-	      			</div>
+	<div id="vid1" class="coolstyle">
+            <div id="myVideo" style="width:320px; height: 240px; position: absolute; top: 10px; left: 10px">
+            </div>
+        </div>
 
-	      			<div class="span3 tableBox" id="room2"><b><big>Table 2</big></b></div>
+        <div id="vid2" class="coolstyle">
+        </div>
 
-	      			<div class="span3 tableBox" id="room3"><b><big>Table 3</big></b></div>
-	      		</p>
+        <div id="vid3" class="coolstyle">
+        </div>
 
-	      		<p>
-	      			<div class="span3 offset1 tableBox" id="room4"><b><big>Table 4</big></b></div>
-	      			<!--<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
-	      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>-->
-	      		</p>
-	      		</div>
+        <div id="vid4" class="coolstyle">
+        </div>
 
-	      		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-				<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
-				<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
-	      		<script>  
-					$(function ()
-					{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
-					});
-				</script>-->
-	      		
-			</div>
-		</div>
+        <div id="vid5" class="coolstyle hide">
+        </div>
 
-		<div id="vidcontainer" class="hide">
-			<div class="span8 muted">
-				<div id="vid1" class="">
-					<div id="myVideo" style="width:320px; height: 240px;"></div>
-		        </div>
-		        <div id="vid2" class="">
-		        </div>
-		        <div id="vid3" class="">
-		        </div>
-		        <div id="vid4" class="">
-		        </div>
-		        <div id="vid5" class="">
-		        </div>
-		        <div id="vid6" class="">
-		        </div>
-			</div>
-		</div>
+        <div id="vid6" class="coolstyle hide">
+        </div>
 
-	    	<!--<div class="span2">
-	      		<ul class="nav nav-list">
-				  	<li class="nav-header">Friends online</li> 
-				</ul>
-	    	</div>
-  		</div>
+        <div id="vid7" class="coolstyle hide">
+        </div>
+
+        <div id="vid8" class="coolstyle hide">
+        </div>
+
+        <div id="vid9" class="coolstyle hide">
+        </div>
+
+        <div id="vid10" class="coolstyle hide">
+        </div>
+
+        <img src="images/star.svg" class="footerstyle"/>
+
+        <div id="textfoo">
+            Developed by <a href="http://www.dit.upm.es/">DIT UPM</a>.
+        </div>
+
+    </div>
+    <div id="howto" class="hide">
+        <div id="texttitle">
+            Videoconference between multiple participants with WebRTC!!
+	    <br/>
+            <br/>
+	</div>
+        <div id="textinstructions">
+            Please, follow this instructions to enter the system
+	    <br/>
 	</div>
 
-	<div class="navbar navbar-fixed-bottom navbar-inverse">
-  		<div class="navbar-inner">
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
-  		</div>
-	</div>-->
+	<div id="imghowto">
+            <img src="images/how-to.png" id="instructions"/>
+            <a href="https://www.google.com/chrome/eula.html" id="chrome"><img src="images/chrome.png"/></a>
+        </div>
+
+    </div>
 
 </body>
 </html>
