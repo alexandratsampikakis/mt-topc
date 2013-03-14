@@ -131,7 +131,7 @@ try {
 
                 room.connect();
 
-                localStream.show("pepito");
+                localStream.show("myVideo");
 
             });
             localStream.init();
