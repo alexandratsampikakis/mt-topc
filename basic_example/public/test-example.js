@@ -5,7 +5,7 @@ roomId2 = "513dd08b07aa2f1437000020";
 roomId3 = "513dd08c07aa2f1437000021";
 roomId4 = "513dd08d07aa2f1437000022";
 
-serverUrl = "/cafeView.html?cafe=Unik/";
+serverUrl = "http://satin.research.ltu.se:3001/";
 
 window.onload = function () {
 try {
