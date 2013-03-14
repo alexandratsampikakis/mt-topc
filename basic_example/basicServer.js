@@ -29,11 +29,14 @@ app.configure(function () {
     "use strict";
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(express.logger());
-    app.set("view options", {layout: false});
     app.use(express.static(__dirname + '/public'));
     //app.set('views', __dirname + '/../views/');
     //disable layout
+<<<<<<< HEAD
+    //app.set("view options", {layout: false});
+=======
 
+>>>>>>> parent of a04fda0... test
 });
 
 app.all('/', function (req, res, next) {
