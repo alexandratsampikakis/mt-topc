@@ -18,78 +18,82 @@
   		</div>
 	</div>
 
-	<div class="span2">
-			<ul class="nav nav-list">
-				<li class="nav-header">Menu</li>
-				<li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
-			<li class="nav-header">Café</li>
-			<li><a href="#">User guide</a></li>
-			<li><a href="#">Favorites</a></li>
-			<li><a href="#">Recent</a></li>
-			<li><a href="#">Hot</a></li>
-			<li><a href="#">Find cafés</a></li>
+	<div class="container-fluid">
+  		<div class="row-fluid">
+    		<div class="span2">
+      			<ul class="nav nav-list">
+      				<li class="nav-header">Menu</li>
+      				<li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
+					<li class="nav-header">Café</li>
+					<li><a href="#">User guide</a></li>
+					<li><a href="#">Favorites</a></li>
+					<li><a href="#">Recent</a></li>
+					<li><a href="#">Hot</a></li>
+					<li><a href="#">Find cafés</a></li>
 
-			<li class="nav-header">Events</li>
-			<li><a href="#">Calendar</a></li>		
+					<li class="nav-header">Events</li>
+					<li><a href="#">Calendar</a></li>		
 
-			<li class="nav-header">My pages</li>
-			<li><a href="#">Profile</a></li>  
-			<li><a href="#">Friends</a></li> 
-		</ul>
-	</div>
+					<li class="nav-header">My pages</li>
+					<li><a href="#">Profile</a></li>  
+					<li><a href="#">Friends</a></li> 
+				</ul>
+    		</div>
 
-	<div class="span8 muted" id="roomcontainer">
-		<center><p class="nav-header"><i class="icon-heart"></i><big> CAFÉ PARIS</big></p></center>
+	    	<div class="span8 muted" id="roomcontainer">
+	    		<center><p class="nav-header"><i class="icon-heart"></i><big> CAFÉ PARIS</big></p></center>
 
-  		<p>
-  			<div class="span3 offset1 tableBox" id="room1" rel="popover" data-animation="true">
-  				<b><big>Table 1</big></b>
-  				<a href="http://satin.research.ltu.se:3001/tableView.html"><button class="btn btn-small" type="button" style="float:right; margin-top:105px;">Join</button></a>
-  			</div>
+	      		<p>
+	      			<div class="span3 offset1 tableBox" id="room1" rel="popover" data-animation="true">
+	      				<b><big>Table 1</big></b>
+	      				<a href="http://satin.research.ltu.se:3001/tableView.html"><button class="btn btn-small" type="button" style="float:right; margin-top:105px;">Join</button></a>
+	      			</div>
 
-  			<div class="span3 tableBox" id="room2"><b><big>Table 2</big></b></div>
+	      			<div class="span3 tableBox" id="room2"><b><big>Table 2</big></b></div>
 
-  			<div class="span3 tableBox" id="room3"><b><big>Table 3</big></b></div>
-  		</p>
+	      			<div class="span3 tableBox" id="room3"><b><big>Table 3</big></b></div>
+	      		</p>
 
-  		<p>
-  			<div class="span3 offset1 tableBox" id="room4"><b><big>Table 4</big></b></div>
-  			<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
-  			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
-  		</p>
+	      		<p>
+	      			<div class="span3 offset1 tableBox" id="room4"><b><big>Table 4</big></b></div>
+	      			<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
+	      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
+	      		</p>
 
 
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-		<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
-		<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
-  		<script>  
-			$(function ()
-			{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
-			});
-		</script>
-  		
-	</div>
+	      		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+				<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
+				<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
+	      		<script>  
+					$(function ()
+					{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
+					});
+				</script>
+	      		
+			</div>
 
-	<div class="span8 muted hide" id="vidcontainer">
-		<div id="vid1" class="">
-			<div id="myVideo" style="width:320px; height: 240px"></div>
-        </div>
-        <div id="vid2" class="">
-        </div>
-        <div id="vid3" class="">
-        </div>
-        <div id="vid4" class="">
-        </div>
-        <div id="vid5" class="">
-        </div>
-        <div id="vid6" class="">
-        </div>
-	</div>
+			<div class="span8 muted hide" id="vidcontainer">
+				<div id="vid1" class="">
+					<div id="myVideo" style="width:320px; height: 240px"></div>
+		        </div>
+		        <div id="vid2" class="">
+		        </div>
+		        <div id="vid3" class="">
+		        </div>
+		        <div id="vid4" class="">
+		        </div>
+		        <div id="vid5" class="">
+		        </div>
+		        <div id="vid6" class="">
+		        </div>
+			</div>
 
-	<div class="span2">
-  		<ul class="nav nav-list">
-		  	<li class="nav-header">Friends online</li> 
-		</ul>
+	    	<div class="span2">
+	      		<ul class="nav nav-list">
+				  	<li class="nav-header">Friends online</li> 
+				</ul>
+	    	</div>
+  		</div>
 	</div>
 
 	<div class="navbar navbar-fixed-bottom navbar-inverse">
