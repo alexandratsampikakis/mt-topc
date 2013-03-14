@@ -186,12 +186,8 @@ app.get("/api/getcafe/:name", function (req, res) {
 //################################################################
 //db END
 
-app.get('/test-example.html', function(req, res){
+app.get('/cafeView.html', function(req, res){
   res.send('cafe: ' + req.query.cafe);
-});
-
-app.get('/cafeView.html/:name', function(req, res){
-  res.render("cafeView.html")
 });
 
 N.API.getRooms(function (roomlist) {
