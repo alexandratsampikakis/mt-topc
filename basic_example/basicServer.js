@@ -33,13 +33,6 @@ app.configure(function () {
     app.use(express.static(__dirname + '/public'));
     //app.set('views', __dirname + '/../views/');
     //disable layout
-    app.register('.html', {
-        compile: function(str, options){
-            return function(locals){
-            return str;
-        };
-    }
-});
 
 });
 
