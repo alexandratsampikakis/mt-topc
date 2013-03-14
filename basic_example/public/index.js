@@ -24,7 +24,7 @@ window.onload = function () {
         for (var i = 0; i < cafes.cafe.length; i++) {
             var a = document.createElement('a');
             var cafeName = cafes.cafe[i].name;
-            a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html/"+cafeName);
+            a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html?cafe="+cafeName);
             a.innerHTML += cafeName;
             cb.appendChild(a);
         };
