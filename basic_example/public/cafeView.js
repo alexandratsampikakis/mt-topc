@@ -141,7 +141,7 @@ try {
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     var div = document.createElement('div');
-                    div.setAttribute("style", "width: 100% !important; height: auto !important");
+                    div.setAttribute("style", "width:320px; height: 240px;");
                     div.setAttribute("id", "test" + stream.getID());
 
                     for (var i = 2; i < 5; i++) {
