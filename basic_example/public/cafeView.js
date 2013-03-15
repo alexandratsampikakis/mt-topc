@@ -5,14 +5,14 @@ serverUrl = "http://satin.research.ltu.se:3001/";
 
 var getQueryString = function getQueryString(key, default_) {
     if (default_==null) default_="";
-        key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-        var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
-        var qs = regex.exec(window.location.href);
-        if(qs == null)
-            return default_;
-        else
-            return qs[1];
-    };
+    key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+    var qs = regex.exec(window.location.href);
+    if(qs == null)
+        return default_;
+    else
+        return qs[1];
+};
     
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
@@ -41,6 +41,7 @@ try {
     var table6 = document.getElementById('table6');
 
     getCafeTables(getQueryString('cafe'), function (response) {
+        console.log(response);
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
