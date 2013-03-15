@@ -43,6 +43,7 @@ try {
     getCafeTables(getQueryString('cafe'), function (response) {
         console.log(response);
         var cafes = JSON.parse(response);
+        console.log(cafes);
         var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
