@@ -1,7 +1,7 @@
 var room, localStream, serverUrl;
 
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
-serverUrl = "/";
+serverUrl = "http://satin.research.ltu.se:3001/";
 
 var getQueryString = function getQueryString(key, default_) {
     if (default_==null) default_="";
