@@ -60,6 +60,8 @@ try {
         roomcontainer.setAttribute("class", "hide");
         var vidcontainer = document.getElementById("vidcontainer");
         vidcontainer.setAttribute("class", "");
+        var vidcontainer2 = document.getElementById("vidcontainer2");
+        vidcontainer2.setAttribute("class", "");
 
         createToken(roomId, "user", "role", function (response) {
             var token = response;
