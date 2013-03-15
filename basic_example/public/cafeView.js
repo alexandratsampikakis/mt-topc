@@ -1,12 +1,31 @@
-var room, roomId, localStream, serverUrl;
+var room, localStream, serverUrl;
 
-roomId1 = "513dd08a07aa2f143700001f";
-roomId2 = "513dd08b07aa2f1437000020";
-roomId3 = "513dd08c07aa2f1437000021";
-roomId4 = "513dd08d07aa2f1437000022";
+var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
+serverUrl = "/";
 
-serverUrl = "http://satin.research.ltu.se:3001/";
+var getQueryString = function getQueryString(key, default_) {
+    if (default_==null) default_="";
+        key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+        var qs = regex.exec(window.location.href);
+        if(qs == null)
+            return default_;
+        else
+            return qs[1];
+    };
+    
+var getCafeTables = function(cafe, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getcafe/' + cafe;
 
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+};
 window.onload = function () {
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
@@ -14,11 +33,30 @@ try {
     console.log('erizo error: ' + error);
 }
 
-    var room1 = document.getElementById('room1');
-    var room2 = document.getElementById('room2');
-    var room3 = document.getElementById('room3');
-    var room4 = document.getElementById('room4');
+    var table1 = document.getElementById('table1');
+    var table2 = document.getElementById('table2');
+    var table3 = document.getElementById('table3');
+    var table4 = document.getElementById('table4');
+    var table5 = document.getElementById('table5');
+    var table6 = document.getElementById('table6');
 
+    getCafeTables(getQueryString('cafe'), function (response) {
+        var cafes = JSON.parse(response);
+        var tc = document.getElementById("tablecontainer");
+        if(cafes.hasOwnProperty('error')) {
+            console.log(cafes.error);
+        } else {
+            tableId1 = cafes.table1;
+            tableId2 = cafes.table2;
+            tableId3 = cafes.table3;
+            tableId4 = cafes.table4;
+            tableId5 = cafes.table5;
+            tableId6 = cafes.table6;
+            console.log(tableId1);
+        }
+        console.log(cafes.name);
+
+    });
 
     var createToken = function(roomId, userName, role, callback) {
 
@@ -39,25 +77,28 @@ try {
         req.send(JSON.stringify(body));
     };
 
-    room1.onclick = function(evt) {
-        initialize(roomId1);
+    table1.onclick = function(evt) {
+        initialize(tableId1);
     };
-
-    room2.onclick = function(evt) {
-        initialize(roomId2);
+    table2.onclick = function(evt) {
+        initialize(tableId2);
     };
-
-    room3.onclick = function(evt) {
-        initialize(roomId3);
+    table3.onclick = function(evt) {
+        initialize(tableId3);
     };
-
-    room4.onclick = function(evt) {
-        window.location = './cube/cube.html';
+    table4.onclick = function(evt) {
+        initialize(tableId4);
+    };
+    table5.onclick = function(evt) {
+        initialize(tableId5);
+    };
+    table6.onclick = function(evt) {
+        initialize(tableId6);
     };
 
     var initialize = function(roomId) {
-        var roomcontainer = document.getElementById("roomcontainer");
-        roomcontainer.setAttribute("class", "hide");
+        var tablecontainer = document.getElementById("tablecontainer");
+        tablecontainer.setAttribute("class", "hide");
         var vidcontainer1 = document.getElementById("vidcontainer1");
         vidcontainer1.setAttribute("class", "");
         var vidcontainer2 = document.getElementById("vidcontainer2");
