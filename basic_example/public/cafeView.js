@@ -103,6 +103,8 @@ try {
         vidcontainer1.setAttribute("class", "");
         var vidcontainer2 = document.getElementById("vidcontainer2");
         vidcontainer2.setAttribute("class", "");
+        var shareMediaChat = document.getElementById("shareMediaChat");
+        shareMediaChat.setAttribute("class", "");
 
         createToken(roomId, "user", "role", function (response) {
             var token = response;
