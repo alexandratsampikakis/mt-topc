@@ -25,6 +25,8 @@ var getCafeTables = function(cafe, callback) {
     };
 
     req.open('GET', url, true);
+
+    req.send();
 };
 window.onload = function () {
 try {
@@ -41,9 +43,7 @@ try {
     var table6 = document.getElementById('table6');
 
     getCafeTables(getQueryString('cafe'), function (response) {
-        console.log(response);
         var cafes = JSON.parse(response);
-        console.log(cafes);
         var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
@@ -54,10 +54,7 @@ try {
             tableId4 = cafes.table4;
             tableId5 = cafes.table5;
             tableId6 = cafes.table6;
-            console.log(tableId1);
         }
-        console.log(cafes.name);
-
     });
 
     var createToken = function(roomId, userName, role, callback) {
