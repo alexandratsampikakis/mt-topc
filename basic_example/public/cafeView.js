@@ -58,8 +58,8 @@ try {
     var initialize = function(roomId) {
         var roomcontainer = document.getElementById("roomcontainer");
         roomcontainer.setAttribute("class", "hide");
-        var vidcontainer = document.getElementById("vidcontainer");
-        vidcontainer.setAttribute("class", "");
+        var vidcontainer1 = document.getElementById("vidcontainer1");
+        vidcontainer1.setAttribute("class", "");
         var vidcontainer2 = document.getElementById("vidcontainer2");
         vidcontainer2.setAttribute("class", "");
 
