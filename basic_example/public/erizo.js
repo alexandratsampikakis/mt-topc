@@ -2424,7 +2424,7 @@
                                                                                                                         	console.log("b: " + b);
                                                                                                                         	//console.log("c: " + c);
                                                                                                                         	console.log("d: " + d);
-                                                                                                                            document.getElementById(b).value = unescape(d)
+                                                                                                                            //document.getElementById(b).value = unescape(d)
                                                                                                                         });
                                                                                                                         console.log("href: " + window.location.href);
                                                                                                                         L.Logger.debug("Creating URL from stream " + a.stream);
