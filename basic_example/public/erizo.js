@@ -2418,11 +2418,11 @@
                                                                                                                             clearInterval(a.resize);
                                                                                                                             a.parentNode.removeChild(a.div)
                                                                                                                         };
-                                                                                                                        L.Logger.debug("href: " + window.location.href);
+                                                                                                                        console.log("href: " + window.location.href);
                                                                                                                         window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (a, b, d) {
-                                                                                                                        	L.Logger.debug("a: " + a);
-                                                                                                                        	L.Logger.debug("b: " + b);
-                                                                                                                        	L.Logger.debug("c: " + c);
+                                                                                                                        	console.log("a: " + a);
+                                                                                                                        	console.log("b: " + b);
+                                                                                                                        	console.log("c: " + c);
                                                                                                                             document.getElementById(b).value = unescape(d)
                                                                                                                         });
                                                                                                                         L.Logger.debug("Creating URL from stream " + a.stream);
