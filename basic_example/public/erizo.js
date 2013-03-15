@@ -2418,14 +2418,10 @@
                                                                                                                             clearInterval(a.resize);
                                                                                                                             a.parentNode.removeChild(a.div)
                                                                                                                         };
-                                                                                                                        console.log("href: " + window.location.href);
-                                                                                                                        window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (a, b, d) {
-                                                                                                                        	console.log("a: " + a);
-                                                                                                                        	console.log("b: " + b);
-                                                                                                                        	//console.log("c: " + c);
-                                                                                                                        	console.log("d: " + d);
+                                                                                                                        //Why is this even here?
+                                                                                                                        //window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (a, b, d) {
                                                                                                                             //document.getElementById(b).value = unescape(d)
-                                                                                                                        });
+                                                                                                                        //});
                                                                                                                         console.log("href: " + window.location.href);
                                                                                                                         L.Logger.debug("Creating URL from stream " + a.stream);
                                                                                                                         a.stream_url = webkitURL.createObjectURL(a.stream);
