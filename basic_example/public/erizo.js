@@ -2425,6 +2425,7 @@
                                                                                                                         	console.log("c: " + c);
                                                                                                                             document.getElementById(b).value = unescape(d)
                                                                                                                         });
+                                                                                                                        console.log("href: " + window.location.href);
                                                                                                                         L.Logger.debug("Creating URL from stream " + a.stream);
                                                                                                                         a.stream_url = webkitURL.createObjectURL(a.stream);
                                                                                                                         a.div = document.createElement("div");
