@@ -12,7 +12,7 @@ var getQueryString = function getQueryString(key, default_) {
         return default_;
     else
         return qs[1];
-};
+}
     
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
@@ -60,7 +60,7 @@ try {
     });
 
     var createToken = function(roomId, userName, role, callback) {
-
+        console.log(roomId);
         var req = new XMLHttpRequest();
         var url = serverUrl + 'createToken/' + roomId;
         var body = {username: userName, role: role};
