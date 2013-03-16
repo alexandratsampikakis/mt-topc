@@ -13,7 +13,14 @@ var getQueryString = function getQueryString(key, default_) {
     else
         return qs[1];
 }
-    
+var updateTitle = function(title) {
+    var cafeTitle = document.getElementById('cafeTitle');
+    cafeTitle.innerHTML = title;
+    cafeTitle = document.getElementById('cafeTableTitle');
+    cafeTitle.innerHTML = title;
+    cafeTitle = document.getElementById('cafeVideoTitle');
+    cafeTitle.innerHTML = title;
+}   
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -48,6 +55,7 @@ try {
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
         } else {
+            updateTitle(cafes.name);
             tableId1 = cafes.table1;
             tableId2 = cafes.table2;
             tableId3 = cafes.table3;
