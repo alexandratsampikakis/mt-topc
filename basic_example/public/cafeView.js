@@ -157,7 +157,7 @@ try {
                     div.setAttribute("style", "width:320px; height: 240px;");
                     div.setAttribute("id", "test" + stream.getID());
 
-                    for (var i = 2; i < 5; i++) {
+                    for (var i = 2; i < 6; i++) {
                         var elem = document.getElementById('vid'+i);
                         if (elem.childNodes.length === 1) {
                             elem.appendChild(div);
