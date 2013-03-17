@@ -61,15 +61,6 @@
 	      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
 	      		</p>
 	      		</div>
-
-	      		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-				<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
-				<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
-	      		<script>  
-					$(function ()
-					{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
-					});
-				</script>
 	      		
 			</div>
 		</div>
@@ -143,10 +134,15 @@
 
 	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
 	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
+	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
+	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
 	<script type="text/javascript">
     	$(document).ready(function () {
       		$('.dropdown-toggle').dropdown();
 	    });
+	    $(function ()
+		{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
+		});
 	</script>
 
 </body>
