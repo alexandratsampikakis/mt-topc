@@ -20,8 +20,8 @@
 
 	<div class="container-fluid">
   		<div class="row-fluid">
-    		<!--<div class="span2">
-      			<ul class="nav nav-list">
+    		<div class="span2">
+      			<ul class="nav nav-list" id="menuList">
       				<li class="nav-header">Menu</li>
       				<li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
 					<li class="nav-header">Café</li>
@@ -38,7 +38,26 @@
 					<li><a href="#">Profile</a></li>  
 					<li><a href="#">Friends</a></li> 
 				</ul>
-    		</div>-->
+				<ul class="dropdown hide" id="menuListInTable">
+				    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
+				    <ul class="dropdown-menu">
+				        <li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
+				        <li class="nav-header">Café</li>
+				        <li><a href="#">User guide</a></li>
+				        <li><a href="#">Favorites</a></li>
+				        <li><a href="#">Recent</a></li>
+				        <li><a href="#">Hot</a></li>
+				        <li><a href="#">Find cafés</a></li>
+
+				        <li class="nav-header">Events</li>
+				        <li><a href="#">Calendar</a></li>   
+
+				        <li class="nav-header">My pages</li>
+				        <li><a href="#">Profile</a></li>  
+				        <li><a href="#">Friends</a></li> 
+			    	</ul>
+  				</ul>
+    		</div>
 
     	<div id="tablecontainer">
 	    	<div class="span8">
