@@ -115,8 +115,8 @@ try {
         shareMediaChat.setAttribute("class", "");
         var menuList = document.getElementById("menuList");
         menuList.setAttribute("class", "nav nav-list hide");
-        var menuListInTable = document.getElementById("menuListInTable");
-        menuListInTable.setAttribute("class", "dropdown");
+        //var menuListInTable = document.getElementById("menuListInTable");
+        //menuListInTable.setAttribute("class", "dropdown");
 
 
         createToken(roomId, "user", "role", function (response) {
