@@ -1,0 +1,58 @@
+UNIK
+[ { "name": "myRoom", "_id": "512dea742628dd4376000001" }, 
+{ "name": "myRoom2", "_id": "51308ef1f5355b9501000001" }, 
+{ "name": "myRoom2", "_id": "5130901cf5355b9501000002" }, 
+{ "name": "myRoom2", "_id": "51309135f5355b9501000003" }, 
+{ "name": "myRoom2", "_id": "5130a19ef5355b9501000008" },
+{ "name": "myRoom2", "_id": "5130a4eff5355b9501000009" },
+
+Hard Rock Café
+{ "name": "myRoom2", "_id": "5130a5fcf5355b950100000a" },
+{ "name": "myRoom2", "_id": "5130a666f5355b950100000b" },
+{ "name": "myRoom", "_id": "513dc69b07aa2f143700000a" },
+{ "name": "myRoom", "_id": "513dc69b07aa2f143700000b" },
+{ "name": "myRoom", "_id": "513dc69b07aa2f143700000c" },
+{ "name": "myRoom", "_id": "513dcd8607aa2f143700000e" },
+
+Food & Baking Café
+{ "name": "myRoom", "_id": "513dcd8607aa2f1437000010" }, 
+{ "name": "myRoom", "_id": "513dcd8f07aa2f1437000011" }, 
+{ "name": "myRoom", "_id": "513dcd8f07aa2f1437000012" },
+{ "name": "myRoom", "_id": "513dcf3607aa2f1437000013" },
+{ "name": "myRoom", "_id": "513dcf3607aa2f1437000014" },
+{ "name": "myRoom", "_id": "513dcf3707aa2f1437000015" },
+
+Friends Café
+{ "name": "myRoom", "_id": "513dcf3807aa2f1437000016" },
+{ "name": "myRoom", "_id": "513dcf3907aa2f1437000017" },
+{ "name": "myRoom", "_id": "513dcf3a07aa2f1437000018" },
+{ "name": "myRoom", "_id": "513dcfd707aa2f1437000019" },
+{ "name": "myRoom", "_id": "513dcfd807aa2f143700001a" },
+{ "name": "myRoom", "_id": "513dcfd907aa2f143700001b" },
+
+Car Café
+{ "name": "myRoom", "_id": "513dcfda07aa2f143700001c" },
+{ "name": "myRoom", "_id": "513dcfdb07aa2f143700001d" },
+{ "name": "myRoom", "_id": "513dcfdc07aa2f143700001e" },
+{ "name": "myRoom", "_id": "513dd08a07aa2f143700001f" },
+{ "name": "myRoom", "_id": "513dd08b07aa2f1437000020" }, 
+{ "name": "myRoom", "_id": "513dd08c07aa2f1437000021" },
+
+Computer Science Café 
+{ "name": "myRoom", "_id": "513dd08d07aa2f1437000022" }, 
+{ "name": "myRoom", "_id": "513dd08e07aa2f1437000023" },
+{ "name": "myRoom", "_id": "513dd08f07aa2f1437000024" }, 
+{ "name": "myRoom", "_id": "513dd12507aa2f1437000025" }, 
+{ "name": "myRoom", "_id": "513dd12607aa2f1437000026" }, 
+{ "name": "myRoom", "_id": "513dd12707aa2f1437000027" },
+
+NOT IN USE
+{ "name": "myRoom", "_id": "513dd12807aa2f1437000028" }, 
+{ "name": "myRoom", "_id": "513dd12907aa2f1437000029" }, 
+{ "name": "myRoom", "_id": "513dd12a07aa2f143700002a" }, 
+{ "name": "myRoom", "_id": "513dd1ca07aa2f143700002b" }, 
+{ "name": "myRoom", "_id": "513dd1cb07aa2f143700002c" }, 
+{ "name": "myRoom", "_id": "513dd1cc07aa2f143700002d" }, 
+{ "name": "myRoom", "_id": "513dd1cd07aa2f143700002e" }, 
+{ "name": "myRoom", "_id": "513dd1ce07aa2f143700002f" }, 
+{ "name": "myRoom", "_id": "513dd1cf07aa2f1437000030" } ]
