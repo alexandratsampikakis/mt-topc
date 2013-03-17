@@ -114,7 +114,7 @@ try {
         var shareMediaChat = document.getElementById("shareMediaChat");
         shareMediaChat.setAttribute("class", "");
         var menuList = document.getElementById("menuList");
-        menuList.setAttribute("class", "nav nav-list hide");
+        menuList.setAttribute("class", "span2 hide");
         //var menuListInTable = document.getElementById("menuListInTable");
         //menuListInTable.setAttribute("class", "dropdown");
 
