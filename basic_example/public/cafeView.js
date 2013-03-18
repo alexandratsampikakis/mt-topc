@@ -143,7 +143,7 @@ try {
                     }
                 };
 
-                stream.addEventListener("stream-data", function(evt){
+                localStream.addEventListener("stream-data", function(evt){
                     console.log('Received data ', evt.msg, 'from stream ');
                 });
 
