@@ -143,6 +143,10 @@ try {
                     }
                 };
 
+                stream.addEventListener("stream-data", function(evt){
+                    console.log('Received data ', evt.msg, 'from stream ');
+                });
+
                 room.addEventListener("room-connected", function (roomEvent) {
                     // Publish my stream
                     room.publish(localStream);
