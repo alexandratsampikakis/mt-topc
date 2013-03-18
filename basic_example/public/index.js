@@ -20,15 +20,25 @@ window.onload = function () {
 
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
-        var cb = document.getElementById("cafeButtons");
-        for (var i = 0; i < cafes.cafe.length; i++) {
+        var cb1 = document.getElementById("cafeButtons1");
+        var cb2 = document.getElementById("cafeButtons2");
+        var cb3 = document.getElementById("cafeButtons3");
+        var cb4 = document.getElementById("cafeButtons4");
+        var cb5 = document.getElementById("cafeButtons5");
+        var cb6 = document.getElementById("cafeButtons6");
+        /*for (var i = 0; i < cafes.cafe.length; i++) {
             var a = document.createElement('a');
             var cafeName = cafes.cafe[i].name;
             a.innerHTML += cafeName;
             cb.appendChild(a);
             a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html?cafe=" + cafeName);
-        };
-        console.log(cafes.cafe[0].name);
+        };*/
+        var a = document.createElement('a');
+            var cafeName = cafes.cafe[0].name;
+            a.innerHTML += cafeName;
+            cb1.appendChild(a);
+            a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html?cafe=" + cafeName);
+        //console.log(cafes.cafe[0].name);
 
     });
 };
