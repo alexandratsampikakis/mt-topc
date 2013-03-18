@@ -149,11 +149,6 @@ try {
                     }
                 };
 
-                localStream.addEventListener("stream-data", function(evt){
-                    console.log(evt);
-                    console.log('Received data ', evt.msg, 'from stream ');
-                });
-
                 room.addEventListener("room-connected", function (roomEvent) {
                     // Publish my stream
                     room.publish(localStream);
@@ -184,6 +179,10 @@ try {
                     var streams = [];
                     streams.push(streamEvent.stream);
                     subscribeToStreams(streams);
+                    streamEvent.stream.addEventListener("stream-data", function(evt){
+                        console.log(evt);
+                        console.log('Received data ', evt.msg, 'from stream ');
+                    });
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
