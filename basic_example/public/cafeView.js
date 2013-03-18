@@ -155,6 +155,7 @@ try {
 
                     // Subscribe to other streams
                     subscribeToStreams(roomEvent.streams);
+                    console.log(roomEvent.streams);
                 });
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
