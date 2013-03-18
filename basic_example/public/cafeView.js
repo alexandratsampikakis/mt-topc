@@ -170,7 +170,6 @@ try {
                             elem.appendChild(div);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
-                                subscribeToStreams(streams);
                                 console.log(evt);
                                 console.log('Received data ', evt.msg, 'from stream ');
                             });
