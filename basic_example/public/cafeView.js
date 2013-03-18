@@ -48,6 +48,7 @@ try {
     var table4 = document.getElementById('table4');
     var table5 = document.getElementById('table5');
     var table6 = document.getElementById('table6');
+    var sendData = document.getElementById('table6');
 
     getCafeTables(getQueryString('cafe'), function (response) {
         var cafes = JSON.parse(response);
@@ -103,6 +104,10 @@ try {
     table6.onclick = function(evt) {
         initialize(tableId6);
     };
+    sendData.onclick = function(evt) {
+        localStream.sendData({text:'Hello', timestamp:12321312});
+    };
+
 
     var initialize = function(roomId) {
         var tablecontainer = document.getElementById("tablecontainer");
@@ -195,7 +200,6 @@ try {
 
             });
             localStream.init();
-            localStream.sendData({text:'Hello', timestamp:12321312});
         });   
     }
 };
