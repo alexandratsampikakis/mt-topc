@@ -105,6 +105,7 @@ try {
         initialize(tableId6);
     };
     sendData.onclick = function(evt) {
+        console.log("skickar data");
         localStream.sendData({text:'Hello', timestamp:12321312});
     };
 
