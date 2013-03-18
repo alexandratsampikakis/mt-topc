@@ -20,7 +20,7 @@ window.onload = function () {
 
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
-        var cb1 = document.getElementById("cafeButtons");
+        var cb = document.getElementById("cafeButtons");
         for (var i = 0; i < cafes.cafe.length; i++) {
             var a = document.createElement('a');
             var cafeName = cafes.cafe[i].name;
