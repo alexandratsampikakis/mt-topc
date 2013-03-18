@@ -191,6 +191,7 @@ try {
 
             });
             localStream.init();
+            localStream.sendData({text:'Hello', timestamp:12321312});
         });   
     }
 };
