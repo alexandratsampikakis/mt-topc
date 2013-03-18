@@ -169,6 +169,11 @@ try {
                         if (elem.childNodes.length === 1) {
                             elem.appendChild(div);
                             stream.show("test" + stream.getID());
+                            stream.addEventListener("stream-data", function(evt){
+                                subscribeToStreams(streams);
+                                console.log(evt);
+                                console.log('Received data ', evt.msg, 'from stream ');
+                            });
                             return;
                         }
                     }
@@ -179,11 +184,12 @@ try {
                     // Subscribe to added streams
                     var streams = [];
                     streams.push(streamEvent.stream);
-                    subscribeToStreams(streams);
-                    streamEvent.stream.addEventListener("stream-data", function(evt){
+                    
+                    /*streamEvent.stream.addEventListener("stream-data", function(evt){
+                        subscribeToStreams(streams);
                         console.log(evt);
                         console.log('Received data ', evt.msg, 'from stream ');
-                    });
+                    });*/
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
