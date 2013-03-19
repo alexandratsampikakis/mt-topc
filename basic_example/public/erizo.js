@@ -2508,8 +2508,8 @@
                                                                                                                         };
                                                                                                                         document.getElementById(a.elementID).appendChild(a.div);
                                                                                                                         a.div.appendChild(a.bar);
-                                                                                                                        a.bar.appendChild(a.link);
-                                                                                                                        a.link.appendChild(a.logo);
+                                                                                                                        //a.bar.appendChild(a.link);
+                                                                                                                        //a.link.appendChild(a.logo);
                                                                                                                         if (void 0 === d.options || void 0 === d.options.speaker || !0 === d.options.speaker) a.speaker = new Erizo.Speaker({
                                                                                                                                 elementID: "subbar_" + a.id,
                                                                                                                                 id: a.id,
