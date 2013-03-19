@@ -179,8 +179,7 @@ try {
                             elem.appendChild(div);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
-                                console.log(evt);
-                                console.log('Received data ', evt.msg, 'from stream ');
+                                appendChatMessage(evt.msg.user, evt.msg.text);
                             });
                             return;
                         }
