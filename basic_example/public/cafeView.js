@@ -5,7 +5,6 @@ serverUrl = "http://satin.research.ltu.se:3001/";
 
 function appendChatMessage(username, message) {
     var message = username + ": " + message;
-    area.append
     $('#chatArea').append(message);
 }
 
@@ -133,7 +132,8 @@ try {
         menuList.setAttribute("class", "span2 hide");
 
         //Init chat
-        $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+        var textarea = document.getElementById('chatArea');
+        textarea.scrollTop = textarea.scrollHeight;
         //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
