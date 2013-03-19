@@ -3,6 +3,10 @@ var room, localStream, serverUrl;
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
+function appendChatMessage(username, message, area) {
+    area.append
+}
+
 var getQueryString = function getQueryString(key, default_) {
     if (default_==null) default_="";
     key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -121,7 +125,7 @@ try {
         shareMediaChat.setAttribute("class", "");
         var menuList = document.getElementById("menuList");
         menuList.setAttribute("class", "span2 hide");
-
+        var chatArea = document.getElementById("chatArea");
 
         createToken(roomId, "user", "role", function (response) {
             var token = response;
@@ -164,15 +168,15 @@ try {
                     div.setAttribute("style", "width:320px; height: 240px;");
                     div.setAttribute("id", "test" + stream.getID());
 
-                    for (var i = 2; i < 7; i++) {
+                    for (var i = 2; i <= 6; i++) {
                         var elem = document.getElementById('vid'+i);
                         if (elem.childNodes.length === 1) {
                             elem.appendChild(div);
                             stream.show("test" + stream.getID());
-                            stream.addEventListener("stream-data", function(evt){
+                            /*stream.addEventListener("stream-data", function(evt){
                                 console.log(evt);
                                 console.log('Received data ', evt.msg, 'from stream ');
-                            });
+                            });*/
                             return;
                         }
                     }
