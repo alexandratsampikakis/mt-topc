@@ -2489,13 +2489,13 @@
                                                                                                                         a.bar = document.createElement("div");
                                                                                                                         a.bar.setAttribute("style", "width: 100%; height: 15%; max-height: 30px; position: absolute; bottom: 0; right: 0; background-color: rgba(255,255,255,0.62)");
                                                                                                                         a.bar.setAttribute("id", "subbar_" + a.id);
-                                                                                                                        a.link = document.createElement("a");
+                                                                                                                        /*a.link = document.createElement("a");
                                                                                                                         a.link.setAttribute("href", "http://www.lynckia.com/");
                                                                                                                         a.link.setAttribute("target", "_blank");
                                                                                                                         a.logo = document.createElement("img");
                                                                                                                         a.logo.setAttribute("style", "width: 10%; height: 100%; max-width: 30px; position: absolute; top: 0; left: 2px;");
                                                                                                                         a.logo.setAttribute("alt", "Lynckia");
-                                                                                                                        a.logo.setAttribute("src", a.url + "/assets/star.svg");
+                                                                                                                        a.logo.setAttribute("src", a.url + "/assets/star.svg");*/
                                                                                                                         b = function (b) {
                                                                                                                             "block" !== b ? b = "none" : clearTimeout(c);
                                                                                                                             a.div.setAttribute("style", "width: 100%; height: 100%; position: relative; bottom: 0; right: 0; display:" + b)
