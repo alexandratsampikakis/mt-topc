@@ -10,7 +10,7 @@ function appendChatMessage(username, message) {
 }
 
 function sendChatMessage(username, message, stream) {
-    stream.sendData({text:message, user:username});
+    stream.sendData({text:message, user:'\n'+username});
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -132,6 +132,9 @@ try {
         var menuList = document.getElementById("menuList");
         menuList.setAttribute("class", "span2 hide");
 
+        //Init chat
+        $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+        //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
