@@ -131,10 +131,6 @@ try {
         var menuList = document.getElementById("menuList");
         menuList.setAttribute("class", "span2 hide");
         
-        $(window).resize(function() {
-            var bodyheight = $('#myVideo').width()/1.33;
-            $("#myVideo").height(bodyheight);
-        });
 
         //Init chat
         var textarea = document.getElementById('chatArea');
@@ -178,9 +174,9 @@ try {
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     var div = document.createElement('div');
-                    div.setAttribute("style", "width:auto; height: 240px;");
+                    div.setAttribute("style", "width:auto;");
                     div.setAttribute("id", "test" + stream.getID());
-
+                    
                     for (var i = 2; i <= 6; i++) {
                         var elem = document.getElementById('vid'+i);
                         if (elem.childNodes.length === 1) {
@@ -189,9 +185,14 @@ try {
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
                             });
+                            $(window).resize(function() {
+                                var bodyheight = $('#myVideo').width()/1.33;
+                                $(stream.getID()).height(bodyheight);
+                            });
                             return;
                         }
                     }
+
                     console.log("Oh, oh! There are no video tags available");
                 });
 
