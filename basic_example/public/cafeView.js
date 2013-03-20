@@ -130,6 +130,11 @@ try {
         shareMediaChat.setAttribute("class", "");
         var menuList = document.getElementById("menuList");
         menuList.setAttribute("class", "span2 hide");
+        
+        $(window).resize(function() {
+            var bodyheight = $('#myVideo').width()/1.33;
+            $("#myVideo").height(bodyheight);
+        });
 
         //Init chat
         var textarea = document.getElementById('chatArea');
@@ -173,7 +178,7 @@ try {
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     var div = document.createElement('div');
-                    div.setAttribute("style", "width:320px; height: 240px;");
+                    div.setAttribute("style", "width:auto; height: 240px;");
                     div.setAttribute("id", "test" + stream.getID());
 
                     for (var i = 2; i <= 6; i++) {
