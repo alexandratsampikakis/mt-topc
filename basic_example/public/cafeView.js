@@ -88,6 +88,7 @@ try {
     };
 
     $('#table1').click(function() {
+        console.log('click');
         initialize(tableId1);
     });
     $('#table2').click(function() {
@@ -167,10 +168,10 @@ try {
                     
                     for (var i = 2; i <= 6; i++) {
                         if ($('#vid'+i).length === 1) {
-                            $('<div></div>', {
+                            /*$('<div></div>', {
                                 style: 'width:auto',
                                 id: 'test'+stream.getID();
-                            }).css('width','auto').appendTo('#vid'+i);
+                            }).css('width','auto').appendTo('#vid'+i);*/
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
