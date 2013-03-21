@@ -210,6 +210,10 @@ try {
                 room.connect();
 
                 localStream.show("myVideo");
+                
+                var videoheight = $('#myVideo').width()/1.33;
+                $('#myVideo').height(videoheight);
+               
                 $(window).resize(function() {
                     var videoheight = $('#myVideo').width()/1.33;
                     $('#myVideo').height(videoheight);
