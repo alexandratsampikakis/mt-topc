@@ -109,7 +109,7 @@ try {
         initialize(tableId6);
     });
     $('#submitUsername').click(function() {
-        initialize(tableId6);
+        enterName();
     });
 
     var enterName = function() {
