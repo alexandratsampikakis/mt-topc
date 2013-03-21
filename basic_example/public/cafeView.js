@@ -107,7 +107,12 @@ try {
     });
 
     var initialize = function(roomId) {
-        var tablecontainer = document.getElementById("tablecontainer");
+        $('#tablecontainer').toggle();
+        $('#vidcontainer1').toggle();
+        $('#vidcontainer2').toggle();
+        $('#shareMediaChat').toggle();
+        $('#menuList').toggle();
+       /* var tablecontainer = document.getElementById("tablecontainer");
         tablecontainer.setAttribute("class", "hide");
         var vidcontainer1 = document.getElementById("vidcontainer1");
         vidcontainer1.setAttribute("class", "");
@@ -116,17 +121,16 @@ try {
         var shareMediaChat = document.getElementById("shareMediaChat");
         shareMediaChat.setAttribute("class", "");
         var menuList = document.getElementById("menuList");
-        menuList.setAttribute("class", "span2 hide");
+        menuList.setAttribute("class", "span2 hide");*/
         
 
         //Init chat
-        var textarea = document.getElementById('chatArea');
-        textarea.scrollTop = textarea.scrollHeight;
+        $('chatArea').scrollTop($('chatArea').scrollHeight());
         //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
-        L.Logger.setLogLevel(L.Logger.DEBUG);
+            L.Logger.setLogLevel(L.Logger.DEBUG);
             //L.Logger.debug("Connected!");
             room = Erizo.Room({token: token});
 
@@ -160,14 +164,15 @@ try {
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
-                    var div = document.createElement('div');
-                    div.setAttribute("style", "width:auto;");
-                    div.setAttribute("id", "test" + stream.getID());
                     
                     for (var i = 2; i <= 6; i++) {
                         var elem = document.getElementById('vid'+i);
-                        if (elem.childNodes.length === 1) {
+                        if ($('#vid'+i).length === 1) {
                             elem.appendChild(div);
+                            $('<div></div>', {
+                                style: 'width:auto',
+                                id: 'test'+stream.getID();
+                            }).css('width','auto').appendTo("#vid"+i);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
@@ -200,8 +205,7 @@ try {
                     var stream = streamEvent.stream;
                     if (stream.elementID !== undefined) {
                         console.log("Removing " + stream.elementID);
-                        var element = document.getElementById(stream.elementID);
-                        element.parentNode.removeChild(element);
+                        $('#'+stream.elementID).remove();
                     }
                 });
 
