@@ -118,7 +118,7 @@ try {
             $('#enterName').toggle();
             $('#tablecontainer').toggle();
         }
-    }
+    };
 
     var initialize = function(roomId) {
         $('#tablecontainer').toggle();
