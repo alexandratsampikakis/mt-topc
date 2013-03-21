@@ -166,9 +166,7 @@ try {
                     var stream = streamEvent.stream;
                     
                     for (var i = 2; i <= 6; i++) {
-                        var elem = document.getElementById('vid'+i);
                         if ($('#vid'+i).length === 1) {
-                            elem.appendChild(div);
                             $('<div></div>', {
                                 style: 'width:auto',
                                 id: 'test'+stream.getID();
