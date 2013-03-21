@@ -126,7 +126,7 @@ try {
         
 
         //Init chat
-        $('chatArea').scrollTop($('chatArea').scrollHeight());
+        //$('chatArea').scrollTop($('chatArea').scrollHeight());
         //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
@@ -168,17 +168,16 @@ try {
                     
                     for (var i = 2; i <= 6; i++) {
                         if ($('#vid'+i).length === 1) {
-                            /*$('<div></div>', {
-                                style: 'width:auto',
-                                id: 'test'+stream.getID();
-                            }).css('width','auto').appendTo('#vid'+i);*/
+                            $('<div></div>', {
+                                id: 'test'+stream.getID()
+                            }).css('width','auto').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
                             });
                             $(window).resize(function() {
-                                var bodyheight = $('#myVideo').width()/1.33;
-                                $(stream.getID()).height(bodyheight);
+                                var videoheight = $('#myVideo').width()/1.33;
+                                $(stream.getID()).height(videoheight);
                             });
                             return;
                         }
