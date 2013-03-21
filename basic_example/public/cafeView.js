@@ -176,7 +176,7 @@ try {
                                 appendChatMessage(evt.msg.user, evt.msg.text);
                             });
                             $(window).resize(function() {
-                                var videoheight = $('#myVideo').width()/1.33;
+                                var videoheight = $('#vid'+1).width()/1.33;
                                 $(stream.getID()).height(videoheight);
                             });
                             return;
@@ -210,6 +210,10 @@ try {
                 room.connect();
 
                 localStream.show("myVideo");
+                $(window).resize(function() {
+                    var videoheight = $('#myVideo').width()/1.33;
+                    $(stream.getID()).height(videoheight);
+                });
 
             });
             localStream.init();
