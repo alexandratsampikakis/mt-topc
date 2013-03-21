@@ -212,7 +212,7 @@ try {
                 localStream.show("myVideo");
                 $(window).resize(function() {
                     var videoheight = $('#myVideo').width()/1.33;
-                    $(stream.getID()).height(videoheight);
+                    $('#myVideo').height(videoheight);
                 });
 
             });
