@@ -1,4 +1,4 @@
-var room, localStream, serverUrl;
+var room, localStream, serverUrl, nameOfUser;
 
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
@@ -88,7 +88,6 @@ try {
     };
 
     $('#table1').click(function() {
-        console.log('click');
         initialize(tableId1);
     });
     $('#table2').click(function() {
@@ -106,6 +105,20 @@ try {
     $('#table6').click(function() {
         initialize(tableId6);
     });
+    $('#sendMessage').click(function() {
+        initialize(tableId6);
+    });
+    $('#submitUsername').click(function() {
+        initialize(tableId6);
+    });
+
+    var enterName = function() {
+        if($('#userName').val() !== "") {
+            nameOfUser = $('#userName').val();
+            $('#enterName').toggle();
+            $('#tablecontainer').toggle();
+        }
+    }
 
     var initialize = function(roomId) {
         $('#tablecontainer').toggle();
