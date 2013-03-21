@@ -167,10 +167,10 @@ try {
                     var stream = streamEvent.stream;
                     
                     for (var i = 2; i <= 6; i++) {
-                        if ($('#vid'+i).length === 1) {
+                        if ($('#vid'+i).children().length === 0) {
                             $('<div></div>', {
                                 id: 'test'+stream.getID()
-                            }).css('width','auto').appendTo('#vid'+i);
+                            }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
@@ -214,8 +214,8 @@ try {
                     var videoheight = $('#myVideo').width()/1.33;
                     $('#myVideo').height(videoheight);
                     for (var i = 2; i <= 6; i++) {
-                        if ($('#vid'+i).length === 2) {
-                        $('#vid'+i).height(videoheight);
+                        if ($('#vid'+i).children().length=1) {
+                        $('#vid'+i).first().height(videoheight);
                         }
                     }
                 });
