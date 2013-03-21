@@ -62,7 +62,7 @@ var cafeSchema = new Schema({
     table6: String
 });
 
-app.get('/createNewCafe/', function (req, res) {
+/*app.get('/createNewCafe/', function (req, res) {
     "use strict";
     var tables = new Array();
     for (var i = 0; i <= 5; i++) {
@@ -87,7 +87,7 @@ app.get('/createNewCafe/', function (req, res) {
       if (err) // TODO handle err
       console.log(newCafes)
     });
-});
+});*/
 
 app.get("/api/getcafes", function (req, res) {
     var cafe = [];
@@ -190,7 +190,7 @@ N.API.getRooms(function (roomlist) {
     "use strict";
     var rooms = JSON.parse(roomlist);
     console.log(rooms.length);
-    if (rooms.length === 0) {
+    /*if (rooms.length === 0) {
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
@@ -212,10 +212,10 @@ N.API.getRooms(function (roomlist) {
               if (err); // TODO handle err
               console.log("antal rum: ", newCafes.length);
             });
-        };*/
+        };
         myRoom = rooms[0]._id;
         console.log('Using room ', myRoom);
-    }
+    }*/
 });
 
 app.post('/createToken/:room', function (req, res) {
@@ -229,14 +229,14 @@ app.post('/createToken/:room', function (req, res) {
     });
      var roomId = myRoom;
  
-    N.API.getUsers(roomId, function(users) {
+    /*N.API.getUsers(roomId, function(users) {
       var usersList = JSON.parse(users);
       console.log('This room has ', usersList.length, 'users');
      
       for(var i in usersList) {
         console.log('User ', i, ':', usersList[i].name, 'with role: ', usersList[i].role);
       }
-    });
+    });*/
 });
 
 app.get('/getRooms/', function (req, res) {
