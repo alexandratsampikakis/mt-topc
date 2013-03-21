@@ -213,6 +213,11 @@ try {
                 $(window).resize(function() {
                     var videoheight = $('#myVideo').width()/1.33;
                     $('#myVideo').height(videoheight);
+                    for (var i = 2; i <= 6; i++) {
+                        if ($('#vid'+i).length === 2) {
+                        $('#vid'+i).height(videoheight);
+                        }
+                    }
                 });
 
             });
