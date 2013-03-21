@@ -170,7 +170,7 @@ try {
                             $('<div></div>', {
                                 style: 'width:auto',
                                 id: 'test'+stream.getID();
-                            }).css('width','auto').appendTo("#vid"+i);
+                            }).css('width','auto').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
