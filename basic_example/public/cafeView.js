@@ -8,8 +8,8 @@ function appendChatMessage(username, message) {
     $('#chatArea').append(message);
 }
 
-function sendChatMessage(username, message, stream) {
-    stream.sendData({text:message, user:'\n'+username});
+function sendChatMessage(username, message) {
+    localStream.sendData({text:message, user:'\n'+username});
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -22,14 +22,13 @@ var getQueryString = function getQueryString(key, default_) {
     else
         return qs[1];
 }
+
 var updateTitle = function(title) {
-    var cafeTitle = document.getElementById('cafeTitle');
-    cafeTitle.innerHTML = title;
-    cafeTitle = document.getElementById('cafeTableTitle');
-    cafeTitle.innerHTML = title;
-    cafeTitle = document.getElementById('cafeVideoTitle');
-    cafeTitle.innerHTML = title;
-}   
+    $('#cafeTitle').html(title);
+    $('#cafeTableTitle').html(title);
+    $('#cafeVideoTitle').html(title);
+}  
+
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -44,20 +43,13 @@ var getCafeTables = function(cafe, callback) {
 
     req.send();
 };
+
 window.onload = function () {
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
 } catch (error) {
     console.log('erizo error: ' + error);
 }
-
-    var table1 = document.getElementById('table1');
-    var table2 = document.getElementById('table2');
-    var table3 = document.getElementById('table3');
-    var table4 = document.getElementById('table4');
-    var table5 = document.getElementById('table5');
-    var table6 = document.getElementById('table6');
-    var sendData = document.getElementById('sendData');
 
     getCafeTables(getQueryString('cafe'), function (response) {
         var cafes = JSON.parse(response);
@@ -95,29 +87,24 @@ try {
         req.send(JSON.stringify(body));
     };
 
-    table1.onclick = function(evt) {
+    $('#table1').click(function() {
         initialize(tableId1);
-    };
-    table2.onclick = function(evt) {
+    });
+    $('#table2').click(function() {
         initialize(tableId2);
-    };
-    table3.onclick = function(evt) {
+    });
+    $('#table3').click(function() {
         initialize(tableId3);
-    };
-    table4.onclick = function(evt) {
+    });
+    $('#table4').click(function() {
         initialize(tableId4);
-    };
-    table5.onclick = function(evt) {
+    });
+    $('#table5').click(function() {
         initialize(tableId5);
-    };
-    table6.onclick = function(evt) {
+    });
+    $('#table6').click(function() {
         initialize(tableId6);
-    };
-    sendData.onclick = function(evt) {
-        console.log("skickar data");
-        localStream.sendData({text:'Hello', timestamp:12321312});
-    };
-
+    });
 
     var initialize = function(roomId) {
         var tablecontainer = document.getElementById("tablecontainer");
