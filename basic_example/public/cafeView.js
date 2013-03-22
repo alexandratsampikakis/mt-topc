@@ -138,8 +138,8 @@ try {
         $('#menuList').toggle();
 
         //Init chat
-        $('#chatArea').scrollTop($('#chatArea').scrollHeight;
-        $("#chatMessage").focus();
+        $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+        $('#chatMessage').focus();
         //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
