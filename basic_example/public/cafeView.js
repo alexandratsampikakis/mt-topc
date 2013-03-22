@@ -138,7 +138,7 @@ try {
         $('#menuList').toggle();
 
         //Init chat
-        $('#chatArea').scrollTop($('#chatArea').scrollHeight());
+        $('#chatArea').scrollTop($('#chatArea').scrollHeight;
         $("#myTextBox").focus();
         //
         createToken(roomId, "user", "role", function (response) {
