@@ -5,11 +5,15 @@ serverUrl = "http://satin.research.ltu.se:3001/";
 
 function appendChatMessage(username, message) {
     var message = username + ": " + message;
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
     $('#chatArea').append(message);
 }
 
 function sendChatMessage(message) {
     localStream.sendData({text:message, user:'\n'+nameOfUser});
+    $('#chatMessage').val("");
 }
 
 var getQueryString = function getQueryString(key, default_) {
