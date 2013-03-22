@@ -110,6 +110,7 @@ try {
     });
     $('#submitUsername').click(function() {
         enterName();
+        return false;
     });
 
     var enterName = function() {
