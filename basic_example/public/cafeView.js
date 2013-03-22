@@ -9,6 +9,7 @@ function appendChatMessage(username, message) {
         message = "\n"+message;
     }
     $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
 }
 
 function sendChatMessage(message) {
