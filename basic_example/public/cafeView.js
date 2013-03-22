@@ -139,7 +139,7 @@ try {
 
         //Init chat
         $('#chatArea').scrollTop($('#chatArea').scrollHeight;
-        $("#myTextBox").focus();
+        $("#chatMessage").focus();
         //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
