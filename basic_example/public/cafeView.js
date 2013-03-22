@@ -14,6 +14,8 @@ function appendChatMessage(username, message) {
 function sendChatMessage(message) {
     localStream.sendData({text:message, user:nameOfUser});
     $('#chatMessage').val("");
+    appendChatMessage(nameOfUser, message);
+    $("#myTextBox").focus();
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -136,7 +138,8 @@ try {
         $('#menuList').toggle();
 
         //Init chat
-        //$('chatArea').scrollTop($('chatArea').scrollHeight());
+        $('#chatArea').scrollTop($('#chatArea').scrollHeight());
+        $("#myTextBox").focus();
         //
         createToken(roomId, "user", "role", function (response) {
             var token = response;
