@@ -106,8 +106,8 @@ try {
         initialize(tableId6);
     });
     $('#sendMessage').click(function() {
-        if($('chatMessage').val() !== "") {
-            sendChatMessage($('chatMessage').val());
+        if($('#chatMessage').val() !== "") {
+            sendChatMessage($('#chatMessage').val());
         }
         return false;
     });
@@ -192,10 +192,10 @@ try {
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
                             });
-                            $(window).resize(function() {
-                                var videoheight = $('#vid'+1).width()/1.33;
-                                $(stream.getID()).height(videoheight);
-                            });
+                            // $(window).resize(function() {
+                            //     var videoheight = $('#vid'+1).width()/1.33;
+                            //     $(stream.getID()).height(videoheight);
+                            // });
                             return;
                         }
                     }
