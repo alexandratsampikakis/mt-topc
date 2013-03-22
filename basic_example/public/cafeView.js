@@ -12,7 +12,7 @@ function appendChatMessage(username, message) {
 }
 
 function sendChatMessage(message) {
-    localStream.sendData({text:message, user:'\n'+nameOfUser});
+    localStream.sendData({text:message, user:nameOfUser});
     $('#chatMessage').val("");
 }
 
@@ -134,17 +134,6 @@ try {
         $('#vidcontainer2').toggle();
         $('#shareMediaChat').toggle();
         $('#menuList').toggle();
-       /* var tablecontainer = document.getElementById("tablecontainer");
-        tablecontainer.setAttribute("class", "hide");
-        var vidcontainer1 = document.getElementById("vidcontainer1");
-        vidcontainer1.setAttribute("class", "");
-        var vidcontainer2 = document.getElementById("vidcontainer2");
-        vidcontainer2.setAttribute("class", "");
-        var shareMediaChat = document.getElementById("shareMediaChat");
-        shareMediaChat.setAttribute("class", "");
-        var menuList = document.getElementById("menuList");
-        menuList.setAttribute("class", "span2 hide");*/
-        
 
         //Init chat
         //$('chatArea').scrollTop($('chatArea').scrollHeight());
@@ -196,10 +185,10 @@ try {
                             stream.addEventListener("stream-data", function(evt){
                                 appendChatMessage(evt.msg.user, evt.msg.text);
                             });
-                            // $(window).resize(function() {
-                            //     var videoheight = $('#vid'+1).width()/1.33;
-                            //     $(stream.getID()).height(videoheight);
-                            // });
+                            $(window).resize(function() {
+                                var videoheight = $('#vid'+1).width()/1.33;
+                                $(stream.getID()).height(videoheight);
+                            });
                             return;
                         }
                     }
