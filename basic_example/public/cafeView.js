@@ -8,8 +8,8 @@ function appendChatMessage(username, message) {
     $('#chatArea').append(message);
 }
 
-function sendChatMessage(username, message) {
-    localStream.sendData({text:message, user:'\n'+username});
+function sendChatMessage(message) {
+    localStream.sendData({text:message, user:'\n'+nameOfUser});
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -106,7 +106,10 @@ try {
         initialize(tableId6);
     });
     $('#sendMessage').click(function() {
-        initialize(tableId6);
+        if($('chatMessage').val() !== "") {
+            sendChatMessage($('chatMessage').val());
+        }
+        return false;
     });
     $('#submitUsername').click(function() {
         enterName();
