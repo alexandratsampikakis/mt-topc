@@ -3,6 +3,10 @@ var room, localStream, serverUrl, nameOfUser;
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
+function getSnapshots() {
+
+}
+
 function appendChatMessage(username, message) {
     var message = username + ": " + message;
     if($('#chatArea').val() !== "") {
@@ -205,6 +209,7 @@ try {
                     var streams = [];
                     streams.push(streamEvent.stream);
                     subscribeToStreams(streams);
+                    console.log("this is what i'm LOOKING FOR: " + streams.length);
                     /*streamEvent.stream.addEventListener("stream-data", function(evt){
                         
                         console.log(evt);
