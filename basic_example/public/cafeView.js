@@ -4,6 +4,29 @@ var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 function getSnapshots() {
+    var bitmap;
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+ 
+    canvas.id = "testCanvas";
+    document.body.appendChild(canvas);
+    canvas.width = '150px';
+    canvas.height = '100px';
+
+    var streams = room.remoteStreams;
+    for (var i = 0; i < streams.length; i++) {
+        int y = 0;
+        streams[i].getVideoFrame();
+        if(i>2) {
+            y = 50;
+        }
+        context.putImageData(bitmap, (i%2)*50, y);
+    };
+    bitmap = stream.getVideoFrame();
+  
+
+      
+    
 
 }
 
