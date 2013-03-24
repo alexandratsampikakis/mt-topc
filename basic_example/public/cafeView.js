@@ -18,7 +18,7 @@ function getSnapshots() {
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
  
-    var canvas2 = document.createElement('canvas2');
+    var canvas2 = document.createElement('canvas');
     var context2 = canvas2.getContext('2d');
 
     canvas.id = "testCanvas";
