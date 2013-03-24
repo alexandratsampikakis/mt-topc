@@ -31,7 +31,7 @@ function getSnapshots() {
      
     setInterval(function() {
       
-      bitmap = localStream.getVideoFrame();
+      bitmap = room.remoteStreams[0].getVideoFrame();
       
       canvas.width = bitmap.width;
       canvas.height = bitmap.height;
