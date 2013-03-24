@@ -11,23 +11,18 @@ function getSnapshots() {
     canvas.id = "testCanvas";
     document.body.appendChild(canvas);
     canvas.width = '150px';
-    canvas.height = '100px';
+    canvas.height = canvas.width/1.33;
 
     var streams = room.remoteStreams;
     for (var i = 0; i < streams.length; i++) {
         int y = 0;
-        streams[i].getVideoFrame();
+        var bitmap = streams[i].getVideoFrame();
+        bitmap.
         if(i>2) {
             y = 50;
         }
-        context.putImageData(bitmap, (i%2)*50, y);
+        context.drawImage(bitmap, (i%2)*50, y,50,(50/1.33));
     };
-    bitmap = stream.getVideoFrame();
-  
-
-      
-    
-
 }
 
 function appendChatMessage(username, message) {
@@ -138,6 +133,9 @@ try {
     });
     $('#table6').click(function() {
         initialize(tableId6);
+    });
+    $('#sendData').click(function() {
+        getSnapshots();
     });
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
