@@ -37,6 +37,7 @@ function getSnapshots() {
                 break;
             }
         }
+        console.log(first;)
       bitmap = first.getVideoFrame();
       
       canvas.width = bitmap.width;
@@ -44,7 +45,7 @@ function getSnapshots() {
       
       context.putImageData(bitmap, 0, 0);
      
-    }, 100);
+    }, 10000);
 }
 
 function appendChatMessage(username, message) {
