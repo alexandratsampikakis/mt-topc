@@ -17,12 +17,11 @@ function getSnapshots() {
     for (var i = 0; i < streams.length; i++) {
         var y = 0;
         var bitmap = streams[i].getVideoFrame();
-        bitmap.
         if(i>2) {
             y = 50;
         }
         context.drawImage(bitmap, (i%2)*50, y,50,(50/1.33));
-    };
+    }
 }
 
 function appendChatMessage(username, message) {
