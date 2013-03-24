@@ -12,14 +12,18 @@ function getLeader() {
     console.log(highest);
     return highest === parseInt(localStream.getID());
 }
+
 function getSnapshots() {
-    var bitmap;
+    var bitmap, img;
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
  
+    var canvas2 = document.createElement('canvas2');
+    var context2 = canvas2.getContext('2d');
+
     canvas.id = "testCanvas";
     document.body.appendChild(canvas);
-    canvas.width = '150px';
+    canvas.width = 150;
     canvas.height = canvas.width/1.33;
 
     var keys = [];
@@ -29,10 +33,15 @@ function getSnapshots() {
     for (var i = 0; i < keys.length; i++) {
         var y = 0;
         var bitmap = streams[keys[0]].getVideoFrame();
+        canvas2.width = bitmap.width;
+        canvas2.height = bitmap.height;
+      
+        context2.putImageData(bitmap, 0, 0);
+        img = canvas2.toDataURL("image/png");
         if(i>2) {
             y = 50;
         }
-        context.drawImage(bitmap, (i%2)*50, y,50,(50/1.33));
+        context.drawImage(img, (i%2)*50, y,50,(50/1.33));
     }
     /*var bitmap;
     var canvas = document.createElement('canvas');
