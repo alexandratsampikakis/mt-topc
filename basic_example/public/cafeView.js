@@ -2,9 +2,18 @@ var room, localStream, serverUrl, nameOfUser;
 
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
-
+function getLeader() {
+    var keys = [];
+    var highest = parseInt(localStream.getID());
+    for(var k in room.remoteStreams) keys.push(k);
+    for(i = 0; i<keys.length-1;i++) {
+        if (parseInt(keys[i]) > highest) highest=parseInt(keys[i]);
+    }
+    console.log(highest);
+    return highest === parseInt(localStream.getID());
+}
 function getSnapshots() {
-    /*var bitmap;
+    var bitmap;
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
  
@@ -13,16 +22,19 @@ function getSnapshots() {
     canvas.width = '150px';
     canvas.height = canvas.width/1.33;
 
+    var keys = [];
+    for(var k in room.remoteStreams) keys.push(k);
+
     var streams = room.remoteStreams;
-    for (var i = 0; i < streams.length; i++) {
+    for (var i = 0; i < keys.length; i++) {
         var y = 0;
-        var bitmap = streams[i].getVideoFrame();
+        var bitmap = streams[keys[0]].getVideoFrame();
         if(i>2) {
             y = 50;
         }
         context.drawImage(bitmap, (i%2)*50, y,50,(50/1.33));
-    }*/
-    var bitmap;
+    }
+    /*var bitmap;
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
      
@@ -36,6 +48,7 @@ function getSnapshots() {
                 first = room.remoteStreams[i];
                 if(first['room'] !== null) {
                     console.log(first);
+                    break;
                 }
             }
         }
@@ -46,7 +59,7 @@ function getSnapshots() {
       
       context.putImageData(bitmap, 0, 0);
      
-    }, 10000);
+    }, 10000);*/
 }
 
 function appendChatMessage(username, message) {
