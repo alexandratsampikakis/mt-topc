@@ -30,8 +30,14 @@ function getSnapshots() {
     document.body.appendChild(canvas);
      
     setInterval(function() {
-      
-      bitmap = room.remoteStreams[0].getVideoFrame();
+      var first;
+        for (var i in room.remoteStreams) {
+            if (room.remoteStreams.hasOwnProperty(i) && typeof(i) !== 'function') {
+                first = room.remoteStreams[i];
+                break;
+            }
+        }
+      bitmap = first.getVideoFrame();
       
       canvas.width = bitmap.width;
       canvas.height = bitmap.height;
