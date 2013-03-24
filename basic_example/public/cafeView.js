@@ -37,7 +37,7 @@ function getSnapshots() {
                 break;
             }
         }
-        console.log(first);
+        console.log(first + localStream);
       bitmap = first.getVideoFrame();
       
       canvas.width = bitmap.width;
