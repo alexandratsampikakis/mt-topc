@@ -4,7 +4,7 @@ var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 function getSnapshots() {
-    var bitmap;
+    /*var bitmap;
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
  
@@ -21,7 +21,24 @@ function getSnapshots() {
             y = 50;
         }
         context.drawImage(bitmap, (i%2)*50, y,50,(50/1.33));
-    }
+    }*/
+    var bitmap;
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+     
+    canvas.id = "testCanvas";
+    document.body.appendChild(canvas);
+     
+    setInterval(function() {
+      
+      bitmap = localStream.getVideoFrame();
+      
+      canvas.width = bitmap.width;
+      canvas.height = bitmap.height;
+      
+      context.putImageData(bitmap, 0, 0);
+     
+    }, 100);
 }
 
 function appendChatMessage(username, message) {
