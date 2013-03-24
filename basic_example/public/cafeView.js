@@ -15,7 +15,7 @@ function getSnapshots() {
 
     var streams = room.remoteStreams;
     for (var i = 0; i < streams.length; i++) {
-        int y = 0;
+        var y = 0;
         var bitmap = streams[i].getVideoFrame();
         bitmap.
         if(i>2) {
