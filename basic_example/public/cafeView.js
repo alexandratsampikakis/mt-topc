@@ -34,11 +34,11 @@ function getSnapshots() {
         for (var i in room.remoteStreams) {
             if (room.remoteStreams.hasOwnProperty(i) && typeof(i) !== 'function') {
                 first = room.remoteStreams[i];
-                break;
+                if(first['room'] !== null) {
+                    console.log(first);
+                }
             }
         }
-        console.log(first);
-        console.log(localStream);
       bitmap = first.getVideoFrame();
       
       canvas.width = bitmap.width;
