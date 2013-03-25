@@ -19,7 +19,11 @@ function getSnapshots() {
     var context = canvas.getContext('2d');
 
     var keys = [];
-    for(var k in room.remoteStreams) keys.push(k);
+    for(var k in room.remoteStreams) {
+        if (room.remoteStreams.hasOwnProperty(i) && typeof(i) !== 'function') {
+            keys.push(k);       
+        }
+    } 
 
     var streams = room.remoteStreams;
     for (var i = 0; i < keys.length; i++) {
