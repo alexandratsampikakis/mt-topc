@@ -41,6 +41,9 @@ function getSnapshots() {
         if(i>2) {
             y = 50;
         }
+        var image = document.createElement("img");
+        img.src = img;
+        document.body.appendChild(image);
         context.drawImage(img, (i%2)*50, y,50,(50/1.33));
     }
     /*var bitmap;
