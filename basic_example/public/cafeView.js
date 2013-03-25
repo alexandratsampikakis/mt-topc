@@ -31,8 +31,9 @@ function getSnapshots() {
 
     var streams = room.remoteStreams;
     for (var i = 0; i < keys.length; i++) {
+        console.log(localStream.getID() + " : " + keys[i]);
         var y = 0;
-        var bitmap = streams[keys[0]].getVideoFrame();
+        var bitmap = streams[keys[i]].getVideoFrame();
         canvas2.width = bitmap.width;
         canvas2.height = bitmap.height;
       
