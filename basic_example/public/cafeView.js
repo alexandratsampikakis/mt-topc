@@ -17,35 +17,26 @@ function getSnapshots() {
     var bitmap, img;
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
- 
-    var canvas2 = document.createElement('canvas');
-    var context2 = canvas2.getContext('2d');
-
-    canvas.id = "testCanvas";
-    document.body.appendChild(canvas);
-    canvas.width = 150;
-    canvas.height = canvas.width/1.33;
 
     var keys = [];
     for(var k in room.remoteStreams) keys.push(k);
 
     var streams = room.remoteStreams;
     for (var i = 0; i < keys.length; i++) {
+        canvas.id = "testCanvas";
+        document.body.appendChild(canvas);
+        canvas.width = 3*$('#myVideo').width;
+        canvas.height = 2*$('#myVideo').width;
         console.log(localStream.getID() + " : " + keys[i]);
         var y = 0;
         var bitmap = streams[keys[i]].getVideoFrame();
-        canvas2.width = bitmap.width;
-        canvas2.height = bitmap.height;
-      
-        context2.putImageData(bitmap, 0, 0);
-        img = canvas2.toDataURL("image/png");
+
         if(i>2) {
-            y = 50;
+            y = canvas.height/2;
         }
-        var image = document.createElement("img");
-        img.src = img;
-        document.body.appendChild(image);
-        context.drawImage(img, (i%2)*50, y,50,(50/1.33));
+        //context.drawImage(bimap, (i%2)*50, y,50,(50/1.33));
+
+      context.putImageData(bitmap, (i%2)*$('#myVideo').width, y);
     }
     /*var bitmap;
     var canvas = document.createElement('canvas');
@@ -124,6 +115,7 @@ var getCafeTables = function(cafe, callback) {
 };
 
 window.onload = function () {
+$("#userName").focus();
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
 } catch (error) {
