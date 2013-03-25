@@ -25,8 +25,8 @@ function getSnapshots() {
     for (var i = 0; i < keys.length; i++) {
         canvas.id = "testCanvas";
         document.body.appendChild(canvas);
-        canvas.width = 3*$('#myVideo').width;
-        canvas.height = 2*$('#myVideo').width;
+        canvas.width = 3*$('#myVideo').width();
+        canvas.height = 2*$('#myVideo').width();
         console.log(localStream.getID() + " : " + keys[i]);
         var y = 0;
         var bitmap = streams[keys[i]].getVideoFrame();
@@ -36,7 +36,7 @@ function getSnapshots() {
         }
         //context.drawImage(bimap, (i%2)*50, y,50,(50/1.33));
 
-      context.putImageData(bitmap, (i%2)*$('#myVideo').width, y);
+      context.putImageData(bitmap, (i%2)*$('#myVideo').width(), y);
     }
     /*var bitmap;
     var canvas = document.createElement('canvas');
