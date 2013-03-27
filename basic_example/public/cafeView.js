@@ -70,6 +70,10 @@ function sendChatMessage(message) {
     $("#myTextBox").focus();
 }
 
+function joinTableRequest() {
+
+}
+
 var getQueryString = function getQueryString(key, default_) {
     if (default_==null) default_="";
     key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -177,6 +181,10 @@ try {
         enterName();
         return false;
     });
+    $('#askToJoinTable').click(function() {
+        askToJoinTablePopup();
+        return false;
+    });
 
     var enterName = function() {
         if($('#userName').val() !== "") {
@@ -184,6 +192,9 @@ try {
             $('#enterName').toggle();
             $('#tablecontainer').toggle();
         }
+    };
+    var askToJoinTablePopup = function() {
+        //Show popup
     };
 
     var initialize = function(roomId) {
