@@ -20,7 +20,7 @@ function getSnapshots() {
 
     var keys = [];
     for(var k in room.remoteStreams) {
-        if (room.remoteStreams.hasOwnProperty(i) && typeof(i) !== 'function') {
+        if (room.remoteStreams.hasOwnProperty(k) && typeof(k) !== 'function') {
             keys.push(k);       
         }
     } 
