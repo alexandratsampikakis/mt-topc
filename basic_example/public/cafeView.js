@@ -22,7 +22,7 @@ function getSnapshots() {
     document.body.appendChild(canvas);
     var height = $('#myVideo').height();
     var width = $('#myVideo').width();
-    if(keys.length > 2) {
+    if(keys.length > 3) {
         canvas.width = 3*width;
         canvas.height = 2*height;
     } else {
@@ -30,26 +30,19 @@ function getSnapshots() {
         canvas.height = height;
     }
     console.log(keys.length);
-    for(var i = 0; i<=keys.length;i++) {
+    for(var i = 0; i<keys.length;i++) {
         var y = 0;
-        if (i>3) {
+        if (i>2) {
             var y = height;
         }
         if(localStream.getID() !== parseInt(keys[i])){
-        console.log("local: " + localStream.getID());
-        console.log(parseInt(keys[i]));
             var bitmap;
-
             bitmap = room.remoteStreams[keys[i]].getVideoFrame();
-
             context.putImageData(bitmap, (i%3)*width, y);
         } else {
             var bitmap;
-
             bitmap = localStream.getVideoFrame();
-
             context.putImageData(bitmap, (i%3)*width, y);
-
         }
     }
 }
@@ -64,7 +57,7 @@ function appendChatMessage(username, message) {
 }
 
 function sendChatMessage(message) {
-    localStream.sendData({text:message, user:nameOfUser});
+    localStream.sendData({id:'chat',text:message, user:nameOfUser});
     $('#chatMessage').val("");
     appendChatMessage(nameOfUser, message);
     $("#myTextBox").focus();
@@ -256,6 +249,17 @@ try {
                             }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             stream.addEventListener("stream-data", function(evt){
+                                switch (evt.msg.id) {
+                                    case "chat":
+                                      appendChatMessage(evt.msg.user, evt.msg.text);
+                                      break;
+                                    case "popup":
+                                    //do something
+                                    //Perhaps call openPopup
+                                   default:
+                                      document.write("Sorry, we are out of " + expr + ".<br>");
+                                }
+                                document.write("Is there anything else you'd like?<br>");
                                 appendChatMessage(evt.msg.user, evt.msg.text);
                             });
                             $(window).resize(function() {
@@ -275,11 +279,6 @@ try {
                     streams.push(streamEvent.stream);
                     subscribeToStreams(streams);
                     console.log("this is what i'm LOOKING FOR: " + streams.length);
-                    /*streamEvent.stream.addEventListener("stream-data", function(evt){
-                        
-                        console.log(evt);
-                        console.log('Received data ', evt.msg, 'from stream ');
-                    });*/
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
