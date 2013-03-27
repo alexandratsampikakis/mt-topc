@@ -14,60 +14,44 @@ function getLeader() {
 }
 
 function getSnapshots() {
-    var bitmap, img;
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-
     var keys = [];
-    for(var k in room.remoteStreams) {
-        if (room.remoteStreams.hasOwnProperty(k) && typeof(k) !== 'function') {
-            keys.push(k);       
-        }
-    } 
-
-    var streams = room.remoteStreams;
-    for (var i = 0; i < keys.length; i++) {
-        canvas.id = "testCanvas";
-        document.body.appendChild(canvas);
-        canvas.width = 3*$('#myVideo').width();
-        canvas.height = 2*$('#myVideo').width();
-        console.log(localStream.getID() + " : " + keys[i]);
-        var y = 0;
-        var bitmap = streams[keys[i]].getVideoFrame();
-
-        if(i>2) {
-            y = canvas.height/2;
-        }
-        //context.drawImage(bimap, (i%2)*50, y,50,(50/1.33));
-
-      context.putImageData(bitmap, (i%2)*$('#myVideo').width(), y);
-    }
-    /*var bitmap;
+    for(var k in room.remoteStreams) keys.push(k);
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
-     
     canvas.id = "testCanvas";
     document.body.appendChild(canvas);
-     
-    setInterval(function() {
-      var first;
-        for (var i in room.remoteStreams) {
-            if (room.remoteStreams.hasOwnProperty(i) && typeof(i) !== 'function') {
-                first = room.remoteStreams[i];
-                if(first['room'] !== null) {
-                    console.log(first);
-                    break;
-                }
-            }
+    var height = $('#myVideo').height();
+    var width = $('#myVideo').width();
+    if(keys.length > 2) {
+        canvas.width = 3*width;
+        canvas.height = 2*height;
+    } else {
+        canvas.width = keys.length*width;
+        canvas.height = height;
+    }
+    console.log(keys.length);
+    for(var i = 0; i<=keys.length;i++) {
+        var y = 0;
+        if (i>3) {
+            var y = height;
         }
-      bitmap = first.getVideoFrame();
-      
-      canvas.width = bitmap.width;
-      canvas.height = bitmap.height;
-      
-      context.putImageData(bitmap, 0, 0);
-     
-    }, 10000);*/
+        if(localStream.getID() !== parseInt(keys[i])){
+        console.log("local: " + localStream.getID());
+        console.log(parseInt(keys[i]));
+            var bitmap;
+
+            bitmap = room.remoteStreams[keys[i]].getVideoFrame();
+
+            context.putImageData(bitmap, (i%3)*width, y);
+        } else {
+            var bitmap;
+
+            bitmap = localStream.getVideoFrame();
+
+            context.putImageData(bitmap, (i%3)*width, y);
+
+        }
+    }
 }
 
 function appendChatMessage(username, message) {
@@ -211,6 +195,9 @@ try {
 
         //Init chat
         $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+        $('#chatArea').width('100%');
+        $('#chatMessage').width('80%');
+        $('#sendMessage').width('19%');
         $('#chatMessage').focus();
         //
         createToken(roomId, "user", "role", function (response) {
