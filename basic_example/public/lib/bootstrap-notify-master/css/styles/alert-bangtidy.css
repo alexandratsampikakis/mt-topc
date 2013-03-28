@@ -10,7 +10,8 @@
 .alert-bangTidy {
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: rgba(0, 0, 0, 0.80);
+  /*background: rgba(0, 0, 0, 0.80);*/
+  background: rgba(245,245,245, 0.80);
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.88) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.80)), color-stop(100%,rgba(0, 0, 0, 0.88)));
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.80) 0%,rgba(0, 0, 0, 0.88) 100%);
