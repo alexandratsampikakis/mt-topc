@@ -2,6 +2,7 @@
 <head>
     <title id="cafeTitle">Café</title>
     <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap-notify-master/css/styles/alert-bangtidy.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
 
@@ -151,15 +152,13 @@
 	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
 	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
 	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
 	<script type="text/javascript">
 	    $(function ()
 		{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
 		});
 		$(document).ready(function () {
       		$('.dropdown-toggle').dropdown();
-	    });
-	    $(function () { 
-	    	$('.top-left').notify ({ message: { text: 'Aw yeah, It works!' }}).show();
 	    });
 	</script>
 

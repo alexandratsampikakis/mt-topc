@@ -63,10 +63,6 @@ function sendChatMessage(message) {
 }
 
 function joinTableRequest() {
-    //Show popup with: username, progress bar (time left to answer and a yes button)
-    $('.top-left').notify ({
-        message: { text: 'Aw yeah, It works!' }
-    }).show();
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -189,7 +185,10 @@ try {
         }
     };
     var askToJoinTablePopup = function() {
-        //Show popup
+        //Show popup with: username, progress bar (time left to answer and a yes button)
+        $('.top-left').notify ({
+            message: { text: 'Aw yeah, It works!' }
+        }).show();
     };
 
     var initialize = function(roomId) {
