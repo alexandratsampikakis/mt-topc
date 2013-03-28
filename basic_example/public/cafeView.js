@@ -187,7 +187,7 @@ try {
     var askToJoinTablePopup = function() {
         //Show popup with: username, progress bar (time left to answer and a yes button)
         $('.top-left').notify ({
-            message: { text: 'Aw yeah, It works!' }
+            message: { text: 'Aw yeah, It works!' }, type: 'alert-bangtidy'
         }).show();
     };
 
