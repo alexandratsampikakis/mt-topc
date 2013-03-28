@@ -186,7 +186,7 @@ try {
     };
     var askToJoinTablePopup = function() {
         //Show popup with: username, progress bar (time left to answer and a yes button)
-        $('.top-right').notify({ type: '.bangTidy' message: { text: 'Aw yeah, It works!' }}).show();
+        $('.top-right').notify({ type: '.bangTidy', message: { text: 'Aw yeah, It works!' }}).show();
     };
 
     var initialize = function(roomId) {
