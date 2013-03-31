@@ -63,6 +63,7 @@ function sendChatMessage(message) {
 }
 
 function joinTableRequest() {
+    localStream.askToJoinTablePopup();
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -185,8 +186,15 @@ try {
         }
     };
     var askToJoinTablePopup = function() {
-        //Show popup with: username, progress bar (time left to answer and a yes button)    $('.top-right').notify({ type: 'bangTidy', message: { text: 'Aw yeah, It works!' }}).show();
-         $('.top-right').notify({ type: 'bangTidy', message: { html: '<button class="btn-mini">hej</button>' }}).show();
+        //Show popup with: username, progress bar (time left to answer and a yes button) 
+        //$('.top-right').notify({ type: 'bangTidy', message: { text: 'Aw yeah, It works!' }}).show();
+
+        //hämta namn på den som frågar
+        
+        $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, X want´s to sit down, it that OK?</p><button class="btn-mini">Yes</button><button class="btn-mini">No</button>' }}).show();
+
+        //visa popup för alla i rummet
+
     };
 
     var initialize = function(roomId) {
