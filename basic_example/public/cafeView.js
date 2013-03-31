@@ -63,7 +63,7 @@ function sendChatMessage(message) {
 }
 
 function joinTableRequest() {
-    localStream.askToJoinTablePopup();
+    localStream.askToJoinTable();
 }
 
 var getQueryString = function getQueryString(key, default_) {
