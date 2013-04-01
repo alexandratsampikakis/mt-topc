@@ -24,6 +24,7 @@
     this.$note    = $('<div class="alert"></div>');
     this.options  = $.extend(true, {}, $.fn.notify.defaults, options);
     this._link    = null;
+    this._button  = null;
 
     // Setup from options
     if (this.options.transition)
@@ -49,6 +50,11 @@
       this._link = $('<a class="close pull-right">&times;</a>'),
       $(this._link).on('click', $.proxy(Notification.onClose, this)),
       this.$note.prepend(this._link);
+
+    if (this.options.question)
+      this._button = $('<button class="btn-mini">Yes</button>'),
+      $(this._button).on('click', $.proxy(Notification.onClose, this)),
+      this.$note.prepend(this._button);
 
     return this;
   };
@@ -80,6 +86,7 @@
   $.fn.notify.defaults = {
     type: 'success',
     closable: true,
+    question: true,
     transition: 'fade',
     fadeOut: {
       enabled: true,
@@ -87,6 +94,8 @@
     },
     message: null,
     onClose: function () {},
-    onClosed: function () {}
+    onClosed: function () {},
+    onYes: function () {},
+    onNo: function () {}
   }
 })(window.jQuery);
