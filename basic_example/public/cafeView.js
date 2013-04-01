@@ -188,13 +188,11 @@ try {
 
         $('#'+nameOfUser).click(function() {
             console.log("JA");
-            $('#notificationPopup').toggle();
             return false;
         });
 
         $('#'+nameOfUser+'No').click(function() {
             console.log("Nej");
-            $('#notificationPopup').toggle();
             return false;
         });
     };
