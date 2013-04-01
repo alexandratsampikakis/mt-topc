@@ -57,8 +57,8 @@
       $(this._button).on('click', $.proxy(Notification.onCloseYes, this)),
       this._button2 = $('<button class="btn-mini">No</button>'),
       $(this._button2).on('click', $.proxy(Notification.onCloseNo, this)),
-      this.$note.prepend(this._button),
-      this.$note.prepend(this._button2);
+      this.$note.append(this._button),
+      this.$note.append(this._button2);
 
     return this;
   };
