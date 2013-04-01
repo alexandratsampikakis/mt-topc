@@ -194,7 +194,7 @@ try {
             console.log("Nej");
             return false;
         });
-    });
+    };
 
     };
 
