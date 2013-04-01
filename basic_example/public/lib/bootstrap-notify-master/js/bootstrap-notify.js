@@ -25,6 +25,7 @@
     this.options  = $.extend(true, {}, $.fn.notify.defaults, options);
     this._link    = null;
     this._button  = null;
+    this._button2  = null;
 
     // Setup from options
     if (this.options.transition)
@@ -53,10 +54,25 @@
 
     if (this.options.question)
       this._button = $('<button class="btn-mini">Yes</button>'),
-      $(this._button).on('click', $.proxy(Notification.onClose, this)),
-      this.$note.prepend(this._button);
+      $(this._button).on('click', $.proxy(Notification.onCloseYes, this)),
+      this._button2 = $('<button class="btn-mini">No</button>'),
+      $(this._button2).on('click', $.proxy(Notification.onCloseNo, this)),
+      this.$note.prepend(this._button),
+      this.$note.prepend(this._button2);
 
     return this;
+  };
+
+  Notification.onCloseYes = function () {
+    this.options.onYes();
+    $(this.$note).remove();
+    this.options.onClosed();
+  };
+
+  Notification.onCloseNo = function () {
+    this.options.onNo();
+    $(this.$note).remove();
+    this.options.onClosed();
   };
 
   Notification.onClose = function () {
