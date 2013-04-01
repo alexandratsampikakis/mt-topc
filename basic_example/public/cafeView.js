@@ -62,9 +62,6 @@ function sendChatMessage(message) {
     $("#myTextBox").focus();
 }
 
-function joinTableRequest() {
-    localStream.askToJoinTable({});
-}
 
 var getQueryString = function getQueryString(key, default_) {
     if (default_==null) default_="";
@@ -174,7 +171,7 @@ try {
         return false;
     });
     $('#askToJoinTable').click(function() {
-        askToJoinTablePopup();
+        localStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
 
@@ -185,16 +182,9 @@ try {
             $('#tablecontainer').toggle();
         }
     };
-    var askToJoinTablePopup = function() {
-        //Show popup with: username, progress bar (time left to answer and a yes button) 
+    var askToJoinTablePopup = function(nameOfUser) {
         //$('.top-right').notify({ type: 'bangTidy', message: { text: 'Aw yeah, It works!' }}).show();
-
-        //hämta namn på den som frågar, tid tills stängning
-        
-        $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, X want´s to sit down, it that OK?</p><button class="btn-mini">Yes</button><button class="btn-mini">No</button>' }}).show();
-
-        //visa popup för alla i rummet
-
+        $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p><button class="btn-mini">Yes</button><button class="btn-mini">No</button>' }}).show();
     };
 
     var initialize = function(roomId) {
@@ -261,8 +251,7 @@ try {
                                       appendChatMessage(evt.msg.user, evt.msg.text);
                                       break;
                                     case "popup":
-                                    //do something
-                                    //Perhaps call openPopup
+                                    askToJoinTablePopup(evt.msg.user);
                                    default:
                                       
                                 }
