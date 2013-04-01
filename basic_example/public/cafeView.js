@@ -63,7 +63,7 @@ function sendChatMessage(message) {
 }
 
 function joinTableRequest() {
-    localStream.askToJoinTable();
+    localStream.askToJoinTable({});
 }
 
 var getQueryString = function getQueryString(key, default_) {
@@ -189,7 +189,7 @@ try {
         //Show popup with: username, progress bar (time left to answer and a yes button) 
         //$('.top-right').notify({ type: 'bangTidy', message: { text: 'Aw yeah, It works!' }}).show();
 
-        //hämta namn på den som frågar
+        //hämta namn på den som frågar, tid tills stängning
         
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, X want´s to sit down, it that OK?</p><button class="btn-mini">Yes</button><button class="btn-mini">No</button>' }}).show();
 
@@ -264,10 +264,8 @@ try {
                                     //do something
                                     //Perhaps call openPopup
                                    default:
-                                      document.write("Sorry, we are out of " + expr + ".<br>");
+                                      
                                 }
-                                document.write("Is there anything else you'd like?<br>");
-                                appendChatMessage(evt.msg.user, evt.msg.text);
                             });
                             $(window).resize(function() {
                                 var videoheight = $('#vid'+1).width()/1.33;
@@ -277,7 +275,7 @@ try {
                         }
                     }
 
-                    console.log("Oh, oh! There are no video tags available");
+                    console.log("There is no seat available at this table!");
                 });
 
                 room.addEventListener("stream-added", function (streamEvent) {
