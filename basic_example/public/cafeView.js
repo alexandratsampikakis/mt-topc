@@ -183,7 +183,6 @@ try {
         }
     };
     var askToJoinTablePopup = function(nameOfUser) {
-        //$('.top-right').notify({ type: 'bangTidy', message: { text: 'Aw yeah, It works!' }}).show();
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p><button class="btn-mini">Yes</button><button class="btn-mini">No</button>' }}).show();
     };
 
@@ -290,7 +289,11 @@ try {
                 
                 var videoheight = $('#myVideo').width()/1.33;
                 $('#myVideo').height(videoheight);
-               
+                for (var i = 2; i <= 6; i++) {
+                    if ($('#vid'+i).children().length=1) {
+                        $('#vid'+i).first().height(videoheight);
+                    }
+                }
                 $(window).resize(function() {
                     var videoheight = $('#myVideo').width()/1.33;
                     $('#myVideo').height(videoheight);
