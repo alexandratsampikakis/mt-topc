@@ -205,8 +205,8 @@ try {
         return false;
     });
     $('#leaveTableButton').click(function() {
-        localStream.close();
         room.unpublish(localStream);
+        localStream.close();
         room.disconnect();
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
