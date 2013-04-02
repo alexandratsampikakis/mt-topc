@@ -293,8 +293,7 @@ try {
                     if (stream.elementID !== undefined) {
                         console.log(stream.getID());
                         if(stream.getID === leader) {
-                            leader = getLeader;
-
+                            leader = getLeader();
                         }
                         console.log("Removing " + stream.elementID);
                         $('#'+stream.elementID).remove();
