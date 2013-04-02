@@ -191,7 +191,7 @@ try {
         $('#shareMediaChat').toggle();
         $('#menuList').toggle();
         //localStream.sendData({id:'leaveTable', user:nameOfUser});
-        room.disconnect();
+        //room.disconnect();
         return false;
     });
 
@@ -278,7 +278,7 @@ try {
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
                                     case "leaveTable":
-                                        room.disconnect();
+                                        break;
                                    default:
                                       
                                 }
