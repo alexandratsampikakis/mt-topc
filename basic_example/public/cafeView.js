@@ -6,7 +6,7 @@ function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
     for(var k in room.remoteStreams) keys.push(k);
-    for(i = 0; i<keys.length-1;i++) {
+    for(i = 0; i<keys.length;i++) {
         if (parseInt(keys[i]) > highest) highest=parseInt(keys[i]);
     }
     console.log(highest);
