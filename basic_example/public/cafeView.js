@@ -256,6 +256,11 @@ try {
                     console.log("streams: " + roomEvent.streams.length);
                 });
 
+                room.addEventListener("room-disconnected", function(evt) {
+                    room.unsubscribe(stream);
+                    room.unpublish(localStream);
+                });
+
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     
@@ -277,7 +282,8 @@ try {
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
                                     case "leaveTable":
-                                        stream.remove();
+                                        room-disconnected;
+
                                    default:
                                       
                                 }
@@ -327,7 +333,7 @@ try {
                     }
                 });
 
-                room.connect();
+                room.connect();        
 
                 localStream.show("myVideo");
                 
