@@ -206,6 +206,7 @@ try {
     });
     $('#leaveTableButton').click(function() {
         localStream.close();
+        room.unpublish(localStream);
         room.disconnect();
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
