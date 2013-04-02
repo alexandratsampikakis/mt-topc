@@ -228,7 +228,6 @@ try {
                     }
                     var index, stream;
                     console.log('number of streams: '+streams.length);
-                    console.log('number of streams: '+streams.length());
                     for (index in streams) {
                         if (streams.hasOwnProperty(index)) {
                             stream = streams[index];
