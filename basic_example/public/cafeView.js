@@ -256,12 +256,6 @@ try {
                     console.log("streams: " + roomEvent.streams.length);
                 });
 
-                room.addEventListener("room-disconnected", function(evt) {
-                    room.unsubscribe(stream);
-                    room.unpublish(localStream);
-                    room.disconnect();
-                });
-
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     
@@ -315,6 +309,11 @@ try {
                     if(leader === localStream.getID()) {
                         broadcastLeader();
                     }
+                });
+
+                room.addEventListener("room-disconnected", function(evt) {
+                    room.unsubscribe(stream);
+                    room.unpublish(localStream);
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
