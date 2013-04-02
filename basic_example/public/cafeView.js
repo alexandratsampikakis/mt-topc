@@ -13,6 +13,14 @@ function getLeader() {
     return highest;
 }
 
+function setLeader(id) {
+    leader = id;
+}
+
+function broadcastLeader() {
+    localStream.sendData({id:'leader',leader:leader});
+}
+
 function getSnapshots() {
     var keys = [];
     for(var k in room.remoteStreams) keys.push(k);
@@ -260,10 +268,13 @@ try {
                             stream.addEventListener("stream-data", function(evt){
                                 switch (evt.msg.id) {
                                     case "chat":
-                                      appendChatMessage(evt.msg.user, evt.msg.text);
-                                      break;
+                                        appendChatMessage(evt.msg.user, evt.msg.text);
+                                        break;
                                     case "popup":
-                                    askToJoinTablePopup(evt.msg.user);
+                                        askToJoinTablePopup(evt.msg.user);
+                                        break;
+                                    case "leader":
+                                        setLeader(evt.msg.leader);
                                    default:
                                       
                                 }
@@ -284,7 +295,15 @@ try {
                     var streams = [];
                     streams.push(streamEvent.stream);
                     subscribeToStreams(streams);
-                    console.log("this is what i'm LOOKING FOR: " + streams.length);
+
+                    //If table is empty, become the leader
+                    var keys = [];
+                    for(var k in room.remoteStreams) keys.push(k);
+                    if(keys.length === 1 && parseInt(keys[0]) === localStream.getID()) {
+                        leader = localStream.getID();
+                    }
+                    broadcastLeader();
+
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
@@ -327,11 +346,6 @@ try {
 
             });
             localStream.init();
-            var keys = [];
-            for(var k in room.remoteStreams) keys.push(k);
-            if(keys.length === 1) {
-                leader = localStream.getID();
-            }
         });   
     }
 };
