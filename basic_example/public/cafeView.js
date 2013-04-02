@@ -259,6 +259,7 @@ try {
                 room.addEventListener("room-disconnected", function(evt) {
                     room.unsubscribe(stream);
                     room.unpublish(localStream);
+                    room.disconnect();
                 });
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
