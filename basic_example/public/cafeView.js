@@ -227,7 +227,6 @@ try {
                         localStream.show();
                     }
                     var index, stream;
-                    console.log('number of streams: '+streams.length);
                     for (index in streams) {
                         if (streams.hasOwnProperty(index)) {
                             stream = streams[index];
@@ -246,7 +245,7 @@ try {
 
                     // Subscribe to other streams
                     subscribeToStreams(roomEvent.streams);
-                    console.log("streams: " + roomEvent.streams);
+                    console.log("streams: " + roomEvent.streams.length);
                 });
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
