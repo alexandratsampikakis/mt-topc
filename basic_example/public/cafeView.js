@@ -327,6 +327,11 @@ try {
 
             });
             localStream.init();
+            var keys = [];
+            for(var k in room.remoteStreams) keys.push(k);
+            if(keys.length === 1) {
+                leader = localStream.getID();
+            }
         });   
     }
 };
