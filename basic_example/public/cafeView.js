@@ -9,6 +9,7 @@ function getLeader() {
     for(i = 0; i<keys.length-1;i++) {
         if (parseInt(keys[i]) > highest) highest=parseInt(keys[i]);
     }
+    console.log(highest);
     return highest;
 }
 
@@ -292,6 +293,7 @@ try {
                     if (stream.elementID !== undefined) {
                         if(stream.getID === leader) {
                             leader = getLeader;
+
                         }
                         console.log("Removing " + stream.elementID);
                         $('#'+stream.elementID).remove();
