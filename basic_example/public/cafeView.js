@@ -1,4 +1,4 @@
-var room, localStream, serverUrl, nameOfUser;
+var room, localStream, serverUrl, nameOfUser, leader;
 
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 serverUrl = "http://satin.research.ltu.se:3001/";
@@ -9,7 +9,7 @@ function getLeader() {
     for(i = 0; i<keys.length-1;i++) {
         if (parseInt(keys[i]) > highest) highest=parseInt(keys[i]);
     }
-    return highest === parseInt(localStream.getID());
+    return highest;
 }
 
 function getSnapshots() {
@@ -290,6 +290,9 @@ try {
                     // Remove stream from DOM
                     var stream = streamEvent.stream;
                     if (stream.elementID !== undefined) {
+                        if(stream.getID === leader) {
+                            leader = getLeader;
+                        }
                         console.log("Removing " + stream.elementID);
                         $('#'+stream.elementID).remove();
                     }
