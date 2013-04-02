@@ -278,7 +278,6 @@ try {
                                         setLeader(evt.msg.leader);
                                     case "leaveTable":
                                         room.disconnect();
-                                        break;
                                    default:
                                       
                                 }
@@ -309,6 +308,10 @@ try {
                     if(leader === localStream.getID()) {
                         broadcastLeader();
                     }
+                });
+
+                room.addEventListener("room-disconnected", function(evt) {
+
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
