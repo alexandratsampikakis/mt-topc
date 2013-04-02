@@ -190,7 +190,8 @@ try {
         $('#vidcontainer2').toggle();
         $('#shareMediaChat').toggle();
         $('#menuList').toggle();
-        localStream.sendData({id:'leaveTable', user:nameOfUser});
+        //localStream.sendData({id:'leaveTable', user:nameOfUser});
+        room.disconnect();
         return false;
     });
 
