@@ -1,7 +1,26 @@
 var room, localStream, serverUrl, nameOfUser, leader;
-
+var knockList = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
+var knockTimer = 20 * 1000; //20 seconds
 serverUrl = "http://satin.research.ltu.se:3001/";
+
+function addToKnockList(user) {
+    knockList[user] = 0;
+    setTimeout(function () {removeUser(user)}, knockTimer+2000);
+}
+
+function addYesCount (user) {
+    if(knockList.hasOwnProperty(user)) {
+        knockList[user] += 1;
+    }
+}
+
+function removeUser(user) {
+    if(knockList.hasOwnProperty(user)) {
+        delete knockList[user];
+    }
+}
+
 function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
@@ -109,6 +128,7 @@ window.onload = function () {
 $("#userName").focus();
 try {
   localStream = Erizo.Stream({audio: true, video: true, data: true});
+  dataStream = Erizo.Stream({audio: false, video: false, data: true});
 } catch (error) {
     console.log('erizo error: ' + error);
 }
@@ -195,7 +215,7 @@ try {
     
     //<button id="' + nameOfUser +'" class="btn-mini">Yes</button><button id="' + nameOfUser +'No' +'" class="btn-mini">No</button>
     var askToJoinTablePopup = function(nameOfUser) {
-        $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: 20000 }}).show();
+        $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
     var initialize = function(roomId) {
