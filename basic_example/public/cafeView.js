@@ -205,13 +205,13 @@ try {
         return false;
     });
     $('#leaveTableButton').click(function() {
+        localStream.close();
+        room.disconnect();
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
         $('#vidcontainer2').toggle();
         $('#shareMediaChat').toggle();
         $('#menuList').toggle();
-        //localStream.sendData({id:'leaveTable', user:nameOfUser});
-        //room.disconnect();
         return false;
     });
 
@@ -297,8 +297,6 @@ try {
                                     case "leader":
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
-                                    case "leaveTable":
-                                        break;
                                    default:
                                       
                                 }
