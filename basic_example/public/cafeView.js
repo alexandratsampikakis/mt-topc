@@ -204,6 +204,16 @@ try {
         localStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
+    $('#leaveTableButton').click(function() {
+        $('#tablecontainer').toggle();
+        $('#vidcontainer1').toggle();
+        $('#vidcontainer2').toggle();
+        $('#shareMediaChat').toggle();
+        $('#menuList').toggle();
+        //localStream.sendData({id:'leaveTable', user:nameOfUser});
+        //room.disconnect();
+        return false;
+    });
 
     var enterName = function() {
         if($('#userName').val() !== "") {
@@ -212,7 +222,7 @@ try {
             $('#tablecontainer').toggle();
         }
     };
-    
+
     //<button id="' + nameOfUser +'" class="btn-mini">Yes</button><button id="' + nameOfUser +'No' +'" class="btn-mini">No</button>
     var askToJoinTablePopup = function(nameOfUser) {
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
@@ -287,6 +297,8 @@ try {
                                     case "leader":
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
+                                    case "leaveTable":
+                                        break;
                                    default:
                                       
                                 }
@@ -336,7 +348,7 @@ try {
                     }
                 });
 
-                room.connect();
+                room.connect();        
 
                 localStream.show("myVideo");
                 
