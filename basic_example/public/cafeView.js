@@ -291,6 +291,7 @@ try {
                     // Remove stream from DOM
                     var stream = streamEvent.stream;
                     if (stream.elementID !== undefined) {
+                        console.log(stream.getID());
                         if(stream.getID === leader) {
                             leader = getLeader;
 
