@@ -192,20 +192,10 @@ try {
             $('#tablecontainer').toggle();
         }
     };
+    
     //<button id="' + nameOfUser +'" class="btn-mini">Yes</button><button id="' + nameOfUser +'No' +'" class="btn-mini">No</button>
     var askToJoinTablePopup = function(nameOfUser) {
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: 20000 }}).show();
-
-
-        $('#'+nameOfUser).click(function() {
-            console.log("JA");
-            return false;
-        });
-
-        $('#'+nameOfUser+'No').click(function() {
-            console.log("Nej");
-            return false;
-        });
     };
 
     var initialize = function(roomId) {
