@@ -310,10 +310,6 @@ try {
                     }
                 });
 
-                room.addEventListener("room-disconnected", function(evt) {
-
-                });
-
                 room.addEventListener("stream-removed", function (streamEvent) {
                     // Remove stream from DOM
                     var stream = streamEvent.stream;
