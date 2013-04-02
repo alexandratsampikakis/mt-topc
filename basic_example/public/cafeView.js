@@ -282,8 +282,8 @@ try {
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
                                     case "leaveTable":
-                                        room-disconnected;
-
+                                        room.disconnect();
+                                        break;
                                    default:
                                       
                                 }
