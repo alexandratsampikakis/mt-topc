@@ -205,9 +205,9 @@ try {
         return false;
     });
     $('#leaveTableButton').click(function() {
-        room.unpublish(localStream);
         localStream.close();
         room.disconnect();
+        localStream = Erizo.Stream({audio: true, video: true, data: true});
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
         $('#vidcontainer2').toggle();
