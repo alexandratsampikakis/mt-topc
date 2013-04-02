@@ -293,7 +293,9 @@ try {
                     if (stream.elementID !== undefined) {
                         console.log(stream.getID());
                         if(stream.getID === leader) {
+                            console.log('kommer jag hit?');
                             leader = getLeader();
+                            console.log(getLeader());
                         }
                         console.log("Removing " + stream.elementID);
                         $('#'+stream.elementID).remove();
