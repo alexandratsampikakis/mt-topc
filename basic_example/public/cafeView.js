@@ -19,6 +19,7 @@ function setLeader(id) {
 
 function broadcastLeader() {
     localStream.sendData({id:'leader',leader:leader});
+    console.log('broadcasting leader');
 }
 
 function getSnapshots() {
@@ -274,6 +275,7 @@ try {
                                         askToJoinTablePopup(evt.msg.user);
                                         break;
                                     case "leader":
+                                        console.log('message received :E');
                                         setLeader(evt.msg.leader);
                                    default:
                                       
@@ -302,8 +304,9 @@ try {
                     if(keys.length === 1 && parseInt(keys[0]) === localStream.getID()) {
                         leader = localStream.getID();
                     }
-                    broadcastLeader();
-
+                    if(leader === localStream.getID()) {
+                        broadcastLeader();
+                    }
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
