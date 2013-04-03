@@ -248,8 +248,8 @@ try {
 
         //Init chat
         $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-        $('#chatArea').width('80%');
-        $('#chatMessage').width('60%');
+        $('#chatArea').width('100%');
+        $('#chatMessage').width('80%');
         $('#sendMessage').width('19%');
         $('#chatMessage').focus();
         //
