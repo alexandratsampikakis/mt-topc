@@ -217,6 +217,9 @@ try {
     });
     $('#shareVideo').click(function() {
         $('#writeUrl').toggle();
+        return false;
+    });
+    $('#getVideoUrl').click(function() {
         showVideo();
         return false;
     });
