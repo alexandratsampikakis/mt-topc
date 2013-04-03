@@ -215,6 +215,13 @@ try {
         $('#menuList').toggle();
         return false;
     });
+    $('#shareVideo').click(function() {
+        showVideo();
+        return false;
+    });
+    $('#shareDocument').click(function() {
+        return false;
+    });
 
     var enterName = function() {
         if($('#userName').val() !== "") {
@@ -228,6 +235,9 @@ try {
     var askToJoinTablePopup = function(nameOfUser) {
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
+
+    var showVideo = function() {
+    }
 
     var initialize = function(roomId) {
         $('#tablecontainer').toggle();
