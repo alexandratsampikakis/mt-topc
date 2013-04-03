@@ -217,6 +217,7 @@ try {
     });
     $('#shareVideo').click(function() {
         $('#writeUrl').toggle();
+        showVideo();
         return false;
     });
     $('#shareDocument').click(function() {
