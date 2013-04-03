@@ -216,7 +216,7 @@ try {
         return false;
     });
     $('#shareVideo').click(function() {
-        showVideo();
+        $('#writeUrl').toggle();
         return false;
     });
     $('#shareDocument').click(function() {
@@ -236,7 +236,8 @@ try {
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
-    var showVideo = function() {
+    var showVideo = function() { 
+        $('#youtubeVideo').toggle();
     }
 
     var initialize = function(roomId) {
