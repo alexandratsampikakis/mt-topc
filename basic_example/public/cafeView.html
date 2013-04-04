@@ -143,6 +143,46 @@
 					<input type="text" id="chatMessage" class="input-xlarge">
 					<button type="submit" id="sendMessage" class="btn btn-small">Send message</button>
 				</form>
+
+				<div class="container">
+				<div id="example" class="modal hide fade in" style="display: none; ">
+				            <div class="modal-header">
+				              <a class="close" data-dismiss="modal">×</a>
+				              <h3>Leave some feedback</h3>
+				            </div>
+				            <div class="modal-body">
+				              <form class="form-horizontal">
+								  <div class="control-group">
+								    <label class="control-label" for="feedbackMail">Your email:</label>
+								    <div class="controls">
+								      <input type="text" id="feedbackMail" class="input-xlarge">
+								    </div>
+								  </div>
+								  <div class="control-group">
+								    <label class="control-label" for="feedbackSubject">Subject</label>
+								    <div class="controls">
+								      <input type="text" id="feedbackSubject" class="input-xlarge">
+								    </div>
+								  </div>
+								  <div class="control-group">
+								    <label class="control-label" for="feedbackMessage">Message</label>
+								    <div class="controls">
+								      <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
+								    </div>
+								  </div>
+								</form>
+							</div>
+
+				            <div class="modal-footer">
+				              <a href="#" class="btn btn-small btn-success">Send feedback</a>
+				              <a href="#" class="btn btn-small" data-dismiss="modal">Close</a>
+				            </div>
+				          </div>
+
+				<!--<p><a data-toggle="modal" href="#example" class="btn btn-primary btn-large">Launch demo modal</a></p>-->
+
+	    	</div>
+				
 			</div>
 		</div>
 
@@ -171,7 +211,7 @@
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Feedback/bug report</small></a>
+  			<a class="brand" style="font-size: 14px;" href="#example" data-toggle="modal"><small>Feedback / bug report</small></a>
   		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
