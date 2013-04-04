@@ -249,6 +249,7 @@ try {
         </iframe>*/
         
         $('#youtubeVideo').toggle();
+        $('#writeUrl').toggle();
     }
 
     var initialize = function(roomId) {
