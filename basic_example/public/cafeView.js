@@ -255,7 +255,7 @@ try {
         
         $('#youtubeVideo').show();
         $('#writeUrl').toggle();
-        $('#closeVideo').toggle();
+        $('#closeVideo').show();
     }
 
     var initialize = function(roomId) {
