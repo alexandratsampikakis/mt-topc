@@ -292,7 +292,7 @@ try {
                     room.publish(localStream);
 
                     // Subscribe to other streams
-                    subscribeToStreams(room.getStreamsByAttribute('type':'media'));
+                    subscribeToStreams(room.getStreamsByAttribute('type','media'));
                 });
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
@@ -439,7 +439,7 @@ try {
                     room.publish(dataStream);
 
                     // Subscribe to other streams
-                    subscribeToStreams(room.getStreamsByAttribute('type':'data'));
+                    subscribeToStreams(room.getStreamsByAttribute('type','data'));
                 });
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
