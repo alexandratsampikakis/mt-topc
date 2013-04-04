@@ -3,7 +3,12 @@ var express = require('express'),
     N = require('./nuve'),
     fs = require("fs"),
     https = require("https"),
+    var nodemailer = require('nodemailer'),
     config = require('./../../../lynckia_config');
+
+//Mailing for feedback
+
+var transport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail");
 
 //Database
 var mongoose = require('mongoose');
@@ -49,6 +54,30 @@ app.all('/', function (req, res, next) {
 N.API.init(config.nuve.superserviceID, config.nuve.superserviceKey, 'http://localhost:3000/');
 
 var myRoom;
+
+//########################### EMAILFEEDBACK ######################
+app.post('/sendFeedback', function (req, res) {
+    "use strict";
+    var subject = req.params.subject,
+        email = req.body.email,
+        text = req.body.text;
+    var message = {
+        from: '<'+email+'>',
+        to: 'iDipity <idipity@googlegroups.com>',
+        subject: subject, 
+        text: text,
+        html:'',
+        attachments:[]
+    };
+
+    transport.sendMail(message, function(error){
+        if(error){
+
+            return;
+        }
+        res.send('Mail sent!');
+    });
+});
 
 //########################### DATABASE ###########################
 //6 tables / room
