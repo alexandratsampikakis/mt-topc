@@ -38,7 +38,7 @@ window.onload = function () {
     function clearFeedback() {
             $('#feedbackSubject').val("");
             $('#feedbackMail').val("");
-            $('#feedbackText').val("");
+            $('#feedbackMessage').val("");
     }
 
     $('#sendFeedback').click(function() {
