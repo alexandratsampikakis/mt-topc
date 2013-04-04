@@ -3,7 +3,7 @@ var serverUrl = "/";
 window.onload = function () {
 
     $('#test').click(function() {
-        $('#myModal').modal('toggle');
+        $('#myModal').modal('show');
         return false;
     });
 
