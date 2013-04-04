@@ -228,6 +228,7 @@ try {
     });
     $('#closeVideo').click(function() {
         $('#youtubeVideo').toggle();
+        $('#closeVideo').toggle();
         return false;
     });
     $('#shareDocument').click(function() {
