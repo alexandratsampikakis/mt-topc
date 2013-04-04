@@ -248,7 +248,7 @@ try {
             src="http://www.youtube.com/embed/XGSy3_Czz8k">
         </iframe>*/
         
-        $('#youtubeVideo').toggle();
+        $('#youtubeVideo').show();
         $('#writeUrl').toggle();
     }
 
