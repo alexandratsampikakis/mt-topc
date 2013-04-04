@@ -50,7 +50,7 @@ window.onload = function () {
         });
     });
 
-    $('#sendFeedback').click(function() {
+    $('#closeFeedback').click(function() {
         clearFeedback();
     });
 
