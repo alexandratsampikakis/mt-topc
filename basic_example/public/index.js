@@ -35,11 +35,23 @@ window.onload = function () {
 
     });
 
+    function clearFeedback() {
+            $('#feedbackSubject').val("");
+            $('#feedbackMail').val("");
+            $('#feedbackText').val("");
+    }
+
     $('#sendFeedback').click(function() {
         if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
         sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
             console.log(response);
+            clearFeedback();
+            $('#feedbackModal').modal('hide')
         });
+    });
+
+    $('#sendFeedback').click(function() {
+        clearFeedback();
     });
 
 };
