@@ -2,6 +2,7 @@ var room, localStream, dataStream, serverUrl, nameOfUser, leader;
 var knockList = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 var knockTimer = 20 * 1000; //20 seconds
+var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 function addToKnockList(user) {
@@ -239,7 +240,7 @@ try {
 
     //<button id="' + nameOfUser +'" class="btn-mini">Yes</button><button id="' + nameOfUser +'No' +'" class="btn-mini">No</button>
     var askToJoinTablePopup = function(nameOfUser) {
-        $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
+        $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
     var showVideo = function() { 
@@ -428,6 +429,13 @@ try {
                                 case "popup":
                                     askToJoinTablePopup(evt.msg.user);
                                     break;
+                                case "popup-answer":
+                                    if(evt.msg.answer === true) {
+                                        knocker++;
+                                        if(knocker >= Math.ceil(room.getStreamsByAttribute('type','data').length/2)) {
+                                            initialize(roomId);
+                                        }
+                                    } 
                                 case "leader":
                                     console.log('message received :E');
                                     setLeader(evt.msg.leader);
