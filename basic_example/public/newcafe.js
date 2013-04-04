@@ -418,6 +418,7 @@ try {
                     // Publish my stream
                     room.publish(dataStream);
 
+                    console.log('this is it: '+room.getStreamsByAttribute('type','media'));
                     // Subscribe to other streams
                     subscribeToStreams(room.getStreamsByAttribute('type','data'));
                 });
@@ -447,7 +448,6 @@ try {
 
             });
             dataStream.init();
-            console.log('this is it: '+room.getStreamsByAttribute('type','media'));
         });   
     }
 };
