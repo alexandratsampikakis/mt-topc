@@ -4,7 +4,6 @@ window.onload = function () {
 
     $('#test').click(function() {
         $('#myModal').modal('show');
-        return false;
     });
 
     var getCafeNames = function(callback) {
