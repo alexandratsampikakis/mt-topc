@@ -15,7 +15,3 @@ var sendFeedback = function(subject, email, text, callback) {
     //console.log("Sending to " + url + " - " + JSON.stringify(body));
     req.send(JSON.stringify(body));
 };
-
-createToken('hello world', "myztix89@gmail.com", "hejjahoppsan", function (response) {
-    console.log(response);
-});

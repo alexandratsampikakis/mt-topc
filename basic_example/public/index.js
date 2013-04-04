@@ -2,10 +2,6 @@ var serverUrl = "/";
 
 window.onload = function () {
 
-    $('#test').click(function() {
-        $('#myModal').modal('show');
-    });
-
     var getCafeNames = function(callback) {
 
         var req = new XMLHttpRequest();
@@ -38,4 +34,12 @@ window.onload = function () {
         //console.log(cafes.cafe[0].name);
 
     });
+
+    $('#sendFeedback').click(function() {
+        if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
+        sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
+            console.log(response);
+        });
+    });
+
 };
