@@ -1,0 +1,194 @@
+<html>
+<head>
+    <title id="cafeTitle">Café</title>
+    <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- Notify CSS -->
+    <link href="/lib/bootstrap-notify-master/css/bootstrap-notify.css" rel="stylesheet">
+    <link href="/lib/bootstrap-notify-master/css/styles/alert-bangtidy.css" rel="stylesheet">
+    <link href="/lib/bootstrap-notify-master/css/styles/alert-blackgloss.css" rel="stylesheet">
+    <link href="/lib/bootstrap-notify-master/css/styles/alert-notification-animations.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
+
+     <script type="text/javascript" src="erizo.js"></script>
+    <script type="text/javascript" src="newcafe.js"></script>
+</head>
+
+<body>
+
+	<div class="navbar navbar-fixed-top navbar-inverse">
+  		<div class="navbar-inner">
+    		<a class="brand" href="http://satin.research.ltu.se:3001/">The Online Paris Café</a>
+    		<a href="#" class="brand"style="float: right; font-size: 14px;">Login</a>
+    		<div class='notifications top-right'></div>
+  		</div>
+	</div>
+
+	<div class="container-fluid">
+  		<div class="row-fluid">
+    		<div class="span2" id="menuList">
+      			<ul class="nav nav-list">
+      				<li class="nav-header">Menu</li>
+      				<li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
+					<li class="nav-header">Café</li>
+					<li><a href="#">User guide</a></li>
+					<li><a href="#">Favorites</a></li>
+					<li><a href="#">Recent</a></li>
+					<li><a href="#">Hot</a></li>
+					<li><a href="#">Find cafés</a></li>
+
+					<li class="nav-header">Events</li>
+					<li><a href="#">Calendar</a></li>		
+
+					<li class="nav-header">My pages</li>
+					<li><a href="#">Profile</a></li>  
+					<li><a href="#">Friends</a></li> 
+				</ul>
+    		</div>
+
+		<div id="enterName">
+			<div class="span8">
+				<center><form class="form-inline">
+					<input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
+					<button id="submitUsername" class="btn">Enter Café</button>
+				</form></center>
+			</div>
+		</div>
+
+    	<div id="tablecontainer" class="hide">
+	    	<div class="span8">
+	    		<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeTableTitle"></big></p></center>
+	    		<div id="rooms">
+		      		<p>
+		      			<div class="span3 offset1 tableBox" id="table1" rel="popover" data-animation="true">
+		      				<b><big>Table 1</big></b>
+		      				<!--<a href="http://satin.research.ltu.se:3001/tableView.html"><button class="btn btn-small" type="button" style="float:right; margin-top:105px;">Join</button></a>-->
+		      			</div>
+
+		      			<div class="span3 tableBox" id="table2"><b><big>Table 2</big></b></div>
+
+		      			<div class="span3 tableBox" id="table3"><b><big>Table 3</big></b></div>
+		      		</p>
+
+		      		<p>
+		      			<div class="span3 offset1 tableBox" id="table4"><b><big>Table 4</big></b></div>
+		      			<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
+		      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
+		      		</p>
+	      		</div>
+			</div>
+		</div>
+
+		<div id="vidcontainer1" class="hide">
+			<div class="span3">
+
+				<ul class="dropdown">
+				    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
+				    <ul class="dropdown-menu">
+				        <li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
+				        <li class="nav-header">Café</li>
+				        <li><a href="#">User guide</a></li>
+				        <li><a href="#">Favorites</a></li>
+				        <li><a href="#">Recent</a></li>
+				        <li><a href="#">Hot</a></li>
+				        <li><a href="#">Find cafés</a></li>
+
+				        <li class="nav-header">Events</li>
+				        <li><a href="#">Calendar</a></li>   
+
+				        <li class="nav-header">My pages</li>
+				        <li><a href="#">Profile</a></li>  
+				        <li><a href="#">Friends</a></li> 
+			    	</ul>
+			    </ul>   
+				<div id="vid1" class="">
+					<div id="myVideo" style="100%;"></div>
+				</div>
+		        <div id="vid3" class="">
+		        </div>
+		        <div id="vid5" class="">
+		        </div>
+			</div>
+		</div>
+
+		<div id="shareMediaChat" class="hide">
+			<div class="span6">
+				<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></p>
+				<p>
+					<button id="sendData" class="btn btn-small">Send</button>
+					<button id="askToJoinTable" class="btn btn-small">Ask to sit down</button>
+					<button id="leaveTableButton" class="btn btn-small">Leave table</button>
+					<button id="shareVideo" class="btn btn-small">Share video</button>
+					<button id="shareDocument" class="btn btn-small">Share document</button>
+					<div id="writeUrl" class="hide">
+						<form class="form-inline">
+							<input type="text" id="VideoUrl" class="input-xlarge">
+							<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
+						</form>
+					</div>
+				</p></center>
+
+				<p>
+				<center><div id="youtubeVideo" class="embed-container hide">
+ 						<iframe width="80%" height="300"
+							src="http://www.youtube.com/embed/XGSy3_Czz8k">
+						</iframe>
+				</div></center>
+				</p>
+
+				<textarea rows="8" id="chatArea"></textarea>
+				<form class="form-inline">
+					<input type="text" id="chatMessage" class="input-xlarge">
+					<button type="submit" id="sendMessage" class="btn">Send message</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="vidcontainer2" class="hide">
+			<div class="span3">
+		        <div id="vid2">
+		        </div>
+		        <div id="vid4">
+		        </div>
+		        <div id="vid6">
+		        </div>
+			</div>
+		</div>
+
+	    	<!--<div class="span2">
+	      		<ul class="nav nav-list">
+				  	<li class="nav-header">Friends online</li> 
+				</ul>
+	    	</div> -->
+  		</div>
+	</div>
+
+	<div class="navbar navbar-fixed-bottom navbar-inverse">
+  		<div class="navbar-inner">
+  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
+  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
+  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
+  		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
+	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
+	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+
+	<script type="text/javascript">
+	    $(function ()
+		{ $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="popOverBox"><img src="http:/img/4_inACafeView.jpg"></div>'});
+		});
+		$(document).ready(function () {
+      		$('.dropdown-toggle').dropdown();
+	    });
+	</script>
+
+</body>
+</html>
