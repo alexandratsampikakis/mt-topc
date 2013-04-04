@@ -2910,7 +2910,7 @@ button.btn.small, input[type="submit"].btn.small {
   top: -25%;
 }
 .modal.fade.in {
-  top: 50%;
+  top: 50% !important;
 }
 .modal-header {
   padding: 9px 15px;
