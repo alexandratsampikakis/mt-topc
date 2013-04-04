@@ -279,14 +279,6 @@ try {
                 }
             };
 
-            room.addEventListener("room-connected", function (roomEvent) {
-                // Publish my stream
-                room.publish(localStream);
-
-                // Subscribe to other streams
-                subscribeToStreams(room.getStreamsByAttribute('type','media'));
-            });
-
             room.addEventListener("stream-subscribed", function(streamEvent) {
                 var stream = streamEvent.stream;
                 if (stream.getAttributes().type === 'media') {
@@ -374,7 +366,12 @@ try {
                     }
                 }
             });
+            
+            // Publish my stream
+            room.publish(localStream);
 
+            // Subscribe to other streams
+            subscribeToStreams(room.getStreamsByAttribute('type','media'));
             localStream.init();
         });   
     }
