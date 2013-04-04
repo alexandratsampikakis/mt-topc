@@ -5,20 +5,28 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
-function addToKnockList(user) {
-    knockList[user] = 0;
-    setTimeout(function () {removeUser(user)}, knockTimer+2000);
-}
-
-function addYesCount (user) {
-    if(knockList.hasOwnProperty(user)) {
-        knockList[user] += 1;
+function addToKnockList(roomId) {
+    if(!knockList.hasOwnProperty(roomId)) {
+        knockList[roomId] = 0;
+        setTimeout(function () {removeUser(roomId)}, knockTimer+7000);
     }
 }
 
-function removeUser(user) {
-    if(knockList.hasOwnProperty(user)) {
-        delete knockList[user];
+function addYesCount (roomId) {
+    if(knockList.hasOwnProperty(roomId)) {
+        knockList[roomId] += 1;
+    }
+}
+
+function getYesCount(roomId) {
+    if(knockList.hasOwnProperty(roomId)) {
+        return knockList[roomId];
+    }
+}
+
+function removeUser(roomId) {
+    if(knockList.hasOwnProperty(roomId)) {
+        delete knockList[roomId];
     }
 }
 
@@ -378,78 +386,80 @@ try {
     }
 
     var knock = function(roomId) {
-        //
-        createToken(roomId, "user", "role", function (response) {
-            var token = response;
-            console.log('token created ', token);
-            L.Logger.setLogLevel(L.Logger.DEBUG);
-            //L.Logger.debug("Connected!");
-            room = Erizo.Room({token: token});
+        if(!knockList.hasOwnProperty(roomId)) {
+            createToken(roomId, "user", "role", function (response) {
+                var token = response;
+                console.log('token created ', token);
+                L.Logger.setLogLevel(L.Logger.DEBUG);
+                //L.Logger.debug("Connected!");
+                room = Erizo.Room({token: token});
 
-            dataStream.addEventListener("access-accepted", function () {
-                
-                var subscribeToStreams = function (streams) {
-                    if (!dataStream.showing) {
-                        dataStream.show();
-                    }
-                    var index, stream;
-                    for (index in streams) {
-                        if (streams.hasOwnProperty(index)) {
-                            stream = streams[index];
-                            if (dataStream !== undefined && dataStream.getID() !== stream.getID()) {
-                                room.subscribe(stream);
-                            } else {
-                                console.log("My own stream");
+                dataStream.addEventListener("access-accepted", function () {
+                    
+                    var subscribeToStreams = function (streams) {
+                        if (!dataStream.showing) {
+                            dataStream.show();
+                        }
+                        var index, stream;
+                        for (index in streams) {
+                            if (streams.hasOwnProperty(index)) {
+                                stream = streams[index];
+                                if (dataStream !== undefined && dataStream.getID() !== stream.getID()) {
+                                    room.subscribe(stream);
+                                } else {
+                                    console.log("My own stream");
+                                }
                             }
                         }
-                    }
-                    setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
-                };
+                        setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
+                        addToKnockList(roomId);
+                    };
 
-                room.addEventListener("room-connected", function (roomEvent) {
-                    // Publish my stream
-                    room.publish(dataStream);
-                    //If table is empty
-                    if(room.getStreamsByAttribute('type','media').length === 0) {
-                        initialize(roomId);
-                    }
-                    // Subscribe to other streams
-                    subscribeToStreams(room.getStreamsByAttribute('type','data'));
+                    room.addEventListener("room-connected", function (roomEvent) {
+                        // Publish my stream
+                        room.publish(dataStream);
+                        //If table is empty
+                        if(room.getStreamsByAttribute('type','media').length === 0) {
+                            initialize(roomId);
+                        }
+                        // Subscribe to other streams
+                        subscribeToStreams(room.getStreamsByAttribute('type','data'));
+                    });
+
+                    room.addEventListener("stream-subscribed", function(streamEvent) {
+                        var stream = streamEvent.stream;
+                        if (stream.getAttributes().type === 'data') {
+                            stream.addEventListener("stream-data", function(evt){
+                                console.log(evt.msg);
+                                switch (evt.msg.id) {
+                                    case "chat":
+                                        appendChatMessage(evt.msg.user, evt.msg.text);
+                                        break;
+                                    case "popup":
+                                        askToJoinTablePopup(evt.msg.user);
+                                        break;
+                                    case "popup-answer":
+                                        if(evt.msg.answer === true) {
+                                            addYesCount(roomId);
+                                            if(getYesCount(roomId) >= Math.ceil(room.getStreamsByAttribute('type','data').length/2)) {
+                                                initialize(roomId);
+                                            }
+                                        } 
+                                    case "leader":
+                                        console.log('message received :E');
+                                        setLeader(evt.msg.leader);
+                                   default:
+                                      
+                                }
+                            });
+                        }
+                    });
+
+                    room.connect();       
+
                 });
-
-                room.addEventListener("stream-subscribed", function(streamEvent) {
-                    var stream = streamEvent.stream;
-                    if (stream.getAttributes().type === 'data') {
-                        stream.addEventListener("stream-data", function(evt){
-                            console.log(evt.msg);
-                            switch (evt.msg.id) {
-                                case "chat":
-                                    appendChatMessage(evt.msg.user, evt.msg.text);
-                                    break;
-                                case "popup":
-                                    askToJoinTablePopup(evt.msg.user);
-                                    break;
-                                case "popup-answer":
-                                    if(evt.msg.answer === true) {
-                                        knocker++;
-                                        if(knocker >= Math.ceil(room.getStreamsByAttribute('type','data').length/2)) {
-                                            initialize(roomId);
-                                        }
-                                    } 
-                                case "leader":
-                                    console.log('message received :E');
-                                    setLeader(evt.msg.leader);
-                               default:
-                                  
-                            }
-                        });
-                    }
-                });
-
-                room.connect();       
-
+                dataStream.init();
             });
-            dataStream.init();
-        });   
+        }   
     }
 };
