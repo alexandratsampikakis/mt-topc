@@ -269,7 +269,7 @@ try {
 
             localStream.addEventListener("access-accepted", function () {
                 dataStream.addEventListener("access-accepted", function () {
-                }
+                });
                 var subscribeToStreams = function (streams) {
                     if (!localStream.showing) {
                         localStream.show();
