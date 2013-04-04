@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Café</title>
-    <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
 
@@ -9,6 +9,23 @@
 </head>
 
 <body>
+
+	<!-- Modal -->
+	<div class="container">
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">Modal header</h3>
+		  </div>
+		  <div class="modal-body">
+		    <p>One fine body…</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		    <button class="btn btn-primary">Save changes</button>
+		  </div>
+		</div>
+	</div>
 
 	<div class="navbar navbar-fixed-top navbar-inverse">
   		<div class="navbar-inner">
@@ -40,10 +57,10 @@
     		</div>
 	    	<div class="span8 muted">
 	    		<center>
- 	      		<p class="nav-header"><big>CAFÉS</big></p>
+	 	      		<p class="nav-header"><big>CAFÉS</big></p>
 
-			    <a href="" id="cafeButtons"></a>
-			   	</center>		
+				    <a href="" id="cafeButtons"></a>
+			   	</center>
 	    	</div>
 	    	<div class="span2">
 	      		<!--<ul class="nav nav-list">
@@ -59,8 +76,16 @@
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
+  			<a class="brand" style="font-size: 14px;" id="feedback" href="#feedback" data-toggle="modal"><small>Feedback / bug report</small></a>
   		</div>
 	</div>
+
+	<!-- Button to trigger modal -->
+	<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+	 
+
+	<script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+	<script src="lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
 
 </body>
 </html>

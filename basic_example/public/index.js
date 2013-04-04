@@ -1,6 +1,11 @@
 var serverUrl = "/";
 
 window.onload = function () {
+
+    $('#test').click(function() {
+        $('#myModal').modal('show');
+    });
+
     var getCafeNames = function(callback) {
 
         var req = new XMLHttpRequest();

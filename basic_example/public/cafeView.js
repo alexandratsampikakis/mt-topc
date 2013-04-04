@@ -1,4 +1,4 @@
-var room, localStream, serverUrl, nameOfUser, leader;
+var room, localStream, serverUrl, nameOfUser, leader, urlVideo;
 var knockList = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 var knockTimer = 20 * 1000; //20 seconds
@@ -220,7 +220,15 @@ try {
         return false;
     });
     $('#getVideoUrl').click(function() {
-        showVideo();
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#youtubeVideo').toggle();
+        $('#closeVideo').toggle();
         return false;
     });
     $('#shareDocument').click(function() {
@@ -240,8 +248,22 @@ try {
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
-    var showVideo = function() { 
-        $('#youtubeVideo').toggle();
+    var showVideo = function(urlVideo) {
+        /*<iframe width="80%" height="300"
+            src="http://www.youtube.com/embed/XGSy3_Czz8k">
+        </iframe>*/
+        var youtubeplayer = document.createElement("iframe");
+        youtubeplayer.setAttribute('id', 'ytplayer');
+        youtubeplayer.setAttribute('type', 'text/html');
+        youtubeplayer.setAttribute('width', '640');
+        youtubeplayer.setAttribute('height', '360');
+        youtubeplayer.setAttribute('src', videoURL);
+        youtubeplayer.setAttribute('frameborder', '0');
+        document.body.insertBefore(youtubeplayer, document.body.childNodes[4]);
+        Session.set("playerLoaded", true);
+        $('#youtubeVideo').show();
+        $('#writeUrl').toggle();
+        $('#closeVideo').show();
     }
 
     var initialize = function(roomId) {

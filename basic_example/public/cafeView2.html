@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
 
      <script type="text/javascript" src="erizo.js"></script>
-    <script type="text/javascript" src="cafeView.js"></script>
+    <script type="text/javascript" src="newcafe.js"></script>
 </head>
 
 <body>
@@ -121,7 +121,6 @@
 					<button id="leaveTableButton" class="btn btn-small">Leave table</button>
 					<button id="shareVideo" class="btn btn-small">Share video</button>
 					<button id="shareDocument" class="btn btn-small">Share document</button>
-					<button id="closeVideo" class="btn btn-small hide">Close video</button>
 					<div id="writeUrl" class="hide">
 						<form class="form-inline">
 							<input type="text" id="VideoUrl" class="input-xlarge">
@@ -132,16 +131,16 @@
 
 				<p>
 				<center><div id="youtubeVideo" class="embed-container hide">
- 						<!--<iframe width="80%" height="300"
+ 						<iframe width="80%" height="300"
 							src="http://www.youtube.com/embed/XGSy3_Czz8k">
-						</iframe>-->
+						</iframe>
 				</div></center>
 				</p>
 
 				<textarea rows="8" id="chatArea"></textarea>
 				<form class="form-inline">
 					<input type="text" id="chatMessage" class="input-xlarge">
-					<button type="submit" id="sendMessage" class="btn btn-small">Send message</button>
+					<button type="submit" id="sendMessage" class="btn">Send message</button>
 				</form>
 			</div>
 		</div>
@@ -171,7 +170,6 @@
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Feedback/bug report</small></a>
   		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
