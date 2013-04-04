@@ -402,7 +402,7 @@ try {
                             }
                         }
                     }
-                    dataStream.sendData({id:'popup', user:nameOfUser});
+                    setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                 };
 
                 room.addEventListener("room-connected", function (roomEvent) {
