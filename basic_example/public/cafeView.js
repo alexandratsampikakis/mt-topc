@@ -226,6 +226,10 @@ try {
         }
         return false;
     });
+    $('#closeVideo').click(function() {
+        $('#youtubeVideo').toggle();
+        return false;
+    });
     $('#shareDocument').click(function() {
         return false;
     });
@@ -250,6 +254,7 @@ try {
         
         $('#youtubeVideo').show();
         $('#writeUrl').toggle();
+        $('#closeVideo').toggle();
     }
 
     var initialize = function(roomId) {
