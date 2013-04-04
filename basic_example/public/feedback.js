@@ -1,6 +1,4 @@
 var sendFeedback = function(subject, email, text, callback) {
-    console.log(getQueryString('cafe'));
-    console.log(roomId);
     var req = new XMLHttpRequest();
     var url = serverUrl + 'sendFeedback';
     var body = {email: email, subject: subject, text: text};

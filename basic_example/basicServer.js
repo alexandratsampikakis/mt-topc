@@ -3,7 +3,7 @@ var express = require('express'),
     N = require('./nuve'),
     fs = require("fs"),
     https = require("https"),
-    var nodemailer = require('nodemailer'),
+    nodemailer = require('nodemailer'),
     config = require('./../../../lynckia_config');
 
 //Mailing for feedback
