@@ -52,17 +52,28 @@
 				              <h3>Leave some feedback</h3>
 				            </div>
 				            <div class="modal-body">
-							  <form class="form-inline">
-							  	<label class="control-label" for="feedbackMail">Yor email:</label>
-								 <input type="text" id="feedbackMail" class="input-xlarge"><br>
+				              <form class="form-horizontal">
+								  <div class="control-group">
+								    <label class="control-label" for="feedbackMail">Your email:</label>
+								    <div class="controls">
+								      <input type="text" id="feedbackMail" class="input-xlarge">
+								    </div>
+								  </div>
+								  <div class="control-group">
+								    <label class="control-label" for="feedbackSubject">Subject</label>
+								    <div class="controls">
+								      <input type="text" id="feedbackSubject" class="input-xlarge">
+								    </div>
+								  </div>
+								  <div class="control-group">
+								    <label class="control-label" for="feedbackMessage">Message</label>
+								    <div class="controls">
+								      <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
+								    </div>
+								  </div>
+								</form>
+							</div>
 
-								 <label class="control-label" for="feedbackSubject">Subject</label>
-								 <input type="text" id="feedbackSubject" class="input-xlarge"><br>
-
-								 <label class="control-label" for="feedbackMessage">Message</label>
-								 <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
-							  </form>	        
-				              </div>
 				            <div class="modal-footer">
 				              <a href="#" class="btn btn-small btn-success">Send feedback</a>
 				              <a href="#" class="btn btn-small" data-dismiss="modal">Close</a>
