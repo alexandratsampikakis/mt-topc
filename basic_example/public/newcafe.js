@@ -1,14 +1,26 @@
 var room, localStream, dataStream, serverUrl, nameOfUser, leader;
-var knockList = new Object();
+var knockListYes = new Object();
+var knockListNo = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
+function resetConnection() {
+    localStream.close();
+    dataStream.close();
+    room.disconnect();
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media'}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data'}});
+}
+
 function addToKnockList(roomId) {
-    if(!knockList.hasOwnProperty(roomId)) {
-        knockList[roomId] = 0;
+    if(!knockListYes.hasOwnProperty(roomId)) {
+        knockListYes[roomId] = 0;
         setTimeout(function () {removeUser(roomId)}, knockTimer+7000);
+    }
+    if(!knockListNo.hasOwnProperty(roomId)) {
+        knockListNo[roomId] = 0;
     }
 }
 
@@ -24,9 +36,24 @@ function getYesCount(roomId) {
     }
 }
 
+function getNoCount(roomId) {
+    if(knockListNo.hasOwnProperty(roomId)) {
+        return knockListNo[roomId];
+    }
+}
+
+function addNoCount (roomId) {
+    if(knockListNo.hasOwnProperty(roomId)) {
+        knockListNo[roomId] += 1;
+    }
+}
+
 function removeUser(roomId) {
-    if(knockList.hasOwnProperty(roomId)) {
-        delete knockList[roomId];
+    if(knockListYes.hasOwnProperty(roomId)) {
+        delete knockListYes[roomId];
+    }
+    if(knockListNo.hasOwnProperty(roomId)) {
+        delete knockListNo[roomId];
     }
 }
 
@@ -182,19 +209,19 @@ try {
         knock(tableId1);
     });
     $('#table2').click(function() {
-        initialize(tableId2);
+        knock(tableId2);
     });
     $('#table3').click(function() {
-        initialize(tableId3);
+        knock(tableId3);
     });
     $('#table4').click(function() {
-        initialize(tableId4);
+        knock(tableId4);
     });
     $('#table5').click(function() {
-        initialize(tableId5);
+        knock(tableId5);
     });
     $('#table6').click(function() {
-        initialize(tableId6);
+        knock(tableId6);
     });
     $('#sendData').click(function() {
         getSnapshots();
@@ -214,11 +241,7 @@ try {
         return false;
     });
     $('#leaveTableButton').click(function() {
-        localStream.close();
-        dataStream.close();
-        room.disconnect();
-        localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media'}});
-        dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data'}});
+        resetConnection();
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
         $('#vidcontainer2').toggle();
@@ -248,7 +271,7 @@ try {
 
     //<button id="' + nameOfUser +'" class="btn-mini">Yes</button><button id="' + nameOfUser +'No' +'" class="btn-mini">No</button>
     var askToJoinTablePopup = function(nameOfUser) {
-        $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
+        $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
     var showVideo = function() { 
@@ -387,6 +410,7 @@ try {
 
     var knock = function(roomId) {
         if(!knockList.hasOwnProperty(roomId)) {
+            resetConnection();
             createToken(roomId, "user", "role", function (response) {
                 var token = response;
                 console.log('token created ', token);
@@ -439,12 +463,19 @@ try {
                                         askToJoinTablePopup(evt.msg.user);
                                         break;
                                     case "popup-answer":
-                                        if(evt.msg.answer === true) {
+                                        if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
                                             addYesCount(roomId);
-                                            if(getYesCount(roomId) >= Math.ceil(room.getStreamsByAttribute('type','data').length/2)) {
+                                            if(getYesCount(roomId) >= Math.ceil(room.getStreamsByAttribute('type','media').length/2)) {
                                                 initialize(roomId);
+                                            } 
+                                        } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
+                                            addNoCount(roomId);
+                                            if(getNoCount(roomId) >= Math.ceil(room.getStreamsByAttribute('type','media').length/2)) {
+                                                //popup
+                                                resetConnection();
                                             }
                                         } 
+                                            
                                     case "leader":
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
