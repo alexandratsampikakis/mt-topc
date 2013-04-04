@@ -125,13 +125,33 @@ var getCafeTables = function(cafe, callback) {
 };
 
 window.onload = function () {
-$("#userName").focus();
-try {
-  localStream = Erizo.Stream({audio: true, video: true, data: true});
-  dataStream = Erizo.Stream({audio: false, video: false, data: true});
-} catch (error) {
-    console.log('erizo error: ' + error);
-}
+
+    function clearFeedback() {
+            $('#feedbackSubject').val("");
+            $('#feedbackMail').val("");
+            $('#feedbackText').val("");
+    }
+
+    $('#sendFeedback').click(function() {
+        if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
+        sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
+            console.log(response);
+            clearFeedback();
+            $('#feedbackModal').modal('hide')
+        });
+    });
+
+    $('#closeFeedback').click(function() {
+        clearFeedback();
+    });
+    
+    $("#userName").focus();
+    try {
+      localStream = Erizo.Stream({audio: true, video: true, data: true});
+      dataStream = Erizo.Stream({audio: false, video: false, data: true});
+    } catch (error) {
+        console.log('erizo error: ' + error);
+    }
 
     getCafeTables(getQueryString('cafe'), function (response) {
         var cafes = JSON.parse(response);
