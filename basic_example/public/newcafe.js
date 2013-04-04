@@ -170,7 +170,7 @@ try {
     };
 
     $('#table1').click(function() {
-        initialize(tableId1);
+        knock(tableId1);
     });
     $('#table2').click(function() {
         initialize(tableId2);
@@ -268,8 +268,6 @@ try {
             room = Erizo.Room({token: token});
 
             localStream.addEventListener("access-accepted", function () {
-                dataStream.addEventListener("access-accepted", function () {
-                });
                 var subscribeToStreams = function (streams) {
                     if (!localStream.showing) {
                         localStream.show();
@@ -326,23 +324,7 @@ try {
                                 return;
                             }
                         }
-                    } else if (stream.getAttributes().type === 'data') {
-                        stream.addEventListener("stream-data", function(evt){
-                            switch (evt.msg.id) {
-                                case "chat":
-                                    appendChatMessage(evt.msg.user, evt.msg.text);
-                                    break;
-                                case "popup":
-                                    askToJoinTablePopup(evt.msg.user);
-                                    break;
-                                case "leader":
-                                    console.log('message received :E');
-                                    setLeader(evt.msg.leader);
-                               default:
-                                  
-                            }
-                        });
-                    }
+                    } 
                     console.log("There is no seat available at this table!");
                 });
 
@@ -378,9 +360,7 @@ try {
                         console.log("Removing " + stream.elementID);
                         $('#'+stream.elementID).remove();
                     }
-                });
-
-                room.connect();        
+                }); 
 
                 localStream.show("myVideo");
                 
@@ -467,6 +447,7 @@ try {
 
             });
             dataStream.init();
+            console.log('this is it: '+room.getStreamsByAttribute('type','media'));
         });   
     }
 };
