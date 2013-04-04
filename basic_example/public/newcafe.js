@@ -201,7 +201,7 @@ try {
         return false;
     });
     $('#askToJoinTable').click(function() {
-        localStream.sendData({id:'popup', user:nameOfUser});
+        dataStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
     $('#leaveTableButton').click(function() {
@@ -402,6 +402,7 @@ try {
                             }
                         }
                     }
+                    dataStream.sendData({id:'popup', user:nameOfUser});
                 };
 
                 room.addEventListener("room-connected", function (roomEvent) {
