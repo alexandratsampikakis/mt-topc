@@ -410,8 +410,9 @@ try {
                 room.addEventListener("room-connected", function (roomEvent) {
                     // Publish my stream
                     room.publish(dataStream);
-
+                    //If table is empty
                     if(room.getStreamsByAttribute('type','media').length === 0) {
+                        room.publish(localStream);
                         initialize(roomId);
                     }
                     // Subscribe to other streams
