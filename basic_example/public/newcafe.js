@@ -310,8 +310,8 @@ try {
                             return;
                         }
                     }
+                    console.log("There is no seat available at this table!");
                 } 
-                console.log("There is no seat available at this table!");
             });
 
             room.addEventListener("stream-added", function (streamEvent) {
@@ -420,6 +420,7 @@ try {
                     var stream = streamEvent.stream;
                     if (stream.getAttributes().type === 'data') {
                         stream.addEventListener("stream-data", function(evt){
+                            console.log(evt.msg);
                             switch (evt.msg.id) {
                                 case "chat":
                                     appendChatMessage(evt.msg.user, evt.msg.text);
