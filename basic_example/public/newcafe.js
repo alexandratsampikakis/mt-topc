@@ -366,14 +366,14 @@ try {
                     }
                 }
             });
-            
+
             // Publish my stream
             room.publish(localStream);
 
             // Subscribe to other streams
-            subscribeToStreams(room.getStreamsByAttribute('type','media'));
-            localStream.init();
-        });   
+            subscribeToStreams(room.getStreamsByAttribute('type','media')); 
+        }); 
+        localStream.init();  
     }
 
     var knock = function(roomId) {
@@ -409,7 +409,6 @@ try {
                     room.publish(dataStream);
                     //If table is empty
                     if(room.getStreamsByAttribute('type','media').length === 0) {
-                        room.publish(localStream);
                         initialize(roomId);
                     }
                     // Subscribe to other streams
