@@ -24,7 +24,7 @@ function removeUser(user) {
 function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
-    for(var k in room.remoteStreams) keys.push(k);
+    for(var k in room.getStreamsByAttribute('type','media')) keys.push(k);
     for(i = 0; i<keys.length;i++) {
         if (parseInt(keys[i]) > highest) highest=parseInt(keys[i]);
     }
@@ -403,6 +403,70 @@ try {
 
             });
             localStream.init();
+        });   
+    }
+
+    var knock = function(roomId) {
+        //
+        createToken(roomId, "user", "role", function (response) {
+            var token = response;
+            console.log('token created ', token);
+            L.Logger.setLogLevel(L.Logger.DEBUG);
+            //L.Logger.debug("Connected!");
+            room = Erizo.Room({token: token});
+
+            dataStream.addEventListener("access-accepted", function () {
+                
+                var subscribeToStreams = function (streams) {
+                    if (!dataStream.showing) {
+                        dataStream.show();
+                    }
+                    var index, stream;
+                    for (index in streams) {
+                        if (streams.hasOwnProperty(index)) {
+                            stream = streams[index];
+                            if (dataStream !== undefined && dataStream.getID() !== stream.getID()) {
+                                room.subscribe(stream);
+                            } else {
+                                console.log("My own stream");
+                            }
+                        }
+                    }
+                };
+
+                room.addEventListener("room-connected", function (roomEvent) {
+                    // Publish my stream
+                    room.publish(dataStream);
+
+                    // Subscribe to other streams
+                    subscribeToStreams(room.getStreamsByAttribute('type':'data'));
+                });
+
+                room.addEventListener("stream-subscribed", function(streamEvent) {
+                    var stream = streamEvent.stream;
+                    if (stream.getAttributes().type === 'data') {
+                        stream.addEventListener("stream-data", function(evt){
+                            switch (evt.msg.id) {
+                                case "chat":
+                                    appendChatMessage(evt.msg.user, evt.msg.text);
+                                    break;
+                                case "popup":
+                                    askToJoinTablePopup(evt.msg.user);
+                                    break;
+                                case "leader":
+                                    console.log('message received :E');
+                                    setLeader(evt.msg.leader);
+                               default:
+                                  
+                            }
+                        });
+                    }
+                });
+
+                room.connect();       
+
+            });
+            dataStream.init();
         });   
     }
 };
