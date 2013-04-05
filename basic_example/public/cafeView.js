@@ -31,6 +31,7 @@ function onytplayerStateChange(newState) {
         case 1:
             //play
             dataStream.sendData({id:'ytplayer', state:1})
+            console.log("play video");
             break;
         case 2:
             //pause
@@ -39,6 +40,7 @@ function onytplayerStateChange(newState) {
        default:
           
     }
+    console.log("state change");
 }
 
 function play() {
