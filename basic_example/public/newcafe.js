@@ -1,4 +1,4 @@
-var room, localStream, dataStream, serverUrl, nameOfUser, leader;
+var room, localStream, dataStream, serverUrl, nameOfUser, leader, urlVideo;
 var knockListYes = new Object();
 var knockListNo = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
@@ -54,6 +54,40 @@ function removeUser(roomId) {
     }
     if(knockListNo.hasOwnProperty(roomId)) {
         delete knockListNo[roomId];
+    }
+}
+
+function onYouTubePlayerReady(playerId) {
+  ytplayer = document.getElementById("myytplayer");
+  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+}
+
+function onytplayerStateChange(newState) {
+    switch (newState) {
+        case 1:
+            //play
+            dataStream.sendData({id:'ytplayer', state:1});
+            console.log("play video");
+            break;
+        case 2:
+            //pause
+            dataStream.sendData({id:'ytplayer', state:2});
+            break;
+       default:
+          
+    }
+    console.log("state change");
+}
+
+function play() {
+    if (ytplayer) {
+        ytplayer.playVideo();
+    }
+}
+
+function pause() {
+    if (ytplayer) {
+        ytplayer.pauseVideo();
     }
 }
 
@@ -254,9 +288,17 @@ try {
         return false;
     });
     $('#getVideoUrl').click(function() {
-        showVideo();
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            showVideo(urlVideo);
+        }
         return false;
     });
+    $('#closeVideo').click(function() {
+        $('#youtubeVideo').toggle();
+        $('#closeVideo').toggle();
+        return false;
+    }); 
     $('#shareDocument').click(function() {
         return false;
     });
@@ -274,8 +316,15 @@ try {
         $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
-    var showVideo = function() { 
-        $('#youtubeVideo').toggle();
+    var showVideo = function(urlVideo) {
+        var params = { allowScriptAccess: "always" };
+        var atts = { id: "myytplayer" };
+        swfobject.embedSWF("http://www.youtube.com/v/" + urlVideo + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+                       "youtubeVideo", "80%", "300", "8", null, null, params, atts);
+
+        $('#youtubeVideo').show();
+        $('#writeUrl').toggle();
+        $('#closeVideo').show();
     }
 
     var initialize = function(roomId) {
@@ -479,6 +528,12 @@ try {
                                     case "leader":
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
+                                    case "ytplayer":
+                                        if(evt.msg.state === 1) {
+                                            play();
+                                        } else if (evt.msg.state === 2) {
+                                            pause();
+                                        }
                                    default:
                                       
                                 }
