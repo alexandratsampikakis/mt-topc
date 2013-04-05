@@ -91,6 +91,12 @@ function pause() {
     }
 }
 
+function receiveURL(urlVideo) {
+    if (ytplayer) {
+        showVideo(urlVideo);
+    };
+}
+
 function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
@@ -290,12 +296,13 @@ try {
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
             urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3});
             showVideo(urlVideo);
         }
         return false;
     });
     $('#closeVideo').click(function() {
-        $('#youtubeVideo').toggle();
+        $('#youtubeVideo').toggle(); //fungerar inte
         $('#closeVideo').toggle();
         return false;
     }); 
@@ -531,12 +538,15 @@ try {
                                     case "leader":
                                         console.log('message received :E');
                                         setLeader(evt.msg.leader);
+
                                     case "ytplayer":
                                         if(evt.msg.state === 1) {
                                             play();
                                         } else if (evt.msg.state === 2) {
                                             pause();
-                                        }
+                                        } else if (evt.msg.state === 3) {
+                                            receiveURL(urlVideo);
+                                        };
                                    default:
                                       
                                 }
