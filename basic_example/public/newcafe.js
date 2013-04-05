@@ -25,14 +25,14 @@ function addToKnockList(roomId) {
 }
 
 function addYesCount (roomId) {
-    if(knockList.hasOwnProperty(roomId)) {
-        knockList[roomId] += 1;
+    if(knockListYes.hasOwnProperty(roomId)) {
+        knockListYes[roomId] += 1;
     }
 }
 
 function getYesCount(roomId) {
-    if(knockList.hasOwnProperty(roomId)) {
-        return knockList[roomId];
+    if(knockListYes.hasOwnProperty(roomId)) {
+        return knockListYes[roomId];
     }
 }
 
