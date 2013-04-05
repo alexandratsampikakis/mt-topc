@@ -272,15 +272,10 @@ window.onload = function () {
         /*<iframe width="80%" height="300"
             src="http://www.youtube.com/embed/XGSy3_Czz8k">
         </iframe>*/
-        var youtubeplayer = document.createElement("iframe");
-        youtubeplayer.setAttribute('id', 'ytplayer');
-        youtubeplayer.setAttribute('type', 'text/html');
-        youtubeplayer.setAttribute('width', '640');
-        youtubeplayer.setAttribute('height', '360');
-        youtubeplayer.setAttribute('src', videoURL);
-        youtubeplayer.setAttribute('frameborder', '0');
-        document.body.insertBefore(youtubeplayer, document.body.childNodes[4]);
-        Session.set("playerLoaded", true);
+        var youtubeVideo = document.createElement("iframe");
+        youtubeVideo.setAttribute('width', '80%');
+        youtubeVideo.setAttribute('height', '300');
+        youtubeVideo.setAttribute('src', VideoUrl);
         $('#youtubeVideo').show();
         $('#writeUrl').toggle();
         $('#closeVideo').show();
