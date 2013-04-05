@@ -290,7 +290,7 @@ try {
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
             urlVideo = $('#VideoUrl').val();
-            dataStream.sendData({id:'ytplayer', state:3});
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
             showVideo(urlVideo);
         }
         return false;
@@ -539,7 +539,7 @@ try {
                                         } else if (evt.msg.state === 2) {
                                             pause();
                                         } else if (evt.msg.state === 3) {
-                                            showVideo(urlVideo);
+                                            showVideo(evt.msg.url);
                                         };
                                    default:
                                       
