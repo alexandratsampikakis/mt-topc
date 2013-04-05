@@ -75,6 +75,21 @@ function getSnapshots() {
     }
 }
 
+function onYouTubePlayerReady(playerId) {
+  ytplayer = document.getElementById("myytplayer");
+  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+}
+
+function onytplayerStateChange(newState) {
+   alert("Player's new state: " + newState);
+}
+
+function play() {
+    if (ytplayer) {
+        ytplayer.playVideo();
+    }
+}
+
 function appendChatMessage(username, message) {
     var message = username + ": " + message;
     if($('#chatArea').val() !== "") {
@@ -272,10 +287,11 @@ window.onload = function () {
         /*<iframe width="80%" height="300"
             src="http://www.youtube.com/embed/XGSy3_Czz8k">
         </iframe>*/
-        var youtubeVideo = document.createElement("iframe");
-        youtubeVideo.setAttribute('width', '80%');
-        youtubeVideo.setAttribute('height', '300');
-        youtubeVideo.setAttribute('src', VideoUrl);
+        var params = { allowScriptAccess: "always" };
+        var atts = { id: "myytplayer" };
+        swfobject.embedSWF("http://www.youtube.com/v/VIDEO_ID?enablejsapi=1&playerapiid=ytplayer&version=3",
+                       "youtubeVideo", "80%", "300", "8", null, null, params, atts);
+
         $('#youtubeVideo').show();
         $('#writeUrl').toggle();
         $('#closeVideo').show();
