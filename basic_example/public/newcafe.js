@@ -91,10 +91,6 @@ function pause() {
     }
 }
 
-function receiveURL(urlVideo) {
-    showVideo(urlVideo);
-}
-
 function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
@@ -543,7 +539,7 @@ try {
                                         } else if (evt.msg.state === 2) {
                                             pause();
                                         } else if (evt.msg.state === 3) {
-                                            receiveURL(urlVideo);
+                                            showVideo(urlVideo);
                                         };
                                    default:
                                       
