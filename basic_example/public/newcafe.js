@@ -92,9 +92,7 @@ function pause() {
 }
 
 function receiveURL(urlVideo) {
-    if (ytplayer) {
-        showVideo(urlVideo);
-    };
+    showVideo(urlVideo);
 }
 
 function getLeader() {
