@@ -409,8 +409,8 @@ try {
     }
 
     var knock = function(roomId) {
-        if(!knockList.hasOwnProperty(roomId)) {
-            resetConnection();
+        if(!knockListYes.hasOwnProperty(roomId)) {
+            //resetConnection();
             createToken(roomId, "user", "role", function (response) {
                 var token = response;
                 console.log('token created ', token);
