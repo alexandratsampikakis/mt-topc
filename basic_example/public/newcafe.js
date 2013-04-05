@@ -321,7 +321,7 @@ try {
         if(videoID !== undefined) {
             var params = { allowScriptAccess: "always" };
             var atts = { id: "myytplayer" };
-            swfobject.embedSWF("http://www.youtube.com/v/" + urlVideo + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
                            "youtubeVideo", "80%", "300", "8", null, null, params, atts);
 
             $('#youtubeVideo').show();
