@@ -317,14 +317,17 @@ try {
     };
 
     var showVideo = function(urlVideo) {
-        var params = { allowScriptAccess: "always" };
-        var atts = { id: "myytplayer" };
-        swfobject.embedSWF("http://www.youtube.com/v/" + urlVideo + "?enablejsapi=1&playerapiid=ytplayer&version=3",
-                       "youtubeVideo", "80%", "300", "8", null, null, params, atts);
+        var videoID = urlVideo.split('=')[1];
+        if(videoID !== undefined) {
+            var params = { allowScriptAccess: "always" };
+            var atts = { id: "myytplayer" };
+            swfobject.embedSWF("http://www.youtube.com/v/" + urlVideo + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+                           "youtubeVideo", "80%", "300", "8", null, null, params, atts);
 
-        $('#youtubeVideo').show();
-        $('#writeUrl').toggle();
-        $('#closeVideo').show();
+            $('#youtubeVideo').show();
+            $('#writeUrl').toggle();
+            $('#closeVideo').show();
+        }
     }
 
     var initialize = function(roomId) {
