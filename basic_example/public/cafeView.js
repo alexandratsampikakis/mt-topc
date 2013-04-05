@@ -30,12 +30,12 @@ function onytplayerStateChange(newState) {
     switch (newState) {
         case 1:
             //play
-            dataStream.sendData({id:'ytplayer', state:1})
+            dataStream.sendData({id:'ytplayer', state:1});
             console.log("play video");
             break;
         case 2:
             //pause
-            dataStream.sendData({id:'ytplayer', state:2})
+            dataStream.sendData({id:'ytplayer', state:2});
             break;
        default:
           
