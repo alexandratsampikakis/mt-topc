@@ -21,6 +21,38 @@ function removeUser(user) {
     }
 }
 
+function onYouTubePlayerReady(playerId) {
+  ytplayer = document.getElementById("myytplayer");
+  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+}
+
+function onytplayerStateChange(newState) {
+    switch (newState) {
+        case 1:
+            //play
+            dataStream.sendData({id:'ytplayer', state:1})
+            break;
+        case 2:
+            //pause
+            dataStream.sendData({id:'ytplayer', state:2})
+            break;
+       default:
+          
+    }
+}
+
+function play() {
+    if (ytplayer) {
+        ytplayer.playVideo();
+    }
+}
+
+function pause() {
+    if (ytplayer) {
+        ytplayer.pauseVideo();
+    }
+}
+
 function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
@@ -235,7 +267,22 @@ window.onload = function () {
         $('#menuList').toggle();
         return false;
     });
-  
+    $('#shareVideo').click(function() {
+        $('#writeUrl').toggle();
+        return false;
+    });
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#youtubeVideo').toggle();
+        $('#closeVideo').toggle();
+        return false;
+    }); 
     $('#shareDocument').click(function() {
         return false;
     });
@@ -252,6 +299,20 @@ window.onload = function () {
     var askToJoinTablePopup = function(nameOfUser) {
         $('.top-right').notify({ type: 'bangTidy', message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
+
+    var showVideo = function(urlVideo) {
+        /*<iframe width="80%" height="300"
+            src="http://www.youtube.com/embed/XGSy3_Czz8k">
+        </iframe>*/
+        var params = { allowScriptAccess: "always" };
+        var atts = { id: "myytplayer" };
+        swfobject.embedSWF("http://www.youtube.com/v/" + urlVideo + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+                       "youtubeVideo", "80%", "300", "8", null, null, params, atts);
+
+        $('#youtubeVideo').show();
+        $('#writeUrl').toggle();
+        $('#closeVideo').show();
+    }
 
     var initialize = function(roomId) {
         $('#tablecontainer').toggle();
