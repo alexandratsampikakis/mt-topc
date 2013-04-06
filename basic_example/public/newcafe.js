@@ -112,36 +112,31 @@ function broadcastLeader() {
 }
 
 function getSnapshots() {
-    var keys = [];
-    for(var k in room.getStreamsByAttribute('type','media')) keys.push(k);
+    var streams = room.getStreamsByAttribute('type','media');
+    var length = streams.length;
+
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     canvas.id = "testCanvas";
     //document.body.appendChild(canvas);
     var height = $('#myVideo').height();
     var width = $('#myVideo').width();
-    if(keys.length > 3) {
+    if(length > 3) {
         canvas.width = 3*width;
         canvas.height = 2*height;
     } else {
-        canvas.width = keys.length*width;
+        canvas.width = length*width;
         canvas.height = height;
     }
-    console.log(keys.length);
-    for(var i = 0; i<keys.length;i++) {
+    console.log(length);
+    for(var i = 0; i<length;i++) {
         var y = 0;
         if (i>2) {
             var y = height;
         }
-        if(localStream.getID() !== parseInt(keys[i])){
-            var bitmap;
-            bitmap = room.getStreamsByAttribute('type','media')[keys[i]].getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);
-        } else {
-            var bitmap;
-            bitmap = localStream.getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);
-        }
+        var bitmap;
+        bitmap = streams[i].getVideoFrame();
+        context.putImageData(bitmap, (i%3)*width, y);
     }
     return canvas.toDataURL();
 }
