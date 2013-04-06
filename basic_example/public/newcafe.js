@@ -298,7 +298,7 @@ try {
 
     $(function ()
         { $("#table1").popover({title: 'Table 1', placement:'right', content : 
-            getTableImage(tableId1 function (response) {
+            getTableImage(tableId1, function (response) {
                 var tableImg = JSON.parse(response);
                 var tc = document.getElementById("tablecontainer");
                 if(cafes.hasOwnProperty('error')) {
