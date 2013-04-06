@@ -305,8 +305,9 @@ try {
                     console.log(tableImg.error);
                     return "no image";
                 } else {
-                    var canvas = $(document.createElement('canvas')).attr("id","tableImg" + tableId1);
-                    var context = $('#tableImg' + tableId1).getContext('2d');
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.id = "tableImg" + tableId1;
                     imgData = tableImg.imageData;
                     var myImage = new Image();
                     myImage.src = imgData;
