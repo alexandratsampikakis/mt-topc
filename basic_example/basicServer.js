@@ -115,10 +115,13 @@ var tableImgSchema = new Schema({
             text = req.body.text;
 
         var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
-        var newCafe = new cafeModel({
+        var newTableImage = new tableImgModel({
             roomID: req.body.roomID,
             imageData: req.body.imgData, 
             createdAt: new Date().toISOString(),
+        });
+        newTableImage.save(function (err) {
+          if (err) console.log("Failed to create cafe");
         });
         res.send(req.body.imgData);
     });
