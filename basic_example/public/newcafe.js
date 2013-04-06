@@ -113,7 +113,7 @@ function broadcastLeader() {
 
 function getSnapshots() {
     var keys = [];
-    for(var k in room.remoteStreams) keys.push(k);
+    for(var k in room.getStreamsByAttribute('type','media')) keys.push(k);
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     canvas.id = "testCanvas";
@@ -135,7 +135,7 @@ function getSnapshots() {
         }
         if(localStream.getID() !== parseInt(keys[i])){
             var bitmap;
-            bitmap = room.remoteStreams[keys[i]].getVideoFrame();
+            bitmap = room.getStreamsByAttribute('type','media')[keys[i]].getVideoFrame();
             context.putImageData(bitmap, (i%3)*width, y);
         } else {
             var bitmap;
