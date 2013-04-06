@@ -301,8 +301,8 @@ try {
             getTableImage(tableId1, function (response) {
                 var tableImg = JSON.parse(response);
                 var tc = document.getElementById("tablecontainer");
-                if(cafes.hasOwnProperty('error')) {
-                    console.log(cafes.error);
+                if(tableImg.hasOwnProperty('error')) {
+                    console.log(tableImg.error);
                     return "no image";
                 } else {
                     var canvas = $(document.createElement('canvas')).attr("id","tableImg" + tableId1);
