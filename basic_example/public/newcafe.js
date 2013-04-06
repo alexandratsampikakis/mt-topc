@@ -212,6 +212,29 @@ var getTableImage = function(room, callback) {
     req.send();
 };
 
+    $(function () { 
+        $("#table1").popover({title: 'Table 1', placement:'right', content : 
+            getTableImage(tableId1, function (response) {
+                var tableImg = JSON.parse(response);
+                var tc = document.getElementById("tablecontainer");
+                if(tableImg.hasOwnProperty('error')) {
+                    console.log(tableImg.error);
+                    return "no image";
+                } else {
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.id = "tableImg" + tableId1;
+                    imgData = tableImg.imageData;
+                    var myImage = new Image();
+                    myImage.src = imgData;
+                    context.drawImage(myImage, 0, 0);
+                    console.log(canvas);
+                    return canvas;
+                }
+            })
+        });
+    });
+
 window.onload = function () {
 $("#userName").focus();
 try {
@@ -295,27 +318,6 @@ try {
     $('#table6').click(function() {
         knock(tableId6);
     });
-
-    $("#table1").popover({title: 'Table 1', placement:'right', content : 
-            getTableImage(tableId1, function (response) {
-                var tableImg = JSON.parse(response);
-                var tc = document.getElementById("tablecontainer");
-                if(tableImg.hasOwnProperty('error')) {
-                    console.log(tableImg.error);
-                    return "no image";
-                } else {
-                    var canvas = document.createElement('canvas');
-                    var context = canvas.getContext('2d');
-                    canvas.id = "tableImg" + tableId1;
-                    imgData = tableImg.imageData;
-                    var myImage = new Image();
-                    myImage.src = imgData;
-                    context.drawImage(myImage, 0, 0);
-                    console.log(canvas);
-                    return canvas;
-                }
-            })
-        });
 
     $('#sendData').click(function() {
         sendTableImg(room.roomID, function(response) {
