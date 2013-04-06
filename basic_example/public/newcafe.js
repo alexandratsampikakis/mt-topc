@@ -298,15 +298,15 @@ try {
 
     $(function ()
         { $("#table1").popover({title: 'Table 1', placement:'right', content : 
-            getTableImage(room.roomID, function (response) {
+            getTableImage(tableId1 function (response) {
                 var tableImg = JSON.parse(response);
                 var tc = document.getElementById("tablecontainer");
                 if(cafes.hasOwnProperty('error')) {
                     console.log(cafes.error);
                     return "no image";
                 } else {
-                    var canvas = $(document.createElement('canvas')).attr("id","tableImg" + room.roomID);
-                    var context = $('#tableImg' + room.roomID).getContext('2d');
+                    var canvas = $(document.createElement('canvas')).attr("id","tableImg" + tableId1);
+                    var context = $('#tableImg' + tableId1).getContext('2d');
                     imgData = tableImg.imageData;
                     var myImage = new Image();
                     myImage.src = imgData;
