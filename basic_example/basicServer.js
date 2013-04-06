@@ -101,16 +101,16 @@ var tableImgSchema = new Schema({
     app.post('/api/sendTableImg/:room', function (req, res) {
         "use strict";
         var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
-        console.log(req.params.roomID + ' | ' + req.body.imgData);
+        console.log(req.params.room + ' | ' + req.body.imgData);
         var newTableImage = new tableImgModel({
-            roomID: req.params.roomID,
+            roomID: req.params.room,
             imageData: req.body.imgData, 
-            createdAt: new Date().toISOString(),
+            createdAt: new Date().toISOString()
         });
         newTableImage.save(function (err) {
           if (err) console.log("Failed to create cafe");
         });
-        res.send(req.params.roomID);
+        res.send(req.params.room);
     });
 
 /*app.get('/createNewCafe/', function (req, res) {
