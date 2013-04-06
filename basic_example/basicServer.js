@@ -123,6 +123,15 @@ var tableImgSchema = new Schema({
         newTableImage.save(function (err) {
           if (err) console.log("Failed to create cafe");
         });
+
+        var newTableImage = new tableImgModel({
+            roomID: req.body.roomID,
+            imageData: "hej", 
+            createdAt: new Date().toISOString(),
+        });
+        newTableImage.save(function (err) {
+          if (err) console.log("Failed to create cafe");
+        });
         res.send(req.body.imgData);
     });
 
