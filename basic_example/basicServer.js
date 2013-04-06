@@ -101,6 +101,28 @@ var cafeSchema = new Schema({
     table6: String
 });
 
+var tableImgSchema = new Schema({
+    roomID: String,
+    imageData: String,
+    createdAt: { type: Date, expires: 60*3 }
+});
+
+    //########################### IMAGES ######################
+    app.post('/sendTableImg/:room', function (req, res) {
+        "use strict";
+        var subject = req.params.subject,
+            email = req.body.email,
+            text = req.body.text;
+
+        var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
+        var newCafe = new cafeModel({
+            roomID: req.body.roomID,
+            imageData: req.body.imgData, 
+            createdAt: new Date().toISOString(),
+        });
+        res.send(req.body.imgData);
+    });
+
 /*app.get('/createNewCafe/', function (req, res) {
     "use strict";
     var tables = new Array();
