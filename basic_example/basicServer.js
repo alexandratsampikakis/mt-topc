@@ -97,7 +97,7 @@ var tableImgSchema = new Schema({
     imageData: String,
     createdAt: { type: Date, expires: 10 }
 });
-tableImgSchema.plugin(ttl, { ttl: 5000 });
+tableImgSchema.plugin(ttl, { ttl: (-60*5)+30 });
 
     //########################### IMAGES ######################
     app.post('/api/sendTableImg/:room', function (req, res) {
