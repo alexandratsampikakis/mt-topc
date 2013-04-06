@@ -94,7 +94,7 @@ var cafeSchema = new Schema({
 var tableImgSchema = new Schema({
     roomID: String,
     imageData: String,
-    createdAt: { type: Date, expires: 60*3 }
+    createdAt: { type: Date, expires: 10 }
 });
 
     //########################### IMAGES ######################
