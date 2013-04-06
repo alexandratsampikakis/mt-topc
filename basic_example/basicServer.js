@@ -12,6 +12,7 @@ var transport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail");
 
 //Database
 var mongoose = require('mongoose');
+var ttl = require('mongoose-ttl');
 var Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/test');
 
@@ -96,6 +97,7 @@ var tableImgSchema = new Schema({
     imageData: String,
     createdAt: { type: Date, expires: 10 }
 });
+tableImgSchema.plugin(ttl, { ttl: 5000 });
 
     //########################### IMAGES ######################
     app.post('/api/sendTableImg/:room', function (req, res) {
@@ -104,8 +106,7 @@ var tableImgSchema = new Schema({
         console.log(req.params.room + ' | ' + req.body.imgData);
         var newTableImage = new tableImgModel({
             roomID: req.params.room,
-            imageData: req.body.imgData, 
-            createdAt: new Date().toISOString()
+            imageData: req.body.imgData
         });
         newTableImage.save(function (err) {
           if (err) console.log("Failed to create cafe");
