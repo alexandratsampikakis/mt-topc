@@ -197,6 +197,21 @@ var getCafeTables = function(cafe, callback) {
     req.send();
 };
 
+var getTableImage = function(room, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getTableImg/' + room;
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
 window.onload = function () {
 $("#userName").focus();
 try {
@@ -221,6 +236,7 @@ try {
             tableId6 = cafes.table6;
         }
     });
+
 
     var sendTableImg = function(roomId, callback) {
         var req = new XMLHttpRequest();
@@ -279,6 +295,29 @@ try {
     $('#table6').click(function() {
         knock(tableId6);
     });
+
+    $(function ()
+        { $("#table1").popover({title: 'Table 1', placement:'right', content : 
+            getTableImage(room.roomID, function (response) {
+                var tableImg = JSON.parse(response);
+                var tc = document.getElementById("tablecontainer");
+                if(cafes.hasOwnProperty('error')) {
+                    console.log(cafes.error);
+                    return "no image";
+                } else {
+                    var canvas = $(document.createElement('canvas')).attr("id","tableImg" + room.roomID);
+                    var context = $('#tableImg' + room.roomID).getContext('2d');
+                    imgData = tableImg.imageData;
+                    var myImage = new Image();
+                    myImage.src = imgData;
+                    ctx.drawImage(myImage, 0, 0);
+                    console.log(canvas);
+                    return canvas;
+                }
+            });
+        });
+    });
+
     $('#sendData').click(function() {
         sendTableImg(room.roomID, function(response) {
             console.log(response);

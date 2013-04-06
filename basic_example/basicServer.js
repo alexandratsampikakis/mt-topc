@@ -94,10 +94,9 @@ var cafeSchema = new Schema({
 
 var tableImgSchema = new Schema({
     roomID: String,
-    imageData: String,
-    createdAt: { type: Date, expires: 10 }
+    imageData: String
 });
-tableImgSchema.plugin(ttl, { ttl: (-60*5)+30 });
+tableImgSchema.plugin(ttl, { ttl: 0 });
 
     //########################### IMAGES ######################
     app.post('/api/sendTableImg/:room', function (req, res) {
@@ -113,6 +112,30 @@ tableImgSchema.plugin(ttl, { ttl: (-60*5)+30 });
         });
         res.send(req.params.room);
     });
+
+app.get("/api/getTableImg/:room", function (req, res) {
+    var roomID = req.params.name;
+
+    var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
+
+    tableImgModel.findOne({roomID: roomID }, function (err, records) {
+        console.log(err);
+        console.log(records);
+        if(err) {
+            res.json({
+                error: 'Database error.'
+            });
+        } else if(records === null) {
+            res.json({
+                //bild för tomt café
+            });
+        } else {
+            res.json({
+                imageID: records.imageData
+            });
+        }
+    });
+});
 
 /*app.get('/createNewCafe/', function (req, res) {
     "use strict";
