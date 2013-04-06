@@ -110,23 +110,11 @@ var tableImgSchema = new Schema({
     //########################### IMAGES ######################
     app.post('/sendTableImg/:room', function (req, res) {
         "use strict";
-        var subject = req.params.subject,
-            email = req.body.email,
-            text = req.body.text;
-
         var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
+        console.log(req.params.roomID + ' | ' + req.body.imgData);
         var newTableImage = new tableImgModel({
-            roomID: req.body.roomID,
+            roomID: req.params.roomID,
             imageData: req.body.imgData, 
-            createdAt: new Date().toISOString(),
-        });
-        newTableImage.save(function (err) {
-          if (err) console.log("Failed to create cafe");
-        });
-
-        var newTableImage = new tableImgModel({
-            roomID: req.body.roomID,
-            imageData: "hej", 
             createdAt: new Date().toISOString(),
         });
         newTableImage.save(function (err) {
