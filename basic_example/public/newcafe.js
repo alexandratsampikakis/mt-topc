@@ -134,9 +134,16 @@ function getSnapshots() {
         if (i>2) {
             var y = height;
         }
-        var bitmap;
-        bitmap = streams[i].getVideoFrame();
-        context.putImageData(bitmap, (i%3)*width, y);
+        if(streams[i].getID() === localStream.getID()) {
+            var bitmap;
+            bitmap = localStream.getVideoFrame();
+            context.putImageData(bitmap, (i%3)*width, y);        
+        } else {
+            var bitmap;
+            bitmap = streams[i].getVideoFrame();
+            context.putImageData(bitmap, (i%3)*width, y);
+        }
+
     }
     return canvas.toDataURL();
 }
@@ -273,7 +280,7 @@ try {
         knock(tableId6);
     });
     $('#sendData').click(function() {
-        sendTableImg(room.roomId, function(response) {
+        sendTableImg(room.roomID, function(response) {
             console.log(response);
         });
     });
