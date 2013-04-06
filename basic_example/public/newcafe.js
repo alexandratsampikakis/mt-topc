@@ -314,8 +314,8 @@ try {
                     console.log(canvas);
                     return canvas;
                 }
-            });
-        })
+            })
+        });
     });
 
     $('#sendData').click(function() {
