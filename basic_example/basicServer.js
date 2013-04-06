@@ -79,6 +79,16 @@ app.post('/sendFeedback', function (req, res) {
     });
 });
 
+//########################### IMAGES ######################
+app.post('/sendTableImg/:room', function (req, res) {
+    "use strict";
+    var subject = req.params.subject,
+        email = req.body.email,
+        text = req.body.text;
+
+    res.send(req.body.imgData);
+});
+
 //########################### DATABASE ###########################
 //6 tables / room
 var cafeSchema = new Schema({
@@ -212,10 +222,6 @@ app.get("/api/getcafe/:name", function (req, res) {
 //db END
 
 app.get('/cafeView.html', function(req, res){
-  res.send('cafe: ' + req.query.cafe);
-});
-
-app.get('/cafeView2.html', function(req, res){
   res.send('cafe: ' + req.query.cafe);
 });
 

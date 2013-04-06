@@ -117,7 +117,7 @@ function getSnapshots() {
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     canvas.id = "testCanvas";
-    document.body.appendChild(canvas);
+    //document.body.appendChild(canvas);
     var height = $('#myVideo').height();
     var width = $('#myVideo').width();
     if(keys.length > 3) {
@@ -143,6 +143,7 @@ function getSnapshots() {
             context.putImageData(bitmap, (i%3)*width, y);
         }
     }
+    return canvas.toDataURL();
 }
 
 function appendChatMessage(username, message) {
@@ -219,6 +220,25 @@ try {
         }
     });
 
+    var sendFeedback = function(roomId, callback) {
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'api/sendTableImg/' roomId;
+        var imgData = getSnapshots();
+        var body = {imgData: imgData};
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('POST', url, true);
+
+        req.setRequestHeader('Content-Type', 'application/json');
+        //console.log("Sending to " + url + " - " + JSON.stringify(body));
+        req.send(JSON.stringify(body));
+    };
+
     var createToken = function(roomId, userName, role, callback) {
         console.log(getQueryString('cafe'));
         console.log(roomId);
@@ -258,7 +278,9 @@ try {
         knock(tableId6);
     });
     $('#sendData').click(function() {
-        getSnapshots();
+        sendTableImg(room.roomId, function(response) {
+            console.log(response);
+        });
     });
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
