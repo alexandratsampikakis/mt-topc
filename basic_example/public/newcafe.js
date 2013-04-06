@@ -220,9 +220,9 @@ try {
         }
     });
 
-    var sendFeedback = function(roomId, callback) {
+    var sendTableImg = function(roomId, callback) {
         var req = new XMLHttpRequest();
-        var url = serverUrl + 'api/sendTableImg/' roomId;
+        var url = serverUrl + 'api/sendTableImg/' + roomId;
         var imgData = getSnapshots();
         var body = {imgData: imgData};
 
