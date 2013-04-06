@@ -79,16 +79,6 @@ app.post('/sendFeedback', function (req, res) {
     });
 });
 
-//########################### IMAGES ######################
-app.post('/api/sendTableImg/:room', function (req, res) {
-    "use strict";
-    var subject = req.params.subject,
-        email = req.body.email,
-        text = req.body.text;
-
-    res.send(req.body.imgData);
-});
-
 //########################### DATABASE ###########################
 //6 tables / room
 var cafeSchema = new Schema({
@@ -108,7 +98,7 @@ var tableImgSchema = new Schema({
 });
 
     //########################### IMAGES ######################
-    app.post('/sendTableImg/:room', function (req, res) {
+    app.post('/api/sendTableImg/:room', function (req, res) {
         "use strict";
         var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
         console.log(req.params.roomID + ' | ' + req.body.imgData);
