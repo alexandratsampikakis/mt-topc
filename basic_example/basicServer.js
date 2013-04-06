@@ -80,7 +80,7 @@ app.post('/sendFeedback', function (req, res) {
 });
 
 //########################### IMAGES ######################
-app.post('/sendTableImg/:room', function (req, res) {
+app.post('/api/sendTableImg/:room', function (req, res) {
     "use strict";
     var subject = req.params.subject,
         email = req.body.email,
