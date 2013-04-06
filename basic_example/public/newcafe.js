@@ -311,7 +311,7 @@ try {
                     imgData = tableImg.imageData;
                     var myImage = new Image();
                     myImage.src = imgData;
-                    ctx.drawImage(myImage, 0, 0);
+                    context.drawImage(myImage, 0, 0);
                     console.log(canvas);
                     return canvas;
                 }
