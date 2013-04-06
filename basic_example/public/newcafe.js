@@ -315,7 +315,7 @@ try {
                     return canvas;
                 }
             });
-        });
+        })
     });
 
     $('#sendData').click(function() {
