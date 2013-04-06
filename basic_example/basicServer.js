@@ -120,7 +120,7 @@ var tableImgSchema = new Schema({
         newTableImage.save(function (err) {
           if (err) console.log("Failed to create cafe");
         });
-        res.send(req.body.imgData);
+        res.send(req.params.roomID);
     });
 
 /*app.get('/createNewCafe/', function (req, res) {
