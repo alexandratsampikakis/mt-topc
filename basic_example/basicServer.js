@@ -132,7 +132,7 @@ app.get("/api/getTableImg/:room", function (req, res) {
             });
         } else {
             res.json({
-                imageID: records.imageData
+                imageData: records.imageData
             });
         }
     });
