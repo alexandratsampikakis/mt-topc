@@ -212,7 +212,7 @@ var getTableImage = function(room, callback) {
     req.send();
 };
 
-    
+
 
 window.onload = function () {
 $("#userName").focus();
@@ -296,6 +296,26 @@ try {
     });
     $('#table6').click(function() {
         knock(tableId6);
+    });
+
+    $("#table1").mouseover(function(){
+        getTableImage(tableId1, function (response) {
+            var tableImg = JSON.parse(response);
+            if(tableImg.hasOwnProperty('error')) {
+                console.log(tableImg.error);
+            } else {
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                canvas.id = "tableImg" + tableId1;
+                imgData = tableImg.imageData;
+                var myImage = new Image();
+                myImage.src = imgData;
+                context.drawImage(myImage, 0, 0);
+                console.log(canvas);
+                $("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
+                });
+            }
+        });
     });
 
     $('#sendData').click(function() {
