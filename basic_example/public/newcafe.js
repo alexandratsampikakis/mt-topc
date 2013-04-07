@@ -6,7 +6,7 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
-function hasJoinedTheRoom(user) {
+function hasJoinedTheRoom(username) {
     var message = username + " sat down at the table.";
     if($('#chatArea').val() !== "") {
         message = "\n"+message;
