@@ -599,7 +599,6 @@ $("#userName").focus();
 
     var knock = function(roomId) {
         if(!knockListYes.hasOwnProperty(roomId)) {
-            knockSound();
             createToken(roomId, "user", "role", function (response) {
                 var token = response;
                 console.log('token created ', token);
@@ -624,6 +623,7 @@ $("#userName").focus();
                             }
                         }
                         if(room.getStreamsByAttribute('type','media').length < 6) {
+                            knockSound();
                             setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                             addToKnockList(roomId);                        
                         } else {
