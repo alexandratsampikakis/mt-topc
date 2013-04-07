@@ -435,7 +435,7 @@ $("#userName").focus();
             $('#tablecontainer').toggle();
 
             try {
-                overhearStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'overhear',username:nameOfUser}});
+                overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
                 localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
                 dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
             } catch (error) {
