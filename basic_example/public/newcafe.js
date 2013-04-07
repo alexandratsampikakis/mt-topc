@@ -20,6 +20,12 @@ function hasJoinedTheRoom(username) {
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
 }
 
+function clearFeedback() {
+    $('#feedbackSubject').val("");
+    $('#feedbackMail').val("");
+    $('#feedbackMessage').val("");
+}
+
 function resetConnection() {
     localStream.close();
     dataStream.close();
@@ -389,6 +395,7 @@ $("#userName").focus();
     });
     $('#shareVideo').click(function() {
         $('#writeUrl').toggle();
+        $('#writeUrl').focus();
         return false;
     });
     $('#getVideoUrl').click(function() {
@@ -407,6 +414,17 @@ $("#userName").focus();
     }); 
     $('#shareDocument').click(function() {
         return false;
+    });
+    $('#sendFeedback').click(function() {
+        if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
+        sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
+            console.log(response);
+            clearFeedback();
+            $('#feedbackModal').modal('hide')
+        });
+    });
+    $('#closeFeedback').click(function() {
+        clearFeedback();
     });
 
     var enterName = function() {
