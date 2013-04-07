@@ -594,7 +594,7 @@ $("#userName").focus();
                 }
                 //If table is empty, become the leader
                 var currStreams = room.getStreamsByAttribute('type','media');
-                if(currStreams.length === 1 && parseInt(currStreams[0]) === localStream.getID()) {
+                if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
                     leader = localStream.getID();
                     setInterval(function(){
                         console('send imagessss');
