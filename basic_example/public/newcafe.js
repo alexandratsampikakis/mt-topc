@@ -279,6 +279,27 @@ try {
         req.send(JSON.stringify(body));
     };
 
+    getTableImage(tableId1, function (response) {
+            var tableImg = JSON.parse(response);
+            if(tableImg.hasOwnProperty('empty')) {
+                if(tableImg.empty === true) {
+                    //$("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
+                }
+            } else {
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                canvas.id = "tableImg" + tableId1;
+                imgData = tableImg.imageData;
+                var myImage = new Image();
+                myImage.src = imgData;
+                context.drawImage(myImage, 0, 0);
+                console.log(canvas);
+                document.body.appendChild(canvas);
+                //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
+                });
+            }
+        });
+
     $('#table1').click(function() {
         knock(tableId1);
     });
