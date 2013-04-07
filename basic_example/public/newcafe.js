@@ -825,6 +825,5 @@ $("#userName").focus();
                 overhearStream.init();
             });
         }   
-    };  
     }
 };
