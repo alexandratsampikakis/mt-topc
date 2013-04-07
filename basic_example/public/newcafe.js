@@ -382,6 +382,7 @@ try {
                     //$("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
                 }
             } else {
+                setTimeout(
                 var canvas = document.createElement('canvas');
                 var context = canvas.getContext('2d');
                 canvas.id = "tableImg" + tableId1;
@@ -394,6 +395,10 @@ try {
                 context.drawImage(myImage, 0, 0);
                 console.log(canvas);
                 document.body.appendChild(canvas);
+
+
+                    ,2000);
+
                 //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
                 //});
             }
