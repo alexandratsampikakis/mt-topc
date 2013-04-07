@@ -132,61 +132,7 @@ function broadcastLeader() {
     console.log('broadcasting leader');
 }
 
-function getSnapshots() {
-    var popoverWidth = 400;
-    var popoverHeight = popoverWidth/1.33;
 
-    var streams = room.getStreamsByAttribute('type','media');
-    var length = streams.length;
-
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    canvas.id = "testCanvas";
-    //document.body.appendChild(canvas);
-    var height = $('#myVideo').height();
-    var width = $('#myVideo').width();
-    if(length > 3) {
-        canvas.width = 3*width;
-        canvas.height = 2*height;
-    } else {
-        canvas.width = length*width;
-        canvas.height = height;
-    }
-
-    console.log(length);
-    for(var i = 0; i<length;i++) {
-        var y = 0;
-        if (i>2) {
-            var y = height;
-        }
-        if(streams[i].getID() === localStream.getID()) {
-            var bitmap;
-            bitmap = localStream.getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);        
-        } else {
-            var bitmap;
-            bitmap = streams[i].getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);
-        }
-
-    }
-
-    var canvas2 = document.createElement('canvas');
-    var context2 = canvas2.getContext('2d');
-
-    var imgData = canvas.toDataURL();
-    var myImage = new Image();
-    canvas2.width = 400;
-    canvas2.height = 400/1.33;
-    $(myImage).load(function(){
-        context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
-        console.log(canvas);
-        //document.body.appendChild(canvas2);
-        return canvas2.toDataURL();
-    }); 
-    myImage.src = imgData;
-
-}
 
 function clearTextFields() {
     $('#chatArea').val("");
@@ -323,6 +269,63 @@ $("#userName").focus();
         req.send(JSON.stringify(body));
     };
 
+function getSnapshots() {
+    var popoverWidth = 400;
+    var popoverHeight = popoverWidth/1.33;
+
+    var streams = room.getStreamsByAttribute('type','media');
+    var length = streams.length;
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    canvas.id = "testCanvas";
+    //document.body.appendChild(canvas);
+    var height = $('#myVideo').height();
+    var width = $('#myVideo').width();
+    if(length > 3) {
+        canvas.width = 3*width;
+        canvas.height = 2*height;
+    } else {
+        canvas.width = length*width;
+        canvas.height = height;
+    }
+
+    console.log(length);
+    for(var i = 0; i<length;i++) {
+        var y = 0;
+        if (i>2) {
+            var y = height;
+        }
+        if(streams[i].getID() === localStream.getID()) {
+            var bitmap;
+            bitmap = localStream.getVideoFrame();
+            context.putImageData(bitmap, (i%3)*width, y);        
+        } else {
+            var bitmap;
+            bitmap = streams[i].getVideoFrame();
+            context.putImageData(bitmap, (i%3)*width, y);
+        }
+
+    }
+
+    var canvas2 = document.createElement('canvas');
+    var context2 = canvas2.getContext('2d');
+
+    var imgData = canvas.toDataURL();
+    var myImage = new Image();
+    canvas2.width = 400;
+    canvas2.height = 400/1.33;
+    $(myImage).load(function(){
+        context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
+        console.log(canvas);
+        document.body.appendChild(canvas2);
+        sendTableImg(room.roomID, function (response) {
+            console.log(response);
+        });
+    }); 
+    myImage.src = imgData;
+
+}
 
     $('#table1').click(function() {
         knock(tableId1);
