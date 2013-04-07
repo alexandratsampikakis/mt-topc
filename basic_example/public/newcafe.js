@@ -435,12 +435,12 @@ $("#userName").focus();
                         console.log(imgData);
                         var myImage = new Image();
                         myImage.src = imgData;
-                        $(myImage).load(function(){
+                        myImage.onload = function(){
                             console.log(myImage.width, myImage.height);
                             context.drawImage(myImage, 0, 0);
                             console.log(canvas);
                             document.body.appendChild(canvas);
-                        });
+                        };
 
 
                 //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
