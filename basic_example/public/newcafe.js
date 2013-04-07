@@ -48,7 +48,7 @@ function addNoCount (roomId) {
     }
 }
 
-function removeUser(roomId) {
+function removeRoomFromKnocklist(roomId) {
     if(knockListYes.hasOwnProperty(roomId)) {
         delete knockListYes[roomId];
     }
@@ -112,13 +112,16 @@ function broadcastLeader() {
 }
 
 function getSnapshots() {
+    var popoverWidth = 400;
+    var popoverHeight = popoverWidth/1.33;
+
     var streams = room.getStreamsByAttribute('type','media');
     var length = streams.length;
 
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     canvas.id = "testCanvas";
-    document.body.appendChild(canvas);
+    //document.body.appendChild(canvas);
     var height = $('#myVideo').height();
     var width = $('#myVideo').width();
     if(length > 3) {
@@ -128,6 +131,7 @@ function getSnapshots() {
         canvas.width = length*width;
         canvas.height = height;
     }
+
     console.log(length);
     for(var i = 0; i<length;i++) {
         var y = 0;
@@ -145,7 +149,22 @@ function getSnapshots() {
         }
 
     }
-    return canvas.toDataURL();
+
+    var canvas2 = document.createElement('canvas');
+    var context2 = canvas2.getContext('2d');
+
+    var imgData = canvas.toDataURL();
+    var myImage = new Image();
+    canvas2.width = 400;
+    canvas2.height = 400/1.33;
+    myImage.src = imgData;
+    setTimeout(function () {
+    context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
+    console.log(canvas);
+    document.body.appendChild(canvas2); 
+    }, 2000);
+
+    
 }
 
 function appendChatMessage(username, message) {
@@ -615,8 +634,10 @@ try {
                                     case "popup-answer":
                                         if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
                                             addYesCount(roomId);
-                                            if(getYesCount(roomId) >= Math.ceil(room.getStreamsByAttribute('type','media').length/2)) {
+                                            if(getYesCount(roomId) > Math.ceil(room.getStreamsByAttribute('type','media').length/2)) {
+                                                removeRoomFromKnocklist(roomId);
                                                 initialize(roomId);
+                                                
                                             } 
                                         } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
                                             addNoCount(roomId);
