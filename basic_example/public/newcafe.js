@@ -629,7 +629,7 @@ try {
                                         if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
                                             addYesCount(roomId);
                                             console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
-                                            console.log(getYesCount(roomId);
+                                            console.log(getYesCount(roomId));
                                             console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
                                             if(room.getStreamsByAttribute('type','media').length === 1) {
                                                 removeRoomFromKnocklist(roomId);
