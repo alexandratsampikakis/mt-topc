@@ -519,7 +519,6 @@ $("#userName").focus();
         $('#chatMessage').width('80%');
         $('#sendMessage').width('19%');
         $('#chatMessage').focus();
-        //
 
         localStream.addEventListener("access-accepted", function () {
             var subscribeToStreams = function (streams) {
