@@ -315,13 +315,13 @@ function getSnapshots() {
     var myImage = new Image();
     canvas2.width = 400;
     canvas2.height = 400/1.33;
-    $(myImage).load(function(){
+    myImage.onload = function(){
         context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
         console.log(canvas);
         document.body.appendChild(canvas2);
         sendTableImg(room.roomID, function (response) {
             console.log(response);
-        });
+        };
     }); 
     myImage.src = imgData;
 
