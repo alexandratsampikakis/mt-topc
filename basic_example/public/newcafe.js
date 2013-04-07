@@ -438,9 +438,7 @@ $("#userName").focus();
     };
 
     var deniedNotification = function() {
-        $('.top-left').notify({
-            message: { text: 'Aw yeah, It works!' }
-        }).show();
+        $('.center').notify({ message: { text: 'Aw yeah, It works!' }}).show();
     }
 
     var showVideo = function(urlVideo) {
