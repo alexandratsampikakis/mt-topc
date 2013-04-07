@@ -321,8 +321,8 @@ function getSnapshots() {
         document.body.appendChild(canvas2);
         sendTableImg(room.roomID, function (response) {
             console.log(response);
-        };
-    }); 
+        });
+    }; 
     myImage.src = imgData;
 
 }
