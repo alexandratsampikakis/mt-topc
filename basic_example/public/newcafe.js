@@ -433,10 +433,15 @@ $("#userName").focus();
         }
     };
 
-    //<button id="' + nameOfUser +'" class="btn-mini">Yes</button><button id="' + nameOfUser +'No' +'" class="btn-mini">No</button>
     var askToJoinTablePopup = function(nameOfUser) {
         $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
+
+    var deniedNotification = function() {
+        $('.top-left').notify({
+            message: { text: 'Aw yeah, It works!' }
+        }).show();
+    }
 
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
@@ -586,12 +591,10 @@ $("#userName").focus();
 
     var knock = function(roomId) {
         if(!knockListYes.hasOwnProperty(roomId)) {
-            //resetConnection();
             createToken(roomId, "user", "role", function (response) {
                 var token = response;
                 console.log('token created ', token);
                 L.Logger.setLogLevel(L.Logger.DEBUG);
-                //L.Logger.debug("Connected!");
                 room = Erizo.Room({token: token});
 
                 dataStream.addEventListener("access-accepted", function () {
@@ -615,7 +618,7 @@ $("#userName").focus();
                             setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                             addToKnockList(roomId);                        
                         } else {
-                            //note to user: denied
+                            deniedNotification();
                             resetConnection();
                         }
 
@@ -667,7 +670,7 @@ $("#userName").focus();
                                         } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
                                             addNoCount(roomId);
                                             if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
-                                                //popup
+                                                deniedNotification();
                                                 resetConnection();
                                             }
                                         } 
