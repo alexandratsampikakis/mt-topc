@@ -400,6 +400,7 @@ $("#userName").focus();
     $('#closeVideo').click(function() {
         $('#myytplayer').css ({visibility:'hidden'});
         $('#closeVideo').toggle();
+        $('#youtubeVideo').toggle();
         return false;
     }); 
     $('#shareDocument').click(function() {
