@@ -390,6 +390,7 @@ try {
                 console.log(imgData);
                 var myImage = new Image();
                 myImage.src = imgData;
+                console.log(myImage);
                 context.drawImage(myImage, 0, 0);
                 console.log(canvas);
                 document.body.appendChild(canvas);
