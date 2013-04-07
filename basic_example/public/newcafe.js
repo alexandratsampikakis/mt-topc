@@ -423,7 +423,8 @@ $("#userName").focus();
             var tableImg = JSON.parse(response);
             if(tableImg.hasOwnProperty('empty')) {
                 if(tableImg.empty === true) {
-                    //$("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
+                    console.log('ingen bild');
+                                        //$("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
                 }
             } else {
                 var canvas = document.createElement('canvas');
@@ -433,6 +434,7 @@ $("#userName").focus();
                         console.log(tableImg);
                         console.log(imgData);
                         var myImage = new Image();
+                        console.log('bilds!')
                         myImage.onload = function(){
                             console.log(myImage.width, myImage.height);
                             context.drawImage(myImage, 0, 0);
