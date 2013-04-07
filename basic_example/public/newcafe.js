@@ -674,7 +674,7 @@ $("#userName").focus();
                                                 resetConnection();
                                             }
                                         } 
-                                            
+                                        break;  
                                     case "leader":
                                         if(localStream.showing === true) {
                                             console.log('message received :E');
