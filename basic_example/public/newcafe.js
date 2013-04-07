@@ -441,6 +441,7 @@ $("#userName").focus();
                             context.drawImage(myImage, 0, 0);
                             console.log(canvas);
                             document.body.appendChild(canvas);
+                            console.log(myImage);
                         };
                         myImage.src = imgData;
                         
