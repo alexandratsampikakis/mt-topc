@@ -113,7 +113,7 @@ function pause() {
     }
 }
 
-function getLeader() {
+function calculateLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
     for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
@@ -126,6 +126,10 @@ function getLeader() {
 
 function setLeader(id) {
     leader = id;
+}
+
+function getLeader() {
+    return leader;
 }
 
 function broadcastLeader() {
@@ -592,7 +596,10 @@ $("#userName").focus();
                 var currStreams = room.getStreamsByAttribute('type','media');
                 if(currStreams.length === 1 && parseInt(currStreams[0]) === localStream.getID()) {
                     leader = localStream.getID();
-                    setInterval(function(){getSnapshots();},5000);
+                    setInterval(function(){
+                        console('send imagessss');
+                        getSnapshots();
+                    },5000);
                 }
                 if(leader === localStream.getID()) {
                     broadcastLeader();
@@ -608,8 +615,8 @@ $("#userName").focus();
                     console.log('leader: ' + leader);
                     if(stream.getID() === leader) {
                         console.log('kommer jag hit?');
-                        leader = getLeader();
-                        console.log(getLeader());
+                        leader = calculateLeader();
+                        console.log(calculateLeader());
                     }
                     console.log("Removing " + stream.elementID);
                     $('#'+stream.elementID).remove();
