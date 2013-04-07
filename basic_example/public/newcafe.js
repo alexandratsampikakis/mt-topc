@@ -598,8 +598,11 @@ try {
                                 }
                             }
                         }
-                        setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
-                        addToKnockList(roomId);
+                        if(room.getStreamsByAttribute('type','media').length < 6) {
+                            setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
+                            addToKnockList(roomId);                        
+                        }
+
                     };
 
                     room.addEventListener("room-connected", function (roomEvent) {
@@ -620,10 +623,15 @@ try {
                                 console.log(evt.msg);
                                 switch (evt.msg.id) {
                                     case "chat":
-                                        appendChatMessage(evt.msg.user, evt.msg.text);
+                                        if(localStream.showing === true) {
+                                            appendChatMessage(evt.msg.user, evt.msg.text);
+                                        }   
                                         break;
+
                                     case "popup":
-                                        askToJoinTablePopup(evt.msg.user);
+                                        if(localStream.showing === true) {
+                                            askToJoinTablePopup(evt.msg.user);
+                                        }
                                         break;
                                     case "popup-answer":
                                         if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
@@ -649,17 +657,22 @@ try {
                                         } 
                                             
                                     case "leader":
-                                        console.log('message received :E');
-                                        setLeader(evt.msg.leader);
-
+                                        if(localStream.showing === true) {
+                                            console.log('message received :E');
+                                            setLeader(evt.msg.leader);
+                                        }
+                                        break;
                                     case "ytplayer":
-                                        if(evt.msg.state === 1) {
-                                            play();
-                                        } else if (evt.msg.state === 2) {
-                                            pause();
-                                        } else if (evt.msg.state === 3) {
-                                            showVideo(evt.msg.url);
-                                        };
+                                        if(localStream.showing === true) {
+                                            if(evt.msg.state === 1) {
+                                                play();
+                                            } else if (evt.msg.state === 2) {
+                                                pause();
+                                            } else if (evt.msg.state === 3) {
+                                                showVideo(evt.msg.url);
+                                            };
+                                        }
+                                        break;
                                    default:
                                       
                                 }
