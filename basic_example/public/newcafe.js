@@ -116,9 +116,9 @@ function pause() {
 function getLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
-    for(var k in room.getStreamsByAttribute('type','media')) keys.push(k);
-    for(i = 0; i<keys.length;i++) {
-        if (parseInt(keys[i]) > highest) highest=parseInt(keys[i]);
+    for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
+        var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
+        if (streamID > highest) highest=streamID;
     }
     console.log(highest);
     return highest;
@@ -589,10 +589,10 @@ $("#userName").focus();
                     hasJoinedTheRoom(streamEvent.stream.getAttributes().username);
                 }
                 //If table is empty, become the leader
-                var keys = [];
-                for(var k in room.remoteStreams) keys.push(k);
-                if(keys.length === 1 && parseInt(keys[0]) === localStream.getID()) {
+                var currStreams = room.getStreamsByAttribute('type','media');
+                if(currStreams.length === 1 && parseInt(currStreams[0]) === localStream.getID()) {
                     leader = localStream.getID();
+                    setInterval(function(){getSnapshots();},5000);
                 }
                 if(leader === localStream.getID()) {
                     broadcastLeader();
