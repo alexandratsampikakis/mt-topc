@@ -1,10 +1,15 @@
 var room, localStream, dataStream, serverUrl, nameOfUser, leader, urlVideo;
+var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
+
+function knockSound() {
+    audioElement.play();
+}
 
 function hasJoinedTheRoom(username) {
     var message = username + " sat down at the table.";
@@ -259,6 +264,10 @@ $("#userName").focus();
         }
     });
 
+    audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '/media/knock.mp3');
+    audioElement.load();
+
 
     var sendTableImg = function(roomId, callback) {
         var req = new XMLHttpRequest();
@@ -434,11 +443,18 @@ $("#userName").focus();
     };
 
     var askToJoinTablePopup = function(nameOfUser) {
+        knockSound();
         $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
     var deniedNotification = function() {
+<<<<<<< HEAD
         $('.center').notify({ type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>bla</p>' }}).show();
+=======
+        $('.top-left').notify({
+            message: { text: 'Aw yeah, It works!' }
+        }).show();
+>>>>>>> added knocksound
     }
 
     var showVideo = function(urlVideo) {
@@ -589,6 +605,7 @@ $("#userName").focus();
 
     var knock = function(roomId) {
         if(!knockListYes.hasOwnProperty(roomId)) {
+            knockSound();
             createToken(roomId, "user", "role", function (response) {
                 var token = response;
                 console.log('token created ', token);
