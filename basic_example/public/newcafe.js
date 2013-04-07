@@ -399,6 +399,7 @@ $("#userName").focus();
     });
     $('#closeVideo').click(function() {
         $('#youtubeVideo').toggle(); //fungerar inte
+        $('#youtubeVideo').close();
         $('#closeVideo').toggle();
         return false;
     }); 
