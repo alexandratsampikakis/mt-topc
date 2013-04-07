@@ -383,19 +383,20 @@ try {
                 }
             } else {
                 setTimeout(
-                var canvas = document.createElement('canvas');
-                var context = canvas.getContext('2d');
-                canvas.id = "tableImg" + tableId1;
-                imgData = tableImg.imageData;
-                console.log(tableImg);
-                console.log(imgData);
-                var myImage = new Image();
-                myImage.src = imgData;
-                console.log(myImage);
-                context.drawImage(myImage, 0, 0);
-                console.log(canvas);
-                document.body.appendChild(canvas);
-
+                    function () {
+                        var canvas = document.createElement('canvas');
+                        var context = canvas.getContext('2d');
+                        canvas.id = "tableImg" + tableId1;
+                        imgData = tableImg.imageData;
+                        console.log(tableImg);
+                        console.log(imgData);
+                        var myImage = new Image();
+                        myImage.src = imgData;
+                        console.log(myImage);
+                        context.drawImage(myImage, 0, 0);
+                        console.log(canvas);
+                        document.body.appendChild(canvas);
+                    }
 
                     ,2000);
 
