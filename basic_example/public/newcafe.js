@@ -331,7 +331,7 @@ $("#userName").focus();
         knock(tableId1);
     });
     $('#table2').click(function() {
-        knock(tableId2);
+        overhear(tableId1);
     });
     $('#table3').click(function() {
         knock(tableId3);
