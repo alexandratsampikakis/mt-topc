@@ -386,6 +386,8 @@ try {
                 var context = canvas.getContext('2d');
                 canvas.id = "tableImg" + tableId1;
                 imgData = tableImg.imageData;
+                console.log(tableImg);
+                console.log(imgData);
                 var myImage = new Image();
                 myImage.src = imgData;
                 context.drawImage(myImage, 0, 0);
