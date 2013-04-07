@@ -601,6 +601,9 @@ try {
                         if(room.getStreamsByAttribute('type','media').length < 6) {
                             setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                             addToKnockList(roomId);                        
+                        } else {
+                            //note to user: denied
+                            resetConnection();
                         }
 
                     };
