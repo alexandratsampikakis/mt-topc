@@ -230,10 +230,9 @@ $("#userName").focus();
     audioElement.load();
 
 
-    var sendTableImg = function(roomId, callback) {
+    var sendTableImg = function(imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
-        var imgData = getSnapshots();
         var body = {imgData: imgData};
 
         req.onreadystatechange = function () {
@@ -319,7 +318,7 @@ function getSnapshots() {
         context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
         console.log(canvas);
         document.body.appendChild(canvas2);
-        sendTableImg(room.roomID, function (response) {
+        sendTableImg(imgData, room.roomID, function (response) {
             console.log(response);
         });
     }; 
