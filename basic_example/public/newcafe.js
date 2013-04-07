@@ -17,7 +17,7 @@ function resetConnection() {
 function addToKnockList(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
         knockListYes[roomId] = 0;
-        setTimeout(function () {removeUser(roomId)}, knockTimer+7000);
+        setTimeout(function () {removeRoomFromKnocklist(roomId)}, knockTimer+7000);
     }
     if(!knockListNo.hasOwnProperty(roomId)) {
         knockListNo[roomId] = 0;
@@ -628,6 +628,9 @@ try {
                                     case "popup-answer":
                                         if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
                                             addYesCount(roomId);
+                                            console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                                            console.log(getYesCount(roomId);
+                                            console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
                                             if(room.getStreamsByAttribute('type','media').length === 1) {
                                                 removeRoomFromKnocklist(roomId);
                                                 initialize(roomId);
