@@ -447,8 +447,16 @@ $("#userName").focus();
         $('.top-right').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' want´s to sit down, it that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
-    var deniedNotification = function() {
-        $('.center').notify({ type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>bla</p>' }}).show();
+    var deniedNotification = function(whatCase) {
+        switch (whatCase) {
+            case 1:
+                $('.center').notify({ type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seams that the users want some privacy at the moment. Try again later!</p>' }}).show();
+                break;
+            case 2:
+                $('.center').notify({ type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
+                break;
+           default:
+        }
     }
 
     var showVideo = function(urlVideo) {
@@ -627,7 +635,7 @@ $("#userName").focus();
                             setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                             addToKnockList(roomId);                        
                         } else {
-                            deniedNotification();
+                            deniedNotification(2);
                             resetConnection();
                         }
 
@@ -679,7 +687,7 @@ $("#userName").focus();
                                         } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
                                             addNoCount(roomId);
                                             if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
-                                                deniedNotification();
+                                                deniedNotification(1);
                                                 resetConnection();
                                             }
                                         } 
