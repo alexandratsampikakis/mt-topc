@@ -26,6 +26,7 @@ function resetConnection() {
     room.disconnect();
     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+    clearTextFields();
 }
 
 function addToKnockList(roomId) {
@@ -177,6 +178,12 @@ function getSnapshots() {
         console.log(canvas);
         document.body.appendChild(canvas2);
     }); 
+}
+
+function clearTextFields() {
+    $('#chatArea').val("");
+    $('#chatMessage').val("");
+    $('#VideoUrl').val("");
 }
 
 function appendChatMessage(username, message) {
@@ -470,6 +477,7 @@ $("#userName").focus();
             $('#youtubeVideo').show();
             $('#writeUrl').toggle();
             $('#closeVideo').show();
+            $('#VideoUrl').val("");
         }
     }
 
