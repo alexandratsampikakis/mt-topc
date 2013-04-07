@@ -118,7 +118,7 @@ function getSnapshots() {
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
     canvas.id = "testCanvas";
-    //document.body.appendChild(canvas);
+    document.body.appendChild(canvas);
     var height = $('#myVideo').height();
     var width = $('#myVideo').width();
     if(length > 3) {
