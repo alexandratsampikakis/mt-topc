@@ -19,8 +19,8 @@ function resetConnection() {
     localStream.close();
     dataStream.close();
     room.disconnect();
-    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media'}});
-    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data'}});
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
 }
 
 function addToKnockList(roomId) {
