@@ -316,9 +316,9 @@ function getSnapshots() {
     canvas2.height = 400/1.33;
     myImage.onload = function(){
         context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
-        console.log(canvas);
-        document.body.appendChild(canvas2);
-        sendTableImg(imgData, room.roomID, function (response) {
+        //console.log(canvas);
+        //document.body.appendChild(canvas2);
+        sendTableImg(canvas2.toDataURL(), room.roomID, function (response) {
             console.log(response);
         });
     }; 
