@@ -518,6 +518,7 @@ $("#userName").focus();
         $('#chatArea').width('100%');
         $('#chatMessage').width('80%');
         $('#sendMessage').width('19%');
+        //$('#chatArea').css('margin-top', $('#chatArea').parent().height()-$('#chatArea').height()-$('#bar-top').height());
         $('#chatMessage').focus();
 
         localStream.addEventListener("access-accepted", function () {
@@ -663,7 +664,9 @@ $("#userName").focus();
                             }
                         }
                         if(room.getStreamsByAttribute('type','media').length < 6) {
-                            knockSound();
+                            if(room.getStreamsByAttribute('type','media').length > 1) {
+                                knockSound();
+                            }
                             setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                             addToKnockList(roomId);                        
                         } else {
