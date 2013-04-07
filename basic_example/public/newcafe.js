@@ -398,7 +398,7 @@ $("#userName").focus();
         return false;
     });
     $('#closeVideo').click(function() {
-        $('#youtubeVideo').toggle(); //fungerar inte
+        $('#youtubeVideo').css ({visibility:'hidden'});
         $('#closeVideo').toggle();
         return false;
     }); 
@@ -474,7 +474,6 @@ $("#userName").focus();
             swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
                            "youtubeVideo", "80%", "300", "8", null, null, params, atts);
 
-            //$('#youtubeVideo').show();
             $('#writeUrl').toggle();
             $('#closeVideo').show();
             $('#VideoUrl').val("");
