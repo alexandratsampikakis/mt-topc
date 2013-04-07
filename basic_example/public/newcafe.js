@@ -448,13 +448,7 @@ $("#userName").focus();
     };
 
     var deniedNotification = function() {
-<<<<<<< HEAD
         $('.center').notify({ type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>bla</p>' }}).show();
-=======
-        $('.top-left').notify({
-            message: { text: 'Aw yeah, It works!' }
-        }).show();
->>>>>>> added knocksound
     }
 
     var showVideo = function(urlVideo) {
