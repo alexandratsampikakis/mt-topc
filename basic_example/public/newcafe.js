@@ -630,7 +630,7 @@ $("#userName").focus();
                                 }
                             }
                         }
-                        if(room.getStreamsByAttribute('type','media').length >= 1 && room.getStreamsByAttribute('type','media').length < 6) {
+                        if(room.getStreamsByAttribute('type','media').length < 6) {
                             knockSound();
                             setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
                             addToKnockList(roomId);                        
