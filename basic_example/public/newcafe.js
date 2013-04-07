@@ -301,8 +301,10 @@ try {
     $("#table1").mouseover(function(){
         getTableImage(tableId1, function (response) {
             var tableImg = JSON.parse(response);
-            if(tableImg.hasOwnProperty('error')) {
-                console.log(tableImg.error);
+            if(tableImg.hasOwnProperty('empty')) {
+                if(tableImg.empty === true) {
+                    $("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
+                }
             } else {
                 var canvas = document.createElement('canvas');
                 var context = canvas.getContext('2d');
