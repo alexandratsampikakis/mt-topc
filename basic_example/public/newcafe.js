@@ -433,13 +433,14 @@ $("#userName").focus();
                         console.log(tableImg);
                         console.log(imgData);
                         var myImage = new Image();
-                        myImage.src = imgData;
                         myImage.onload = function(){
                             console.log(myImage.width, myImage.height);
                             context.drawImage(myImage, 0, 0);
                             console.log(canvas);
                             document.body.appendChild(canvas);
                         };
+                        myImage.src = imgData;
+                        
 
 
                 //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
