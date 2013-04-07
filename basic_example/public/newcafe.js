@@ -172,12 +172,14 @@ function getSnapshots() {
     var myImage = new Image();
     canvas2.width = 400;
     canvas2.height = 400/1.33;
-    myImage.src = imgData;
     $(myImage).load(function(){
         context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
         console.log(canvas);
-        document.body.appendChild(canvas2);
+        //document.body.appendChild(canvas2);
+        return canvas2.toDataURL();
     }); 
+    myImage.src = imgData;
+
 }
 
 function clearTextFields() {
