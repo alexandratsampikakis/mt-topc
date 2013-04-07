@@ -634,7 +634,7 @@ try {
                                     case "popup-answer":
                                         if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
                                             addYesCount(roomId);
-                                            if(Math.ceil(room.getStreamsByAttribute('type','media').length === 1) {
+                                            if(room.getStreamsByAttribute('type','media').length === 1) {
                                                 removeRoomFromKnocklist(roomId);
                                                 initialize(roomId);
                                                 
