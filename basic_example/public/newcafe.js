@@ -394,7 +394,7 @@ try {
                     function () {
             
 
-                        console.log(myImage);
+                        console.log(myImage.width, myImage.height);
                         context.drawImage(myImage, 0, 0);
                         console.log(canvas);
                         document.body.appendChild(canvas);
