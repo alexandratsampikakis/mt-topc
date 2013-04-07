@@ -158,13 +158,11 @@ function getSnapshots() {
     canvas2.width = 400;
     canvas2.height = 400/1.33;
     myImage.src = imgData;
-    setTimeout(function () {
-    context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
-    console.log(canvas);
-    document.body.appendChild(canvas2); 
-    }, 2000);
-
-    
+    $(myImage).load(function(){
+        context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
+        console.log(canvas);
+        document.body.appendChild(canvas2);
+    }); 
 }
 
 function appendChatMessage(username, message) {
@@ -409,17 +407,13 @@ try {
                         console.log(imgData);
                         var myImage = new Image();
                         myImage.src = imgData;
-                setTimeout(
-                    function () {
-            
+                        $(myImage).load(function(){
+                            console.log(myImage.width, myImage.height);
+                            context.drawImage(myImage, 0, 0);
+                            console.log(canvas);
+                            document.body.appendChild(canvas);
+                        });
 
-                        console.log(myImage.width, myImage.height);
-                        context.drawImage(myImage, 0, 0);
-                        console.log(canvas);
-                        document.body.appendChild(canvas);
-                    }
-
-                    ,2000);
 
                 //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
                 //});
@@ -638,14 +632,14 @@ try {
                                                 removeRoomFromKnocklist(roomId);
                                                 initialize(roomId);
                                                 
-                                            } else if(getYesCount(roomId) > Math.ceil(room.getStreamsByAttribute('type','media').length/2)) {
+                                            } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
                                                 removeRoomFromKnocklist(roomId);
                                                 initialize(roomId);
                                                 
                                             } 
                                         } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
                                             addNoCount(roomId);
-                                            if(getNoCount(roomId) >= Math.ceil(room.getStreamsByAttribute('type','media').length/2)) {
+                                            if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
                                                 //popup
                                                 resetConnection();
                                             }
