@@ -1,4 +1,4 @@
-var room, localStream, dataStream, serverUrl, nameOfUser, leader, urlVideo;
+var room, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
@@ -30,6 +30,7 @@ function resetConnection() {
     localStream.close();
     dataStream.close();
     room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
     clearTextFields();
@@ -434,6 +435,7 @@ $("#userName").focus();
             $('#tablecontainer').toggle();
 
             try {
+                overhearStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'overhear',username:nameOfUser}});
                 localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
                 dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
             } catch (error) {
@@ -760,5 +762,69 @@ $("#userName").focus();
                 dataStream.init();
             });
         }   
+    }
+
+    var overhear = function(roomId) {
+        if(!knockListYes.hasOwnProperty(roomId)) {
+            createToken(roomId, "user", "role", function (response) {
+                var token = response;
+                console.log('token created ', token);
+                L.Logger.setLogLevel(L.Logger.DEBUG);
+                room = Erizo.Room({token: token});
+
+                overhearStream.addEventListener("access-accepted", function () {
+                    
+                    var subscribeToStreams = function (streams) {
+                        if (!overhearStream.showing) {
+                            overhearStream.show();
+                        }
+                        var index, stream;
+                        for (index in streams) {
+                            if (streams.hasOwnProperty(index)) {
+                                stream = streams[index];
+                                if (overhearStream !== undefined && overhearStream.getID() !== stream.getID()) {
+                                    room.subscribe(stream);
+                                } else {
+                                    console.log("My own stream");
+                                }
+                            }
+                        }
+                    };
+
+                    room.addEventListener("room-connected", function (roomEvent) {
+                        // Publish my stream
+                        room.publish(dataStream);
+                        //If table is empty
+                        if(room.getStreamsByAttribute('type','media').length === 0) {
+                            console.log('Room is empty!')
+                        } else {
+                            // Subscribe to other streams
+                            subscribeToStreams(room.getStreamsByAttribute('type','media'));
+                        }
+                    });
+
+                    room.addEventListener("stream-subscribed", function(streamEvent) {
+                        var stream = streamEvent.stream;
+                        if (stream.getAttributes().type === 'media') {
+                            for (var i = 2; i <= 6; i++) {
+                                if ($('#overhear'+i).children().length === 0) {
+                                    $('<div></div>', {
+                                        id: 'test'+stream.getID()
+                                    }).css('width','1').appendTo('#overhear'+i);
+                                    stream.show("test" + stream.getID());
+                                    return;
+                                }
+                            }
+                            console.log("There is no seat available at this table!");
+                        } 
+                    });
+
+                    room.connect();       
+
+                });
+                overhearStream.init();
+            });
+        }   
+    };  
     }
 };
