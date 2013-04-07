@@ -514,10 +514,10 @@ $("#userName").focus();
         $('#menuList').toggle();
 
         //Init chat
-        $('#chatArea').css('margin-top',$('#theTable').height()-350);
+        /*$('#chatArea').css('margin-top',$('#theTable').height()-350);
         $(window).resize(function() {
             $('#chatArea').css('margin-top',$('#theTable').height()-350);
-        });
+        });*/
         $('#chatArea').scrollTop($('#chatArea').scrollHeight);
         $('#chatArea').width('100%');
         $('#chatMessage').width('80%');
