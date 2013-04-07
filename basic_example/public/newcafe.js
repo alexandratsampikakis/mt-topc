@@ -296,7 +296,7 @@ try {
                 console.log(canvas);
                 document.body.appendChild(canvas);
                 //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
-                });
+                //});
             }
         });
 
