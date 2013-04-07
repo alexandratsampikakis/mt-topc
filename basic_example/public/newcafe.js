@@ -6,6 +6,15 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
+function hasJoinedTheRoom(user) {
+    var message = username + " sat down at the table.";
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+}
+
 function resetConnection() {
     localStream.close();
     dataStream.close();
@@ -233,12 +242,6 @@ var getTableImage = function(room, callback) {
 
 window.onload = function () {
 $("#userName").focus();
-try {
-  localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media'}});
-  dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data'}});
-} catch (error) {
-    console.log('erizo error: ' + error);
-}
 
     getCafeTables(getQueryString('cafe'), function (response) {
         var cafes = JSON.parse(response);
@@ -392,6 +395,14 @@ try {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
             $('#tablecontainer').toggle();
+
+            try {
+                localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+                dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+            } catch (error) {
+                console.log('erizo error: ' + error);
+            }
+
         getTableImage(tableId1, function (response) {
             var tableImg = JSON.parse(response);
             if(tableImg.hasOwnProperty('empty')) {
@@ -514,7 +525,9 @@ try {
                 var streams = [];
                 streams.push(streamEvent.stream);
                 subscribeToStreams(streams);
-
+                if(streamEvent.stream.getAttributes().type === "media"){
+                    hasJoinedTheRoom(streamEvent.stream.getAttributes().username);
+                }
                 //If table is empty, become the leader
                 var keys = [];
                 for(var k in room.remoteStreams) keys.push(k);
