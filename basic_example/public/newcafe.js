@@ -400,12 +400,23 @@ window.onload = function () {
                 var context = canvas.getContext('2d');
                 canvas.id = "tableImg" + tableId1;
                 imgData = tableImg.imageData;
+                console.log(tableImg);
+                console.log(imgData);
                 var myImage = new Image();
+                console.log('bilds!')
+
+                myImage.onload = function(){
+                    console.log(myImage.width, myImage.height);
+                    context.drawImage(myImage, 0, 0);
+                    console.log(canvas);
+                    //document.body.appendChild(myImage);
+                    //document.body.appendChild(canvas);
+                    console.log(myImage);
+                    $("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
+                    });
+                };
                 myImage.src = imgData;
-                context.drawImage(myImage, 0, 0);
-                console.log(canvas);
-                $("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
-                });
+
             }
         });
     });
