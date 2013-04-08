@@ -412,7 +412,10 @@ window.onload = function () {
                     //document.body.appendChild(myImage);
                     //document.body.appendChild(canvas);
                     console.log(myImage);
-                    $("#table1").popover({title: 'Table 1', placement:'right',html:true, content : myImage
+                    console.log(myImage.html());
+                    $("#table1").popover({title: 'Table 1', placement:'right',html:true, content: function () {
+                        return $(myImage).html()
+                    }
                     });
                 };
                 myImage.src = imgData;
