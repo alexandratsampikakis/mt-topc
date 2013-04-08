@@ -7,10 +7,12 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
+//Plays the knocking sound
 function knockSound() {
     audioElement.play();
 }
 
+//Notifys users of newly joined user by writing in chat
 function hasJoinedTheRoom(username) {
     var message = username + " sat down at the table.";
     if($('#chatArea').val() !== "") {
@@ -20,15 +22,18 @@ function hasJoinedTheRoom(username) {
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
 }
 
+//Clears feedback text fields
 function clearFeedback() {
     $('#feedbackSubject').val("");
     $('#feedbackMail').val("");
     $('#feedbackMessage').val("");
 }
 
+//Close all streams, disconnect room, reset streams, clear text fields
 function resetConnection() {
     localStream.close();
     dataStream.close();
+    overhearStream.close();
     room.disconnect();
     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
@@ -36,6 +41,7 @@ function resetConnection() {
     clearTextFields();
 }
 
+//Adds room to knocklist
 function addToKnockList(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
         knockListYes[roomId] = 0;
@@ -70,6 +76,7 @@ function addNoCount (roomId) {
     }
 }
 
+//Removes room from knocklist
 function removeRoomFromKnocklist(roomId) {
     if(knockListYes.hasOwnProperty(roomId)) {
         delete knockListYes[roomId];
@@ -79,11 +86,13 @@ function removeRoomFromKnocklist(roomId) {
     }
 }
 
+//Adds eventlisteners to youtubeplayer
 function onYouTubePlayerReady(playerId) {
   ytplayer = document.getElementById("myytplayer");
   ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
 }
 
+//handler for youtube player state change
 function onytplayerStateChange(newState) {
     switch (newState) {
         case 1:
@@ -101,18 +110,22 @@ function onytplayerStateChange(newState) {
     console.log("state change");
 }
 
+//Plays the youtube video
 function play() {
     if (ytplayer) {
         ytplayer.playVideo();
     }
 }
 
+//Pauses the youtube video
 function pause() {
     if (ytplayer) {
         ytplayer.pauseVideo();
     }
 }
 
+//Calculates leader. Highest stream ID wins. Only counts 'media' streams.
+//Leader is used for sending snapshots to server
 function calculateLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
@@ -132,19 +145,20 @@ function getLeader() {
     return leader;
 }
 
+//Tells the room who the leader is.
 function broadcastLeader() {
     dataStream.sendData({id:'leader',leader:leader});
     console.log('broadcasting leader');
 }
 
-
-
+//Clears textfields
 function clearTextFields() {
     $('#chatArea').val("");
     $('#chatMessage').val("");
     $('#VideoUrl').val("");
 }
 
+//Appends chat message to chatArea
 function appendChatMessage(username, message) {
     var message = username + ": " + message;
     if($('#chatArea').val() !== "") {
@@ -154,6 +168,7 @@ function appendChatMessage(username, message) {
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
 }
 
+//Sends the chat message to other users
 function sendChatMessage(message) {
     dataStream.sendData({id:'chat',text:message, user:nameOfUser});
     $('#chatMessage').val("");
@@ -161,7 +176,7 @@ function sendChatMessage(message) {
     $("#myTextBox").focus();
 }
 
-
+//Retrieves the query strings
 var getQueryString = function getQueryString(key, default_) {
     if (default_==null) default_="";
     key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -173,12 +188,14 @@ var getQueryString = function getQueryString(key, default_) {
         return qs[1];
 }
 
+//Update titles
 var updateTitle = function(title) {
     $('#cafeTitle').html(title);
     $('#cafeTableTitle').html(title);
     $('#cafeVideoTitle').html(title);
 }  
 
+//Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -194,6 +211,7 @@ var getCafeTables = function(cafe, callback) {
     req.send();
 };
 
+//Retrieves table image
 var getTableImage = function(room, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getTableImg/' + room;
@@ -212,8 +230,10 @@ var getTableImage = function(room, callback) {
 
 
 window.onload = function () {
-$("#userName").focus();
+    //focus "enternametextfield"
+    $("#userName").focus();
 
+    //Retrieves the IDs of the table for the chosen café
     getCafeTables(getQueryString('cafe'), function (response) {
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tablecontainer");
@@ -230,11 +250,12 @@ $("#userName").focus();
         }
     });
 
+    //Initializes the audio element used for playing the knocking sound
     audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
 
-
+    //Sends a base64 string to server
     var sendTableImg = function(imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
@@ -253,6 +274,7 @@ $("#userName").focus();
         req.send(JSON.stringify(body));
     };
 
+    //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
         console.log(getQueryString('cafe'));
         console.log(roomId);
@@ -273,19 +295,27 @@ $("#userName").focus();
         req.send(JSON.stringify(body));
     };
 
+    //loops through and takes a snapshot of each stream. Merges into one image, sends to server.
     function getSnapshots() {
+        //Width and height of popover where the image will be displayed.
         var popoverWidth = 400;
         var popoverHeight = popoverWidth/1.33;
 
+        //Get all media streams
         var streams = room.getStreamsByAttribute('type','media');
         var length = streams.length;
 
         var canvas = document.createElement('canvas');
         var context = canvas.getContext('2d');
-        canvas.id = "testCanvas";
-        //document.body.appendChild(canvas);
+
         var height = $('#myVideo').height();
         var width = $('#myVideo').width();
+
+        //what the image will look like with 6 media streams
+        //'''''''''''''//
+        //  1   2   3  //
+        //  4   5   6  //
+        //,,,,,,,,,,,,,//
         if(length > 3) {
             canvas.width = 3*width;
             canvas.height = 2*height;
@@ -294,12 +324,16 @@ $("#userName").focus();
             canvas.height = height;
         }
 
-        console.log(length);
         for(var i = 0; i<length;i++) {
             var y = 0;
+            //if i>2, go to "second row" of image
             if (i>2) {
                 var y = height;
             }
+            
+            //For some reason, the stream you get from room.getStreamsByAttribute
+            // and room.remoteStreams that equals localStream, does not contain 
+            //all the things localStream does, therefor, special case for LocalStream.
             if(streams[i].getID() === localStream.getID()) {
                 var bitmap;
                 bitmap = localStream.getVideoFrame();
@@ -312,6 +346,7 @@ $("#userName").focus();
 
         }
 
+        //Draw the image on a new canvas in order to rescale.
         var canvas2 = document.createElement('canvas');
         var context2 = canvas2.getContext('2d');
 
@@ -323,6 +358,7 @@ $("#userName").focus();
             context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
             //console.log(canvas);
             //document.body.appendChild(canvas2);
+            //Convert to base64 and send to server.
             sendTableImg(canvas2.toDataURL(), room.roomID, function (response) {
                 console.log(response);
             });
@@ -331,6 +367,7 @@ $("#userName").focus();
 
 }
 
+    //Table buttons
     $('#table1').click(function() {
         knock(tableId1);
     });
@@ -375,20 +412,24 @@ $("#userName").focus();
     $('#sendData').click(function() {
         getSnapshots();
     });
+    //Send chat message
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
             sendChatMessage($('#chatMessage').val());
         }
         return false;
     });
+
     $('#submitUsername').click(function() {
         enterName();
         return false;
     });
+
     $('#askToJoinTable').click(function() {
         dataStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
+
     $('#leaveTableButton').click(function() {
         resetConnection();
         $('#tablecontainer').toggle();
@@ -398,11 +439,14 @@ $("#userName").focus();
         $('#menuList').toggle();
         return false;
     });
+
+    //Share a youtube video with the other participants
     $('#shareVideo').click(function() {
         $('#writeUrl').toggle();
         $('#writeUrl').focus();
         return false;
     });
+
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
             urlVideo = $('#VideoUrl').val();
@@ -411,15 +455,18 @@ $("#userName").focus();
         }
         return false;
     });
+
     $('#closeVideo').click(function() {
         $('#myytplayer').css ({visibility:'hidden'});
         $('#closeVideo').toggle();
         $('#youtubeVideo').toggle();
         return false;
     }); 
-    $('#shareDocument').click(function() {
+    /*$('#shareDocument').click(function() {
         return false;
-    });
+    });*/
+
+    //Sends message details to server which in turn sends an email to iDipity google group
     $('#sendFeedback').click(function() {
         if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
         sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
@@ -428,6 +475,7 @@ $("#userName").focus();
             $('#feedbackModal').modal('hide')
         });
     });
+
     $('#closeFeedback').click(function() {
         clearFeedback();
     });
@@ -488,7 +536,7 @@ $("#userName").focus();
     var deniedNotification = function(whatCase) {
         switch (whatCase) {
             case 1:
-                $('.center').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seams that the users want some privacy at the moment. Try again later!</p>' }}).show();
+                $('.center').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
                 break;
             case 2:
                 $('.center').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
@@ -599,7 +647,7 @@ $("#userName").focus();
                     setInterval(function(){
                         console('send imagessss');
                         getSnapshots();
-                    },5000);
+                    },1000*60*5);
                 }
                 if(leader === localStream.getID()) {
                     broadcastLeader();
@@ -616,6 +664,12 @@ $("#userName").focus();
                     if(stream.getID() === leader) {
                         console.log('kommer jag hit?');
                         leader = calculateLeader();
+                        if(leader === localStream.getID()) {
+                            setInterval(function(){
+                                console('send imagessss');
+                                getSnapshots();
+                            },1000*60*5);
+                        }
                         console.log(calculateLeader());
                     }
                     console.log("Removing " + stream.elementID);
