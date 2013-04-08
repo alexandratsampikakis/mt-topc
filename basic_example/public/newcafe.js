@@ -412,7 +412,7 @@ window.onload = function () {
                     //document.body.appendChild(myImage);
                     //document.body.appendChild(canvas);
                     console.log(myImage);
-                    console.log(myImage.html());
+                    console.log($(myImage).html());
                     $("#table1").popover({title: 'Table 1', placement:'right',html:true, content: function () {
                         return $(myImage).html()
                     }
@@ -662,7 +662,7 @@ window.onload = function () {
                 if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
                     leader = localStream.getID();
                     setInterval(function(){
-                        console('send imagessss');
+                        console.log('send imagessss');
                         getSnapshots();
                     },1000*60*5);
                 }
