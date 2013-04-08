@@ -161,11 +161,12 @@ function clearTextFields() {
 //Appends chat message to chatArea
 function appendChatMessage(username, message) {
     var message = username + ": " + message;
+    var scrollbot = false;
     if($('#chatArea').val() !== "") {
         message = "\n"+message;
     }
     $('#chatArea').append(message);
-    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
 }
 
 //Sends the chat message to other users
@@ -510,10 +511,12 @@ window.onload = function () {
                         console.log(imgData);
                         var myImage = new Image();
                         console.log('bilds!')
+
                         myImage.onload = function(){
                             console.log(myImage.width, myImage.height);
                             context.drawImage(myImage, 0, 0);
                             console.log(canvas);
+                            document.body.appendChild(myImage);
                             document.body.appendChild(canvas);
                             console.log(myImage);
                         };
