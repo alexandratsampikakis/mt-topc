@@ -393,15 +393,34 @@ window.onload = function () {
             var tableImg = JSON.parse(response);
             if(tableImg.hasOwnProperty('empty')) {
                 if(tableImg.empty === true) {
-                    $("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
+                    $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="overhearingContainer" class="hide">
+                            <div class="span3">
+                                <div id="overhear1">
+                                </div>
+                                <div id="overhear2">
+                                </div>
+                                <div id="overhear3">
+                                </div>
+                                <div id="overhear4">
+                                </div>
+                                <div id="overhear5">
+                                </div>
+                                <div id="overhear6">
+                                </div>
+                            </div>
+                        </div>'
+                    });
+                    overhear(tableId1);
                 }
             } else {
                 imgData = tableImg.imageData;
                 var myImage = new Image();
                 myImage.onload = function(){
 
-                    $("#table1").popover({title: 'Table 1', placement:'right',html:true, content: '<canvas id="popoverimg"></canvas>'
-                    });
+                    /*$("#table1").popover({title: 'Table 1', placement:'right',html:true, content: '<canvas id="popoverimg"></canvas>'
+                    });*/
+
+                        
                     var canvas = document.getElementById('popoverimg');
                     var context = canvas.getContext('2d');
                     context.drawImage(myImage, 0, 0);
