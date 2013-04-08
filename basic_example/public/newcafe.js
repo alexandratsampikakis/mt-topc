@@ -389,11 +389,7 @@ window.onload = function () {
     });
 
     $("#table1").mouseover(function(){
-        getTableImage(tableId1, function (response) {
-            var tableImg = JSON.parse(response);
-            if(tableImg.hasOwnProperty('empty')) {
-                if(tableImg.empty === true) {
-                    $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="overhearingContainer" class="hide">
+        $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="overhearingContainer" class="hide">
                             <div class="span3">
                                 <div id="overhear1">
                                 </div>
@@ -411,6 +407,11 @@ window.onload = function () {
                         </div>'
                     });
                     overhear(tableId1);
+        /*getTableImage(tableId1, function (response) {
+            var tableImg = JSON.parse(response);
+            if(tableImg.hasOwnProperty('empty')) {
+                if(tableImg.empty === true) {
+
                 }
             } else {
                 imgData = tableImg.imageData;
@@ -421,14 +422,14 @@ window.onload = function () {
                     });*/
 
                         
-                    var canvas = document.getElementById('popoverimg');
+                    /*var canvas = document.getElementById('popoverimg');
                     var context = canvas.getContext('2d');
                     context.drawImage(myImage, 0, 0);
                 };
                 myImage.src = imgData;
 
             }
-        });
+        });*/
     });
 
     $('#sendData').click(function() {
