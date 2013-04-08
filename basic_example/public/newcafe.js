@@ -396,27 +396,15 @@ window.onload = function () {
                     $("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
                 }
             } else {
-                var canvas = document.createElement('canvas');
-                var context = canvas.getContext('2d');
-                canvas.id = "tableImg" + tableId1;
                 imgData = tableImg.imageData;
-                console.log(tableImg);
-                console.log(imgData);
                 var myImage = new Image();
-                console.log('bilds!')
-
                 myImage.onload = function(){
-                    console.log(myImage.width, myImage.height);
-                    context.drawImage(myImage, 0, 0);
-                    console.log(canvas);
-                    //document.body.appendChild(myImage);
-                    //document.body.appendChild(canvas);
-                    console.log(myImage);
-                    console.log($(myImage).html());
-                    $("#table1").popover({title: 'Table 1', placement:'right',html:true, content: function () {
-                        return $(myImage).html()
-                    }
+
+                    $("#table1").popover({title: 'Table 1', placement:'right',html:true, content: '<canvas id="popoverimg"></canvas>'
                     });
+                    var canvas = document.getElementById('popoverimg');
+                    var context = canvas.getContext('2d');
+                    context.drawImage(myImage, 0, 0);
                 };
                 myImage.src = imgData;
 
