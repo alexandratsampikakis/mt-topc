@@ -59,7 +59,7 @@ var myRoom;
 //########################### EMAILFEEDBACK ######################
 app.post('/sendFeedback', function (req, res) {
     "use strict";
-    var subject = req.params.subject,
+    var subject = req.body.subject,
         email = req.body.email,
         text = req.body.text;
     var message = {
