@@ -610,21 +610,6 @@ window.onload = function () {
                                 id: 'test'+stream.getID()
                             }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
-                            /*stream.addEventListener("stream-data", function(evt){
-                                switch (evt.msg.id) {
-                                    case "chat":
-                                        appendChatMessage(evt.msg.user, evt.msg.text);
-                                        break;
-                                    case "popup":
-                                        askToJoinTablePopup(evt.msg.user);
-                                        break;
-                                    case "leader":
-                                        console.log('message received :E');
-                                        setLeader(evt.msg.leader);
-                                   default:
-                                      
-                                }
-                            });*/
                             $(window).resize(function() {
                                 var videoheight = $('#vid'+1).width()/1.33;
                                 $(stream.getID()).height(videoheight);
