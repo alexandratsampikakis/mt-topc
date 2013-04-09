@@ -465,7 +465,7 @@ window.onload = function () {
     });
 
     $('#closeVideo').click(function() {
-        $('#myytplayer').css ({visibility:'hidden'});
+        $('#myytplayer').remove();
         $('#closeVideo').toggle();
         $('#youtubeVideo').toggle();
         return false;
