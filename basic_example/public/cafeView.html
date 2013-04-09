@@ -27,7 +27,8 @@
 	</div>
 
 	<div class="container-fluid">
-  		<div class="row-fluid">
+		<div id="enterNameRow" class="row-fluid">
+
     		<div class="span2" id="menuList">
       			<ul class="nav nav-list">
       				<li class="nav-header">Menu</li>
@@ -48,41 +49,43 @@
 				</ul>
     		</div>
 
-		<div id="enterName">
-			<div class="span8">
-				<center><form class="form-inline">
-					<input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
-					<button id="submitUsername" class="btn">Enter Café</button>
-				</form></center>
+			<div id="enterName">
+				<div class="span8">
+					<center><form class="form-inline">
+						<input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
+						<button id="submitUsername" class="btn">Enter Café</button>
+					</form></center>
+				</div>
+			</div>
+
+	    	<div id="tablecontainer" class="hide">
+		    	<div class="span8">
+		    		<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeTableTitle"></big></p></center>
+		    		<div class='notifications center'></div>
+
+		    		<div id="rooms">
+			      		<p>
+			      			<div class="span3 offset1 tableBox" id="table1" rel="popover" data-animation="true">
+			      				<b><big>Table 1</big></b>
+			      			</div>
+
+			      			<div class="span3 tableBox" id="table2"><b><big>Table 2</big></b></div>
+
+			      			<div class="span3 tableBox" id="table3"><b><big>Table 3</big></b></div>
+			      		</p>
+
+			      		<p>
+			      			<div class="span3 offset1 tableBox" id="table4"><b><big>Table 4</big></b></div>
+			      			<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
+			      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
+			      		</p>
+		      		</div>
+				</div>
 			</div>
 		</div>
-
-    	<div id="tablecontainer" class="hide">
-	    	<div class="span8">
-	    		<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeTableTitle"></big></p></center>
-	    		<div class='notifications center'></div>
-
-	    		<div id="rooms">
-		      		<p>
-		      			<div class="span3 offset1 tableBox" id="table1" rel="popover" data-animation="true">
-		      				<b><big>Table 1</big></b>
-		      			</div>
-
-		      			<div class="span3 tableBox" id="table2"><b><big>Table 2</big></b></div>
-
-		      			<div class="span3 tableBox" id="table3"><b><big>Table 3</big></b></div>
-		      		</p>
-
-		      		<p>
-		      			<div class="span3 offset1 tableBox" id="table4"><b><big>Table 4</big></b></div>
-		      			<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
-		      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
-		      		</p>
-	      		</div>
-			</div>
-		</div>
-
-		<div id="vidcontainer1" class="span3 hide">
+  		
+		<div id="inTableRow" class="row-fluid hide">
+		<div id="vidcontainer1" class="span3">
 			<ul class="dropdown">
 			    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
 			    <ul class="dropdown-menu">
@@ -111,7 +114,7 @@
 	        </div>
 		</div>
 
-		<div class="span6 hide" id="theTable" style="height: 100%;">
+		<div class="span6" id="theTable" style="height: 100%;">
 			<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></p>
 			<p>
 				<button id="sendData" class="btn btn-small">Send</button>
@@ -136,7 +139,7 @@
 			<textarea rows="8" id="chatArea"></textarea>
 			<form class="form-inline">
 				<input type="text" id="chatMessage" class="input-xlarge">
-				<button type="submit" id="sendMessage" class="btn btn-small">Send message</button>
+				<button type="submit" id="sendMessage" class="btn btn-small">Send</button>
 			</form>
 			
 		</div>
@@ -175,7 +178,7 @@
             </div>
 		</div>
 
-		<div id="vidcontainer2" class="span3 hide">
+		<div id="vidcontainer2" class="span3">
 	        <div id="vid2">
 	        </div>
 	        <div id="vid4">

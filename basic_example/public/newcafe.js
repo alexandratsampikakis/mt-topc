@@ -440,11 +440,8 @@ window.onload = function () {
 
     $('#leaveTableButton').click(function() {
         resetConnection();
-        $('#tablecontainer').toggle();
-        $('#vidcontainer1').toggle();
-        $('#vidcontainer2').toggle();
-        $('#theTable').toggle();
-        $('#menuList').toggle();
+        $('#enterNameRow').toggle();
+        $('#inTableRow').toggle();
         return false;
     });
 
@@ -571,11 +568,8 @@ window.onload = function () {
     }
 
     var initialize = function(roomId) {
-        $('#tablecontainer').toggle();
-        $('#vidcontainer1').toggle();
-        $('#vidcontainer2').toggle();
-        $('#theTable').toggle();
-        $('#menuList').toggle();
+        $('#enterNameRow').toggle();
+        $('#inTableRow').toggle();
 
         //Init chat
         $('#chatArea').css('margin-top',$('#theTable').height()-350);
