@@ -388,7 +388,7 @@ window.onload = function () {
         knock(tableId6);
     });
 
-    $("#table1").mouseover(function(){
+    /*$("#table1").mouseover(function(){
         $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="overhearingContainer" class="hide"><div class="span3"><div id="overhear1"></div><div id="overhear2"></div><div id="overhear3"></div><div id="overhear4"></div><div id="overhear5"></div><div id="overhear6"></div></div></div>'
                     });
                     overhear(tableId1);
@@ -415,7 +415,7 @@ window.onload = function () {
 
             }
         });*/
-    });
+    //});
 
     $('#sendData').click(function() {
         getSnapshots();
