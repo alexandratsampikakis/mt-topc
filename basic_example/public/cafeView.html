@@ -82,38 +82,36 @@
 			</div>
 		</div>
 
-		<div id="vidcontainer1" class="hide">
-			<div class="span3">
+		<div id="vidcontainer1" class="span3 hide">
+			<ul class="dropdown">
+			    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
+			    <ul class="dropdown-menu">
+			        <li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
+			        <li class="nav-header">Café</li>
+			        <li><a href="#">User guide</a></li>
+			        <li><a href="#">Favorites</a></li>
+			        <li><a href="#">Recent</a></li>
+			        <li><a href="#">Hot</a></li>
+			        <li><a href="#">Find cafés</a></li>
 
-				<ul class="dropdown">
-				    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
-				    <ul class="dropdown-menu">
-				        <li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
-				        <li class="nav-header">Café</li>
-				        <li><a href="#">User guide</a></li>
-				        <li><a href="#">Favorites</a></li>
-				        <li><a href="#">Recent</a></li>
-				        <li><a href="#">Hot</a></li>
-				        <li><a href="#">Find cafés</a></li>
+			        <li class="nav-header">Events</li>
+			        <li><a href="#">Calendar</a></li>   
 
-				        <li class="nav-header">Events</li>
-				        <li><a href="#">Calendar</a></li>   
-
-				        <li class="nav-header">My pages</li>
-				        <li><a href="#">Profile</a></li>  
-				        <li><a href="#">Friends</a></li> 
-			    	</ul>
-			    </ul>   
-				<div id="vid1" class="">
-					<div id="myVideo" style="100%;"></div>
-				</div>
-		        <div id="vid3" class="">
-		        </div>
-		        <div id="vid5" class="">
-		        </div>
+			        <li class="nav-header">My pages</li>
+			        <li><a href="#">Profile</a></li>  
+			        <li><a href="#">Friends</a></li> 
+		    	</ul>
+		    </ul>   
+			<div id="vid1" class="">
+				<div id="myVideo" style="100%;"></div>
 			</div>
+	        <div id="vid3" class="">
+	        </div>
+	        <div id="vid5" class="">
+	        </div>
 		</div>
 
+<<<<<<< HEAD
 		<div id="shareMediaChat" class="hide">
 			<div class="span6" id="theTable" style="height: 100%;">
 				<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></p>
@@ -144,6 +142,36 @@
 				</form>
 				
 			</div>
+=======
+		<div class="span6 hide" id="theTable" style="height: 100%;">
+			<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></p>
+			<p>
+				<button id="sendData" class="btn btn-small">Send</button>
+				<button id="leaveTableButton" class="btn btn-small">Leave table</button>
+				<button id="shareVideo" class="btn btn-small">Share video</button>
+				<!--<button id="shareDocument" class="btn btn-small">Share document</button>-->
+				<button id="closeVideo" class="btn btn-small hide">Close video</button>
+				<div id="writeUrl" class="hide">
+					<form class="form-inline">
+						<input type="text" id="VideoUrl" class="input-xlarge">
+						<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
+					</form>
+				</div>
+			</p></center>
+
+			<p>
+			<center><div id="youtubeVideo" class="embed-container hide">
+					<a href="javascript:void(0);" onclick="play();">Play</a>
+			</div></center>
+			</p>
+
+			<textarea rows="8" id="chatArea"></textarea>
+			<form class="form-inline">
+				<input type="text" id="chatMessage" class="input-xlarge">
+				<button type="submit" id="sendMessage" class="btn btn-small">Send message</button>
+			</form>
+			
+>>>>>>> test
 		</div>
 
 		<div id="feedbackModal" class="modal hide fade in" style="display: none; ">
@@ -180,15 +208,13 @@
             </div>
 		</div>
 
-		<div id="vidcontainer2" class="hide">
-			<div class="span3">
-		        <div id="vid2">
-		        </div>
-		        <div id="vid4">
-		        </div>
-		        <div id="vid6">
-		        </div>
-			</div>
+		<div id="vidcontainer2" class="span3 hide">
+	        <div id="vid2">
+	        </div>
+	        <div id="vid4">
+	        </div>
+	        <div id="vid6">
+	        </div>
 		</div>
 
 	    	<!--<div class="span2">
@@ -198,6 +224,7 @@
 	    	</div> -->
   		</div>
 	</div>
+<<<<<<< HEAD
 	<div id="overhearingContainer" class="hide">
 		<div id="overhear1">
 		</div>
@@ -215,6 +242,24 @@
 
 
 	<div id="nav-bot" class="navbar navbar-fixed-bottom navbar-inverse" style="height: 41px;">
+=======
+	<div id="overhearing" class="hide">
+        <div id="overhear1">
+        </div>
+        <div id="overhear2">
+        </div>
+        <div id="overhear3">
+        </div>
+       	<div id="overhear4">
+        </div>
+        <div id="overhear5">
+        </div>
+        <div id="overhear6">
+        </div>
+	</div>
+	
+	<div id="nav-bot" class="navbar navbar-fixed-bottom navbar-inverse">
+>>>>>>> test
   		<div class="navbar-inner">
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
   			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>

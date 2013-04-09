@@ -443,7 +443,7 @@ window.onload = function () {
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
         $('#vidcontainer2').toggle();
-        $('#shareMediaChat').toggle();
+        $('#theTable').toggle();
         $('#menuList').toggle();
         return false;
     });
@@ -574,7 +574,7 @@ window.onload = function () {
         $('#tablecontainer').toggle();
         $('#vidcontainer1').toggle();
         $('#vidcontainer2').toggle();
-        $('#shareMediaChat').toggle();
+        $('#theTable').toggle();
         $('#menuList').toggle();
 
         //Init chat
