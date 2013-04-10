@@ -239,15 +239,7 @@ window.onload = function () {
                 if(tableImg.empty === true) {
                     var myImage = new Image();
                     myImage.onload = function(){
-                        var canvas = document.getElementById('table1img');
-                        var context = canvas.getContext('2d');
-                        context.fillStyle='#FF0000';
-                        context.fillRect(0,0,80,100);
-                        context.drawImage(myImage, 0, 0);
-                        $(window).resize(function() {
-                            var height = $('#table1img').width()/1.6;
-                            $('#table1img').height(height);
-                        });
+                        $(myImage).appendTo('table1img');
                     };
                     myImage.src = "http://placehold.it/320x200";
                 }
