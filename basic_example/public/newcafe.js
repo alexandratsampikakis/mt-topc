@@ -634,7 +634,8 @@ window.onload = function () {
                 if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
                     leader = localStream.getID();
                     setInterval(function(){
-                        console.log('send imagessss');
+                        getSnapshots();
+                        console('Snapshot sent at ' + Date.now());
                         getSnapshots();
                     },1000*60*5);
                 }
@@ -654,8 +655,9 @@ window.onload = function () {
                         console.log('kommer jag hit?');
                         leader = calculateLeader();
                         if(leader === localStream.getID()) {
+                            getSnapshots();
                             setInterval(function(){
-                                console('send imagessss');
+                                console('Snapshot sent at ' + Date.now());
                                 getSnapshots();
                             },1000*60*5);
                         }
