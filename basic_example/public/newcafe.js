@@ -1,6 +1,5 @@
 var room, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
-var playVideoStream = false;
 var knockListYes = new Object();
 var knockListNo = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
@@ -96,21 +95,19 @@ function onYouTubePlayerReady(playerId) {
 
 //handler for youtube player state change
 function onytplayerStateChange(newState) {
-    if (playVideoStream) {
-        switch (newState) {
-            case 1:
-                //play
-                dataStream.sendData({id:'ytplayer', state:1});
-                console.log("play video");
-                break;
-            case 2:
-                //pause
-                dataStream.sendData({id:'ytplayer', state:2});
-                break;
-           default:
-        }
-        console.log("state change");
+    switch (newState) {
+        case 1:
+            //play
+            dataStream.sendData({id:'ytplayer', state:1});
+            console.log("play video");
+            break;
+        case 2:
+            //pause
+            dataStream.sendData({id:'ytplayer', state:2});
+            break;
+       default:
     }
+    console.log("state change");
 }
 
 //Plays the youtube video
@@ -471,8 +468,7 @@ window.onload = function () {
 
     //Share a youtube video with the other participants
     $('#shareVideo').click(function() {
-        $('#writeUrl').toggle();
-        $('#writeUrl').focus();
+        $('#writeUrl').show();
         return false;
     });
 
@@ -486,10 +482,8 @@ window.onload = function () {
     });
 
     $('#closeVideo').click(function() {
-        $('#myytplayer').empty();
         $('#closeVideo').toggle();
-        $('#youtubeVideo').toggle();
-        playVideoStream = false;
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
     }); 
     /*$('#shareDocument').click(function() {
@@ -589,7 +583,6 @@ window.onload = function () {
             $('#writeUrl').toggle();
             $('#closeVideo').show();
             $('#VideoUrl').val("");
-            playVideoStream = true;
         }
     }
 
@@ -823,6 +816,7 @@ window.onload = function () {
                                                 pause();
                                             } else if (evt.msg.state === 3) {
                                                 showVideo(evt.msg.url);
+                                                console.log('Visa video stream');
                                             };
                                         }
                                         break;
