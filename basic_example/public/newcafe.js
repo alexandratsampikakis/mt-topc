@@ -241,7 +241,7 @@ window.onload = function () {
                 if(tableImg.empty === true) {
                     var myImage = new Image();
                     myImage.onload = function(){
-                        $(myImage).appendTo('table1img');
+                        $(myImage).appendTo('#table1img');
                     };
                     myImage.src = "http://placehold.it/320x200";
                 }
