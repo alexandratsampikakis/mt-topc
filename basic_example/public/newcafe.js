@@ -232,7 +232,7 @@ var getTableImage = function(room, callback) {
 
 
 window.onload = function () {
-    charImg.src="/img/emptyChair.jpg";
+    chairImg.src="/img/emptyChair.jpg";
     getTableImage(tableId1, function (response) {
             var tableImg = JSON.parse(response);
             if(tableImg.hasOwnProperty('empty')) {
