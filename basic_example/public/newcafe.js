@@ -635,7 +635,7 @@ window.onload = function () {
                     leader = localStream.getID();
                     setInterval(function(){
                         getSnapshots();
-                        console('Snapshot sent at ' + Date.now());
+                        console.log('Snapshot sent at ' + Date.now());
                         getSnapshots();
                     },1000*60*5);
                 }
@@ -657,7 +657,7 @@ window.onload = function () {
                         if(leader === localStream.getID()) {
                             getSnapshots();
                             setInterval(function(){
-                                console('Snapshot sent at ' + Date.now());
+                                console.log('Snapshot sent at ' + Date.now());
                                 getSnapshots();
                             },1000*60*5);
                         }
