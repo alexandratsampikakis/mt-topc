@@ -5,6 +5,7 @@ var knockListNo = new Object();
 var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
+var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 //Plays the knocking sound
@@ -231,6 +232,32 @@ var getTableImage = function(room, callback) {
 
 
 window.onload = function () {
+    charImg.src="/img/emptyChair.jpg";
+    getTableImage(tableId1, function (response) {
+            var tableImg = JSON.parse(response);
+            if(tableImg.hasOwnProperty('empty')) {
+                if(tableImg.empty === true) {
+                    imgData = tableImg.imageData;
+                    var myImage = new Image();
+                    myImage.onload = function(){
+                        var canvas = document.getElementById('table1Img');
+                        var context = canvas.getContext('2d');
+                        context.drawImage(myImage, 0, 0);
+                    };
+                    myImage.src = "http://placehold.it/320x200";
+                }
+            } else {
+                imgData = tableImg.imageData;
+                var myImage = new Image();
+                myImage.onload = function(){
+                    var canvas = document.getElementById('table1Img');
+                    var context = canvas.getContext('2d');
+                    context.drawImage(myImage, 0, 0);
+                };
+                myImage.src = imgData;
+
+            }
+        });
     //focus "enternametextfield"
     $("#userName").focus();
 
@@ -299,9 +326,8 @@ window.onload = function () {
     //loops through and takes a snapshot of each stream. Merges into one image, sends to server.
     function getSnapshots() {
         //Width and height of popover where the image will be displayed.
-        var popoverWidth = 400;
-        var popoverHeight = popoverWidth/1.33;
-
+        var w = 320;
+        var h = 200
         //Get all media streams
         var streams = room.getStreamsByAttribute('type','media');
         var length = streams.length;
@@ -317,14 +343,8 @@ window.onload = function () {
         //  1   2   3  //
         //  4   5   6  //
         //,,,,,,,,,,,,,//
-        if(length > 3) {
-            canvas.width = 3*width;
-            canvas.height = 2*height;
-        } else {
-            canvas.width = length*width;
-            canvas.height = height;
-        }
-
+        canvas.width = 3*width;
+        canvas.height = 2*height;
         for(var i = 0; i<length;i++) {
             var y = 0;
             //if i>2, go to "second row" of image
@@ -335,16 +355,25 @@ window.onload = function () {
             //For some reason, the stream you get from room.getStreamsByAttribute
             // and room.remoteStreams that equals localStream, does not contain 
             //all the things localStream does, therefor, special case for LocalStream.
-            if(streams[i].getID() === localStream.getID()) {
+            if(true) {
                 var bitmap;
                 bitmap = localStream.getVideoFrame();
                 context.putImageData(bitmap, (i%3)*width, y);        
             } else {
                 var bitmap;
-                bitmap = streams[i].getVideoFrame();
+                bitmap = localStream.getVideoFrame();
                 context.putImageData(bitmap, (i%3)*width, y);
             }
 
+        }
+
+        for(var i = length; i<6;i++) {
+            var y = 0;
+            //if i>2, go to "second row" of image
+            if (i>2) {
+                var y = height;
+            }
+            context.drawImage(chairImg, (i%3)*width, y, width, height);        
         }
 
         //Draw the image on a new canvas in order to rescale.
@@ -353,20 +382,19 @@ window.onload = function () {
 
         var imgData = canvas.toDataURL();
         var myImage = new Image();
-        canvas2.width = 400;
-        canvas2.height = 400/1.33;
+        canvas2.width = 320;
+        canvas2.height = 200;
         myImage.onload = function(){
-            context2.drawImage(myImage, 0, 0,popoverWidth,popoverHeight/2);
+            context2.drawImage(myImage, 0, 0,w,h);
             //console.log(canvas);
-            //document.body.appendChild(canvas2);
+            document.body.appendChild(canvas2);
             //Convert to base64 and send to server.
             sendTableImg(canvas2.toDataURL(), room.roomID, function (response) {
                 console.log(response);
             });
         }; 
-    myImage.src = imgData;
-
-}
+        myImage.src = imgData;
+    }
 
     //Table buttons
     $('#table1').click(function() {
