@@ -483,6 +483,7 @@ window.onload = function () {
 
     $('#closeVideo').click(function() {
         $('#closeVideo').toggle();
+        $('#writeUrl').toggle();
         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
     }); 
@@ -580,7 +581,7 @@ window.onload = function () {
                            "youtubeVideo", "80%", "300", "8", null, null, params, atts);
 
             $('#myytplayer').css ({visibility:'visible'});
-            $('#writeUrl').toggle();
+            $('#writeUrl').show();
             $('#closeVideo').show();
             $('#VideoUrl').val("");
         }
