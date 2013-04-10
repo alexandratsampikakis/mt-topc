@@ -249,15 +249,7 @@ window.onload = function () {
                 imgData = tableImg.imageData;
                 var myImage = new Image();
                 myImage.onload = function(){
-                    var canvas = document.getElementById('table1img');
-                    var context = canvas.getContext('2d');
-                    context.fillStyle='#FF0000';
-                    context.fillRect(0,0,80,100);
-                    context.drawImage(myImage, 0, 0);
-                    $(window).resize(function() {
-                        var height = $('#table1img').width()/1.6;
-                        $('#table1img').height(height);
-                    });
+                    $(myImage).appendTo('#table1img');
                 };
                 myImage.src = imgData;
             }
