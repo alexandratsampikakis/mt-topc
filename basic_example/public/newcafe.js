@@ -237,12 +237,14 @@ window.onload = function () {
             var tableImg = JSON.parse(response);
             if(tableImg.hasOwnProperty('empty')) {
                 if(tableImg.empty === true) {
-                    imgData = tableImg.imageData;
                     var myImage = new Image();
                     myImage.onload = function(){
                         var canvas = document.getElementById('table1Img');
                         var context = canvas.getContext('2d');
+                        context.fillStyle='#FF0000';
+                        context.fillRect(0,0,80,100);
                         context.drawImage(myImage, 0, 0);
+
                     };
                     myImage.src = "http://placehold.it/320x200";
                 }
@@ -252,10 +254,11 @@ window.onload = function () {
                 myImage.onload = function(){
                     var canvas = document.getElementById('table1Img');
                     var context = canvas.getContext('2d');
+                    context.fillStyle='#FF0000';
+                    context.fillRect(0,0,80,100);
                     context.drawImage(myImage, 0, 0);
                 };
                 myImage.src = imgData;
-
             }
         });
     //focus "enternametextfield"
