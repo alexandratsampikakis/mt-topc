@@ -244,7 +244,10 @@ window.onload = function () {
                         context.fillStyle='#FF0000';
                         context.fillRect(0,0,80,100);
                         context.drawImage(myImage, 0, 0);
-
+                        $(window).resize(function() {
+                            var height = $('#table1img').width()/1.6;
+                            $('#table1img').height(height);
+                        });
                     };
                     myImage.src = "http://placehold.it/320x200";
                 }
@@ -257,6 +260,10 @@ window.onload = function () {
                     context.fillStyle='#FF0000';
                     context.fillRect(0,0,80,100);
                     context.drawImage(myImage, 0, 0);
+                    $(window).resize(function() {
+                        var height = $('#table1img').width()/1.6;
+                        $('#table1img').height(height);
+                    });
                 };
                 myImage.src = imgData;
             }
