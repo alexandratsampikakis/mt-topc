@@ -632,9 +632,10 @@ window.onload = function () {
                 //If table is empty, become the leader
                 var currStreams = room.getStreamsByAttribute('type','media');
                 if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
+                    console.log('Snapshot sent at ' + Date.now());
                     leader = localStream.getID();
+                    getSnapshots();
                     setInterval(function(){
-                        getSnapshots();
                         console.log('Snapshot sent at ' + Date.now());
                         getSnapshots();
                     },1000*60*5);
@@ -655,6 +656,7 @@ window.onload = function () {
                         console.log('kommer jag hit?');
                         leader = calculateLeader();
                         if(leader === localStream.getID()) {
+                            console.log('Snapshot sent at ' + Date.now());
                             getSnapshots();
                             setInterval(function(){
                                 console.log('Snapshot sent at ' + Date.now());
