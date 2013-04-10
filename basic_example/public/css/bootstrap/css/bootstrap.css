@@ -232,7 +232,7 @@ body {
   line-height: 20px;
   color: #333333;
   /*background-color: #ffffff;*/
-  background-image:url('/img/background-img.jpg');
+  background-image: url('/img/background-img');
   padding-top: 65px;
 }
 
