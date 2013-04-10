@@ -239,7 +239,7 @@ window.onload = function () {
                 if(tableImg.empty === true) {
                     var myImage = new Image();
                     myImage.onload = function(){
-                        var canvas = document.getElementById('table1Img');
+                        var canvas = document.getElementById('table1img');
                         var context = canvas.getContext('2d');
                         context.fillStyle='#FF0000';
                         context.fillRect(0,0,80,100);
@@ -252,7 +252,7 @@ window.onload = function () {
                 imgData = tableImg.imageData;
                 var myImage = new Image();
                 myImage.onload = function(){
-                    var canvas = document.getElementById('table1Img');
+                    var canvas = document.getElementById('table1img');
                     var context = canvas.getContext('2d');
                     context.fillStyle='#FF0000';
                     context.fillRect(0,0,80,100);
