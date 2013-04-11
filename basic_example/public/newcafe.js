@@ -696,7 +696,7 @@ window.onload = function () {
                     var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1]);
                     $('#'+stream.elementID).remove();
                     streams = room.getStreamsByAttribute('type','media');
-                    while($('#vid'vidElementNr).children().length != 0) {
+                    while($('#vid'+vidElementNr).children().length != 0) {
                         var prevStream = 'vid'+(vidElementNr);
                         var nextStream = 'vid'+(vidElementNr+1);
                         for (var i = 0; i < streams.length; i++) {
