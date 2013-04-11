@@ -127,8 +127,8 @@ app.get("/api/getTableImg/:room", function (req, res) {
                 error: 'Database error.'
             });
         } else if(records === null) {
+            console.log('no image available');
             res.json({
-                console.log('no image available');
                 //bild för tomt café
                 empty:true
             });
