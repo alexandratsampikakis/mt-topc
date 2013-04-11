@@ -693,7 +693,7 @@ window.onload = function () {
                         console.log(calculateLeader());
                     }
                     console.log("Removing " + stream.elementID);
-                    var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1]):
+                    var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1]);
                     $('#'+stream.elementID).remove();
                     streams = room.getStreamsByAttribute('type','media');
                     while($('#vid'vidElementNr).children().length != 0) {
