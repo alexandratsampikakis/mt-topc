@@ -274,28 +274,6 @@ window.onload = function () {
         }
     });
 
-    getTableImage(tableId1, function (response) {
-        var tableImg = JSON.parse(response);
-        if(tableImg.hasOwnProperty('empty')) {
-            console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
-            if(tableImg.empty === true) {
-                var myImage = new Image();
-                myImage.onload = function(){
-                    $(myImage).appendTo('#table1img');
-                };
-                myImage.src = "http://placehold.it/320x200";
-            }
-        } else {
-            console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
-            imgData = tableImg.imageData;
-            var myImage = new Image();
-            myImage.onload = function(){
-                $(myImage).appendTo('#table1img');
-            };
-            myImage.src = imgData;
-        }
-    });
-
     //Initializes the audio element used for playing the knocking sound
     audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '/media/knock.mp3');
