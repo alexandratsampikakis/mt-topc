@@ -6172,5 +6172,5 @@ a.badge:focus {
   background-color: rgb(97, 183, 226);
 }
 
-.imgBox  { height:300px; background-image:url('/img/frame-big-white.png'); }
+.imgBox  { height:100px; width:100px; background-image:url('/img/frame-big-white.png'); }
 .imgText { text-align:center; }
