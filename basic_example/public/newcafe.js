@@ -693,7 +693,21 @@ window.onload = function () {
                         console.log(calculateLeader());
                     }
                     console.log("Removing " + stream.elementID);
+                    var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1]):
                     $('#'+stream.elementID).remove();
+                    streams = room.getStreamsByAttribute('type','media');
+                    while($('#vid'vidElementNr).children().length != 0) {
+                        var prevStream = 'vid'+(vidElementNr);
+                        var nextStream = 'vid'+(vidElementNr+1);
+                        for (var i = 0; i < streams.length; i++) {
+                            if(streams[i].elementID == nextStream) {
+                                streams[i].hide(nextStream);
+                                streams[i].show(prevStream);
+                                break;
+                            }
+                        };
+                        vidElementNr++:
+                    }
                 }
             }); 
 
