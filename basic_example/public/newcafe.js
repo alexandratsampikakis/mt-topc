@@ -466,6 +466,7 @@ window.onload = function () {
         resetConnection();
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
+        $('#markis').toggle();
         return false;
     });
 
@@ -513,6 +514,7 @@ window.onload = function () {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
             $('#tablecontainer').toggle();
+            $('#markis').toggle();
 
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
@@ -598,7 +600,6 @@ window.onload = function () {
     var initialize = function(roomId) {
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
-        $('#markis').toggle();
 
         //Init chat
         $('#chatArea').css('margin-top',$('#theTable').height()-350);
