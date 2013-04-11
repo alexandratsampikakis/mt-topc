@@ -233,27 +233,6 @@ var getTableImage = function(room, callback) {
 window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
     
-    getTableImage(tableId1, function (response) {
-            var tableImg = JSON.parse(response);
-            if(tableImg.hasOwnProperty('empty')) {
-                console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
-                if(tableImg.empty === true) {
-                    var myImage = new Image();
-                    myImage.onload = function(){
-                        $(myImage).appendTo('#table1img');
-                    };
-                    myImage.src = "http://placehold.it/320x200";
-                }
-            } else {
-                console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
-                imgData = tableImg.imageData;
-                var myImage = new Image();
-                myImage.onload = function(){
-                    $(myImage).appendTo('#table1img');
-                };
-                myImage.src = imgData;
-            }
-        });
     //focus "enternametextfield"
     $("#userName").focus();
 
@@ -271,6 +250,28 @@ window.onload = function () {
             tableId4 = cafes.table4;
             tableId5 = cafes.table5;
             tableId6 = cafes.table6;
+        }
+    });
+
+    getTableImage(tableId1, function (response) {
+        var tableImg = JSON.parse(response);
+        if(tableImg.hasOwnProperty('empty')) {
+            console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
+            if(tableImg.empty === true) {
+                var myImage = new Image();
+                myImage.onload = function(){
+                    $(myImage).appendTo('#table1img');
+                };
+                myImage.src = "http://placehold.it/320x200";
+            }
+        } else {
+            console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
+            imgData = tableImg.imageData;
+            var myImage = new Image();
+            myImage.onload = function(){
+                $(myImage).appendTo('#table1img');
+            };
+            myImage.src = imgData;
         }
     });
 
