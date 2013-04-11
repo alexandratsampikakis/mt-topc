@@ -116,6 +116,7 @@ tableImgSchema.plugin(ttl, { ttl: 0 });
 app.get("/api/getTableImg/:room", function (req, res) {
     var roomID = req.params.room;
 
+    console.log(roomID);
     var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
 
     tableImgModel.findOne({roomID: roomID }, function (err, records) {
