@@ -236,6 +236,7 @@ window.onload = function () {
     getTableImage(tableId1, function (response) {
             var tableImg = JSON.parse(response);
             if(tableImg.hasOwnProperty('empty')) {
+                console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
                 if(tableImg.empty === true) {
                     var myImage = new Image();
                     myImage.onload = function(){
@@ -244,6 +245,7 @@ window.onload = function () {
                     myImage.src = "http://placehold.it/320x200";
                 }
             } else {
+                console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
                 imgData = tableImg.imageData;
                 var myImage = new Image();
                 myImage.onload = function(){
