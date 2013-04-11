@@ -705,8 +705,8 @@ window.onload = function () {
                                 streams[i].show(prevStream);
                                 break;
                             }
-                        };
-                        vidElementNr++:
+                        }
+                        vidElementNr++;
                     }
                 }
             }); 
