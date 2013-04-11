@@ -10,99 +10,92 @@
     <script type="text/javascript" src="index.js"></script>
 </head>
 
-<body>
+<body id="tapet" style="background-image: url('/img/tapet-gra-randig.png'); background-repeat: repeat-x;">
 
+	<div class="navbar navbar-fixed-top navbar-inverse">
+  		<div class="navbar-inner">
+    		<a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
+    		<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>ideas+serendipity</small></a>
+    		<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
+    		<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+    		<!--<a href="#" class="brand"style="float: right; font-size: 14px;">Login</a>-->
+  		</div>
+	</div>
 
-	<div id="tapet" style="border: 0; height: 100%; width: 100%; background-image: url('/img/tapet-gra-randig.png'); background-repeat: repeat-x;">
+	<div class="container-fluid">
+  		<div class="row-fluid">
+    		<div class="span2">
+    			<a href="" id="cafeButtons"></a>
+      			<!--<ul class="nav nav-list">
+      				<li class="nav-header">Menu</li>
+      				<li class="active"><a href="http://satin.research.ltu.se:3001/">Home</a></li>
+					<li class="nav-header">Café</li>
+					<li><a href="#">User guide</a></li>
+					<li><a href="#">Favorites</a></li>
+					<li><a href="#">Recent</a></li>
+					<li><a href="#">Hot</a></li>
+					<li><a href="#">Find cafés</a></li>
 
-		<!--<div id="markis" style="border: 0; height: 55px; width: 100%; background-image: url('/img/markis.png'); background-repeat: repeat-x;">
-		</div>-->
+					<li class="nav-header">Events</li>
+					<li><a href="#">Calendar</a></li>		
 
-		<div class="navbar navbar-fixed-top navbar-inverse">
-	  		<div class="navbar-inner">
-	    		<a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
-	    		<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>ideas+serendipity</small></a>
-	    		<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
-	    		<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-	    		<!--<a href="#" class="brand"style="float: right; font-size: 14px;">Login</a>-->
-	  		</div>
-		</div>
+					<li class="nav-header">My pages</li>
+					<li><a href="#">Profile</a></li>  
+					<li><a href="#">Friends</a></li> 
+				</ul>-->
+    		</div>
+	    	<div class="span8 muted" style="height: 100%">
+	    		<center>
+	 	      		<p class="nav-header"><big>CAFÉS</big></p>
+	 	      
+	 	      	<div id="tapet" style="border: 0; height: 800px; width: 400px; background-image: url('/img/frame-big-white.png'); background-repeat: no-repeat; background-size: contain;">
+	 	      		<center></center>
+	 	      		<p style="color: black;">iDipity</p>
+	 	      		<p style="color: black;">sadfghf fhgfd sadf gsdfgh adsfgh asfg dsfg</p>
+	 	      		</center>
+				</div>
+			   </center>
 
-		<div class="container-fluid">
-	  		<div class="row-fluid">
-	    		<div class="span2">
-	    			<a href="" id="cafeButtons"></a>
-	      			<!--<ul class="nav nav-list">
-	      				<li class="nav-header">Menu</li>
-	      				<li class="active"><a href="http://satin.research.ltu.se:3001/">Home</a></li>
-						<li class="nav-header">Café</li>
-						<li><a href="#">User guide</a></li>
-						<li><a href="#">Favorites</a></li>
-						<li><a href="#">Recent</a></li>
-						<li><a href="#">Hot</a></li>
-						<li><a href="#">Find cafés</a></li>
+				<div id="feedbackModal" class="modal hide fade in" style="display: none; ">
+			            <div class="modal-header">
+			              <a class="close" data-dismiss="modal">×</a>
+			              <h3>Leave some feedback</h3>
+			            </div>
+			            <div class="modal-body">
+			              <form class="form-horizontal">
+							  <div class="control-group">
+							    <label class="control-label" for="feedbackMail">Your email:</label>
+							    <div class="controls">
+							      <input type="text" id="feedbackMail" class="input-xlarge">
+							    </div>
+							  </div>
+							  <div class="control-group">
+							    <label class="control-label" for="feedbackSubject">Subject</label>
+							    <div class="controls">
+							      <input type="text" id="feedbackSubject" class="input-xlarge">
+							    </div>
+							  </div>
+							  <div class="control-group">
+							    <label class="control-label" for="feedbackMessage">Message</label>
+							    <div class="controls">
+							      <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
+							    </div>
+							  </div>
+							</form>
+						</div>
 
-						<li class="nav-header">Events</li>
-						<li><a href="#">Calendar</a></li>		
+			            <div class="modal-footer">
+			              <a href="#" id="sendFeedback" class="btn btn-small btn-success">Send feedback</a>
+			              <a href="#" id="closeFeedback"class="btn btn-small" data-dismiss="modal">Close</a>
+			            </div>
+				</div>
 
-						<li class="nav-header">My pages</li>
-						<li><a href="#">Profile</a></li>  
-						<li><a href="#">Friends</a></li> 
-					</ul>-->
-	    		</div>
-		    	<div class="span8 muted" style="height: 100%">
-		    		<center>
-		 	      		<p class="nav-header"><big>CAFÉS</big></p>
-		 	      
-		 	      	<div id="tapet" style="border: 0; height: 800px; width: 400px; background-image: url('/img/frame-big-white.png'); background-repeat: no-repeat; background-size: contain;">
-		 	      		<center></center>
-		 	      		<p style="color: black;">iDipity</p>
-		 	      		<p style="color: black;">sadfghf fhgfd sadf gsdfgh adsfgh asfg dsfg</p>
-		 	      		</center>
-					</div>
-				   </center>
-
-					<div id="feedbackModal" class="modal hide fade in" style="display: none; ">
-				            <div class="modal-header">
-				              <a class="close" data-dismiss="modal">×</a>
-				              <h3>Leave some feedback</h3>
-				            </div>
-				            <div class="modal-body">
-				              <form class="form-horizontal">
-								  <div class="control-group">
-								    <label class="control-label" for="feedbackMail">Your email:</label>
-								    <div class="controls">
-								      <input type="text" id="feedbackMail" class="input-xlarge">
-								    </div>
-								  </div>
-								  <div class="control-group">
-								    <label class="control-label" for="feedbackSubject">Subject</label>
-								    <div class="controls">
-								      <input type="text" id="feedbackSubject" class="input-xlarge">
-								    </div>
-								  </div>
-								  <div class="control-group">
-								    <label class="control-label" for="feedbackMessage">Message</label>
-								    <div class="controls">
-								      <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
-								    </div>
-								  </div>
-								</form>
-							</div>
-
-				            <div class="modal-footer">
-				              <a href="#" id="sendFeedback" class="btn btn-small btn-success">Send feedback</a>
-				              <a href="#" id="closeFeedback"class="btn btn-small" data-dismiss="modal">Close</a>
-				            </div>
-					</div>
-
-		    	<div class="span2">
-		      		<!--<ul class="nav nav-list">
-					  	<li class="nav-header">Friends online</li> 
-					</ul>-->
-		    	</div>
-	  		</div>
-		</div>
+	    	<div class="span2">
+	      		<!--<ul class="nav nav-list">
+				  	<li class="nav-header">Friends online</li> 
+				</ul>-->
+	    	</div>
+  		</div>
 	</div>
 
 	<div class="navbar navbar-fixed-bottom navbar-inverse">
