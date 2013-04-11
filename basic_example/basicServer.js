@@ -96,7 +96,7 @@ var tableImgSchema = new Schema({
     roomID: String,
     imageData: String
 });
-tableImgSchema.plugin(ttl, { ttl: 0 });
+tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
 
     //########################### IMAGES ######################
     app.post('/api/sendTableImg/:room', function (req, res) {
