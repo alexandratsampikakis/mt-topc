@@ -128,6 +128,7 @@ app.get("/api/getTableImg/:room", function (req, res) {
             });
         } else if(records === null) {
             res.json({
+                console.log('no image available');
                 //bild för tomt café
                 empty:true
             });
