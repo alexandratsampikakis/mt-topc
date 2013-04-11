@@ -598,6 +598,7 @@ window.onload = function () {
     var initialize = function(roomId) {
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
+        $('#markis').toggle();
 
         //Init chat
         $('#chatArea').css('margin-top',$('#theTable').height()-350);
