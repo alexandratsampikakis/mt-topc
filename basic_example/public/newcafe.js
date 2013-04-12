@@ -697,10 +697,16 @@ window.onload = function () {
                     $('#'+stream.elementID).remove();
                     streams = room.getStreamsByAttribute('type','media');
                     while($('#vid'+vidElementNr).children().length != 0) {
+                        console.log('new');
+                        console.log('nr: ' + vidElementNr);
                         var prevStream = 'vid'+(vidElementNr);
                         var nextStream = 'vid'+(vidElementNr+1);
+                        console.log('next: ' + nextStream);
+                        console.log('prev: ' + prevStream);
+                        console.log('for loop');
                         for (var i = 0; i < streams.length; i++) {
                             if(streams[i].elementID == nextStream) {
+                                console.log(streams[i].elementID)
                                 streams[i].hide(nextStream);
                                 streams[i].show(prevStream);
                                 break;
