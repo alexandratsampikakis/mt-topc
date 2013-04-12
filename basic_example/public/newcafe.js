@@ -693,14 +693,14 @@ window.onload = function () {
                         console.log(calculateLeader());
                     }
                     console.log("Removing " + stream.elementID);
-                    var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1]);
+                    var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1])+1;
                     $('#'+stream.elementID).remove();
                     streams = room.getStreamsByAttribute('type','media');
                     while($('#vid'+vidElementNr).children().length != 0) {
                         console.log('new');
                         console.log('nr: ' + vidElementNr);
-                        var prevStream = 'vid'+(vidElementNr);
-                        var nextStream = 'vid'+(vidElementNr+1);
+                        var prevStream = 'vid'+(vidElementNr-1);
+                        var nextStream = 'vid'+(vidElementNr);
                         console.log('next: ' + nextStream);
                         console.log('prev: ' + prevStream);
                         console.log('for loop');
