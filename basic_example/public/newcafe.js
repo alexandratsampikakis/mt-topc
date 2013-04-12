@@ -638,7 +638,7 @@ window.onload = function () {
                         if ($('#vid'+i).children().length === 0) {
                             $('<div></div>', {
                                     id: 'test'+stream.getID()
-                                }).appendTo('#overhear'+i);
+                                }).appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             $(window).resize(function() {
                                 var videoheight = $('#vid'+1).width()/1.33;
