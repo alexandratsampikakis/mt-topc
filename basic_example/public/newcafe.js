@@ -636,7 +636,10 @@ window.onload = function () {
                 if (stream.getAttributes().type === 'media') {
                     for (var i = 2; i <= 6; i++) {
                         if ($('#vid'+i).children().length === 0) {
-                            stream.show('vid'+i);
+                            $('<div></div>', {
+                                    id: 'test'+stream.getID()
+                                }).appendTo('#overhear'+i);
+                            stream.show("test" + stream.getID());
                             $(window).resize(function() {
                                 var videoheight = $('#vid'+1).width()/1.33;
                                 $(stream.getID()).height(videoheight);
