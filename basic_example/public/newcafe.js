@@ -779,6 +779,8 @@ window.onload = function () {
                         console.log('prev: ' + prevStream);
                         console.log('for loop');
                         for (var i = 0; i < streams.length; i++) {
+                            console.log(streams[i].elementID);
+                            console.log($('#'+nextStream).children()[0].id);
                             if(streams[i].elementID == $('#'+nextStream).children()[0].id) {
                                 console.log(streams[i].elementID)
                                 streams[i].hide(nextStream);
