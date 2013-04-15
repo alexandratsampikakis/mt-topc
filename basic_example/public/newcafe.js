@@ -359,13 +359,13 @@ window.onload = function () {
             //For some reason, the stream you get from room.getStreamsByAttribute
             // and room.remoteStreams that equals localStream, does not contain 
             //all the things localStream does, therefor, special case for LocalStream.
-            if(true) {
+            if(streams[i].getID() === localStream.getID()) {
                 var bitmap;
                 bitmap = localStream.getVideoFrame();
                 context.putImageData(bitmap, (i%3)*width, y);        
             } else {
                 var bitmap;
-                bitmap = localStream.getVideoFrame();
+                bitmap = streams[i].getVideoFrame();
                 context.putImageData(bitmap, (i%3)*width, y);
             }
 
