@@ -779,7 +779,7 @@ window.onload = function () {
                         console.log('prev: ' + prevStream);
                         console.log('for loop');
                         for (var i = 0; i < streams.length; i++) {
-                            if(streams[i].elementID == nextStream) {
+                            if(streams[i].elementID == $('#'+nextStream).children()[0].id) {
                                 console.log(streams[i].elementID)
                                 streams[i].hide(nextStream);
                                 streams[i].show(prevStream);
