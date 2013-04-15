@@ -766,8 +766,11 @@ window.onload = function () {
                         }
                         console.log(calculateLeader());
                     }
+
+                                parseInt($('#test97219832963310180').parent()[0].id[3])
+
                     console.log("Removing " + stream.elementID);
-                    var vidElementNr = parseInt(stream.elementID[stream.elementID.length-1])+1;
+                    var vidElementNr = parseInt($('#'+stream.elementID).parent()[0].id[3])+1;
                     $('#'+stream.elementID).remove();
                     streams = room.getStreamsByAttribute('type','media');
                     while($('#vid'+vidElementNr).children().length != 0) {
@@ -783,7 +786,7 @@ window.onload = function () {
                             console.log($('#'+nextStream).children()[0].id);
                             if(streams[i].elementID == $('#'+nextStream).children()[0].id) {
                                 console.log(streams[i].elementID)
-                                streams[i].hide(nextStream);
+                                streams[i].hide($('#'+nextStream).children()[0].id);
                                 streams[i].show(prevStream);
                                 break;
                             }
