@@ -425,7 +425,7 @@ window.onload = function () {
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
         $('#table1img').toggle();
-        $('#overhearingContainer').toggle();
+        $('.overhearing').toggle();
     });
     $('#ohtable2').click(function() {
         overhear(tableId2);
