@@ -985,11 +985,11 @@ window.onload = function () {
                 room.addEventListener("stream-subscribed", function(streamEvent) {
                     var stream = streamEvent.stream;
                     if (stream.getAttributes().type === 'media') {
-                        for (var i = 2; i <= 6; i++) {
+                        for (var i = 1; i <= 6; i++) {
                             if ($('#overhear'+i).children().length === 0) {
                                 $('<div></div>', {
                                     id: 'test'+stream.getID()
-                                }).css('width','1').appendTo('#overhear'+i);
+                                }).css('width','33%').appendTo('#overhear'+i);
                                 stream.show("test" + stream.getID());
                                 return;
                             }
