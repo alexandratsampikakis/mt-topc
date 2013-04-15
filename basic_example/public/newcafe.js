@@ -944,6 +944,11 @@ window.onload = function () {
         }   
     }
 
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+
     var overhear = function(roomId) {
         createToken(roomId, "user", "role", function (response) {
             var token = response;
@@ -989,7 +994,7 @@ window.onload = function () {
                             if ($('#overhear'+i).children().length === 0) {
                                 $('<div></div>', {
                                     id: 'test'+stream.getID()
-                                }).css('width','33%').appendTo('#overhear'+i);
+                                }).css('width','100%').appendTo('#overhear'+i);
                                 stream.show("test" + stream.getID());
                                 return;
                             }
