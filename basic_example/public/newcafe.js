@@ -766,9 +766,7 @@ window.onload = function () {
                         }
                         console.log(calculateLeader());
                     }
-
-                                parseInt($('#test97219832963310180').parent()[0].id[3])
-
+                    
                     console.log("Removing " + stream.elementID);
                     var vidElementNr = parseInt($('#'+stream.elementID).parent()[0].id[3])+1;
                     $('#'+stream.elementID).remove();
