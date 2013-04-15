@@ -42,6 +42,13 @@ function resetConnection() {
     clearTextFields();
 }
 
+function stopOverhear() {
+    overhearStream.close();
+    room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    //toggles
+}
+
 //Adds room to knocklist
 function addToKnockList(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
@@ -397,7 +404,7 @@ window.onload = function () {
         knock(tableId1);
     });
     $('#table2').click(function() {
-        overhear(tableId1);
+        knock(tableId2);
     });
     $('#table3').click(function() {
         knock(tableId3);
@@ -410,6 +417,68 @@ window.onload = function () {
     });
     $('#table6').click(function() {
         knock(tableId6);
+    });
+
+    $('#ohtable1').click(function() {
+        overhear(tableId1);
+        $('#ohtable1').toggle();
+        $('#stopohtable1').toggle();
+    });
+    $('#ohtable2').click(function() {
+        overhear(tableId2);
+        $('#ohtable2').toggle();
+        $('#stopohtable2').toggle();
+    });
+    $('#ohtable3').click(function() {
+        overhear(tableId3);
+        $('#ohtable3').toggle();
+        $('#stopohtable3').toggle();
+    });
+    $('#ohtable4').click(function() {
+        overhear(tableId4);
+        $('#ohtable4').toggle();
+        $('#stopohtable4').toggle();
+    });
+    $('#ohtable5').click(function() {
+        overhear(tableId5);
+        $('#ohtable5').toggle();
+        $('#stopohtable5').toggle();
+    });
+    $('#ohtable6').click(function() {
+        overhear(tableId6);
+        $('#ohtable6').toggle();
+        $('#stopohtable6').toggle();
+    });
+
+    $('#stopohtable1').click(function() {
+        stopOverhear(tableId1);
+        $('#ohtable1').toggle();
+        $('#stopohtable1').toggle();
+    });
+    $('#stopohtable2').click(function() {
+        stopOverhear(tableId2);
+        $('#ohtable2').toggle();
+        $('#stopohtable2').toggle();
+    });
+    $('#stopohtable3').click(function() {
+        overhear(tableId3);
+        $('#ohtable3').toggle();
+        $('#stopohtable3').toggle();
+    });
+    $('#stopohtable4').click(function() {
+        stopOverhear(tableId4);
+        $('#ohtable4').toggle();
+        $('#stopohtable4').toggle();
+    });
+    $('#stopohtable5').click(function() {
+        stopOverhear(tableId5);
+        $('#ohtable5').toggle();
+        $('#stopohtable5').toggle();
+    });
+    $('#stopohtable6').click(function() {
+        stopOverhear(tableId6);
+        $('#ohtable6').toggle();
+        $('#stopohtable6').toggle();
     });
 
     /*$("#table1").mouseover(function(){
