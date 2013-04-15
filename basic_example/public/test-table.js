@@ -1,12 +1,12 @@
 window.onload = function () {
 
-    $('#myTab a[href=#address]').click(function () {
+    $('#myTab a[href=#napkin]').click(function () {
         $(this).tab('show');
     });
-    $('#myTab a[href=#contact]').click(function () {
+    $('#myTab a[href=#shareVideo]').click(function () {
         $(this).tab('show');
     });
-    $('#myTab a[href=#settings]').click(function () {
+    $('#myTab a[href=#shareDoc]').click(function () {
         $(this).tab('show');
     });
 
