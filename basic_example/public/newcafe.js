@@ -951,10 +951,10 @@ window.onload = function () {
 //---------------------------------------------------------------------------------------------------
 
     var overhear = function(roomId) {
-            var videoheight = $('#table1img').height/2;
+            var videoheight = $('#table2img').height/2;
             $('.overhearVidContainer').height(videoheight)
             $(window).resize(function() {
-                var videoheight = $('#table1img').height/2;
+                var videoheight = $('#table2img').height/2;
                 $('.overhearVidContainer').height(videoheight)
             });
         createToken(roomId, "user", "role", function (response) {
