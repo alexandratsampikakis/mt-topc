@@ -424,6 +424,8 @@ window.onload = function () {
         overhear(tableId1);
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
+        $('#table1img').toggle();
+        $('#overhearingContainer').toggle();
     });
     $('#ohtable2').click(function() {
         overhear(tableId2);
@@ -950,6 +952,12 @@ window.onload = function () {
 //---------------------------------------------------------------------------------------------------
 
     var overhear = function(roomId) {
+            var videoheight = $('#table1img').height/2;
+            $('.overhearingVidContainer').height(videoheight)
+            $(window).resize(function() {
+                var videoheight = $('#table1img').height/2;
+                $('.overhearingVidContainer').height(videoheight)
+            });
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
