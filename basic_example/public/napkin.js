@@ -108,8 +108,9 @@ function initCanvas () {
   }
  
   // Size canvas
-  canvas.width  = 600;
-  canvas.height = 400;
+  //canvas.width  = 600;
+  //canvas.height = 400;
+  //var height = $('#myVideo').height();
  
   // Retrieve context reference, used to execute canvas drawing commands
   context = canvas.getContext('2d');
