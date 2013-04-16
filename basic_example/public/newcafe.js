@@ -783,8 +783,10 @@ window.onload = function () {
                             console.log(streams[i].elementID);
                             console.log($('#'+nextStream).children()[0].id);
                             if(streams[i].elementID == $('#'+nextStream).children()[0].id) {
-                                console.log(streams[i].elementID)
-                                streams[i].hide($('#'+nextStream).children()[0].id);
+                                console.log(streams[i].elementID);
+                                var streamID = $('#'+nextStream).children()[0].id;
+                                streams[i].hide(streamID);
+                                $('#'+streamID).remove();
                                 $('<div></div>', {
                                     id: 'test'+stream.getID()
                                 }).appendTo('#'+prevStream);
