@@ -3,72 +3,15 @@
 <html>
 <head>
  
-<title>UnionDraw: Multiuser Drawing Pad in JavaScript</title>
+  <title>UnionDraw: Multiuser Drawing Pad in JavaScript</title>
+  <link rel="stylesheet" type="text/css" href="css/napkin.css" />
  
-<!--Prevents iPhone, iPad, and touch devices from scrolling or zooming when touched-->
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
- 
-<!--CSS-->
-<style type="text/css">
-html, body {
-  width:  100%;
-  height: 100%;
-}
- 
-#canvas {
-  background-color: #333333;
-  position: absolute;
-  top: 35px;
-}
- 
-#status {
-  color: #FFFFFF;
-  position: absolute;
-  cursor: default;
-  font-family: Helvetica, Verdana, sans-serif;
-  font-weight: bold;
-  margin: 10px;
-  top: 30px;
-}
- 
-#controls {
-  background-color: #AAAAAA;
-  position: absolute;
-  font-family: Helvetica, Verdana, sans-serif;
-  font-weight: bold;
-  font-size: smaller;
-  padding: 3px;
-  width: 594px;
-  height: 25px;
-}
- 
-select {
-  font-family: monospace;
-  font-size: medium;
-}
- 
-* {
-  padding:0;
-  margin:0;
-}
-</style>
- 
-<!--
-Load Canvas support for IE8. ExplorerCanvas courtesy Google.
-See: http://code.google.com/p/explorercanvas/
--->
-<!--[if lt IE 9]>
-<script src="excanvas.js"></script>
-<![endif]-->
- 
-<!--Load the OrbiterMicro JavaScript library (non-minified version). Use during development.-->
-<script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest.js"></script>
-<!--Load the OrbiterMicro JavaScript library (minified version). Use for production.-->
-<!--<script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest_min.js"></script>-->
- 
-<!--Load UnionDraw application code-->
-<script src="UnionDraw.js"></script>
- 
+  <!--Prevents iPhone, iPad, and touch devices from scrolling or zooming when touched-->
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+   
+  <script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest.js"></script>
+  <script src="napkin.js"></script>
+  
 </head>
  
 <body>
@@ -102,5 +45,6 @@ See: http://code.google.com/p/explorercanvas/
  
   <!--A status text field, for displaying connection information-->
   <div id="status"></div>
+  
 </body>
 </html>
