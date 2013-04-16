@@ -11,11 +11,11 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/cafeView.css" />
-    <link rel="stylesheet" type="text/css" href="css/napkin.css" />
 
-     <script type="text/javascript" src="erizo.js"></script>
+    <script type="text/javascript" src="erizo.js"></script>
     <script type="text/javascript" src="newcafe.js"></script>
     <script type="text/javascript" src="feedback.js"></script>
+    <script type="text/javascript" src="tab.js"></script>
 </head>
 
 <body>
@@ -229,40 +229,16 @@
 				<div class="tabbable">
 			        <ul class="nav nav-tabs" id="myTab">
 			            <li class="active"><a href="#napkin" data-toggle="tab">Napkin</a></li>
-			            <li><a href="#shareVideo" data-toggle="tab">Share video</a></li>
+			            <li><a href="#shareVideoo" data-toggle="tab">Share video</a></li>
 			            <li><a href="#shareDoc" data-toggle="tab">Share documents</a></li>
 			        </ul>
 
 			        <div class="tab-content">
 			          <div class="tab-pane active" id="napkin">
-			              <div id="controls">
-			                  Size:
-			                  <select id="thickness" class="fixed">
-			                        <option value="1">1</option>
-			                        <option value="2">2</option>
-			                        <option value="3">3</option>
-			                        <option value="4">4</option>
-			                        <option value="5">5</option>
-			                        <option value="10">10</option>
-			                        <option value="20">20</option>
-			                  </select>
-			               
-			                  Color:
-			                  <select id="color">
-			                        <option value="#FFFFFF">#FFFFFF</option>
-			                        <option value="#AAAAAA">#AAAAAA</option>
-			                        <option value="#666666">#666666</option>
-			                        <option value="#000000">#000000</option>
-			                        <option value="#9BA16C">#9BA16C</option>
-			                        <option value="#CC8F2B">#CC8F2B</option>
-			                        <option value="#63631D">#63631D</option>
-			                  </select>
-			              </div>
-			            
-			              <canvas id="canvas"></canvas>
+			          		Napkin
 			          </div>
 
-			          <div class="tab-pane" id="shareVideo">
+			          <div class="tab-pane" id="shareVideoo">
 			                Share video
 			          </div>
 			          <div class="tab-pane" id="shareDoc">Show document</div>
@@ -375,9 +351,6 @@
 	<script type="text/javascript" src="/lib/swfobject/src/swfobject.js"></script>
 
 	<script type="text/javascript" src="/tab.js"></script>
-    <script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest.js"></script>
-    <script src="napkin.js"></script>
-
 	<script type="text/javascript">
 		$(document).ready(function () {
       		$('.dropdown-toggle').dropdown();
