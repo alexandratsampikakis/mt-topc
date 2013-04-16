@@ -77,7 +77,6 @@ addOnloadHandler(init);
 function init () {
   initCanvas();
   registerInputListeners();
-  //initOrbiter();
   iPhoneToTop();
  
   //setStatus("Connecting to UnionDraw...");
