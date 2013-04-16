@@ -6,7 +6,7 @@ html, body {
 #canvas {
   background-color: #333333;
   position: absolute;
-  top: 35px;
+  margin-top: 40px;
 }
  
 #status {
