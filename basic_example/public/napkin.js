@@ -53,18 +53,6 @@ var DrawingCommands = {LINE_TO:       "lineTo",
                        SET_THICKNESS: "setThickness",
                        SET_COLOR:     "setColor"};
  
-//==============================================================================
-// TIMER VARIABLES
-//==============================================================================
-// The ID for a timer that sends the user's drawing path on a regular interval
-// var broadcastPathIntervalID;
-// // The ID for a timer that executes drawing commands sent by remote users
-// var processDrawingCommandsIntervalID;
- 
-//==============================================================================
-// TOUCH-DEVICE VARIABLES
-//==============================================================================
-var hasTouch = false;
  
 //==============================================================================
 // INITIALIZATION
@@ -76,10 +64,6 @@ window.onload = init;
 function init () {
   initCanvas();
   registerInputListeners();
-  //initOrbiter();
-  iPhoneToTop();
- 
-  //setStatus("Connecting to UnionDraw...");
 }
  
 // Set up the drawing canvas
