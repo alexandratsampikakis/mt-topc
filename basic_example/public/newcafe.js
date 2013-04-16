@@ -784,9 +784,9 @@ window.onload = function () {
                                 streams[i].hide(streamID);
                                 $('#'+streamID).remove();
                                 $('<div></div>', {
-                                    id: 'test'+stream.getID()
+                                    id: 'test'+streams[i].getID()
                                 }).appendTo(prevStream);
-                                streams[i].show("test" + stream.getID());
+                                streams[i].show("test" + streams[i].getID());
                                 break;
                             }
                         }
