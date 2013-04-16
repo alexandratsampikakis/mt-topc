@@ -21,35 +21,38 @@
         <div class="tab-content">
           <div class="tab-pane active" id="napkin">
             Napkin
-            <!--Drop down menus for selecting line thickness and color-->
-            <div id="controls">
-                Size:
-                <select id="thickness" class="fixed">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                </select>
-             
-                Color:
-                <select id="color">
-                    <option value="#FFFFFF">#FFFFFF</option>
-                    <option value="#AAAAAA">#AAAAAA</option>
-                    <option value="#666666">#666666</option>
-                    <option value="#000000">#000000</option>
-                    <option value="#9BA16C">#9BA16C</option>
-                    <option value="#CC8F2B">#CC8F2B</option>
-                    <option value="#63631D">#63631D</option>
-                </select>
-            </div>
-           
-            <!--The canvas where drawings will be displayed-->
-            <canvas id="canvas"></canvas>
           </div>
-          <div class="tab-pane" id="shareVideo">Show video</div>
+          
+          <div class="tab-pane" id="shareVideo">
+              <!--Drop down menus for selecting line thickness and color-->
+              <div id="controls">
+                  Size:
+                  <select id="thickness" class="fixed">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                  </select>
+               
+                  Color:
+                  <select id="color">
+                      <option value="#FFFFFF">#FFFFFF</option>
+                      <option value="#AAAAAA">#AAAAAA</option>
+                      <option value="#666666">#666666</option>
+                      <option value="#000000">#000000</option>
+                      <option value="#9BA16C">#9BA16C</option>
+                      <option value="#CC8F2B">#CC8F2B</option>
+                      <option value="#63631D">#63631D</option>
+                  </select>
+              </div>
+             
+              <!--The canvas where drawings will be displayed-->
+              <canvas id="canvas"></canvas>
+
+          </div>
           <div class="tab-pane" id="shareDoc">Show document</div>
         </div>
     </div>
