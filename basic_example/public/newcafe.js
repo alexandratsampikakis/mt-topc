@@ -562,9 +562,6 @@ window.onload = function () {
         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
     }); 
-    /*$('#shareDocument').click(function() {
-        return false;
-    });*/
 
     //Sends message details to server which in turn sends an email to iDipity google group
     $('#sendFeedback').click(function() {
