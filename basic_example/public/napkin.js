@@ -53,6 +53,18 @@ var DrawingCommands = {LINE_TO:       "lineTo",
                        SET_THICKNESS: "setThickness",
                        SET_COLOR:     "setColor"};
  
+//==============================================================================
+// TIMER VARIABLES
+//==============================================================================
+// The ID for a timer that sends the user's drawing path on a regular interval
+// var broadcastPathIntervalID;
+// // The ID for a timer that executes drawing commands sent by remote users
+// var processDrawingCommandsIntervalID;
+ 
+//==============================================================================
+// TOUCH-DEVICE VARIABLES
+//==============================================================================
+var hasTouch = false;
  
 //==============================================================================
 // INITIALIZATION
@@ -64,6 +76,10 @@ window.onload = init;
 function init () {
   initCanvas();
   registerInputListeners();
+  //initOrbiter();
+  iPhoneToTop();
+ 
+  //setStatus("Connecting to UnionDraw...");
 }
  
 // Set up the drawing canvas
@@ -116,6 +132,50 @@ function clientAttributeUpdateListener (attrScope,
   }
 }
  
+ 
+//==============================================================================
+// TOUCH-INPUT EVENT LISTENERS
+//==============================================================================
+// On devices that support touch input, this function is triggered when the
+// user touches the screen.
+function touchDownListener (e) {
+  // Note that this device supports touch so that we can prevent conflicts with
+  // mouse input events.
+  hasTouch = true;
+  // Prevent the touch from scrolling the page, but allow interaction with the
+  // control-panel menus. The "event.target.nodeName" variable provides the name
+  // of the HTML element that was touched.
+  if (event.target.nodeName != "SELECT") {
+    e.preventDefault();
+  }
+  // Determine where the user touched screen.
+  var touchX = e.changedTouches[0].clientX - canvas.offsetLeft;
+  var touchY = e.changedTouches[0].clientY - canvas.offsetTop;
+  // A second "touch start" event may occur if the user touches the screen with
+  // two fingers. Ignore the second event if the pen is already down.
+  if (!isPenDown) {
+    // Move the drawing pen to the position that was touched
+    penDown(touchX, touchY);
+  }
+}
+ 
+// On devices that support touch input, this function is triggered when the user
+// drags a finger across the screen.
+function touchMoveListener (e) {
+  hasTouch = true;
+  e.preventDefault();
+  var touchX = e.changedTouches[0].clientX - canvas.offsetLeft;
+  var touchY = e.changedTouches[0].clientY - canvas.offsetTop;
+  // Draw a line to the position being touched.
+  penMove(touchX, touchY);
+}
+ 
+// On devices that support touch input, this function is triggered when the
+// user stops touching the screen.
+function touchUpListener () {
+  // "Lift" the drawing pen, so lines are no longer drawn
+  penUp();
+}
  
 //==============================================================================
 // MOUSE-INPUT EVENT LISTENERS
@@ -285,6 +345,26 @@ function drawLine (color, thickness, x1, y1, x2, y2) {
   context.moveTo(x1, y1)
   context.lineTo(x2, y2);
   context.stroke();
+}
+ 
+//==============================================================================
+// STATUS
+//==============================================================================
+// Updates the text of the on-screen HTML "status" div tag
+function setStatus (message) {
+  document.getElementById("status").innerHTML = message;
+}
+ 
+//==============================================================================
+// IPHONE UTILS
+//==============================================================================
+// Hides the iPhone address bar by scrolling it out of view
+function iPhoneToTop () {
+  if (navigator.userAgent.indexOf("iPhone") != -1) {
+    setTimeout (function () {
+      window.scroll(0, 0);
+    }, 100);
+  }
 }
  
 //==============================================================================
