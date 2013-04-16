@@ -1,4 +1,4 @@
-(function(){
+//(function(){
 var room, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
 var knockListYes = new Object();
@@ -1023,4 +1023,4 @@ window.onload = function () {
         });  
     }
 };
-})();
+//})();
