@@ -215,7 +215,6 @@
 		</style>
 		<div class="span6 bgimg" id="theTable" style="height: 100%;">
 			<!--<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></center></p>-->
-				<button id="leaveTableButton" class="btn btn-mini">Leave table</button>
 				<!--<button id="shareVideo" class="btn btn-small">Share video</button>-->
 
 			<div class="tabbable">
@@ -223,11 +222,11 @@
 		            <li class="active"><a href="#napkin" data-toggle="tab">Napkin</a></li>
 		            <li><a href="#shareYTVideo" data-toggle="tab">Share video</a></li>
 		            <li><a href="#shareDoc" data-toggle="tab">Share documents</a></li>
+		            <button id="leaveTableButton" class="btn btn-mini" style="align: right;">Leave table</button>
 		        </ul>
 
 		        <div class="tab-content">
 		          <div class="tab-pane active" id="napkin">
-		            <!--Drop down menus for selecting line thickness and color-->
 		              <div id="controls">
 		                  Size:
 		                  <select id="thickness" class="fixed">
@@ -258,22 +257,22 @@
 
 		          <div class="tab-pane" id="shareYTVideo">
 		          		<button id="closeVideo" class="btn btn-small hide">Close video</button>
-		                <div id="writeUrl">
-							<form class="form-inline">
-								<input type="text" id="VideoUrl" class="input-xlarge">
-								<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
-							</form>
-						</div>
+		          		<center>
+			                <div id="writeUrl">
+								<form class="form-inline">
+									<input type="text" id="VideoUrl" class="input-xlarge">
+									<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
+								</form>
+							</div>
+							<p><div id="youtubeVideo" class="embed-container hide">
+									<a href="javascript:void(0);" onclick="play();">Play</a>
+							</div></p>
+						</center>
 		          </div>
 		          <div class="tab-pane" id="shareDoc">Show document</div>
+
 		        </div>
 		    </div>
-
-			<p>
-			<center><div id="youtubeVideo" class="embed-container hide">
-					<a href="javascript:void(0);" onclick="play();">Play</a>
-			</div></center>
-			</p>
 
 			<textarea rows="8" id="chatArea"></textarea>
 			<form class="form-inline">
