@@ -82,6 +82,21 @@ function init () {
  
   //setStatus("Connecting to UnionDraw...");
 }
+
+function addOnloadHandler (newFunction) {
+ var oldevent = window.onload;
+ if (typeof oldevent == "function") {
+  window.onload = function() {
+      if (oldevent) {
+          oldevent();
+      }
+   newFunction();
+  };
+ }
+ else {
+      window.onload = newFunction;
+ }
+}
  
 // Set up the drawing canvas
 function initCanvas () {
