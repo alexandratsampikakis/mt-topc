@@ -70,7 +70,8 @@ var hasTouch = false;
 // INITIALIZATION
 //==============================================================================
 // Trigger init() when the document finishes loading
-window.onload = init;
+//window.onload = init;
+addOnloadHandler(init);
  
 // Main initialization function
 function init () {
