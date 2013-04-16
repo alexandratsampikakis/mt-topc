@@ -768,28 +768,24 @@ window.onload = function () {
                     }
                     
                     console.log("Removing " + stream.elementID);
-                    var vidElementNr = parseInt($('#'+stream.elementID).parent()[0].id[3])+1;
-                    $('#'+stream.elementID).remove();
-                    streams = room.getStreamsByAttribute('type','media');
+                    var streamToRemove = $('#'+stream.elementID);
+                    var vidElementNr = parseInt(streamToRemove.parent()[0].id[3])+1;
+                    streamToRemove.remove();
+                    
+                    streams = room.getStreamsByAttribute('type','media');                    
                     while($('#vid'+vidElementNr).children().length != 0) {
-                        console.log('new');
-                        console.log('nr: ' + vidElementNr);
-                        var prevStream = 'vid'+(vidElementNr-1);
-                        var nextStream = 'vid'+(vidElementNr);
-                        console.log('next: ' + nextStream);
-                        console.log('prev: ' + prevStream);
-                        console.log('for loop');
+                        var prevStream = '#vid'+(vidElementNr-1);
+                        var nextStream = '#vid'+(vidElementNr);
                         for (var i = 0; i < streams.length; i++) {
-                            console.log(streams[i].elementID);
-                            console.log($('#'+nextStream).children()[0].id);
-                            if(streams[i].elementID == $('#'+nextStream).children()[0].id) {
-                                console.log(streams[i].elementID);
-                                var streamID = $('#'+nextStream).children()[0].id;
+
+                            if(streams[i].elementID == $(nextStream).children()[0].id) {
+                                
+                                var streamID = $(nextStream).children()[0].id;
                                 streams[i].hide(streamID);
                                 $('#'+streamID).remove();
                                 $('<div></div>', {
                                     id: 'test'+stream.getID()
-                                }).appendTo('#'+prevStream);
+                                }).appendTo(prevStream);
                                 streams[i].show("test" + stream.getID());
                                 break;
                             }
