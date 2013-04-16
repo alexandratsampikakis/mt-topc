@@ -541,12 +541,6 @@ window.onload = function () {
         return false;
     });
 
-    //Share a youtube video with the other participants
-    $('#shareVideo').click(function() {
-        $('#writeUrl').show();
-        return false;
-    });
-
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
             urlVideo = $('#VideoUrl').val();

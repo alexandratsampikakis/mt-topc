@@ -212,19 +212,10 @@
 				}
 			</style>
 			<div class="span6 bgimg" id="theTable" style="height: 100%;">
-				<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></p>
-				<p>
-					<button id="sendData" class="btn btn-small">Send</button>
+				<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></center>
 					<button id="leaveTableButton" class="btn btn-small">Leave table</button>
-					<button id="shareVideo" class="btn btn-small">Share video</button>
-					<button id="closeVideo" class="btn btn-small hide">Close video</button>
-					<div id="writeUrl" class="hide">
-						<form class="form-inline">
-							<input type="text" id="VideoUrl" class="input-xlarge">
-							<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
-						</form>
-					</div>
-				</p></center>
+					<!--<button id="shareVideo" class="btn btn-small">Share video</button>-->
+				</p>
 
 				<div class="tabbable">
 			        <ul class="nav nav-tabs" id="myTab">
@@ -265,7 +256,13 @@
 			          </div>
 
 			          <div class="tab-pane" id="shareYTVideo">
-			                Share video
+			          		<button id="closeVideo" class="btn btn-small hide">Close video</button>
+			                <div id="writeUrl">
+								<form class="form-inline">
+									<input type="text" id="VideoUrl" class="input-xlarge">
+									<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
+								</form>
+							</div>
 			          </div>
 			          <div class="tab-pane" id="shareDoc">Show document</div>
 			        </div>
