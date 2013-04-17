@@ -391,7 +391,7 @@ window.onload = function () {
         myImage.onload = function(){
             context2.drawImage(myImage, 0, 0,w,h);
             //console.log(canvas);
-            document.body.appendChild(canvas2);
+            //document.body.appendChild(canvas2);
             //Convert to base64 and send to server.
             sendTableImg(canvas2.toDataURL(), room.roomID, function (response) {
                 console.log(response);
