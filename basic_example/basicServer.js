@@ -106,8 +106,7 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
             roomID: req.params.room,
             imageData: req.body.imgData
         });
-        newTableImage.update({roomID:req.params.room}, {$set: { imageData: req.body.imgData }}, {upsert: true}, function (err)
-        {
+        newTableImage.update({roomID:req.params.room}, { imageData: req.body.imgData }, {upsert: true}, function (err) {
             if (err) console.log(err);
         });
         /*newTableImage.save(function (err) {
