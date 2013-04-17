@@ -647,7 +647,6 @@ window.onload = function () {
                            "youtubeVideo", "80%", "400", "8", null, null, params, atts);
 
             $('#myytplayer').css ({visibility:'visible'});
-            $('#myytplayer').css ({margin-top:'-10px'});
             $('#writeUrl').show();
             $('#closeVideo').show();
             $('#VideoUrl').val("");
