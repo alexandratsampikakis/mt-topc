@@ -122,7 +122,7 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
                     if (err) console.log("Failed to create cafe");
                 });
             } else {
-                var query = Comment.remove({ roomID: roomID });
+                var query = tableImgModel.remove({ roomID: roomID });
                 query.exec();
                 newTableImage.save(function (err) {
                     if (err) console.log("Failed to create cafe");
