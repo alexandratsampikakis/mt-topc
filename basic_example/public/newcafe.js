@@ -552,7 +552,6 @@ window.onload = function () {
 
     $('#closeVideo').click(function() {
         $('#closeVideo').toggle();
-        $('#writeUrl').toggle();
         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
     }); 
