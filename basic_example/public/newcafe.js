@@ -646,7 +646,8 @@ window.onload = function () {
             swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
                            "youtubeVideo", "80%", "400", "8", null, null, params, atts);
 
-            $('#myytplayer').css ({margin-top: '-10px', visibility:'visible'});
+            $('#myytplayer').css ({visibility:'visible'});
+            $('#myytplayer').css ({margin-top:'-10px'});
             $('#writeUrl').show();
             $('#closeVideo').show();
             $('#VideoUrl').val("");
