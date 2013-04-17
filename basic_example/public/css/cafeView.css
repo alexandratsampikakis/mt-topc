@@ -15,3 +15,10 @@ width: 18.3425414365%%;
 .row-fluid .spanTable {
 width: 59.0000552485%%;
 }
+
+.roundedCorners {
+height: 65px;
+width:160px;
+-moz-border-radius-bottomright: 50px;
+border-bottom-right-radius: 50px;
+}
