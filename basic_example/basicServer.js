@@ -106,12 +106,12 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
             roomID: req.params.room,
             imageData: req.body.imgData
         });
-        tableImgModel.update({roomID:req.params.room}, { imageData: req.body.imgData }, {upsert: true}, function (err) {
+        //tableImgModel.update({roomID:req.params.room}, { imageData: req.body.imgData }, {upsert: true}, function (err) {
             if (err) console.log(err);
-        });
-        /*newTableImage.save(function (err) {
+        });//
+        newTableImage.save(function (err) {
           if (err) console.log("Failed to create cafe");
-        });*/
+        });
         res.send(req.params.room);
     });
 
