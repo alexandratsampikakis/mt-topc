@@ -662,10 +662,17 @@ window.onload = function () {
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
 
-        //Init chat
-        $('#chatArea').css('margin-top',$('#theTable').height()-350);
+        $('#chatArea').css({
+            position:'absolute', 
+            top: $(window).height() - $('#chatArea').height(),
+            left:'0'
+        });
         $(window).resize(function() {
-            $('#chatArea').css('margin-top',$('#theTable').height()-350);
+            $('#chatArea').css({
+                position:'absolute', 
+                top: $(window).height() - $('#chatArea').height(),
+                left:'0'
+            });
         });
         $('#chatArea').scrollTop($('#chatArea').scrollHeight);
         $('#chatArea').width('100%');
