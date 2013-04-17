@@ -644,7 +644,7 @@ window.onload = function () {
             var params = { allowScriptAccess: "always" };
             var atts = { id: "myytplayer" };
             swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
-                           "youtubeVideo", "80%", "300", "8", null, null, params, atts);
+                           "youtubeVideo", "100%", "400", "8", null, null, params, atts);
 
             $('#myytplayer').css ({visibility:'visible'});
             $('#writeUrl').show();
