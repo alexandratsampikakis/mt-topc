@@ -664,14 +664,34 @@ window.onload = function () {
 
         $('#chatArea').css({
             position:'absolute', 
-            top: $(window).height() - $('#chatArea').height(),
+            top: $(window).height() - $('#chatArea').height()*2-40,
             left:'0'
+        });
+        $('#chatMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'0'
+        });
+        $('#sendMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'81%'
         });
         $(window).resize(function() {
             $('#chatArea').css({
                 position:'absolute', 
-                top: $(window).height() - $('#chatArea').height(),
+                top: $(window).height() - $('#chatArea').height()*2-40,
                 left:'0'
+            });
+            $('#chatMessage').css({
+                position:'absolute', 
+                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+                left:'0'
+            });
+            $('#sendMessage').css({
+                position:'absolute', 
+                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+                left:'81%'
             });
         });
         $('#chatArea').scrollTop($('#chatArea').scrollHeight);
