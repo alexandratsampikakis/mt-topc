@@ -206,8 +206,8 @@ function pointerDownListener (e) {
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
   // Determine where the user clicked the mouse.
-  var mouseX = event.clientX - canvas.offsetLeft;
-  var mouseY = event.clientY - canvas.offsetTop;
+  var mouseX = event.clientX - $('#canvas').offset().left;//canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvas').offset().top;//canvas.offsetTop;
  
   // Move the drawing pen to the position that was clicked
   penDown(mouseX, mouseY);
@@ -231,8 +231,8 @@ function pointerMoveListener (e) {
   //   return;
   // }
   var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX;// - canvas.offsetLeft;
-  var mouseY = event.clientY;// - canvas.offsetTop;
+  var mouseX = event.clientX - $('#canvas').offset().left;// - canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvas').offset().top;// - canvas.offsetTop;
   console.log('x: ' + mouseX + ', y: '+ mouseY);
   console.log('xr: ' + event.clientX + ', yr: '+ event.clientY);
  
