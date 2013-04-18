@@ -270,6 +270,7 @@ window.onload = function () {
                                 var imageID = '#table'+i+'img';
                                 myImage.onload = function(){
                                     $(myImage).appendTo(imageID);
+                                    console.log(imageID);
                                 };
                                 myImage.src = imgData;
 
