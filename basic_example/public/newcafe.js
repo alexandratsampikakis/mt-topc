@@ -539,9 +539,6 @@ window.onload = function () {
         });*/
     //});
 
-    $('#sendData').click(function() {
-        getSnapshots();
-    });
     //Send chat message
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
@@ -656,10 +653,10 @@ window.onload = function () {
     var deniedNotification = function(whatCase) {
         switch (whatCase) {
             case 1:
-                $('.center').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
+                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
                 break;
             case 2:
-                $('.center').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
+                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
                 break;
            default:
         }
