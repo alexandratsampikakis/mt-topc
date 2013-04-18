@@ -231,8 +231,9 @@ function pointerMoveListener (e) {
   //   return;
   // }
   var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX - canvas.offsetLeft*2;
+  var mouseX = event.clientX - canvas.offsetLeft;
   var mouseY = event.clientY - canvas.offsetTop;
+  console.log('x: ' + mouseX + ', y: '+ mouseY);
  
   // Draw a line if the pen is down
   penMove(mouseX, mouseY);
