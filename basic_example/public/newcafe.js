@@ -755,9 +755,9 @@ window.onload = function () {
                         console.log('Snapshot sent at ' + Date.now());
                         getSnapshots();
                     },1000*60*5);
-                }
-                if(leader === localStream.getID()) {
+                } else if(leader === localStream.getID()) {
                     broadcastLeader();
+                    getSnapshots();
                 }
             });
 
@@ -780,6 +780,8 @@ window.onload = function () {
                             },1000*60*5);
                         }
                         console.log(calculateLeader());
+                    } else if (leader === localStream.getID()) {
+                        getSnapshots();
                     }
                     
                     console.log("Removing " + stream.elementID);
