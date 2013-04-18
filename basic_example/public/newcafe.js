@@ -265,6 +265,14 @@ window.onload = function () {
                         for(var j=0;j<res.records.length;j++){
                             if(res.records[j].roomID == tableId[i]) {
                                 console.log('i: ' + i + ', j: ' + j);
+                                var imgData = res.records[j].imageData;
+                                var myImage = new Image();
+                                var imageID = '#table'+i+'img';
+                                myImage.onload = function(){
+                                    $(myImage).appendTo(imageID);
+                                };
+                                myImage.src = imgData;
+
                             }
                         }
                     }
