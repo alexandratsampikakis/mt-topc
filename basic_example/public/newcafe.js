@@ -262,22 +262,23 @@ window.onload = function () {
             console.log(tableId[i]);  
                 getTableImage(tableId[i], function (response) {
                     var tableImg = JSON.parse(response);
+                    var tableImgId = '#table'+i+'img';
                     if(tableImg.hasOwnProperty('empty')) {
                         console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
                         if(tableImg.empty === true) {
                             var myImage = new Image();
                             myImage.onload = function(){
-                                $(myImage).appendTo('#table'+i+'img');
+                                $(myImage).appendTo(tableImgId);
                             };
                             myImage.src = "http://placehold.it/320x200";
                         }
                     } else {
                         console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
-                        console.log(tableId[i]);
+                        console.log(tableImgId);
                         imgData = tableImg.imageData;
                         var myImage = new Image();
                         myImage.onload = function(){
-                            $(myImage).appendTo('#table'+i+'img');
+                            $(myImage).appendTo(tableImgId);
                         };
                         myImage.src = imgData;
                     }
