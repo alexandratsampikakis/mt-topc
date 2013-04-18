@@ -62,11 +62,6 @@ var DrawingCommands = {LINE_TO:       "lineTo",
 // var processDrawingCommandsIntervalID;
  
 //==============================================================================
-// TOUCH-DEVICE VARIABLES
-//==============================================================================
-//var hasTouch = false;
- 
-//==============================================================================
 // INITIALIZATION
 //==============================================================================
 // Trigger init() when the document finishes loading
@@ -77,8 +72,6 @@ addOnloadHandler(init);
 function init () {
   initCanvas();
   registerInputListeners();
- 
-  //setStatus("Connecting to UnionDraw...");
 }
 
 function addOnloadHandler (newFunction) {
@@ -124,9 +117,6 @@ function registerInputListeners () {
   canvas.onmousedown = pointerDownListener;
   document.onmousemove = pointerMoveListener;
   document.onmouseup = pointerUpListener;
-  //document.ontouchstart = touchDownListener;
-  //document.ontouchmove = touchMoveListener;
-  //document.ontouchend = touchUpListener;
   document.getElementById("thickness").onchange = thicknessSelectListener;
   document.getElementById("color").onchange = colorSelectListener;
 }
@@ -146,62 +136,11 @@ function clientAttributeUpdateListener (attrScope,
   }
 }
  
- 
-//==============================================================================
-// TOUCH-INPUT EVENT LISTENERS
-//==============================================================================
-// On devices that support touch input, this function is triggered when the
-// user touches the screen.
-// function touchDownListener (e) {
-//   // Note that this device supports touch so that we can prevent conflicts with
-//   // mouse input events.
-//   hasTouch = true;
-//   // Prevent the touch from scrolling the page, but allow interaction with the
-//   // control-panel menus. The "event.target.nodeName" variable provides the name
-//   // of the HTML element that was touched.
-//   if (event.target.nodeName != "SELECT") {
-//     e.preventDefault();
-//   }
-//   // Determine where the user touched screen.
-//   var touchX = e.changedTouches[0].clientX - canvas.offsetLeft;
-//   var touchY = e.changedTouches[0].clientY - canvas.offsetTop;
-//   // A second "touch start" event may occur if the user touches the screen with
-//   // two fingers. Ignore the second event if the pen is already down.
-//   if (!isPenDown) {
-//     // Move the drawing pen to the position that was touched
-//     penDown(touchX, touchY);
-//   }
-// }
- 
-// On devices that support touch input, this function is triggered when the user
-// drags a finger across the screen.
-// function touchMoveListener (e) {
-//   hasTouch = true;
-//   e.preventDefault();
-//   var touchX = e.changedTouches[0].clientX - canvas.offsetLeft;
-//   var touchY = e.changedTouches[0].clientY - canvas.offsetTop;
-//   // Draw a line to the position being touched.
-//   penMove(touchX, touchY);
-// }
- 
-// // On devices that support touch input, this function is triggered when the
-// // user stops touching the screen.
-// function touchUpListener () {
-//   // "Lift" the drawing pen, so lines are no longer drawn
-//   penUp();
-// }
- 
 //==============================================================================
 // MOUSE-INPUT EVENT LISTENERS
 //==============================================================================
 // Triggered when the mouse is pressed down
 function pointerDownListener (e) {
-  // If this is an iPhone, iPad, Android, or other touch-capable device, ignore
-  // simulated mouse input.
-  // if (hasTouch) {
-  //   return;
-  // }
- 
   // Retrieve a reference to the Event object for this mousedown event.
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
@@ -220,21 +159,14 @@ function pointerDownListener (e) {
     if (event.target.nodeName != "SELECT") {
       event.preventDefault();
     }
-  } else {
-    return false;  // IE
   }
 }
  
 // Triggered when the mouse moves
 function pointerMoveListener (e) {
-  // if (hasTouch) {
-  //   return;
-  // }
   var event = e || window.event; // IE uses window.event, not e
   var mouseX = event.clientX - $('#canvas').offset().left;// - canvas.offsetLeft;
   var mouseY = event.clientY - $('#canvas').offset().top;// - canvas.offsetTop;
-  console.log('x: ' + mouseX + ', y: '+ mouseY);
-  console.log('xr: ' + event.clientX + ', yr: '+ event.clientY);
  
   // Draw a line if the pen is down
   penMove(mouseX, mouseY);
@@ -242,16 +174,11 @@ function pointerMoveListener (e) {
   // Prevent default browser actions, such as text selection
   if (event.preventDefault) {
     event.preventDefault();
-  } else {
-    return false;  // IE
   }
 }
  
 // Triggered when the mouse button is released
 function pointerUpListener (e) {
-  // if (hasTouch) {
-  //   return;
-  // }
   // "Lift" the drawing pen
   penUp();
 }
@@ -276,7 +203,6 @@ function thicknessSelectListener (e) {
   //   attrScope (The room)
   //   attrOptions (An integer whose bits specify options. "4" means
   //                the attribute should be shared).
-  //iPhoneToTop();
 }
  
 // Triggered when an option in the "line color" menu is selected
@@ -285,9 +211,6 @@ function colorSelectListener (e) {
   var newColor = this.options[this.selectedIndex].value;
   // Locally, set the line color to the selected value
   localLineColor = newColor;
- 
-  // Scroll the iPhone back to the top-left.
-  //iPhoneToTop();
 }
  
 //==============================================================================
@@ -353,18 +276,6 @@ function drawLine (color, thickness, x1, y1, x2, y2) {
 function setStatus (message) {
   document.getElementById("status").innerHTML = message;
 }
- 
-//==============================================================================
-// IPHONE UTILS
-//==============================================================================
-// Hides the iPhone address bar by scrolling it out of view
-// function iPhoneToTop () {
-//   if (navigator.userAgent.indexOf("iPhone") != -1) {
-//     setTimeout (function () {
-//       window.scroll(0, 0);
-//     }, 100);
-//   }
-// }
  
 //==============================================================================
 // DATA VALIDATION
