@@ -234,6 +234,7 @@ function pointerMoveListener (e) {
   var mouseX = event.clientX - canvas.offsetLeft;
   var mouseY = event.clientY - canvas.offsetTop;
   console.log('x: ' + mouseX + ', y: '+ mouseY);
+  console.log('xr: ' + event.clientX + ', yr: '+ event.clientY);
  
   // Draw a line if the pen is down
   penMove(mouseX, mouseY);
