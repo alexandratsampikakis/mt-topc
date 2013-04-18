@@ -258,7 +258,7 @@ window.onload = function () {
             tableId[4] = cafes.table4;
             tableId[5] = cafes.table5;
             tableId[6] = cafes.table6;
-            for (var i = 1; i <= 6.length; i++) {  
+            for (var i = 1; i <= 6; i++) {  
                 getTableImage(tableId[i], function (response) {
                     var tableImg = JSON.parse(response);
                     if(tableImg.hasOwnProperty('empty')) {
