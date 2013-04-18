@@ -64,7 +64,7 @@ var DrawingCommands = {LINE_TO:       "lineTo",
 //==============================================================================
 // TOUCH-DEVICE VARIABLES
 //==============================================================================
-var hasTouch = false;
+//var hasTouch = false;
  
 //==============================================================================
 // INITIALIZATION
@@ -124,9 +124,9 @@ function registerInputListeners () {
   canvas.onmousedown = pointerDownListener;
   document.onmousemove = pointerMoveListener;
   document.onmouseup = pointerUpListener;
-  document.ontouchstart = touchDownListener;
-  document.ontouchmove = touchMoveListener;
-  document.ontouchend = touchUpListener;
+  //document.ontouchstart = touchDownListener;
+  //document.ontouchmove = touchMoveListener;
+  //document.ontouchend = touchUpListener;
   document.getElementById("thickness").onchange = thicknessSelectListener;
   document.getElementById("color").onchange = colorSelectListener;
 }
@@ -231,7 +231,7 @@ function pointerMoveListener (e) {
   //   return;
   // }
   var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX - canvas.offsetLeft;
+  var mouseX = event.clientX - canvas.offsetLeft*2;
   var mouseY = event.clientY - canvas.offsetTop;
  
   // Draw a line if the pen is down
