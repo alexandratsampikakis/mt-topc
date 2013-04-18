@@ -262,7 +262,7 @@ window.onload = function () {
                 var res = JSON.parse(response);
                 if(!res.hasOwnProperty('empty')){
                     for(var i=1;i<=6;i++){
-                        for(var j=0;j<=res.records.length;i++){
+                        for(var j=0;j<res.records.length;i++){
                             if(res.records[j].roomID == tableId[i]) {
                                 console.log('i: ' + i + ', j: ' + j);
                             }
