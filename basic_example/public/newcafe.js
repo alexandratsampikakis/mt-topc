@@ -272,6 +272,7 @@ window.onload = function () {
                         }
                     } else {
                         console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
+                        console.log(tableId[i]);
                         imgData = tableImg.imageData;
                         var myImage = new Image();
                         myImage.onload = function(){
