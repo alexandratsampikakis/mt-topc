@@ -263,6 +263,7 @@ window.onload = function () {
                 getTableImage(tableId[i], function (response) {
                     var tableImg = JSON.parse(response);
                     var tableImgId = '#table'+i+'img';
+                    console.log(tableImgId);
                     if(tableImg.hasOwnProperty('empty')) {
                         console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
                         if(tableImg.empty === true) {
