@@ -3,7 +3,7 @@ var room, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
-var tableId1, tableId2, tableId3, tableId4, tableId5, tableId6;
+var tableId = new Array();
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 var chairImg = new Image();
@@ -252,33 +252,35 @@ window.onload = function () {
             console.log(cafes.error);
         } else {
             updateTitle(cafes.name);
-            tableId1 = cafes.table1;
-            tableId2 = cafes.table2;
-            tableId3 = cafes.table3;
-            tableId4 = cafes.table4;
-            tableId5 = cafes.table5;
-            tableId6 = cafes.table6;
-            getTableImage(tableId1, function (response) {
-                var tableImg = JSON.parse(response);
-                if(tableImg.hasOwnProperty('empty')) {
-                    console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
-                    if(tableImg.empty === true) {
+            tableId[1] = cafes.table1;
+            tableId[2] = cafes.table2;
+            tableId[3] = cafes.table3;
+            tableId[4] = cafes.table4;
+            tableId[5] = cafes.table5;
+            tableId[6] = cafes.table6;
+            for (var i = 1; i <= 6.length; i++) {  
+                getTableImage(tableId[i], function (response) {
+                    var tableImg = JSON.parse(response);
+                    if(tableImg.hasOwnProperty('empty')) {
+                        console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
+                        if(tableImg.empty === true) {
+                            var myImage = new Image();
+                            myImage.onload = function(){
+                                $(myImage).appendTo('#table'+i+'img');
+                            };
+                            myImage.src = "http://placehold.it/320x200";
+                        }
+                    } else {
+                        console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
+                        imgData = tableImg.imageData;
                         var myImage = new Image();
                         myImage.onload = function(){
-                            $(myImage).appendTo('#table1img');
+                            $(myImage).appendTo('#table'+i+'img');
                         };
-                        myImage.src = "http://placehold.it/320x200";
+                        myImage.src = imgData;
                     }
-                } else {
-                    console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
-                    imgData = tableImg.imageData;
-                    var myImage = new Image();
-                    myImage.onload = function(){
-                        $(myImage).appendTo('#table1img');
-                    };
-                    myImage.src = imgData;
-                }
-            });
+                });
+            };
         }
     });
 
@@ -402,83 +404,83 @@ window.onload = function () {
 
     //Table buttons
     $('#table1').click(function() {
-        knock(tableId1);
+        knock(tableId[1]);
     });
     $('#table2').click(function() {
-        knock(tableId2);
+        knock(tableId[2]);
     });
     $('#table3').click(function() {
-        knock(tableId3);
+        knock(tableId[3]);
     });
     $('#table4').click(function() {
-        knock(tableId4);
+        knock(tableId[4]);
     });
     $('#table5').click(function() {
-        knock(tableId5);
+        knock(tableId[5]);
     });
     $('#table6').click(function() {
-        knock(tableId6);
+        knock(tableId[6]);
     });
 
     $('#ohtable1').click(function() {
-        overhear(tableId1);
+        overhear(tableId[1]);
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
         $('.overhearing').toggle();
     });
     $('#ohtable2').click(function() {
-        overhear(tableId2);
+        overhear(tableId[2]);
         $('#ohtable2').toggle();
         $('#stopohtable2').toggle();
     });
     $('#ohtable3').click(function() {
-        overhear(tableId3);
+        overhear(tableId[3]);
         $('#ohtable3').toggle();
         $('#stopohtable3').toggle();
     });
     $('#ohtable4').click(function() {
-        overhear(tableId4);
+        overhear(tableId[4]);
         $('#ohtable4').toggle();
         $('#stopohtable4').toggle();
     });
     $('#ohtable5').click(function() {
-        overhear(tableId5);
+        overhear(tableId[5]);
         $('#ohtable5').toggle();
         $('#stopohtable5').toggle();
     });
     $('#ohtable6').click(function() {
-        overhear(tableId6);
+        overhear(tableId[6]);
         $('#ohtable6').toggle();
         $('#stopohtable6').toggle();
     });
 
     $('#stopohtable1').click(function() {
-        stopOverhear(tableId1);
+        stopOverhear(tableId[1]);
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
     });
     $('#stopohtable2').click(function() {
-        stopOverhear(tableId2);
+        stopOverhear(tableId[2]);
         $('#ohtable2').toggle();
         $('#stopohtable2').toggle();
     });
     $('#stopohtable3').click(function() {
-        overhear(tableId3);
+        stopOverhear(tableId[3]);
         $('#ohtable3').toggle();
         $('#stopohtable3').toggle();
     });
     $('#stopohtable4').click(function() {
-        stopOverhear(tableId4);
+        stopOverhear(tableId[4]);
         $('#ohtable4').toggle();
         $('#stopohtable4').toggle();
     });
     $('#stopohtable5').click(function() {
-        stopOverhear(tableId5);
+        stopOverhear(tableId[5]);
         $('#ohtable5').toggle();
         $('#stopohtable5').toggle();
     });
     $('#stopohtable6').click(function() {
-        stopOverhear(tableId6);
+        stopOverhear(tableId[6]);
         $('#ohtable6').toggle();
         $('#stopohtable6').toggle();
     });
