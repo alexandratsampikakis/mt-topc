@@ -28,10 +28,9 @@ window.onload = function () {
             a.innerHTML += cafeName;
             cb.appendChild(a);
             a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html?cafe=" + cafeName);
-            a.setAttribute("class", "buttonCafe btn btn btn-info");
+            a.setAttribute("class", "buttonCafe btn btn-info");
             a.setAttribute("type", "button");
         };
-        //console.log(cafes.cafe[0].name);
 
     });
 

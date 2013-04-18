@@ -115,7 +115,6 @@ function onytplayerStateChange(newState) {
             break;
        default:
     }
-    console.log("state change");
 }
 
 //Plays the youtube video
