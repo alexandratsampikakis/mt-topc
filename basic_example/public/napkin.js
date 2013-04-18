@@ -275,15 +275,6 @@ function thicknessSelectListener (e) {
   //   attrScope (The room)
   //   attrOptions (An integer whose bits specify options. "4" means
   //                the attribute should be shared).
-  msgManager.sendUPC(UPC.SET_CLIENT_ATTR,
-                     orbiter.getClientID(),
-                     "",
-                     Attributes.THICKNESS,
-                     newThickness,
-                     roomID,
-                     "4");
-  // After the user selects a value in the drop-down menu, the iPhone
-  // automatically scrolls the page, so scroll back to the top-left.
   iPhoneToTop();
 }
  
@@ -293,14 +284,6 @@ function colorSelectListener (e) {
   var newColor = this.options[this.selectedIndex].value;
   // Locally, set the line color to the selected value
   localLineColor = newColor;
-  // Share selected color with other users
-  msgManager.sendUPC(UPC.SET_CLIENT_ATTR,
-                     orbiter.getClientID(),
-                     "",
-                     Attributes.COLOR,
-                     newColor,
-                     roomID,
-                     "4");
  
   // Scroll the iPhone back to the top-left.
   iPhoneToTop();
