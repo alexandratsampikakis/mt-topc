@@ -275,6 +275,7 @@ window.onload = function () {
                                 myImage.src = imgData;
 
                             }
+                            console.log(imageID);
                         }
                     }
                 }
