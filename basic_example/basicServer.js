@@ -135,13 +135,13 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
         res.send(req.params.room);
     });
 
-app.get("/api/getTableImg/:room", function (req, res) {
+app.get("/api/getTableImg/:cafe", function (req, res) {
     var roomID = req.params.room;
 
     console.log(req.params.room);
     var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
 
-    tableImgModel.findOne({roomID: roomID }, function (err, records) {
+    tableImgModel.find({cafe: cafe}, function (err, records) {
         console.log(err);
         console.log(records);
         if(err) {
@@ -156,7 +156,7 @@ app.get("/api/getTableImg/:room", function (req, res) {
             });
         } else {
             res.json({
-                imageData: records.imageData
+                records:records
             });
         }
     });

@@ -257,33 +257,33 @@ window.onload = function () {
             tableId[4] = cafes.table4;
             tableId[5] = cafes.table5;
             tableId[6] = cafes.table6;
-            for (var i = 1; i < 6; i++) {
-            console.log(tableId[i]);  
-                getTableImage(tableId[i], function (response) {
-                    var tableImg = JSON.parse(response);
-                    var tableImgId = '#table'+i+'img';
-                    console.log(tableImgId);
-                    if(tableImg.hasOwnProperty('empty')) {
-                        console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
-                        if(tableImg.empty === true) {
-                            var myImage = new Image();
-                            myImage.onload = function(){
-                                $(myImage).appendTo(tableImgId);
-                            };
-                            myImage.src = "http://placehold.it/320x200";
-                        }
-                    } else {
-                        console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
-                        console.log(tableImgId);
-                        imgData = tableImg.imageData;
+
+            getTableImage(cafe, function (response) {
+                var tableImg = JSON.parse(response);
+                console.log(tableImg);
+                /*var tableImgId = '#table'+i+'img';
+                console.log(tableImgId);
+                if(tableImg.hasOwnProperty('empty')) {
+                    console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
+                    if(tableImg.empty === true) {
                         var myImage = new Image();
                         myImage.onload = function(){
                             $(myImage).appendTo(tableImgId);
                         };
-                        myImage.src = imgData;
+                        myImage.src = "http://placehold.it/320x200";
                     }
-                });
-            };
+                } else {
+                    console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
+                    console.log(tableImgId);
+                    imgData = tableImg.imageData;
+                    var myImage = new Image();
+                    myImage.onload = function(){
+                        $(myImage).appendTo(tableImgId);
+                    };
+                    myImage.src = imgData;
+                }*/
+            });
+    
         }
     });
 
