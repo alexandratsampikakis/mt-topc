@@ -136,9 +136,9 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
     });
 
 app.get("/api/getTableImg/:cafe", function (req, res) {
-    var roomID = req.params.room;
+    var cafe = req.params.cafe;
 
-    console.log(req.params.room);
+    console.log(req.params.cafe);
     var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
 
     tableImgModel.find({cafe: cafe}, function (err, records) {

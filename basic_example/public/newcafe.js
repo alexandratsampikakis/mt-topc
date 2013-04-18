@@ -220,9 +220,9 @@ var getCafeTables = function(cafe, callback) {
 };
 
 //Retrieves table image
-var getTableImage = function(room, callback) {
+var getTableImage = function(cafe, callback) {
     var req = new XMLHttpRequest();
-    var url = serverUrl + 'api/getTableImg/' + room;
+    var url = serverUrl + 'api/getTableImg/' + cafe;
 
     req.onreadystatechange = function () {
         if (req.readyState === 4) {
