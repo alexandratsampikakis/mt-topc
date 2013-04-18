@@ -231,8 +231,8 @@ function pointerMoveListener (e) {
   //   return;
   // }
   var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX - canvas.offsetLeft;
-  var mouseY = event.clientY - canvas.offsetTop;
+  var mouseX = event.clientX;// - canvas.offsetLeft;
+  var mouseY = event.clientY;// - canvas.offsetTop;
   console.log('x: ' + mouseX + ', y: '+ mouseY);
   console.log('xr: ' + event.clientX + ', yr: '+ event.clientY);
  
