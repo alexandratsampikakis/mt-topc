@@ -106,8 +106,9 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
         var tableImgModel = mongoose.model('tableImgModel', tableImgSchema);
         var newTableImage = new tableImgModel({
             roomID: roomID,
-            imageData: req.body.imgData,
-            cafe: req.body.cafe
+            cafe: req.body.cafe,
+            imageData: req.body.imgData
+            
         });
         /*tableImgModel.update({roomID:req.params.room}, { imageData: req.body.imgData }, {upsert: true}, function (err) {
             if (err) console.log(err);

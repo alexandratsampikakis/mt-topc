@@ -258,7 +258,20 @@ window.onload = function () {
             tableId[5] = cafes.table5;
             tableId[6] = cafes.table6;
 
-            getTableImage(cafe, function (response) {
+            getTableImage('Unik', function(response) {
+                var res = JSON.parse(response);
+                if(!res.hasOwnProperty('empty')){
+                    for(var i=1;i<=6;i++){
+                        for(var j=0;j<=res.records.length;i++){
+                            if(res.records[j].roomID == tableId[i]) {
+                                console.log('i: ' + i + ', j: ' + j);
+                            }
+                        }
+                    }
+                }
+            });
+
+            /*getTableImage(cafe, function (response) {
                 var tableImg = JSON.parse(response);
                 console.log(tableImg);
                 /*var tableImgId = '#table'+i+'img';
@@ -282,7 +295,7 @@ window.onload = function () {
                     };
                     myImage.src = imgData;
                 }*/
-            });
+            //});
     
         }
     });
