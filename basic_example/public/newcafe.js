@@ -1,5 +1,5 @@
 //(function(){
-var room, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
+var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
@@ -240,12 +240,12 @@ var getTableImage = function(room, callback) {
 
 window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
-    
+    cafe = getQueryString('cafe');
     //focus "enternametextfield"
     $("#userName").focus();
 
     //Retrieves the IDs of the table for the chosen café
-    getCafeTables(getQueryString('cafe'), function (response) {
+    getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
@@ -294,10 +294,11 @@ window.onload = function () {
     audioElement.load();
 
     //Sends a base64 string to server
-    var sendTableImg = function(imgData, roomId, callback) {
+    var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
-        var body = {imgData: imgData};
+        var body = {imgData: imgData,
+                    cafe: cafe};
 
         req.onreadystatechange = function () {
             if (req.readyState === 4) {
@@ -399,7 +400,7 @@ window.onload = function () {
             //console.log(canvas);
             //document.body.appendChild(canvas2);
             //Convert to base64 and send to server.
-            sendTableImg(canvas2.toDataURL(), room.roomID, function (response) {
+            sendTableImg(cafe, canvas2.toDataURL(), room.roomID, function (response) {
                 console.log(response);
             });
         }; 
