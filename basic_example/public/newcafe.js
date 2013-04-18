@@ -734,7 +734,11 @@ window.onload = function () {
                         }
                     }
                     console.log("There is no seat available at this table!");
+                }
+                if(leader === localStream.getID()) {
+                    getSnapshots();
                 } 
+
             });
 
             room.addEventListener("stream-added", function (streamEvent) {
@@ -757,7 +761,7 @@ window.onload = function () {
                     },1000*60*5);
                 } else if(leader === localStream.getID()) {
                     broadcastLeader();
-                    getSnapshots();
+                    //getSnapshots();
                 }
             });
 
