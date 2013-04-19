@@ -267,18 +267,26 @@ window.onload = function () {
 
             getTableImage('Unik', function(response) {
                 var res = JSON.parse(response);
+                var hasImage = false;
+                var imgId;
+                var imgData
                 if(!res.hasOwnProperty('empty')){
                     for(var i=1;i<=6;i++){
+                        hasImage = false;
+                        imgID = '#table'+i+'img';
                         for(var j=0;j<res.records.length;j++){
                             if(res.records[j].roomID == tableId[i]) {
                                 console.log('i: ' + i + ', j: ' + j);
-                                var imgData = res.records[j].imageData;
-                                var imageID = '#table'+i+'img';
-                                loadImage(imgData, imageID);
+                                imgData = res.records[j].imageData;
+                                loadImage(imgData, imgID);
+                                hasImage = true;
 
                             }
-                            console.log(imageID);
+                            console.log(imgID);
                         }
+
+                        if(!hasImage) loadImage("http://placehold.it/320x200", imgID);
+
                     }
                 }
             });
