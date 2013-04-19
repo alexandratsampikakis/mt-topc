@@ -238,9 +238,9 @@ var getTableImage = function(cafe, callback) {
 function loadImage(imageData, elementID) {
     var myImage = new Image();
     myImage.onload = function(){
-        $(myImage).appendTo(imageID);
+        $(myImage).appendTo(elementID);
     };
-    myImage.src = imgData;
+    myImage.src = imageData;
 }
 
 
