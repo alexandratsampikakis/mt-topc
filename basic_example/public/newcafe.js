@@ -236,6 +236,7 @@ var getTableImage = function(cafe, callback) {
 };
 
 function loadImage(imageData, elementID) {
+    var myImage = new Image();
     myImage.onload = function(){
         $(myImage).appendTo(imageID);
     };
@@ -272,7 +273,6 @@ window.onload = function () {
                             if(res.records[j].roomID == tableId[i]) {
                                 console.log('i: ' + i + ', j: ' + j);
                                 var imgData = res.records[j].imageData;
-                                var myImage = new Image();
                                 var imageID = '#table'+i+'img';
                                 loadImage(imgData, imageID);
 
