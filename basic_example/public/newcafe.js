@@ -235,6 +235,12 @@ var getTableImage = function(cafe, callback) {
     req.send();
 };
 
+function loadImage(imageData, elementID) {
+    myImage.onload = function(){
+        $(myImage).appendTo(imageID);
+    };
+    myImage.src = imgData;
+}
 
 
 window.onload = function () {
@@ -268,11 +274,7 @@ window.onload = function () {
                                 var imgData = res.records[j].imageData;
                                 var myImage = new Image();
                                 var imageID = '#table'+i+'img';
-                                myImage.onload = function(){
-                                    $(myImage).appendTo(imageID);
-                                    console.log(imageID);
-                                };
-                                myImage.src = imgData;
+                                loadImage(imgData, imageID);
 
                             }
                             console.log(imageID);
