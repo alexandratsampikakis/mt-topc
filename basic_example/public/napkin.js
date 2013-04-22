@@ -1,4 +1,4 @@
- 
+ var pathToSend = [];
 //==============================================================================
 // LOCAL USER VARIABLES
 //==============================================================================
@@ -221,7 +221,7 @@ function penDown (x, y) {
   isPenDown = true;
   localPen.x = x;
   localPen.y = y;
- 
+  pathToSend.push(x + ',' + y);
   // Send this user's new pen position to other users.
   //broadcastMove(x, y);
  
@@ -238,7 +238,7 @@ function penMove (x, y) {
       bufferedPath.push(x + "," + y);
       lastBufferTime = new Date().getTime();
     }
- 
+    pathToSend.push(x + ',' + y);
     // Draw the line locally.
     drawLine(localLineColor, localLineThickness, localPen.x, localPen.y, x, y);
  
@@ -252,6 +252,8 @@ function penMove (x, y) {
 // touch-input device moves.
 function penUp () {
   isPenDown = false;
+  dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend});
+  pathToSend = [];
 }
  
 //==============================================================================
