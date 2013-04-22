@@ -97,7 +97,7 @@ function removeRoomFromKnocklist(roomId) {
 
 function drawPath(color, thickness, path) {
     for (var i = 0; i < path.length; i+=2) {
-        drawLine(color, thickness, path[0], path[1], path[2], path[3]);
+        drawLine(color, thickness, path[i], path[i+1], path[i+2], path[i+3]);
     };
 }
 
