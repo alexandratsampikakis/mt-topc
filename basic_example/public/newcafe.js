@@ -1008,6 +1008,11 @@ window.onload = function () {
                                             };
                                         }
                                         break;
+                                    case "paint":
+                                        if(localStream.showing === true) {
+                                            drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path);
+                                        }
+                                        break;
                                    default:
                                       
                                 }
