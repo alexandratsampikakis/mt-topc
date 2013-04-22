@@ -7,7 +7,6 @@ var tableId = new Array();
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 var chairImg = new Image();
-var context = document.getElementById("canvas").getContext('2d');
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 //Plays the knocking sound
@@ -264,6 +263,8 @@ function loadImage(imageData, elementID) {
 window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
+
+    var context = document.getElementById("canvas").getContext('2d');
     //focus "enternametextfield"
     $("#userName").focus();
 
