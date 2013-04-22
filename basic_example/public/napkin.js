@@ -221,7 +221,8 @@ function penDown (x, y) {
   isPenDown = true;
   localPen.x = x;
   localPen.y = y;
-  pathToSend.push(x + ',' + y);
+  pathToSend.push(x);
+  pathToSend.push(y);
   // Send this user's new pen position to other users.
   //broadcastMove(x, y);
  
@@ -238,7 +239,8 @@ function penMove (x, y) {
       bufferedPath.push(x + "," + y);
       lastBufferTime = new Date().getTime();
     }
-    pathToSend.push(x + ',' + y);
+    pathToSend.push(x);
+    pathToSend.push(y);
     // Draw the line locally.
     drawLine(localLineColor, localLineThickness, localPen.x, localPen.y, x, y);
  

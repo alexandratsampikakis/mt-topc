@@ -7,6 +7,7 @@ var tableId = new Array();
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 var chairImg = new Image();
+var context = document.getElementById("canvas").getContext('2d');
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 //Plays the knocking sound
@@ -93,6 +94,22 @@ function removeRoomFromKnocklist(roomId) {
     if(knockListNo.hasOwnProperty(roomId)) {
         delete knockListNo[roomId];
     }
+}
+
+function drawPath(color, thickness, path) {
+    for (var i = 0; i < path.length; i=+2) {
+        drawLine(color, thickness, path[0], path[1], path[2], path[3]);
+    };
+}
+
+function drawLine (color, thickness, x1, y1, x2, y2) {
+    context.strokeStyle = color;
+    context.lineWidth   = thickness;
+
+    context.beginPath();
+    context.moveTo(x1, y1)
+    context.lineTo(x2, y2);
+    context.stroke();
 }
 
 //Adds eventlisteners to youtubeplayer
