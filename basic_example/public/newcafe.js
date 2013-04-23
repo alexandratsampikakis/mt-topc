@@ -657,7 +657,7 @@ window.onload = function () {
             a.click();
             delete a;
         };
-        xhr.open('GET', 'http://satin.research.ltu.se:3001/myNapkin');
+        xhr.open('GET', 'http://satin.research.ltu.se:3001/myNapkin.png');
         xhr.send();
 
         /*var data = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
