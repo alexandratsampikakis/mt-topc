@@ -632,6 +632,10 @@ window.onload = function () {
         clearFeedback();
     });
 
+    $('#clearNapkin').click(function() {
+        dataStream.sendData({id:'clearNapkin'});
+    });
+
     var enterName = function() {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
@@ -1032,6 +1036,8 @@ window.onload = function () {
                                         }; 
                                         myImage.src = evt.msg.napkinImgData;
                                         break;
+                                    case "clearNapkin":
+                                        ctx.clearRect(0,0,c.width,c.height);
                                    default:
                                       
                                 }
