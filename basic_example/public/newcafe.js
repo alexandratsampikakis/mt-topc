@@ -1040,6 +1040,7 @@ window.onload = function () {
                                         var c = document.getElementById("canvasNapkin");
                                         var ctx = c.getContext("2d");
                                         ctx.clearRect(0,0,c.width,c.height);
+                                        break;
                                    default:
                                       
                                 }
