@@ -1037,6 +1037,8 @@ window.onload = function () {
                                         myImage.src = evt.msg.napkinImgData;
                                         break;
                                     case "clearNapkin":
+                                        var c = document.getElementById("canvasNapkin");
+                                        var ctx = c.getContext("2d");
                                         ctx.clearRect(0,0,c.width,c.height);
                                    default:
                                       
