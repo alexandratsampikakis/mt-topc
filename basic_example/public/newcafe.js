@@ -257,7 +257,7 @@ function loadImage(imageData, elementID) {
         $(myImage).appendTo(elementID);
     };
     myImage.src = imageData;
-    myImage.className('center');
+    myImage.className = 'center';
 }
 
 
