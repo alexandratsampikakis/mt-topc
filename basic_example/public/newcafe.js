@@ -633,7 +633,7 @@ window.onload = function () {
     });
 
     $('#clearNapkin').click(function() {
-        dataStream.sendData({id:'clearNapkin', test:1});
+        dataStream.sendData({id:'clearNapkin'});
     });
 
     var enterName = function() {
@@ -1028,19 +1028,22 @@ window.onload = function () {
                                         }
                                         break;
                                     case "currentNapkin":
-                                        var c = document.getElementById("canvasNapkin");
-                                        var ctx = c.getContext("2d");
-                                        var myImage = new Image();
-                                        myImage.onload = function(){
-                                            ctx.drawImage(myImage, 0, 0,c.width,c.height);
-                                        }; 
-                                        myImage.src = evt.msg.napkinImgData;
+                                        if(localStream.showing === true) {
+                                            var c = document.getElementById("canvasNapkin");
+                                            var ctx = c.getContext("2d");
+                                            var myImage = new Image();
+                                            myImage.onload = function(){
+                                                ctx.drawImage(myImage, 0, 0,c.width,c.height);
+                                            }; 
+                                            myImage.src = evt.msg.napkinImgData;
+                                        }
                                         break;
                                     case "clearNapkin":
-                                        var c = document.getElementById("canvasNapkin");
-                                        var ctx = c.getContext("2d");
-                                        ctx.clearRect(0,0,c.width,c.height);
-                                        console.log('Clear napkin');
+                                        if(localStream.showing === true) {
+                                            var clearctx = document.getElementById("canvasNapkin").getContext("2d");
+                                            clearctx.clearRect(0,0,c.width,c.height);
+                                            console.log('Clear napkin');
+                                        }
                                         break;
                                    default:
                                       
