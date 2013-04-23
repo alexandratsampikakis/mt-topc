@@ -144,8 +144,8 @@ function pointerDownListener (e) {
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
   // Determine where the user clicked the mouse.
-  var mouseX = event.clientX - $('#canvas').offset().left;//canvas.offsetLeft;
-  var mouseY = event.clientY - $('#canvas').offset().top;//canvas.offsetTop;
+  var mouseX = event.clientX - $('#canvasNapkin').offset().left;//canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvasNapkin').offset().top;//canvas.offsetTop;
  
   // Move the drawing pen to the position that was clicked
   penDown(mouseX, mouseY);
@@ -164,8 +164,8 @@ function pointerDownListener (e) {
 // Triggered when the mouse moves
 function pointerMoveListener (e) {
   var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX - $('#canvas').offset().left;// - canvas.offsetLeft;
-  var mouseY = event.clientY - $('#canvas').offset().top;// - canvas.offsetTop;
+  var mouseX = event.clientX - $('#canvasNapkin').offset().left;// - canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvasNapkin').offset().top;// - canvas.offsetTop;
  
   // Draw a line if the pen is down
   penMove(mouseX, mouseY);
