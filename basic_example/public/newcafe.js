@@ -634,7 +634,7 @@ window.onload = function () {
 
     $('#clearNapkin').click(function() {
         dataStream.sendData({id:'clearNapkin'});
-        var c = document.getElementById("canvasNapkin").getContext("2d");
+        var c = document.getElementById("canvasNapkin");
         var ctx = c.getContext("2d");
         ctx.clearRect(0,0,c.width,c.height);
     });
