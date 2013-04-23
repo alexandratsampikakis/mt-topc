@@ -634,7 +634,9 @@ window.onload = function () {
 
     $('#clearNapkin').click(function() {
         dataStream.sendData({id:'clearNapkin'});
-        console.log('Ska clear napkin');
+        var c = document.getElementById("canvasNapkin").getContext("2d");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0,0,c.width,c.height);
     });
 
     var enterName = function() {
@@ -1041,8 +1043,9 @@ window.onload = function () {
                                         break;
                                     case "clearNapkin":
                                         if(localStream.showing === true) {
-                                            var clearctx = document.getElementById("canvasNapkin").getContext("2d");
-                                            clearctx.clearRect(0,0,c.width,c.height);
+                                            var c = document.getElementById("canvasNapkin").getContext("2d");
+                                            var ctx = c.getContext("2d");
+                                            ctx.clearRect(0,0,c.width,c.height);
                                             console.log('Clear napkin');
                                         }
                                         break;
