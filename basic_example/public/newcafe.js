@@ -177,7 +177,7 @@ function broadcastLeader() {
 function sendNapkinToNewUser() {
     var c = document.getElementById("canvasNapkin");
     var ctx = c.getContext("2d");
-    var napkinImgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    var napkinImgData = ctx.getImageData(0,0,c.width,c.height);
     //ctx.putImageData(imgData,10,70);
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
