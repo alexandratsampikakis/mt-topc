@@ -633,7 +633,7 @@ window.onload = function () {
     });
 
     $('#clearNapkin').click(function() {
-        dataStream.sendData({id:'clearNapkin'});
+        dataStream.sendData({id:'clearNapkin', test:1});
     });
 
     var enterName = function() {
