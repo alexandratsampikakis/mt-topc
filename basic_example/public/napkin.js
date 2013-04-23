@@ -191,17 +191,6 @@ function thicknessSelectListener (e) {
   var newThickness = this.options[this.selectedIndex].value;
   // Locally, set the line thickness to the selected value
   localLineThickness = getValidThickness(newThickness);
-  // Share the selected thickness with other users by setting the client
-  // attribute named "thickness". Attributes are automatically shared with other
-  // clients in the room, triggering clientAttributeUpdateListener().
-  // Arguments for SET_CLIENT_ATTR are:
-  //   clientID
-  //   userID (None in this case)
-  //   attrName
-  //   escapedAttrValue
-  //   attrScope (The room)
-  //   attrOptions (An integer whose bits specify options. "4" means
-  //                the attribute should be shared).
 }
  
 // Triggered when an option in the "line color" menu is selected
