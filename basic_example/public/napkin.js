@@ -243,8 +243,11 @@ function penMove (x, y) {
 // touch-input device moves.
 function penUp () {
   isPenDown = false;
-  dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend});
-  pathToSend = [];
+  if(pathToSend.length > 0) {
+    dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend});
+    pathToSend = [];
+  }
+  
 }
  
 //==============================================================================
