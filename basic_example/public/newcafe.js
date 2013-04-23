@@ -639,6 +639,13 @@ window.onload = function () {
         ctx.clearRect(0,0,c.width,c.height);
     });
 
+    $('#saveNapkin').click(function() {
+        var c = document.getElementById("canvasNapkin");
+        var dataURL = c.toDataURL();
+        document.getElementById('napkinImg').src = dataURL;
+        console.log('canvasimg saved!');
+    });
+
     var enterName = function() {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
