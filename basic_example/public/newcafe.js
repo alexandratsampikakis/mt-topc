@@ -642,7 +642,7 @@ window.onload = function () {
     $('#saveNapkin').click(function() {
         var c = document.getElementById("canvasNapkin");
         var dataURL = c.toDataURL();
-        document.getElementById('canvasNapkin').src = dataURL;
+        document.getElementById('myNapkinImg').src = dataURL;
         console.log('canvasimg saved!');
     });
 
