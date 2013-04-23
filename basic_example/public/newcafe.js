@@ -177,8 +177,7 @@ function broadcastLeader() {
 function sendNapkinToNewUser() {
     var c = document.getElementById("canvasNapkin");
     var ctx = c.getContext("2d");
-    var napkinImgData = ctx.getImageData(0,0,c.width,c.height);
-    //ctx.putImageData(imgData,10,70);
+    var napkinImgData = c.toDataURL();
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
 
@@ -1027,7 +1026,11 @@ window.onload = function () {
                                     case "currentNapkin":
                                         var c = document.getElementById("canvasNapkin");
                                         var ctx = c.getContext("2d");
-                                        ctx.putImageData(evt.msg.napkinImgData,600,400);
+                                        var myImage = new Image();
+                                        myImage.onload = function(){
+                                            ctx.drawImage(myImage, 0, 0,c.width,c.height);
+                                        }; 
+                                        myImage.src = imgData;
                                         break;
                                    default:
                                       
