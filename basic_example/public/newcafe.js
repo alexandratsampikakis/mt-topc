@@ -641,8 +641,9 @@ window.onload = function () {
 
     $('#saveNapkin').click(function() {
         var c = document.getElementById("canvasNapkin");
-        var dataURL = c.toDataURL();
-        document.getElementById('myNapkinImg').src = dataURL;
+        var dataURL = c.toDataURL("image/png");
+        var w=window.open('about:blank','image from canvas');
+        window.open(c.toDataURL('image/png'));
         console.log('canvasimg saved!');
     });
 
