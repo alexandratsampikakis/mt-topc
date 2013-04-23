@@ -233,35 +233,31 @@
 
 		        <div class="tab-content">
 		          	<div class="tab-pane active" id="napkin">
-		          		<center>
-		          			<div id="controls">
-			          			<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">Size <span class="caret"></span></a>
-				          			<li>
-								  		<select id="thickness" class="fixed">
-									        <option value="1">1</option>
-									        <option value="2">2</option>
-									        <option value="3">3</option>
-									        <option value="4">4</option>
-									        <option value="5">5</option>
-									        <option value="10">10</option>
-									        <option value="20">20</option>
-									  </select>
-									</li>
-								<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">Color<span class="caret"></span></a>
-								 	<ul id="color" class="dropdown-menu">
-								 		<li>
-									 		<select id="color">
-										        <option value="#FFFFFF">#FFFFFF</option>
-										        <option value="#AAAAAA">#AAAAAA</option>
-										        <option value="#666666">#666666</option>
-										        <option value="#000000">#000000</option>
-										        <option value="#9BA16C">#9BA16C</option>
-										        <option value="#CC8F2B">#CC8F2B</option>
-										        <option value="#63631D">#63631D</option>
+
+		          			<span class="dropdown" id="filter-add">
+							    <a href="#filter-add" id="addFilter" class="dropdown-toggle" data-toggle="dropdown" >
+							        More
+							    </a>
+							    <ul id="Channels" class="nav nav-pills">
+							        <li class="dropdown">
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Size</a>
+							            <ul class="dropdown-menu">                    
+							           <li>
+							                <select id="thickness">
+										        <option value="1">1</option>
+										        <option value="2">2</option>
+										        <option value="3">3</option>
+										        <option value="4">4</option>
+										        <option value="5">5</option>
+										        <option value="10">10</option>
+										        <option value="20">20</option>
 										  	</select>
-									  	<li>
-								 	</ul>
-							</div>
+							              </li>
+							          </ul>
+							        </li>
+							        <li><a>Cancel</a></li>
+							    </ul>
+							</span>
 
 							<!--<ul class="dropdown" style="margin-left: 0px;">
 							    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
@@ -306,7 +302,6 @@
 						        <option value="#63631D">#63631D</option>
 						  </select>
 						</div>-->
-						</center>
 
 						<!--The canvas where drawings will be displayed-->
 						<center><canvas id="canvas" onselectstart="return false;"></canvas></center>
