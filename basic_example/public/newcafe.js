@@ -1030,7 +1030,7 @@ window.onload = function () {
                                         myImage.onload = function(){
                                             ctx.drawImage(myImage, 0, 0,c.width,c.height);
                                         }; 
-                                        myImage.src = imgData;
+                                        myImage.src = evt.msg.napkinImgData;
                                         break;
                                    default:
                                       
