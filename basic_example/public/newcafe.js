@@ -14,25 +14,6 @@ function knockSound() {
     audioElement.play();
 }
 
-// Download a file form a url.
-function saveFile(url) {
-    // Get file name from url.
-    var filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function() {
-        var a = document.createElement('a');
-        a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
-        a.download = filename; // Set the file name.
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        delete a;
-    };
-    xhr.open('GET', url);
-    xhr.send();
-}
-
 //Notifys users of newly joined user by writing in chat
 function hasJoinedTheRoom(username) {
     var message = username + " sat down at the table.";
@@ -662,6 +643,22 @@ window.onload = function () {
         var c = document.getElementById("canvasNapkin");
         var dataURL = c.toDataURL("image/png");
         window.open(c.toDataURL('image/png'));
+
+        // Get file name from url.
+        var filename = 'myNapkin';
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function() {
+            var a = document.createElement('a');
+            a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+            a.download = filename; // Set the file name.
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            delete a;
+        };
+        xhr.open('GET', url);
+        xhr.send();
 
         /*var data = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         window.location.href = data;*/
