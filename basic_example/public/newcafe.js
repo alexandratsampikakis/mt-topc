@@ -273,7 +273,7 @@ window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
 
-    var context = document.getElementById("canvas").getContext('2d');
+    var context = document.getElementById("canvasNapkin").getContext('2d');
     //focus "enternametextfield"
     $("#userName").focus();
 
