@@ -640,11 +640,12 @@ window.onload = function () {
     });
 
     $('#saveNapkin').click(function() {
-        var c = document.getElementById("canvasNapkin");
+        /*var c = document.getElementById("canvasNapkin");
         var dataURL = c.toDataURL("image/png");
-        var w=window.open('about:blank','image from canvas');
-        window.open(c.toDataURL('image/png'));
-        console.log('canvasimg saved!');
+        window.open(c.toDataURL('image/png'));*/
+
+        var data = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        window.location.href = data;
     });
 
     var enterName = function() {
