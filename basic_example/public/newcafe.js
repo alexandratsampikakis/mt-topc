@@ -174,6 +174,14 @@ function broadcastLeader() {
     console.log('broadcasting leader');
 }
 
+function sendNapkinToNewUser() {
+    var c = document.getElementById("canvasNapkin");
+    var ctx = c.getContext("2d");
+    var napkinImgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    //ctx.putImageData(imgData,10,70);
+    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
 //Clears textfields
 function clearTextFields() {
     $('#chatArea').val("");
@@ -816,6 +824,7 @@ window.onload = function () {
                     },1000*60*5);
                 } else if(leader === localStream.getID()) {
                     broadcastLeader();
+                    sendNapkinToNewUser();
                     //getSnapshots();
                 }
             });
@@ -1014,6 +1023,11 @@ window.onload = function () {
                                         if(localStream.showing === true) {
                                             drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path);
                                         }
+                                        break;
+                                    case "currentNapkin":
+                                        var c = document.getElementById("canvasNapkin");
+                                        var ctx = c.getContext("2d");
+                                        ctx.putImageData(evt.msg.napkinImgData,0,0);
                                         break;
                                    default:
                                       

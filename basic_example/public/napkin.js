@@ -91,7 +91,7 @@ function addOnloadHandler (newFunction) {
 // Set up the drawing canvas
 function initCanvas () {
   // Retrieve canvas reference
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById("canvasNapkin");
  
   // If IE8, do IE-specific canvas initialization (required by excanvas.js)
   if (typeof G_vmlCanvasManager != "undefined") {
@@ -108,7 +108,7 @@ function initCanvas () {
  
   // Set control panel defaults
   document.getElementById("thickness").selectedIndex = 0;
-  document.getElementById("color").selectedIndex = 1;
+  document.getElementById("color").selectedIndex = 3;
 }
  
 // Register callback functions to handle user input
