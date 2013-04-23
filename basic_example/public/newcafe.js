@@ -634,6 +634,7 @@ window.onload = function () {
 
     $('#clearNapkin').click(function() {
         dataStream.sendData({id:'clearNapkin'});
+        console.log('Ska clear napkin');
     });
 
     var enterName = function() {
