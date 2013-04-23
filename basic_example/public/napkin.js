@@ -6,8 +6,8 @@
 var isPenDown = false;
  
 // Line defaults
-var defaultLineColor = "##61b7e2";
-var defaultLineThickness = 1;
+var defaultLineColor = "#61b7e2";
+var defaultLineThickness = 3;
 var maxLineThickness = 30;
  
 // Tracks the current location of the user's drawing pen
@@ -107,8 +107,8 @@ function initCanvas () {
   context.lineCap = "round";
  
   // Set control panel defaults
-  document.getElementById("thickness").selectedIndex = 0;
-  document.getElementById("color").selectedIndex = 3;
+  document.getElementById("thickness").selectedIndex = 2;
+  document.getElementById("color").selectedIndex = 5;
 }
  
 // Register callback functions to handle user input

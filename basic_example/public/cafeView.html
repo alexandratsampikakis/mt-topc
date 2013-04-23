@@ -234,8 +234,8 @@
 
 		        <div class="tab-content">
 		          	<div class="tab-pane active" id="napkin">
-		          		<div id="controls">
-			          		<select id="thickness" class="selectpicker show-menu-arrow" title='Size' data-style="btn btn-mini">
+		          		<center><div id="controls">
+			          		<select id="thickness" class="selectpicker" data-width="100px" title='Size' data-style="btn btn-mini">
 						    	<option value="1">1</option>
 							    <option value="2">2</option>
 							    <option value="3">3</option>
@@ -245,7 +245,7 @@
 							    <option value="20">20</option>
 						  	</select>
 
-						  	<select id="color" class="selectpicker" title='Color' data-style="btn btn-mini">
+						  	<select id="color" class="selectpicker" data-width="100px" title='Color' data-style="btn btn-mini">
 						    	<option value="#FFFFFF">Grey</option>
 							    <option value="#000000">Black</option>
 							    <option value="#61b7e2">Blue</option>
@@ -255,42 +255,10 @@
 							    <option value="#a5682a">Brown</option>
 							    <option value="#ff0000">Red</option>
 						  	</select>
-						</div>
+						</div></center>
 
-						<!--<button id="clearNapkin" class="btn btn-mini" style="float: right; margin-right: 10px;">Clear napkin</button>-->
+						<button id="clearNapkin" class="btn btn-mini" style="float: right; margin-right: 10px;">Clear napkin</button>
 
-		          		<!--<div class="btn-group">
-						  	<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-						    	Size
-						    	<span class="caret"></span>
-						  	</a>
-						  	<ul class="dropdown-menu">                    
-					            <li><a href="#" value="1">1</a></li>
-					            <li><a href="#">2</a></li>
-					            <li><a href="#">3</a></li>
-					            <li><a href="#">4</a></li>
-					            <li><a href="#">5</a></li>
-					            <li><a href="#">10</a></li>
-					            <li><a href="#">20</a></li>
-					        </ul>
-					    </div>
-					    <div class="btn-group">
-					        <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-						    	Color
-						    	<span class="caret"></span>
-						  	</a>
-						  	<ul class="dropdown-menu">                    
-					            <li><a href="#">Grey</a></li>
-					            <li><a href="#">Black</a></li>
-					            <li><a href="#">Blue</a></li>
-					            <li><a href="#">Pink</a></li>
-					            <li><a href="#">Yellow</a></li>
-					            <li><a href="#">Green</a></li>
-					            <li><a href="#">Brown</a></li>
-					        </ul>
-						</div>-->
-
-						<!--The canvas where drawings will be displayed-->
 						<center><canvas id="canvasNapkin" onselectstart="return false;"></canvas></center>
 		          	</div>
 
