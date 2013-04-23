@@ -641,11 +641,17 @@ window.onload = function () {
 
     $('#saveNapkin').click(function() {
         var c = document.getElementById("canvasNapkin");
-        var dataURL = c.toDataURL("image/png");
-        window.open(c.toDataURL('image/png'));
+        ctx = c.getContext("2d");
+        //var dataURL = c.toDataURL("image/png");
+        //window.open(c.toDataURL('image/png'));
+
+        // draw to canvas...
+        c.toBlob(function(blob) {
+            saveAs(blob, "myNapkin.png");
+        });
 
         // Get file name from url.
-        var filename = 'myNapkin';
+        /*var filename = 'myNapkin';
         var xhr = new XMLHttpRequest();
         xhr.responseType = 'blob';
         xhr.onload = function() {
@@ -658,7 +664,7 @@ window.onload = function () {
             delete a;
         };
         xhr.open('GET', 'http://satin.research.ltu.se:3001/myNapkin.png');
-        xhr.send();
+        xhr.send();*/
 
         /*var data = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         window.location.href = data;*/
