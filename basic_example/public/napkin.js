@@ -6,7 +6,7 @@
 var isPenDown = false;
  
 // Line defaults
-var defaultLineColor = "#AAAAAA";
+var defaultLineColor = "##61b7e2";
 var defaultLineThickness = 1;
 var maxLineThickness = 30;
  

@@ -1027,7 +1027,7 @@ window.onload = function () {
                                     case "currentNapkin":
                                         var c = document.getElementById("canvasNapkin");
                                         var ctx = c.getContext("2d");
-                                        ctx.putImageData(evt.msg.napkinImgData,0,0);
+                                        ctx.putImageData(evt.msg.napkinImgData,600,400);
                                         break;
                                    default:
                                       
