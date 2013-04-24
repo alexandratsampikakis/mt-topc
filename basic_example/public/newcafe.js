@@ -1117,9 +1117,13 @@ window.onload = function () {
         }
         overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
         var videoheight = $('#table2img').height()/2;
+        var videoheight2 = $('#table1img').height()/2;
+        if(videoheight2 < videoheight) videoheight=videoheight2;
         $('.overhearVidContainer').height(videoheight)
         $(window).resize(function() {
             var videoheight = $('#table2img').height()/2;
+            var videoheight2 = $('#table1img').height()/2;
+            if(videoheight2 < videoheight) videoheight=videoheight2;
             $('.overhearVidContainer').height(videoheight)
         });
         createToken(roomId, "user", "role", function (response) {
