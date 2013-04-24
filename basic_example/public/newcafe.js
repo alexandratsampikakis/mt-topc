@@ -16,21 +16,21 @@ function knockSound() {
 
 function appendOverhearing(id) {
     $('.overhearing').remove();
-    $('#overhearingContainer'+id).append('<div class="row-fluid hide overhearing">
-                    <div id="overhear1" class="span4 overhearVidContainer">
-                    </div>
-                    <div id="overhear2" class="span4 overhearVidContainer">
-                    </div>
-                    <div id="overhear3" class="span4 overhearVidContainer">
-                    </div>
-                </div>
-                <div class="row-fluid hide overhearing">    
-                    <div id="overhear4" class="span4 overhearVidContainer">
-                    </div> 
-                    <div id="overhear5" class="span4 overhearVidContainer">
-                    </div>
-                    <div id="overhear6" class="span4 overhearVidContainer">
-                    </div>
+    $('#overhearingContainer'+id).append('<div class="row-fluid hide overhearing">\
+                    <div id="overhear1" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear2" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear3" class="span4 overhearVidContainer">\
+                    </div>\
+                </div>\
+                <div class="row-fluid hide overhearing">\
+                    <div id="overhear4" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear5" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear6" class="span4 overhearVidContainer">\
+                    </div>\
                 </div>')
     $('#table'+id+'img').toggle();
 }
