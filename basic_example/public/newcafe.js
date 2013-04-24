@@ -538,7 +538,7 @@ window.onload = function () {
         overhear(tableId[2]);
         appendOverhearing(2);
         $('#ohtable2').hide();
-        $('#stopohtable2').show().css('display', 'inline-block !important');
+        $('#stopohtable2').show();
     });
     $('#ohtable3').click(function() {
         resetOverhearing();
