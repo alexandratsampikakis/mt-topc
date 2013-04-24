@@ -15,9 +15,6 @@ function knockSound() {
 }
 
 function appendOverhearing(id) {
-    overhearStream.close();
-    room.disconnect();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
     $('.overhearing').remove();
     $('#overhearingContainer'+id).append('<div class="row-fluid hide overhearing">\
                     <div id="overhear1" class="span4 overhearVidContainer">\
@@ -1114,12 +1111,15 @@ window.onload = function () {
 //---------------------------------------------------------------------------------------------------
 
     var overhear = function(roomId) {
+        overhearStream.close();
+        room.disconnect();
+        overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+        var videoheight = $('#table2img').height()/2;
+        $('.overhearVidContainer').height(videoheight)
+        $(window).resize(function() {
             var videoheight = $('#table2img').height()/2;
             $('.overhearVidContainer').height(videoheight)
-            $(window).resize(function() {
-                var videoheight = $('#table2img').height()/2;
-                $('.overhearVidContainer').height(videoheight)
-            });
+        });
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
