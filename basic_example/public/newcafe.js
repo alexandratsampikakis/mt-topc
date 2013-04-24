@@ -544,8 +544,8 @@ window.onload = function () {
         resetOverhearing();
         overhear(tableId[2]);
         appendOverhearing(2);
-        $('#ohtable2').hide();
-        $('#stopohtable2').show();
+        $('#ohtable2').toggle();
+        //$('#stopohtable2').toggle();
         toggleButton($('#stopohtable2'));
     });
     $('#ohtable3').click(function() {
