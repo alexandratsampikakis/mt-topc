@@ -538,14 +538,13 @@ window.onload = function () {
         overhear(tableId[1]);
         appendOverhearing(1);
         $('#ohtable1').toggle();
-        $('#stopohtable1').toggle();
+        toggleButton($('#stopohtable1'));
     });
     $('#ohtable2').click(function() {
         resetOverhearing();
         overhear(tableId[2]);
         appendOverhearing(2);
         $('#ohtable2').toggle();
-        //$('#stopohtable2').toggle();
         toggleButton($('#stopohtable2'));
     });
     $('#ohtable3').click(function() {
@@ -553,28 +552,28 @@ window.onload = function () {
         overhear(tableId[3]);
         appendOverhearing(3);
         $('#ohtable3').toggle();
-        $('#stopohtable3').toggle();
+        toggleButton($('#stopohtable3'));
     });
     $('#ohtable4').click(function() {
         resetOverhearing();
         overhear(tableId[4]);
         appendOverhearing(4);
         $('#ohtable4').toggle();
-        $('#stopohtable4').toggle();
+        toggleButton($('#stopohtable4'));
     });
     $('#ohtable5').click(function() {
         resetOverhearing();
         overhear(tableId[5]);
         appendOverhearing(5);
         $('#ohtable5').toggle();
-        $('#stopohtable5').toggle();
+        toggleButton($('#stopohtable5'));
     });
     $('#ohtable6').click(function() {
         resetOverhearing();
         overhear(tableId[6]);
         appendOverhearing(6);
         $('#ohtable6').toggle();
-        $('#stopohtable6').toggle();
+        toggleButton($('#stopohtable6'));
     });
 
     $('#stopohtable1').click(function() {
