@@ -14,6 +14,14 @@ function knockSound() {
     audioElement.play();
 }
 
+function toggleButton(element) {
+   if(element.css('display') === 'none') {
+       element.css('display','inline-block') 
+   } else {
+       element.css('display','none');
+   }
+}
+
 function resetOverhearing() {
     $('.ohbutton').show();
     $('.stopohbutton').hide();
@@ -538,6 +546,7 @@ window.onload = function () {
         appendOverhearing(2);
         $('#ohtable2').hide();
         $('#stopohtable2').show();
+        toggleButton($('#stopohtable2')):
     });
     $('#ohtable3').click(function() {
         resetOverhearing();
