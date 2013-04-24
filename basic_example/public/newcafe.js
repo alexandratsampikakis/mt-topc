@@ -658,7 +658,6 @@ window.onload = function () {
         resetConnection();
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
-        $('#markis').toggle();
         return false;
     });
 
@@ -980,8 +979,10 @@ window.onload = function () {
                 // Subscribe to other streams
                 subscribeToStreams(room.getStreamsByAttribute('type','media'));
             } else {
-                deniedNotification(2);
                 resetConnection();
+                $('#enterNameRow').toggle();
+                $('#inTableRow').toggle();
+                deniedNotification(2);
             } 
         }); 
         localStream.init();  
