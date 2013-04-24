@@ -531,7 +531,6 @@ window.onload = function () {
         appendOverhearing(1);
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
-        //$('.overhearing').toggle();
     });
     $('#ohtable2').click(function() {
         resetOverhearing();
