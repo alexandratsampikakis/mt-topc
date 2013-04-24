@@ -23,7 +23,7 @@ function resetOverhearing() {
 }
 
 function appendOverhearing(id) {
-    $('#overhearingContainer'+id).append('<div class="row-fluid hide overhearing">\
+    $('#overhearingContainer'+id).append('<div class="row-fluid overhearing">\
                     <div id="overhear1" class="span4 overhearVidContainer">\
                     </div>\
                     <div id="overhear2" class="span4 overhearVidContainer">\
@@ -31,7 +31,7 @@ function appendOverhearing(id) {
                     <div id="overhear3" class="span4 overhearVidContainer">\
                     </div>\
                 </div>\
-                <div class="row-fluid hide overhearing">\
+                <div class="row-fluid overhearing">\
                     <div id="overhear4" class="span4 overhearVidContainer">\
                     </div>\
                     <div id="overhear5" class="span4 overhearVidContainer">\
