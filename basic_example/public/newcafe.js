@@ -15,6 +15,8 @@ function knockSound() {
 }
 
 function resetOverhearing() {
+    $('.ohbutton').show();
+    $('.stopohbutton').hide();
     $('.overhearing').remove();
     $('.tableImg').show();
     overhearStream.close();
@@ -558,32 +560,32 @@ window.onload = function () {
     });
 
     $('#stopohtable1').click(function() {
-        stopOverhear(tableId[1]);
+        resetOverhearing();
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
     });
     $('#stopohtable2').click(function() {
-        stopOverhear(tableId[2]);
+        resetOverhearing();
         $('#ohtable2').toggle();
         $('#stopohtable2').toggle();
     });
     $('#stopohtable3').click(function() {
-        stopOverhear(tableId[3]);
+        resetOverhearing();
         $('#ohtable3').toggle();
         $('#stopohtable3').toggle();
     });
     $('#stopohtable4').click(function() {
-        stopOverhear(tableId[4]);
+        resetOverhearing();
         $('#ohtable4').toggle();
         $('#stopohtable4').toggle();
     });
     $('#stopohtable5').click(function() {
-        stopOverhear(tableId[5]);
+        resetOverhearing();
         $('#ohtable5').toggle();
         $('#stopohtable5').toggle();
     });
     $('#stopohtable6').click(function() {
-        stopOverhear(tableId[6]);
+        resetOverhearing();
         $('#ohtable6').toggle();
         $('#stopohtable6').toggle();
     });
