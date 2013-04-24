@@ -561,33 +561,33 @@ window.onload = function () {
 
     $('#stopohtable1').click(function() {
         resetOverhearing();
-        $('#ohtable1').toggle();
-        $('#stopohtable1').toggle();
+        $('#ohtable1').show();
+        $('#stopohtable1').hide();
     });
     $('#stopohtable2').click(function() {
         resetOverhearing();
-        $('#ohtable2').toggle();
-        $('#stopohtable2').toggle();
+        $('#ohtable2').show();
+        $('#stopohtable2').hide();
     });
     $('#stopohtable3').click(function() {
         resetOverhearing();
-        $('#ohtable3').toggle();
-        $('#stopohtable3').toggle();
+        $('#ohtable3').show();
+        $('#stopohtable3').hide();
     });
     $('#stopohtable4').click(function() {
         resetOverhearing();
-        $('#ohtable4').toggle();
-        $('#stopohtable4').toggle();
+        $('#ohtable4').show();
+        $('#stopohtable4').hide();
     });
     $('#stopohtable5').click(function() {
         resetOverhearing();
-        $('#ohtable5').toggle();
-        $('#stopohtable5').toggle();
+        $('#ohtable5').show();
+        $('#stopohtable5').hide();
     });
     $('#stopohtable6').click(function() {
         resetOverhearing();
-        $('#ohtable6').toggle();
-        $('#stopohtable6').toggle();
+        $('#ohtable6').show();
+        $('#stopohtable6').hide();
     });
 
     /*$("#table1").mouseover(function(){
