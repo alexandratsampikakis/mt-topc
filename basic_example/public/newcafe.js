@@ -42,6 +42,16 @@ function appendOverhearing(id) {
                     </div>\
                 </div>')
     $('#table'+id+'img').toggle();
+    var videoheight = $('#table2img').height()/2;
+    var videoheight2 = $('#table1img').height()/2;
+    if(videoheight2 < videoheight) videoheight=videoheight2;
+    $('.overhearVidContainer').height(videoheight)
+    $(window).resize(function() {
+        var videoheight = $('#table2img').height()/2;
+        var videoheight2 = $('#table1img').height()/2;
+        if(videoheight2 < videoheight) videoheight=videoheight2;
+        $('.overhearVidContainer').height(videoheight)
+    });
 }
 
 //Notifys users of newly joined user by writing in chat
@@ -527,8 +537,8 @@ window.onload = function () {
         resetOverhearing();
         overhear(tableId[2]);
         appendOverhearing(2);
-        $('#ohtable2').toggle();
-        $('#stopohtable2').toggle();
+        $('#ohtable2').hide();
+        $('#stopohtable2').show().css('display', 'inline-block !important');
     });
     $('#ohtable3').click(function() {
         resetOverhearing();
