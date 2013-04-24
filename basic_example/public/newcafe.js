@@ -14,8 +14,15 @@ function knockSound() {
     audioElement.play();
 }
 
-function appendOverhearing(id) {
+function resetOverhearing() {
     $('.overhearing').remove();
+    $('.tableImg').show();
+    overhearStream.close();
+    if(room != undefined) room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+}
+
+function appendOverhearing(id) {
     $('#overhearingContainer'+id).append('<div class="row-fluid hide overhearing">\
                     <div id="overhear1" class="span4 overhearVidContainer">\
                     </div>\
@@ -507,44 +514,44 @@ window.onload = function () {
     });
 
     $('#ohtable1').click(function() {
+        resetOverhearing();
         overhear(tableId[1]);
-        $('.tableImg').show();
         appendOverhearing(1);
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
-        $('.overhearing').toggle();
+        //$('.overhearing').toggle();
     });
     $('#ohtable2').click(function() {
+        resetOverhearing();
         overhear(tableId[2]);
-        $('.tableImg').show();
         appendOverhearing(2);
         $('#ohtable2').toggle();
         $('#stopohtable2').toggle();
     });
     $('#ohtable3').click(function() {
+        resetOverhearing();
         overhear(tableId[3]);
-        $('.tableImg').show();
         appendOverhearing(3);
         $('#ohtable3').toggle();
         $('#stopohtable3').toggle();
     });
     $('#ohtable4').click(function() {
+        resetOverhearing();
         overhear(tableId[4]);
-        $('.tableImg').show();
         appendOverhearing(4);
         $('#ohtable4').toggle();
         $('#stopohtable4').toggle();
     });
     $('#ohtable5').click(function() {
+        resetOverhearing();
         overhear(tableId[5]);
-        $('.tableImg').show();
         appendOverhearing(5);
         $('#ohtable5').toggle();
         $('#stopohtable5').toggle();
     });
     $('#ohtable6').click(function() {
+        resetOverhearing();
         overhear(tableId[6]);
-        $('.tableImg').show();
         appendOverhearing(6);
         $('#ohtable6').toggle();
         $('#stopohtable6').toggle();
@@ -1111,11 +1118,6 @@ window.onload = function () {
 //---------------------------------------------------------------------------------------------------
 
     var overhear = function(roomId) {
-        overhearStream.close();
-        if(room != undefined) {
-            room.disconnect();            
-        }
-        overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
         var videoheight = $('#table2img').height()/2;
         var videoheight2 = $('#table1img').height()/2;
         if(videoheight2 < videoheight) videoheight=videoheight2;
