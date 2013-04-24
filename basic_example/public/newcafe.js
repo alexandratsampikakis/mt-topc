@@ -1112,7 +1112,9 @@ window.onload = function () {
 
     var overhear = function(roomId) {
         overhearStream.close();
-        room.disconnect();
+        if(room != undefined) {
+            room.disconnect();            
+        }
         overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
         var videoheight = $('#table2img').height()/2;
         $('.overhearVidContainer').height(videoheight)
