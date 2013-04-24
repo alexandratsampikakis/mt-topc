@@ -973,10 +973,10 @@ window.onload = function () {
                     }
                 });
 
-                console.log('FÖRST: 'room.getStreamsByAttribute('type','media'));
+                console.log('FÖRST: '+room.getStreamsByAttribute('type','media'));
                 // Publish my stream
                 room.publish(localStream);
-                console.log('ANDRA: 'room.getStreamsByAttribute('type','media'));
+                console.log('ANDRA: '+room.getStreamsByAttribute('type','media'));
                 // Subscribe to other streams
                 subscribeToStreams(room.getStreamsByAttribute('type','media'));
             } else {
