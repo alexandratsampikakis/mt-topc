@@ -508,32 +508,38 @@ window.onload = function () {
 
     $('#ohtable1').click(function() {
         overhear(tableId[1]);
+        appendOverhearing(1);
         $('#ohtable1').toggle();
         $('#stopohtable1').toggle();
         $('.overhearing').toggle();
     });
     $('#ohtable2').click(function() {
         overhear(tableId[2]);
+        appendOverhearing(2);
         $('#ohtable2').toggle();
         $('#stopohtable2').toggle();
     });
     $('#ohtable3').click(function() {
         overhear(tableId[3]);
+        appendOverhearing(3);
         $('#ohtable3').toggle();
         $('#stopohtable3').toggle();
     });
     $('#ohtable4').click(function() {
         overhear(tableId[4]);
+        appendOverhearing(4);
         $('#ohtable4').toggle();
         $('#stopohtable4').toggle();
     });
     $('#ohtable5').click(function() {
         overhear(tableId[5]);
+        appendOverhearing(5);
         $('#ohtable5').toggle();
         $('#stopohtable5').toggle();
     });
     $('#ohtable6').click(function() {
         overhear(tableId[6]);
+        appendOverhearing(6);
         $('#ohtable6').toggle();
         $('#stopohtable6').toggle();
     });
