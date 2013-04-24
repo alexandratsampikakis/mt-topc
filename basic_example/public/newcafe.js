@@ -1063,8 +1063,12 @@ window.onload = function () {
                                                 
                                             } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
                                                 removeRoomFromKnocklist(roomId);
-                                                initialize(roomId);
-                                                
+                                                if (room.getStreamsByAttribute('type','media').length < 6) {
+                                                    initialize(roomId);
+                                                } else {
+                                                    deniedNotification(2);
+                                                    resetConnection();
+                                                }             
                                             } 
                                         } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
                                             addNoCount(roomId);
