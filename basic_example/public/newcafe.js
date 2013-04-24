@@ -546,7 +546,7 @@ window.onload = function () {
         appendOverhearing(2);
         $('#ohtable2').hide();
         $('#stopohtable2').show();
-        toggleButton($('#stopohtable2')):
+        toggleButton($('#stopohtable2'));
     });
     $('#ohtable3').click(function() {
         resetOverhearing();
