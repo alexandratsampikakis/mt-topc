@@ -143,9 +143,11 @@ function removeRoomFromKnocklist(roomId) {
     }
 }
 
-function drawPath(color, thickness, path) {
+function drawPath(color, thickness, path, width, height) {
+    var widthRatio = $('#canvasNapkin')[0].width/width;
+    var heightRatio = $('#canvasNapkin')[0].height/height;
     for (var i = 0; i < path.length; i+=2) {
-        drawLine(color, thickness, path[i], path[i+1], path[i+2], path[i+3]);
+        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
     };
 }
 
@@ -1023,7 +1025,7 @@ window.onload = function () {
                                         break;
                                     case "paint":
                                         if(localStream.showing === true) {
-                                            drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path);
+                                            drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
                                         }
                                         break;
                                     case "currentNapkin":

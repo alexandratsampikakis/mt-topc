@@ -244,7 +244,7 @@ function penMove (x, y) {
 function penUp () {
   isPenDown = false;
   if(pathToSend.length > 0) {
-    dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend});
+    dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend, width:$('#canvasNapkin')[0].width, height:$('#canvasNapkin')[0].height});
     pathToSend = [];
   }
   
