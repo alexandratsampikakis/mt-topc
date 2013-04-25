@@ -799,7 +799,7 @@ window.onload = function () {
 
         $('#chatArea').css({
             position:'absolute', 
-            top: $(window).height() - $('#chatArea').height()*2-40,
+            top: $(window).height() - $('#chatArea').height()*2-56,
             left:'0'
         });
         $('#chatMessage').css({
