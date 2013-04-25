@@ -1,4 +1,6 @@
 var scene = new THREE.Scene();
+
+// PerspectiveCamera(field of view,aspect ratio,near,far)
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 var renderer = new THREE.WebGLRenderer();
