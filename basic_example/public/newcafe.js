@@ -880,6 +880,8 @@ window.onload = function () {
                 });
 
                 room.addEventListener("stream-added", function (streamEvent) {
+                    console.log('nrOfStreams: ' + room.getStreamsByAttribute('type','media').length);
+                    console.log('Comparing Streams: ' + streamEvent.stream.getID() === localStream.getID())
                     if(room.getStreamsByAttribute('type','media').length > 6 && streamEvent.stream.getID() === localStream.getID()) {
                         resetConnection();
                     } else {
