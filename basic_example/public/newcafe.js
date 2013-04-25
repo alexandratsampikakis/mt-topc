@@ -881,8 +881,9 @@ window.onload = function () {
 
                 room.addEventListener("stream-added", function (streamEvent) {
                     console.log('nrOfStreams: ' + room.getStreamsByAttribute('type','media').length);
-                    console.log('Comparing Streams: ' + streamEvent.stream.getID() === localStream.getID());
+                    console.log('Comparing Streams: ' + (streamEvent.stream.getID() === localStream.getID()) );
                     if(room.getStreamsByAttribute('type','media').length > 6 && streamEvent.stream.getID() === localStream.getID()) {
+                        console.log('To many streams, leaving room.');
                         resetConnection();
                     } else {
                         // Subscribe to added streams
