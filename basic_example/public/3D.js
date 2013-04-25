@@ -26,7 +26,7 @@ var render = function () {
 render();*/
 
 	// set the scene size
-	var WIDTH = 100%,
+	var WIDTH = 100%;
 	    HEIGHT = 100%;
 
 	// set some camera attributes
