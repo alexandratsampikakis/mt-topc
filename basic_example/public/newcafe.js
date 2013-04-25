@@ -337,8 +337,12 @@ window.onload = function () {
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
+    var doit;
     $(window).resize(function() {
-        redrawNapkin();
+        clearTimeout(doit);
+        doit = setTimeout(function() {
+            redrawNapkin();
+        }, 100);
     });
     //focus "enternametextfield"
     $("#userName").focus();
