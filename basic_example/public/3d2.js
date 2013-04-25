@@ -30,6 +30,11 @@ render();
 
 window.onload = function () {
 
+	try {
+      localStream = Erizo.Stream({audio: true, video: true, data: true});
+    } catch (error) {
+        console.log('erizo error: ' + error);
+    }
     //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
         var req = new XMLHttpRequest();
