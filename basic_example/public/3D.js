@@ -25,9 +25,9 @@ var render = function () {
 
 render();*/
 
-	// set the scene size
-	var WIDTH = 100%;
-	    HEIGHT = 100%;
+// set the scene size
+	var WIDTH = 400,
+	    HEIGHT = 300;
 
 	// set some camera attributes
 	var VIEW_ANGLE = 45,
