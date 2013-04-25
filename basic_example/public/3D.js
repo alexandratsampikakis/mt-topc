@@ -12,6 +12,11 @@ var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
+var sphereGeo = new THREE.SpheroGeometry(0.5, 0.5, 0.5);
+var sMaterial = new THREE.MeshBasicMaterial({color: 0xe261b7});
+var sphere = new THREE.Mesh(sphereGeo, sMaterial);
+scene.add(sphere);
+
 camera.position.z = 5;
 
 var render = function () {
