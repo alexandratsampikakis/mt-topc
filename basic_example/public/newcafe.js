@@ -882,29 +882,31 @@ window.onload = function () {
                 room.addEventListener("stream-added", function (streamEvent) {
                     if(room.getStreamsByAttribute('type','media').length > 6 && streamEvent.stream.getID() === localStream.getID()) {
                         resetConnection();
-                    }
-                    // Subscribe to added streams
-                    var streams = [];
-                    streams.push(streamEvent.stream);
-                    subscribeToStreams(streams);
-                    if(streamEvent.stream.getAttributes().type === "media"){
-                        hasJoinedTheRoom(streamEvent.stream.getAttributes().username);
-                    }
-                    //If table is empty, become the leader
-                    var currStreams = room.getStreamsByAttribute('type','media');
-                    if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
-                        console.log('Snapshot sent at ' + Date.now());
-                        leader = localStream.getID();
-                        getSnapshots();
-                        setInterval(function(){
+                    } else {
+                        // Subscribe to added streams
+                        var streams = [];
+                        streams.push(streamEvent.stream);
+                        subscribeToStreams(streams);
+                        if(streamEvent.stream.getAttributes().type === "media"){
+                            hasJoinedTheRoom(streamEvent.stream.getAttributes().username);
+                        }
+                        //If table is empty, become the leader
+                        var currStreams = room.getStreamsByAttribute('type','media');
+                        if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
                             console.log('Snapshot sent at ' + Date.now());
+                            leader = localStream.getID();
                             getSnapshots();
-                        },1000*60*5);
-                    } else if(leader === localStream.getID()) {
-                        broadcastLeader();
-                        sendNapkinToNewUser();
-                        //getSnapshots();
+                            setInterval(function(){
+                                console.log('Snapshot sent at ' + Date.now());
+                                getSnapshots();
+                            },1000*60*5);
+                        } else if(leader === localStream.getID()) {
+                            broadcastLeader();
+                            sendNapkinToNewUser();
+                            //getSnapshots();
+                        }  
                     }
+                    
                     console.log('HÄÄÄÄÄÄÄR: ' + room.getStreamsByAttribute('type','media'));
                 });
 
