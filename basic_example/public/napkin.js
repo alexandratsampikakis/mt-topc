@@ -6,8 +6,8 @@
 var isPenDown = false;
  
 // Line defaults
-var defaultLineColor = "#AAAAAA";
-var defaultLineThickness = 1;
+var defaultLineColor = "#61b7e2";
+var defaultLineThickness = 3;
 var maxLineThickness = 30;
  
 // Tracks the current location of the user's drawing pen
@@ -91,7 +91,7 @@ function addOnloadHandler (newFunction) {
 // Set up the drawing canvas
 function initCanvas () {
   // Retrieve canvas reference
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById("canvasNapkin");
  
   // If IE8, do IE-specific canvas initialization (required by excanvas.js)
   if (typeof G_vmlCanvasManager != "undefined") {
@@ -107,8 +107,8 @@ function initCanvas () {
   context.lineCap = "round";
  
   // Set control panel defaults
-  document.getElementById("thickness").selectedIndex = 0;
-  document.getElementById("color").selectedIndex = 1;
+  document.getElementById("thickness").selectedIndex = 2;
+  document.getElementById("color").selectedIndex = 5;
 }
  
 // Register callback functions to handle user input
@@ -144,8 +144,8 @@ function pointerDownListener (e) {
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
   // Determine where the user clicked the mouse.
-  var mouseX = event.clientX - $('#canvas').offset().left;//canvas.offsetLeft;
-  var mouseY = event.clientY - $('#canvas').offset().top;//canvas.offsetTop;
+  var mouseX = event.clientX - $('#canvasNapkin').offset().left;//canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvasNapkin').offset().top;//canvas.offsetTop;
  
   // Move the drawing pen to the position that was clicked
   penDown(mouseX, mouseY);
@@ -164,8 +164,8 @@ function pointerDownListener (e) {
 // Triggered when the mouse moves
 function pointerMoveListener (e) {
   var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX - $('#canvas').offset().left;// - canvas.offsetLeft;
-  var mouseY = event.clientY - $('#canvas').offset().top;// - canvas.offsetTop;
+  var mouseX = event.clientX - $('#canvasNapkin').offset().left;// - canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvasNapkin').offset().top;// - canvas.offsetTop;
  
   // Draw a line if the pen is down
   penMove(mouseX, mouseY);
@@ -191,17 +191,6 @@ function thicknessSelectListener (e) {
   var newThickness = this.options[this.selectedIndex].value;
   // Locally, set the line thickness to the selected value
   localLineThickness = getValidThickness(newThickness);
-  // Share the selected thickness with other users by setting the client
-  // attribute named "thickness". Attributes are automatically shared with other
-  // clients in the room, triggering clientAttributeUpdateListener().
-  // Arguments for SET_CLIENT_ATTR are:
-  //   clientID
-  //   userID (None in this case)
-  //   attrName
-  //   escapedAttrValue
-  //   attrScope (The room)
-  //   attrOptions (An integer whose bits specify options. "4" means
-  //                the attribute should be shared).
 }
  
 // Triggered when an option in the "line color" menu is selected
@@ -254,8 +243,11 @@ function penMove (x, y) {
 // touch-input device moves.
 function penUp () {
   isPenDown = false;
-  dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend});
-  pathToSend = [];
+  if(pathToSend.length > 0) {
+    dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend});
+    pathToSend = [];
+  }
+  
 }
  
 //==============================================================================
