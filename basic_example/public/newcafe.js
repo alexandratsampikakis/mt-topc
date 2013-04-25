@@ -855,6 +855,7 @@ window.onload = function () {
                 };
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
+                    console.log('HÄÄÄÄÄÄÄR FÖRST: ' + room.getStreamsByAttribute('type','media'));
                     var stream = streamEvent.stream;
                     if (stream.getAttributes().type === 'media') {
                         for (var i = 2; i <= 6; i++) {
@@ -875,7 +876,7 @@ window.onload = function () {
                     if(leader === localStream.getID()) {
                         getSnapshots();
                     } 
-
+                    console.log('HÄÄÄÄÄÄÄR TVÅ: ' + room.getStreamsByAttribute('type','media'));
                 });
 
                 room.addEventListener("stream-added", function (streamEvent) {
@@ -901,6 +902,7 @@ window.onload = function () {
                         sendNapkinToNewUser();
                         //getSnapshots();
                     }
+                    console.log('HÄÄÄÄÄÄÄR: ' + room.getStreamsByAttribute('type','media'));
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
