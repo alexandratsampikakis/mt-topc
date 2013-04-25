@@ -90,8 +90,8 @@
 				// Add Blender exported Collada model
 
 				var loader = new THREE.JSONLoader();
-				loader.load( 'models/animated/monster/monster.js', function ( geometry, materials ) {
-
+				//loader.load( 'models/animated/monster/monster.js', function ( geometry, materials ) {
+				loader.load( '/lib/three.js/mrdoob-three.js-28136e7/interior/source/interio.js', function ( geometry, materials ) {
 					// adjust color a bit
 
 					var material = materials[ 0 ];
@@ -101,7 +101,7 @@
 
 					var faceMaterial = new THREE.MeshFaceMaterial( materials );
 
-					/*for ( var i = 0; i < 729; i ++ ) {
+					for ( var i = 0; i < 1; i ++ ) {
 
 						// random placement in a grid
 
@@ -135,7 +135,7 @@
 
 						morphs.push( morph );
 
-					}*/
+					}
 
 				} );
 
