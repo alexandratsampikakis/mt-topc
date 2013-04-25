@@ -363,34 +363,7 @@ window.onload = function () {
 
                     }
                 }
-            });
-
-            /*getTableImage(cafe, function (response) {
-                var tableImg = JSON.parse(response);
-                console.log(tableImg);
-                /*var tableImgId = '#table'+i+'img';
-                console.log(tableImgId);
-                if(tableImg.hasOwnProperty('empty')) {
-                    console.log('DET HÄR ÄR FEEEEEEEEEEEEEEEL!');
-                    if(tableImg.empty === true) {
-                        var myImage = new Image();
-                        myImage.onload = function(){
-                            $(myImage).appendTo(tableImgId);
-                        };
-                        myImage.src = "http://placehold.it/320x200";
-                    }
-                } else {
-                    console.log('DET HÄR ÄR RÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTT!');
-                    console.log(tableImgId);
-                    imgData = tableImg.imageData;
-                    var myImage = new Image();
-                    myImage.onload = function(){
-                        $(myImage).appendTo(tableImgId);
-                    };
-                    myImage.src = imgData;
-                }*/
-            //});
-    
+            });    
         }
     });
 
@@ -607,35 +580,6 @@ window.onload = function () {
         $('#stopohtable6').hide();
     });
 
-    /*$("#table1").mouseover(function(){
-        $("#table1").popover({title: 'Table 1', placement:'right', content : '<div id="overhearingContainer" class="hide"><div class="span3"><div id="overhear1"></div><div id="overhear2"></div><div id="overhear3"></div><div id="overhear4"></div><div id="overhear5"></div><div id="overhear6"></div></div></div>'
-                    });
-                    overhear(tableId1);
-        /*getTableImage(tableId1, function (response) {
-            var tableImg = JSON.parse(response);
-            if(tableImg.hasOwnProperty('empty')) {
-                if(tableImg.empty === true) {
-
-                }
-            } else {
-                imgData = tableImg.imageData;
-                var myImage = new Image();
-                myImage.onload = function(){
-
-                    /*$("#table1").popover({title: 'Table 1', placement:'right',html:true, content: '<canvas id="popoverimg"></canvas>'
-                    });*/
-
-                        
-                    /*var canvas = document.getElementById('popoverimg');
-                    var context = canvas.getContext('2d');
-                    context.drawImage(myImage, 0, 0);
-                };
-                myImage.src = imgData;
-
-            }
-        });*/
-    //});
-
     //Send chat message
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
@@ -719,40 +663,6 @@ window.onload = function () {
             } catch (error) {
                 console.log('erizo error: ' + error);
             }
-
-        // getTableImage(tableId1, function (response) {
-        //     var tableImg = JSON.parse(response);
-        //     if(tableImg.hasOwnProperty('empty')) {
-        //         if(tableImg.empty === true) {
-        //             console.log('ingen bild');
-        //                                 //$("#table1").popover({title: 'Table 1', placement:'right', content : 'Café is empty'});
-        //         }
-        //     } else {
-        //         var canvas = document.createElement('canvas');
-        //                 var context = canvas.getContext('2d');
-        //                 canvas.id = "tableImg" + tableId1;
-        //                 imgData = tableImg.imageData;
-        //                 console.log(tableImg);
-        //                 console.log(imgData);
-        //                 var myImage = new Image();
-        //                 console.log('bilds!')
-
-        //                 myImage.onload = function(){
-        //                     console.log(myImage.width, myImage.height);
-        //                     context.drawImage(myImage, 0, 0);
-        //                     console.log(canvas);
-        //                     document.body.appendChild(myImage);
-        //                     document.body.appendChild(canvas);
-        //                     console.log(myImage);
-        //                 };
-        //                 myImage.src = imgData;
-                        
-
-
-        //         //$("#table1").popover({title: 'Table 1', placement:'right',html:true, content : canvas
-        //         //});
-        //     }
-        //});
         }
     };
 
@@ -885,6 +795,9 @@ window.onload = function () {
                     if(room.getStreamsByAttribute('type','media').length > 6 && streamEvent.stream.getID() === localStream.getID()) {
                         console.log('To many streams, leaving room.');
                         resetConnection();
+                        $('#enterNameRow').toggle();
+                        $('#inTableRow').toggle();
+                        deniedNotification(2);
                     } else {
                         // Subscribe to added streams
                         var streams = [];
@@ -906,7 +819,6 @@ window.onload = function () {
                         } else if(leader === localStream.getID()) {
                             broadcastLeader();
                             sendNapkinToNewUser();
-                            //getSnapshots();
                         }  
                     }
                     
@@ -1224,4 +1136,3 @@ window.onload = function () {
         });  
     }
 };
-//})();
