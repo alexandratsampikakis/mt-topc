@@ -143,19 +143,6 @@ function removeRoomFromKnocklist(roomId) {
     }
 }
 
-function redrawNapkin() {
-    var c = $('#canvasNapkin')[0];
-    var imgData = c.toDataURL();
-    var ctx = c.getContext("2d");
-    var myImage = new Image();
-    myImage.onload = function(){
-        ctx.drawImage(myImage, 0, 0,c.width,c.height);
-    }; 
-    myImage.src = imgData;
-    c.height = $(window).height() - 415;
-    c.width = 1.5*c.height;
-}
-
 function drawPath(color, thickness, path, width, height) {
     var widthRatio = $('#canvasNapkin')[0].width/width;
     var heightRatio = $('#canvasNapkin')[0].height/height;
@@ -336,10 +323,6 @@ window.onload = function () {
     cafe = getQueryString('cafe');
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
-    redrawNapkin();
-    $(window).resize(function() {
-        redrawNapkin();
-    });
     //focus "enternametextfield"
     $("#userName").focus();
 
