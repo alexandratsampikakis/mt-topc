@@ -32,8 +32,6 @@ window.onload = function () {
 
     //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
-        console.log(getQueryString('cafe'));
-        console.log(roomId);
         var req = new XMLHttpRequest();
         var url = serverUrl + 'createToken/' + roomId;
         var body = {username: userName, role: role};
