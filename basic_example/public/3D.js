@@ -35,6 +35,11 @@ var VIEW_ANGLE = 45,
   NEAR = 0.1,
   FAR = 10000;
 
+// set its position
+pointLight.position.x = 10;
+pointLight.position.y = 50;
+pointLight.position.z = 130;
+
 // set up the sphere vars
 var radius = 50,
     segments = 16,
@@ -75,5 +80,26 @@ var sphere = new THREE.Mesh( new THREE.SphereGeometry(
     rings),
   sphereMaterial);
 
+// create the sphere's material
+var sphereMaterial = new THREE.MeshLambertMaterial({
+      color: 0xCC0000
+    });
+
+// create a point light
+var pointLight = new THREE.PointLight(0xFFFFFF);
+
 scene.add(camera);
 scene.add(sphere);
+scene.add(pointLight);
+
+// set the geometry to dynamic
+// so that it allow updates
+sphere.geometry.dynamic = true;
+
+// changes to the vertices
+sphere.geometry.__dirtyVertices = true;
+
+// changes to the normals
+sphere.geometry.__dirtyNormals = true;
+
+renderer.render(scene, camera);
