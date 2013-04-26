@@ -99,6 +99,9 @@ window.onload = function () {
                 var subscribeToStreams = function (streams) {
                     if (!localStream.showing) {
                         localStream.show();
+                        initVideo();
+                        render();
+
                     }
                     var index, stream;
                     for (index in streams) {
