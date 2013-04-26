@@ -26,7 +26,7 @@ function initVideo() {
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
         });
-    geometry    = new THREE.PlaneGeometry( 3, 3 );
+    geometry    = new THREE.PlaneGeometry( 1, 1 );
     streamer = new THREE.Mesh(geometry, material);
     scene.add(streamer);
 
