@@ -99,9 +99,6 @@ window.onload = function () {
                 var subscribeToStreams = function (streams) {
                     if (!localStream.showing) {
                         localStream.show();
-                        initVideo();
-                        render();
-
                     }
                     var index, stream;
                     for (index in streams) {
@@ -149,7 +146,8 @@ window.onload = function () {
 
                     //If table is empty, become the leader
                     var currStreams = room.getStreamsByAttribute('type','media');
-                    
+                    initVideo();
+                    render();
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
