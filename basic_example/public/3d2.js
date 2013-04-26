@@ -13,21 +13,36 @@ document.body.appendChild(renderer.domElement);
 var geometry = new THREE.CubeGeometry(1,1,1);
 var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 var cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
 
 camera.position.z = 5;
 
-var render = function () {
-	requestAnimationFrame(render);
+function initVideo() {
+    var vid = document.getElementById('streamundefined');
+    vid.width = 320;
+    vid.height = 240;
+    vid.autoplay = true;
+    
+    var videoTexture = new THREE.Texture( vid );
+    var material   = new THREE.MeshLambertMaterial({
+      map : videoTexture
+        });
+    var geometry    = new THREE.PlaneGeometry( 3, 3 );
+    var stream = new THREE.Mesh(geometry, material);
+    scene.add(stream);
 
-	cube.rotation.x += 0.1;
-	cube.rotation.y += 0.1;
+}
 
-	renderer.render(scene, camera);
-};
-
-render();
-
+function render() {
+            // update camera controls
+            
+            if( vid.readyState === vid.HAVE_ENOUGH_DATA ){
+                videoTexture.needsUpdate = true;
+            }
+            
+            // actually render the scene
+            renderer.clear();
+            renderer.render(scene, camera);
+        }
 window.onload = function () {
 
 	try {
