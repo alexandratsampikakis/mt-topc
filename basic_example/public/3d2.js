@@ -40,14 +40,15 @@ function initVideo() {
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
     // the geometry on which the movie will be displayed;
     //      movie image will be scaled to fit these dimensions.
-    var movieGeometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
+    var movieGeometry = new THREE.PlaneGeometry(  2, 2 );
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(0,50,0);
+    movieScreen.position.set(0,0,0);
     scene.add(movieScreen);
 }
 
 function render() 
 {   
+    requestAnimationFrame(render);
     if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) 
     {
         videoImageContext.drawImage( vid, 0, 0, vidImg.width, vidImg.height );
