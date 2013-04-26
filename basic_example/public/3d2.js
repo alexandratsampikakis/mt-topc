@@ -19,12 +19,11 @@ camera.position.z = 5;
 function initVideo() {
     vid = document.getElementById('streamundefined');
 
-    
+    videoImageContext = vid.getContext('2d');
     vid.style.width = '320px';
     vid.style.height = '240px';
     vid.autoplay = true;
     vidImg = document.getElementById('videoImage');
-    videoImageContext = vidImg.getContext('2d');
     /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
@@ -49,7 +48,7 @@ function initVideo() {
 
 function render() 
 {   
-    if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+    if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) 
     {
         videoImageContext.drawImage( vid, 0, 0, vidImg.width, vidImg.height );
         if ( videoTexture ) 
