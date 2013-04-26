@@ -2,7 +2,7 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 
-var vid, videoTexture, material, geometry, streamer;
+var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -18,31 +18,45 @@ camera.position.z = 5;
 
 function initVideo() {
     vid = document.getElementById('streamundefined');
+
+    videoImageContext = vid.getContext('2d');
     vid.style.width = '320px';
     vid.style.height = '240px';
     vid.autoplay = true;
-
-    videoTexture = new THREE.Texture( vid );
+    vidImg = document.getElementById('videoImage');
+    /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
         });
     geometry    = new THREE.PlaneGeometry( 1, 1 );
     streamer = new THREE.Mesh(geometry, material);
-    scene.add(streamer);
+    scene.add(streamer);*/
 
+
+    videoTexture = new THREE.Texture( vidImg );
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    
+    var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    var movieGeometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(0,50,0);
+    scene.add(movieScreen);
 }
 
-function render() {
-            // update camera controls
-            
-            if( vid.readyState === vid.HAVE_ENOUGH_DATA ){
-                videoTexture.needsUpdate = true;
-            }
-            
-            // actually render the scene
-            renderer.clear();
-            renderer.render(scene, camera);
-        }
+function render() 
+{   
+    if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+    {
+        videoImageContext.drawImage( vid, 0, 0, vidImg.width, vidImg.height );
+        if ( videoTexture ) 
+            videoTexture.needsUpdate = true;
+    }
+
+    renderer.render( scene, camera );
+}
 window.onload = function () {
 
 	try {
