@@ -19,11 +19,12 @@ camera.position.z = 5;
 function initVideo() {
     vid = document.getElementById('streamundefined');
 
-    videoImageContext = vid.getContext('2d');
+    
     vid.style.width = '320px';
     vid.style.height = '240px';
     vid.autoplay = true;
     vidImg = document.getElementById('videoImage');
+    videoImageContext = vidImg.getContext('2d');
     /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
