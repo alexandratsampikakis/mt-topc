@@ -2,7 +2,7 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 
-
+var vid, videoTexture, material, geometry, streamer;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -17,18 +17,18 @@ var cube = new THREE.Mesh(geometry, material);
 camera.position.z = 5;
 
 function initVideo() {
-    var vid = document.getElementById('streamundefined');
+    vid = document.getElementById('streamundefined');
     vid.width = 320;
     vid.height = 240;
     vid.autoplay = true;
-    
-    var videoTexture = new THREE.Texture( vid );
-    var material   = new THREE.MeshLambertMaterial({
+
+    videoTexture = new THREE.Texture( vid );
+    material   = new THREE.MeshLambertMaterial({
       map : videoTexture
         });
-    var geometry    = new THREE.PlaneGeometry( 3, 3 );
-    var stream = new THREE.Mesh(geometry, material);
-    scene.add(stream);
+    geometry    = new THREE.PlaneGeometry( 3, 3 );
+    streamer = new THREE.Mesh(geometry, material);
+    scene.add(streamer);
 
 }
 
