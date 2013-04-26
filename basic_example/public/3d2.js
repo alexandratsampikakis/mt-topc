@@ -18,8 +18,8 @@ camera.position.z = 5;
 
 function initVideo() {
     vid = document.getElementById('streamundefined');
-    vid.width = 320;
-    vid.height = 240;
+    vid.style.width = 320;
+    vid.style.height = 240;
     vid.autoplay = true;
 
     videoTexture = new THREE.Texture( vid );
