@@ -61,7 +61,7 @@ function render() {
 window.onload = function () {
 
 	try {
-      localStream = Erizo.Stream({audio: true, video: true, data: true});
+      localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
     } catch (error) {
         console.log('erizo error: ' + error);
     }
