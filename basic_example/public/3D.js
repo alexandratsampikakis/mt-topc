@@ -170,6 +170,7 @@ window.onload = function () {
 
                 localStream.show("myVideo");
             });
+			localStream.init();
 		});
 	}
 }
