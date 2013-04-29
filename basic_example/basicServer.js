@@ -287,6 +287,10 @@ app.get('/cafeView.html', function(req, res){
   res.send('cafe: ' + req.query.cafe);
 });
 
+app.get('/3d2.html', function(req, res){
+  res.send('cafe: ' + req.query.cafe);
+});
+
 N.API.getRooms(function (roomlist) {
     "use strict";
     var rooms = JSON.parse(roomlist);
