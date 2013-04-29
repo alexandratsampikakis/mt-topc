@@ -71,7 +71,7 @@ function initVideo(stream) {
     movieScreen.position.set(0,0,0);
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
-    sterams.push(newStream);
+    streams.push(newStream);
 }
 
 function updateVideos() {
