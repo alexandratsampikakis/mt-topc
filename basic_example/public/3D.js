@@ -150,7 +150,7 @@ window.onload = function () {
 
                     //If table is empty, become the leader
                     var currStreams = room.getStreamsByAttribute('type','media');
-                    initVideo();
+                    initVideo(streamEvent.stream);
                     render();
                 });
 
