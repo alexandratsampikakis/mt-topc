@@ -6168,10 +6168,10 @@ a.badge:focus {
   position: fixed;
 }
 
-.tableBox {
+.backgroundBox {
   height: 200px;
+  width: 100%;
   padding: 10px;
   margin-top: 20px;
   border-radius: 0.5em;
-  background-color: rgb(97, 183, 226);
 }
