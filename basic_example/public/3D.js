@@ -18,9 +18,9 @@ camera.position.z = 5;
 
 function initVideo(stream) {
     if(stream.getID() === localStream.getID()) {
-        vid = localStream.player.video();
+        vid = localStream.player.video;
     } else {
-        vid = stream.player.video();
+        vid = stream.player.video;
     }
     //document.getElementById('streamundefined');
 
