@@ -8,15 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/cafeView.css" />
     <script type="text/javascript" src="erizo.js"></script>
     
+    <style>canvas { width: 100%; height: 100% }</style>
+    
     <script type="text/javascript" src="feedback.js"></script>
-    <style>
-        body {
-          background-color: #ccccff;
-          margin: 5px;
-          overflow: hidden;
-        }
-        <style>canvas { width: 100%; height: 100% }</style>
-    </style>
 </head>
 
 <body>
@@ -31,10 +25,8 @@
         </ul>
       </div>
   </div>
-
-  <p id="errorMessage"></p>
-
-  <video id="monitor" autoplay width="160" height="120" style="visibility: hidden; float:left;"></video>
+  
+  <div id="myVideo" class="hide" style="width: 320px; height: 240px"></div>
   <canvas id="videoImage" width="160" height="120" style="visibility: hidden; float:left;"></canvas>
 
   <div class="navbar navbar-fixed-bottom navbar-inverse">
@@ -58,39 +50,6 @@
   <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.KeyboardState.js"></script>
   <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.FullScreen.js"></script>
   <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.WindowResize.js"></script>
-  <script type="text/javascript" src="3D.js"></script>
-    <style>canvas { width: 100%; height: 100% }</style>
-</head>
-
-<body>
-  <div id="myVideo" class="hide" style="width: 320px; height: 240px"></div>
-  <canvas id="videoImage" width="160" height="120" style="visibility: hidden; float:left;"></canvas>
-  <div id="nav-top" class="navbar navbar-fixed-top navbar-inverse center">
-      <div class="navbar-inner">
-      <a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
-      <a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
-      <a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-        <ul class="nav">
-          <li><a style="margin-left:-190px; color:white;" id="cafeVideoTitle" href="#">Cafés</a></li>
-        </ul>
-      </div>
-  </div>
-
-
-
-  <div class="navbar navbar-fixed-bottom navbar-inverse">
-      <div class="navbar-inner">
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
-        <a class="brand" style="font-size: 14px;" href="#feedbackModal" data-toggle="modal"><b>Feedback / Bug report</b></a>
-      </div>
-  </div>   
-
-  <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
-  <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
-  <script src="/lib/three.js/mrdoob-three.js-28136e7/build/three.min.js"></script>
   <script type="text/javascript" src="3D.js"></script>
 
 </body>
