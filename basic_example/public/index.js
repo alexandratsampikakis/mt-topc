@@ -32,13 +32,15 @@ window.onload = function () {
             a.setAttribute("href", "http://satin.research.ltu.se:3001/cafeView.html?cafe=" + cafeName);
             a.setAttribute("class", "buttonCafe btn btn-info");
             a.setAttribute("type", "button");
-
-            var b = document.createElement('b');
-            b.innerHTML += cafeName;
-            dcb.appendChild(b);
-            b.setAttribute("href", "http://satin.research.ltu.se:3001/3d2.html?cafe=" + cafeName);
-            b.setAttribute("class", "buttonCafe btn btn-success");
-            b.setAttribute("type", "button");
+        };
+        for (var i = 0; i < cafes.cafe.length; i++) {
+            var a = document.createElement('a');
+            var cafeName = cafes.cafe[i].name;
+            a.innerHTML += cafeName;
+            dcb.appendChild(a);
+            a.setAttribute("href", "http://satin.research.ltu.se:3001/3d2.html?cafe=" + cafeName);
+            a.setAttribute("class", "buttonCafe btn btn-success");
+            a.setAttribute("type", "button");
         };
 
     });
