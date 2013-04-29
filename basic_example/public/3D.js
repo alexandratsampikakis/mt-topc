@@ -22,7 +22,16 @@ var StreamObject = function(video, texture, context){
     this.context = context;
     return this;
 };
+StreamObject.prototype.getVideo = function(){
+    return this.video;
+};
+StreamObject.prototype.getTexture = function(){
+    return this.videoTexture;
+};
 
+StreamObject.prototype.getContext = function(){
+    return this.context;
+};
 
 
 function initVideo(stream) {
