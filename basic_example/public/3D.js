@@ -1,9 +1,6 @@
-/*var scene = new THREE.Scene();
-=======
 var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
->>>>>>> gfdgfd
 
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
