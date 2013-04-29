@@ -17,7 +17,7 @@ var cube = new THREE.Mesh(geometry, material);
 camera.position.z = 5;
 
 function initVideo(stream) {
-    if(stream.getID() === localStream.getID) {
+    if(stream.getID() === localStream.getID()) {
         vid = localStream.player.video();
     } else {
         vid = stream.player.video();
