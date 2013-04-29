@@ -1,7 +1,7 @@
 var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
-
+var sterams = [];
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -16,30 +16,29 @@ var cube = new THREE.Mesh(geometry, material);
 
 camera.position.z = 5;
 
-var streamObject = function(video, texture, canvasID){
+var streamObject = function(video, texture, context){
     this.video = video;
     this.videoTexture = texture;
-    this.canvasID = canvasID;
-    this.context = document.getElementById(canvasID).getContext('2d');
+    this.context = context;
     return this;
 };
  
 console.log(typeof myObject.prototype); // object
  
-streamObject.prototype.getCanvas = function(){
+streamObject.prototype.getVideo = function(){
     return this.video;
 };
 streamObject.prototype.getTexture = function(){
     return this.videoTexture;
 };
-streamObject.prototype.getCanvas = function(){
-    return this.canvasID;
-};
+
 streamObject.prototype.getContext = function(){
     return this.context;
 };
 
 function initVideo(stream) {
+    
+    var vid, canvas;
     if(stream.getID() === localStream.getID()) {
         vid = localStream.player.video;
     } else {
@@ -51,8 +50,8 @@ function initVideo(stream) {
     vid.style.width = '320px';
     vid.style.height = '240px';
     vid.autoplay = true;
-    vidImg = document.getElementById('videoImage');
-    videoImageContext = vidImg.getContext('2d');
+    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('canvases')[0];
+    videoImageContext = canvas.getContext('2d');
     /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
@@ -65,7 +64,7 @@ function initVideo(stream) {
     videoTexture = new THREE.Texture( vidImg );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
-    
+    var x = room.getStreamsByAttribute('type','media').length;
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
     // the geometry on which the movie will be displayed;
     //      movie image will be scaled to fit these dimensions.
@@ -73,17 +72,28 @@ function initVideo(stream) {
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(0,0,0);
     scene.add(movieScreen);
+    var newStream = new streamObject(vid, videoTexture, videoImageContext);
+    sterams.push(newStream);
+}
+
+function updateVideos() {
+    var vid;
+    var videoImageContext;
+    var videoTexture; 
+    for each (stream in streams) {
+        vid=stream.getVideo();
+        videoImageContext = stream.getContext();
+        videoTexture = stream.getTexture(); 
+        if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) {
+            videoImageContext.drawImage( vid, 0, 0, 320, 240 );
+               if ( videoTexture ) videoTexture.needsUpdate = true;
+        }
+    }
 }
 
 function render() {   
     requestAnimationFrame(render);
-    if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) 
-    {
-        videoImageContext.drawImage( vid, 0, 0, vidImg.width, vidImg.height );
-        if ( videoTexture ) 
-            videoTexture.needsUpdate = true;
-    }
-
+    updateVideos();
     renderer.render( scene, camera );
 }
 window.onload = function () {
