@@ -78,7 +78,7 @@ function updateVideos() {
     var vid;
     var videoImageContext;
     var videoTexture; 
-    for each (stream in streams) {
+    for (stream in streams) {
         vid=stream.getVideo();
         videoImageContext = stream.getContext();
         videoTexture = stream.getTexture(); 
