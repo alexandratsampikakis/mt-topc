@@ -6170,9 +6170,7 @@ a.badge:focus {
 
 .backgroundBox {
   height: 200px;
-  width: 100%;
   padding: 20px;
-  border-radius: 0.5em;
+  /*border-radius: 0.5em;*/
   margin-left: -20px;
-  padding-right: 30px;
 }
