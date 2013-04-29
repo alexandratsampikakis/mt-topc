@@ -1,5 +1,11 @@
-var room, localStream, serverUrl;
-var tableId = "513dcfda07aa2f143700001c";
+var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
+var audioElement;
+var knockListYes = new Object();
+var knockListNo = new Object();
+var tableId = new Array();
+var knockTimer = 20 * 1000; //20 seconds
+var knocker = 0;
+var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 var videoTexture, material, geometry, streamer, videoImageContext;
@@ -15,6 +21,7 @@ document.body.appendChild(renderer.domElement);
 var geometry = new THREE.CubeGeometry(1,1,1);
 var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 var cube = new THREE.Mesh(geometry, material);
+
 
 camera.position.z = 5;
 
@@ -57,6 +64,327 @@ function render() {
     }
 
     renderer.render( scene, camera );
+}
+
+//Plays the knocking sound
+function knockSound() {
+    audioElement.play();
+}
+
+function toggleButton(element) {
+   if(element.css('display') === 'none') {
+       element.css('display','inline-block') 
+   } else {
+       element.css('display','none');
+   }
+}
+
+function resetOverhearing() {
+    $('.ohbutton').show();
+    $('.stopohbutton').hide();
+    $('.overhearing').remove();
+    $('.tableImg').show();
+    overhearStream.close();
+    if(room != undefined) room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+}
+
+function appendOverhearing(id) {
+    $('#overhearingContainer'+id).append('<div class="row-fluid overhearing">\
+                    <div id="overhear1" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear2" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear3" class="span4 overhearVidContainer">\
+                    </div>\
+                </div>\
+                <div class="row-fluid overhearing">\
+                    <div id="overhear4" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear5" class="span4 overhearVidContainer">\
+                    </div>\
+                    <div id="overhear6" class="span4 overhearVidContainer">\
+                    </div>\
+                </div>')
+    $('#table'+id+'img').toggle();
+    var videoheight = $('#table2img').height()/2;
+    var videoheight2 = $('#table1img').height()/2;
+    if(videoheight2 < videoheight) videoheight=videoheight2;
+    $('.overhearVidContainer').height(videoheight)
+    $(window).resize(function() {
+        var videoheight = $('#table2img').height()/2;
+        var videoheight2 = $('#table1img').height()/2;
+        if(videoheight2 < videoheight) videoheight=videoheight2;
+        $('.overhearVidContainer').height(videoheight)
+    });
+}
+
+//Notifys users of newly joined user by writing in chat
+function hasJoinedTheRoom(username) {
+    var message = username + " sat down at the table.";
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+}
+
+//Clears feedback text fields
+function clearFeedback() {
+    $('#feedbackSubject').val("");
+    $('#feedbackMail').val("");
+    $('#feedbackMessage').val("");
+}
+
+//Close all streams, disconnect room, reset streams, clear text fields
+function resetConnection() {
+    localStream.close();
+    dataStream.close();
+    overhearStream.close();
+    room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+    clearTextFields();
+}
+
+function stopOverhear() {
+    overhearStream.close();
+    room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    //toggles
+}
+
+//Adds room to knocklist
+function addToKnockList(roomId) {
+    if(!knockListYes.hasOwnProperty(roomId)) {
+        knockListYes[roomId] = 0;
+        setTimeout(function () {removeRoomFromKnocklist(roomId)}, knockTimer+7000);
+    }
+    if(!knockListNo.hasOwnProperty(roomId)) {
+        knockListNo[roomId] = 0;
+    }
+}
+
+function addYesCount (roomId) {
+    if(knockListYes.hasOwnProperty(roomId)) {
+        knockListYes[roomId] += 1;
+    }
+}
+
+function getYesCount(roomId) {
+    if(knockListYes.hasOwnProperty(roomId)) {
+        return knockListYes[roomId];
+    }
+}
+
+function getNoCount(roomId) {
+    if(knockListNo.hasOwnProperty(roomId)) {
+        return knockListNo[roomId];
+    }
+}
+
+function addNoCount (roomId) {
+    if(knockListNo.hasOwnProperty(roomId)) {
+        knockListNo[roomId] += 1;
+    }
+}
+
+//Removes room from knocklist
+function removeRoomFromKnocklist(roomId) {
+    if(knockListYes.hasOwnProperty(roomId)) {
+        delete knockListYes[roomId];
+    }
+    if(knockListNo.hasOwnProperty(roomId)) {
+        delete knockListNo[roomId];
+    }
+}
+
+function redrawNapkin() {
+    var c = $('#canvasNapkin')[0];
+    var imgData = c.toDataURL();
+    var ctx = c.getContext("2d");
+    var myImage = new Image();
+    myImage.onload = function(){
+        ctx.drawImage(myImage, 0, 0,c.width,c.height);
+    }; 
+    myImage.src = imgData;
+    c.height = $(window).height() - 415;
+    c.width = 1.5*c.height;
+}
+
+function drawPath(color, thickness, path, width, height) {
+    var widthRatio = $('#canvasNapkin')[0].width/width;
+    var heightRatio = $('#canvasNapkin')[0].height/height;
+    for (var i = 0; i < path.length; i+=2) {
+        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
+    };
+}
+
+function drawLine (color, thickness, x1, y1, x2, y2) {
+    context.strokeStyle = color;
+    context.lineWidth   = thickness;
+
+    context.beginPath();
+    context.moveTo(x1, y1)
+    context.lineTo(x2, y2);
+    context.stroke();
+}
+
+//Adds eventlisteners to youtubeplayer
+function onYouTubePlayerReady(playerId) {
+  ytplayer = document.getElementById("myytplayer");
+  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+}
+
+//handler for youtube player state change
+function onytplayerStateChange(newState) {
+    switch (newState) {
+        case 1:
+            //play
+            dataStream.sendData({id:'ytplayer', state:1});
+            console.log("play video");
+            break;
+        case 2:
+            //pause
+            dataStream.sendData({id:'ytplayer', state:2});
+            break;
+       default:
+    }
+}
+
+//Plays the youtube video
+function play() {
+    if (ytplayer) {
+        ytplayer.playVideo();
+    }
+}
+
+//Pauses the youtube video
+function pause() {
+    if (ytplayer) {
+        ytplayer.pauseVideo();
+    }
+}
+
+//Calculates leader. Highest stream ID wins. Only counts 'media' streams.
+//Leader is used for sending snapshots to server
+function calculateLeader() {
+    var keys = [];
+    var highest = parseInt(localStream.getID());
+    for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
+        var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
+        if (streamID > highest) highest=streamID;
+    }
+    console.log(highest);
+    return highest;
+}
+
+function setLeader(id) {
+    leader = id;
+}
+
+function getLeader() {
+    return leader;
+}
+
+//Tells the room who the leader is.
+function broadcastLeader() {
+    dataStream.sendData({id:'leader',leader:leader});
+    console.log('broadcasting leader');
+}
+
+function sendNapkinToNewUser() {
+    var c = document.getElementById("canvasNapkin");
+    var ctx = c.getContext("2d");
+    var napkinImgData = c.toDataURL();
+    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
+//Clears textfields
+function clearTextFields() {
+    $('#chatArea').val("");
+    $('#chatMessage').val("");
+    $('#VideoUrl').val("");
+}
+
+//Appends chat message to chatArea
+function appendChatMessage(username, message) {
+    var message = username + ": " + message;
+    var scrollbot = false;
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+}
+
+//Sends the chat message to other users
+function sendChatMessage(message) {
+    dataStream.sendData({id:'chat',text:message, user:nameOfUser});
+    $('#chatMessage').val("");
+    appendChatMessage(nameOfUser, message);
+    $("#myTextBox").focus();
+}
+
+//Retrieves the query strings
+var getQueryString = function getQueryString(key, default_) {
+    if (default_==null) default_="";
+    key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+    var qs = regex.exec(window.location.href);
+    if(qs == null)
+        return default_;
+    else
+        return qs[1];
+}
+
+//Update titles
+var updateTitle = function(title) {
+    $('#cafeTitle').html(title);
+    $('#cafeTableTitle').html(title);
+    $('#cafeVideoTitle').html(title);
+}  
+
+//Retrieves cafe tables
+var getCafeTables = function(cafe, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getcafe/' + cafe;
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
+//Retrieves table image
+var getTableImage = function(cafe, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getTableImg/' + cafe;
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
+function loadImage(imageData, elementID) {
+    var myImage = new Image();
+    myImage.onload = function(){
+        $(myImage).appendTo(elementID);
+    };
+    myImage.src = imageData;
+    myImage.className = 'centerImage';
 }
 
 window.onload = function () {
