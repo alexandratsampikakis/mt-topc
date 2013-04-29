@@ -47,8 +47,7 @@ function initVideo() {
     scene.add(movieScreen);
 }
 
-function render() 
-{   
+function render() {   
     requestAnimationFrame(render);
     if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) 
     {
@@ -173,6 +172,6 @@ window.onload = function () {
             });
 		});
 	}
-
+}
 //render();*/
 
