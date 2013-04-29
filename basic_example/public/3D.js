@@ -22,9 +22,7 @@ var streamObject = function(video, texture, context){
     this.context = context;
     return this;
 };
- 
-console.log(typeof myObject.prototype); // object
- 
+
 streamObject.prototype.getVideo = function(){
     return this.video;
 };
