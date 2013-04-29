@@ -39,7 +39,7 @@ window.onload = function () {
             a.innerHTML += cafeName;
             dcb.appendChild(a);
             a.setAttribute("href", "http://satin.research.ltu.se:3001/3d2.html?cafe=" + cafeName);
-            a.setAttribute("class", "buttonCafe btn btn-success");
+            a.setAttribute("class", "buttonCafe btn");
             a.setAttribute("type", "button");
         };
 
