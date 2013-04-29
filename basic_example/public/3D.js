@@ -173,6 +173,7 @@ window.onload = function () {
 			localStream.init();
 		});
 	}
+	initialize(tableId);
 }
 //render();*/
 
