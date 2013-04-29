@@ -2,7 +2,9 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 
-var vid, videoTexture, material, geometry, streamer, videoImageContext;
+var videoTexture, material, geometry, streamer, videoImageContext;
+var vid1, vid2, vid3, vid4, vid5, vid6;
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -16,15 +18,14 @@ var cube = new THREE.Mesh(geometry, material);
 
 camera.position.z = 5;
 
-function initVideo() {
-    vid = document.getElementById('streamundefined');
-
+function initVideo(stream) {
+    vid1 = document.getElementById('streamundefined');
     
-    vid.style.width = '320px';
-    vid.style.height = '240px';
-    vid.autoplay = true;
-    vidImg = document.getElementById('videoImage');
-    videoImageContext = vidImg.getContext('2d');
+    vid1.style.width = '320px';
+    vid1.style.height = '240px';
+    vid1.autoplay = true;
+    myVideoImage = document.getElementById('myVideoImage');
+    videoImageContext = myVideoImage.getContext('2d');
     /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
@@ -33,8 +34,7 @@ function initVideo() {
     streamer = new THREE.Mesh(geometry, material);
     scene.add(streamer);*/
 
-
-    videoTexture = new THREE.Texture( vidImg );
+    videoTexture = new THREE.Texture( myVideoImage );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
     
@@ -47,8 +47,7 @@ function initVideo() {
     scene.add(movieScreen);
 }
 
-function render() 
-{   
+function render() {   
     requestAnimationFrame(render);
     if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) 
     {
@@ -59,6 +58,7 @@ function render()
 
     renderer.render( scene, camera );
 }
+
 window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
