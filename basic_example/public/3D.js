@@ -16,8 +16,8 @@ var cube = new THREE.Mesh(geometry, material);
 
 camera.position.z = 5;
 
-function initVideo() {
-    vid = document.getElementById('streamundefined');
+function initVideo(stream) {
+    vid = stream.player.video();//document.getElementById('streamundefined');
 
     
     vid.style.width = '320px';
