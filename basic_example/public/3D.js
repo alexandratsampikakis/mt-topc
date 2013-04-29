@@ -214,7 +214,7 @@ StreamObject.prototype.getContext = function(){
 
                 room.connect();        
 
-                localStream.show("myVideo");
+                localStream.show("vid1");
             });
 			localStream.init();
 		});
