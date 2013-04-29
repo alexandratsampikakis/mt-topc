@@ -1,7 +1,7 @@
 var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
-var sterams = [];
+var streams = [];
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -48,7 +48,7 @@ function initVideo(stream) {
     vid.style.width = '320px';
     vid.style.height = '240px';
     vid.autoplay = true;
-    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('canvases')[0];
+    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
     videoImageContext = canvas.getContext('2d');
     /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
@@ -59,7 +59,7 @@ function initVideo(stream) {
     scene.add(streamer);*/
 
 
-    videoTexture = new THREE.Texture( vidImg );
+    videoTexture = new THREE.Texture( canvas );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
     var x = room.getStreamsByAttribute('type','media').length;
