@@ -22,7 +22,7 @@ window.onload = function () {
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
         var cb = document.getElementById("cafeButtons");
-        var 3Dcb = document.getElementById("3DcafeButtons");
+        var dcb = document.getElementById("3DcafeButtons");
         for (var i = 0; i < cafes.cafe.length; i++) {
             var a = document.createElement('a');
             var cafeName = cafes.cafe[i].name;
@@ -36,9 +36,9 @@ window.onload = function () {
             var b = document.createElement('b');
             var cafeName = cafes.cafe[i].name;
             b.innerHTML += cafeName;
-            3Dcb.appendChild(b);
+            dcb.appendChild(b);
             b.setAttribute("href", "http://satin.research.ltu.se:3001/3d2.html?cafe=" + cafeName);
-            b.setAttribute("class", "buttonCafe btn btn-info");
+            b.setAttribute("class", "buttonCafe btn btn-success");
             b.setAttribute("type", "button");
         };
 
