@@ -16,6 +16,29 @@ var cube = new THREE.Mesh(geometry, material);
 
 camera.position.z = 5;
 
+var streamObject = function(video, texture, canvasID){
+    this.video = video;
+    this.videoTexture = texture;
+    this.canvasID = canvasID;
+    this.context = document.getElementById(canvasID).getContext('2d');
+    return this;
+};
+ 
+console.log(typeof myObject.prototype); // object
+ 
+streamObject.prototype.getCanvas = function(){
+    return this.video;
+};
+streamObject.prototype.getTexture = function(){
+    return this.videoTexture;
+};
+streamObject.prototype.getCanvas = function(){
+    return this.canvasID;
+};
+streamObject.prototype.getContext = function(){
+    return this.context;
+};
+
 function initVideo(stream) {
     if(stream.getID() === localStream.getID()) {
         vid = localStream.player.video;
