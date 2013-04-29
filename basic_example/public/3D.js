@@ -78,15 +78,16 @@ function updateVideos() {
     var vid;
     var videoImageContext;
     var videoTexture; 
-    for (stream in streams) {
-        vid=stream.getVideo();
-        videoImageContext = stream.getContext();
-        videoTexture = stream.getTexture(); 
+
+    for (var i = 0; i < streams.length; i++) {
+        vid = streams[i].getVideo();
+        videoImageContext = streams[i].getContext();
+        videoTexture = streams[i].getTexture();
         if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) {
             videoImageContext.drawImage( vid, 0, 0, 320, 240 );
                if ( videoTexture ) videoTexture.needsUpdate = true;
         }
-    }
+    };
 }
 
 function render() {   
