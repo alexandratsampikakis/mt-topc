@@ -16,21 +16,21 @@ var cube = new THREE.Mesh(geometry, material);
 
 camera.position.z = 5;
 
-var streamObject = function(video, texture, context){
+var StreamObject = function(video, texture, context){
     this.video = video;
     this.videoTexture = texture;
     this.context = context;
     return this;
 };
 
-streamObject.prototype.getVideo = function(){
+StreamObject.prototype.getVideo = function(){
     return this.video;
 };
-streamObject.prototype.getTexture = function(){
+StreamObject.prototype.getTexture = function(){
     return this.videoTexture;
 };
 
-streamObject.prototype.getContext = function(){
+StreamObject.prototype.getContext = function(){
     return this.context;
 };
 
@@ -70,7 +70,7 @@ function initVideo(stream) {
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(0,0,0);
     scene.add(movieScreen);
-    var newStream = new streamObject(vid, videoTexture, videoImageContext);
+    var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     sterams.push(newStream);
 }
 
