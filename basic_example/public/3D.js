@@ -49,7 +49,7 @@ function initVideo(stream) {
     vid.style.height = '240px';
     vid.autoplay = true;
     canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
-    videoImageContext = canvas.getContext('2d');
+    var videoImageContext = canvas.getContext('2d');
     /*videoTexture = new THREE.Texture( vid );
     material   = new THREE.MeshLambertMaterial({
       map : videoTexture
@@ -68,7 +68,7 @@ function initVideo(stream) {
     //      movie image will be scaled to fit these dimensions.
     var movieGeometry = new THREE.PlaneGeometry(  2, 2 );
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(0,2*x,0);
+    movieScreen.position.set(2*x,2*x,0);
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
