@@ -144,6 +144,7 @@ StreamObject.prototype.getContext = function(){
                 var subscribeToStreams = function (streams) {
                     if (!localStream.showing) {
                         localStream.show();
+                        console.log("LocalStream showing");
                     }
                     var index, stream;
                     for (index in streams) {
@@ -176,6 +177,7 @@ StreamObject.prototype.getContext = function(){
                                 id: 'test'+stream.getID()
                             }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
+                            initVideo(stream);
                             return;
                         }
                     }
