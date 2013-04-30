@@ -15,7 +15,7 @@ var geometry = new THREE.CubeGeometry(1,1,1);
 var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 var cube = new THREE.Mesh(geometry, material);
 
-camera.position.z = 2;
+camera.position.z = 3;
 
 var StreamObject = function(video, texture, context){
     this.video = video;
@@ -71,7 +71,6 @@ function initVideo(stream) {
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(1*count,1*count,0);
     movieScreen.rotation.y += 0.2;
-    movieScreen.rotation.z += 0.1;
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
