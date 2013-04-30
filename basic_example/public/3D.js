@@ -142,6 +142,7 @@ StreamObject.prototype.getContext = function(){
             localStream.addEventListener("access-accepted", function () {
                 
                 var subscribeToStreams = function (streams) {
+                    console.log("subscribe to streams");
                     if (!localStream.showing) {
                         localStream.show();
                         console.log("LocalStream showing");
@@ -169,6 +170,7 @@ StreamObject.prototype.getContext = function(){
                 });
 
                 room.addEventListener("stream-subscribed", function(streamEvent) {
+                    console.log("stream stream-subscribed");
                     var stream = streamEvent.stream;
                     
                     for (var i = 2; i <= 6; i++) {
@@ -177,7 +179,8 @@ StreamObject.prototype.getContext = function(){
                                 id: 'test'+stream.getID()
                             }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
-                            initVideo(stream);
+                            console.log("InitVideo stream-subscribed");
+                            initVideo(stream);                            
                             return;
                         }
                     }
@@ -193,6 +196,7 @@ StreamObject.prototype.getContext = function(){
 
                     //If table is empty, become the leader
                     var currStreams = room.getStreamsByAttribute('type','media');
+                    console.log('InitVideo stream-added');
                     initVideo(streamEvent.stream);
                     render();
                 });
