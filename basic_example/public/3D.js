@@ -69,7 +69,8 @@ function initVideo(stream) {
     //      movie image will be scaled to fit these dimensions.
     var movieGeometry = new THREE.PlaneGeometry(  1, 1);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(1*count,1*count,0);
+    //movieScreen.position.set(1*count,1*count,0);
+    movieScreen.position.set(-2,-2,0);
     movieScreen.rotation.y += 0.4;
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
