@@ -1,6 +1,7 @@
 var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
+var count = 0;
 var streams = [];
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
@@ -68,10 +69,11 @@ function initVideo(stream) {
     //      movie image will be scaled to fit these dimensions.
     var movieGeometry = new THREE.PlaneGeometry(  2, 2 );
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(2*x,2*x,0);
+    movieScreen.position.set(2*count,2*count,0);
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
+    count++;
 }
 
 function updateVideos() {
