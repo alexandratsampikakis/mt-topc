@@ -67,9 +67,9 @@ function initVideo(stream) {
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
     // the geometry on which the movie will be displayed;
     //      movie image will be scaled to fit these dimensions.
-    var movieGeometry = new THREE.PlaneGeometry(  2, 2 );
+    var movieGeometry = new THREE.PlaneGeometry(  1, 1 );
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(2*count,2*count,0);
+    movieScreen.position.set(1*count,1*count,0);
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
