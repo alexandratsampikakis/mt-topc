@@ -71,7 +71,7 @@ function initVideo(stream) {
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     //movieScreen.position.set(1*count,1*count,0);
     movieScreen.position.set(-2,2,0);
-    movieScreen.rotation.y += 0.4;
+    movieScreen.rotation.y -= 0.4;
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
