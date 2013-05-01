@@ -5,17 +5,13 @@ var count = 0;
 var streams = [];
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-var geometry = new THREE.CubeGeometry(1,1,1);
-var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-var cube = new THREE.Mesh(geometry, material);
-
-camera.position.z = 5;
+camera.position.z = 10;
 
 var StreamObject = function(video, texture, context){
     this.video = video;
@@ -51,27 +47,18 @@ function initVideo(stream) {
     vid.autoplay = true;
     canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
     var videoImageContext = canvas.getContext('2d');
-    /*videoTexture = new THREE.Texture( vid );
-    material   = new THREE.MeshLambertMaterial({
-      map : videoTexture
-        });
-    geometry    = new THREE.PlaneGeometry( 1, 1 );
-    streamer = new THREE.Mesh(geometry, material);
-    scene.add(streamer);*/
-
 
     videoTexture = new THREE.Texture( canvas );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
-    var x = room.getStreamsByAttribute('type','media').length;
+    //var x = room.getStreamsByAttribute('type','media').length;
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
     // the geometry on which the movie will be displayed;
     //      movie image will be scaled to fit these dimensions.
-    var movieGeometry = new THREE.PlaneGeometry(  1, 1);
+    var movieGeometry = new THREE.PlaneGeometry(  3, 3);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     //movieScreen.position.set(1*count,1*count,0);
-    movieScreen.position.set(-2,2,0);
-    movieScreen.rotation.y -= 0.4;
+    movieScreen.position.set(0,0,0);
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
