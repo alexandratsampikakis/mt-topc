@@ -6,7 +6,7 @@ var streams = [];
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
-
+var position = [[-11,2.7,0,0.2*Math.PI],[11,2.7,0,0.8*Math.PI],[-11,0,0,0.2*Math.PI],[11,0,0,0.8*Math.PI],[-11,-2.7,0,0.2*Math.PI],[11,-2.7,0,0.8*Math.PI]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -31,8 +31,11 @@ StreamObject.prototype.getContext = function(){
 };
 
 
-function initVideo(stream) {
-    
+function initVideo(stream,pos) {
+    var x = position[pos][0];
+    var y = position[pos][1];
+    var z = position[pos][2];
+    var rot = position[pos][3];
     var vid, canvas;
     if(stream.getID() === localStream.getID()) {
         vid = localStream.player.video;
@@ -55,10 +58,11 @@ function initVideo(stream) {
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
     // the geometry on which the movie will be displayed;
     //      movie image will be scaled to fit these dimensions.
-    var movieGeometry = new THREE.PlaneGeometry(  3, 3);
+    var movieGeometry = new THREE.PlaneGeometry(  4, 4);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     //movieScreen.position.set(1*count,1*count,0);
-    movieScreen.position.set(0,0,0);
+    movieScreen.position.set(x,y,z);
+    movieScreen.rotation.y += rot;
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
@@ -171,7 +175,7 @@ StreamObject.prototype.getContext = function(){
                             }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             console.log("InitVideo stream-subscribed");
-                            initVideo(stream);                            
+                            initVideo(stream,i);                            
                             return;
                         }
                     }
@@ -188,7 +192,7 @@ StreamObject.prototype.getContext = function(){
                     //If table is empty, become the leader
                     var currStreams = room.getStreamsByAttribute('type','media');
                     console.log('InitVideo stream-added');
-                    initVideo(streamEvent.stream);
+                    //initVideo(streamEvent.stream);
                     render();
                 });
 
