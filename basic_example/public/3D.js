@@ -8,7 +8,7 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var position = [[],[-11,2.7,0,0.2*Math.PI],[11,2.7,0,0.8*Math.PI],[-11,0,0,0.2*Math.PI],[11,0,0,0.8*Math.PI],[-11,-2.7,0,0.2*Math.PI],[11,-2.7,0,0.8*Math.PI]];
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 camera.position.z = 10;
