@@ -5,6 +5,8 @@ var count = 0;
 var streams = [];
 var vid, videoTexture, material, geometry, streamer, videoImageContext;
 var scene = new THREE.Scene();
+var bgScene = new THREE.Scene();
+var bgCam = new THREE.Camera();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var position = [[],[-11,4,0,0.2*Math.PI],[11,4,0,0.8*Math.PI],[-11,0,0,0.2*Math.PI],[11,0,0,0.8*Math.PI],[-11,-4,0,0.2*Math.PI],[11,-4,0,0.8*Math.PI]];
 var renderer = new THREE.WebGLRenderer();
@@ -12,6 +14,21 @@ renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 camera.position.z = 10;
+var initialize = function() {
+    var bg = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 2, 0),
+    new THREE.MeshBasicMaterial({map:THREE.ImageUtils.loadTexture('img/Backgrounds/grey_wash_wall/bluegrey_wash_wall_@2X.png')})
+    );
+
+    // The bg plane shouldn't care about the z-buffer.
+    bg.material.depthTest = false;
+    bg.material.depthWrite = false;
+
+    bgScene = new THREE.Scene();
+    bgCam = new THREE.Camera();
+    bgScene.add(bgCam);
+    bgScene.add(bg);
+};
 
 var StreamObject = function(video, texture, context){
     this.video = video;
@@ -88,6 +105,8 @@ function updateVideos() {
 function render() {   
     requestAnimationFrame(render);
     updateVideos();
+
+    renderer.render( bgScene, bgCam );
     renderer.render( scene, camera );
 }
 window.onload = function () {
