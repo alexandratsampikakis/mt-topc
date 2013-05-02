@@ -155,8 +155,9 @@ StreamObject.prototype.getContext = function(){
         dae = collada.scene;
         skin = collada.skins[ 0 ];
 
-        dae.scale.x = dae.scale.y = dae.scale.z = 1;
-        dae.position.x = -1;
+        dae.scale.x = dae.scale.y = dae.scale.z = 2;
+        dae.position.x = 0;
+        dae.position.z = 3;
         dae.updateMatrix();
 
         scene.add(dae);
