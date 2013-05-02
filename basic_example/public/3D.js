@@ -3,7 +3,7 @@ var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var count = 0;
 var streams = [];
-var vid, videoTexture, material, geometry, streamer, videoImageContext;
+var vid, videoTexture, material, geometry, streamer, videoImageContext, dae, skin;
 var scene = new THREE.Scene();
 var bgScene = new THREE.Scene();
 var bgCam = new THREE.Camera();
@@ -143,6 +143,24 @@ StreamObject.prototype.getContext = function(){
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
+
+    // Collada model
+    //lib/three.js/mrdoob-three.js-28136e7/examples/models/tv-model/meuble_tv.dae
+
+    var loader = new THREE.ColladaLoader();
+    loader.options.convertUpAxis = true;
+    //loader.load( 'models/collada/monster/monster.dae', function ( collada ) {
+    loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/tv-model/meuble_tv.dae', function ( collada ) {
+        dae = collada.scene;
+        skin = collada.skins[ 0 ];
+
+        dae.scale.x = dae.scale.y = dae.scale.z = 0.002;
+        dae.position.x = -1;
+        dae.updateMatrix();
+
+        scene.add(dae);
+
+    } );
 
     var initialize = function(roomId) {
         //
