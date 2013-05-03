@@ -27,8 +27,8 @@ var initScene = function() {
     floor = new THREE.Mesh(floorGeometry, floorMaterial);
     floor.position.y = -6;
     floor.rotation.x = Math.PI / 2;
-    mirrorCubeCamera.position = mirrorCube.position;
-    mirrorCubeCamera.rotation = mirrorCube.rotation;
+    reflectionCamera.position = mirrorCube.position;
+    reflectionCamera.rotation = mirrorCube.rotation;
     scene.add(floor);
     
     // SKYBOX/FOG
