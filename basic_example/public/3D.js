@@ -4,8 +4,6 @@ serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 var scene = new THREE.Scene();
-var bgScene = new THREE.Scene();
-var bgCam = new THREE.Camera();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var position = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 var renderer = new THREE.WebGLRenderer();
@@ -13,21 +11,34 @@ renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 camera.position.z = 10;
-var initialize = function() {
-    var bg = new THREE.Mesh(
-    new THREE.PlaneGeometry(2, 2, 0),
-    new THREE.MeshBasicMaterial({map:THREE.ImageUtils.loadTexture('img/Backgrounds/grey_wash_wall/bluegrey_wash_wall_@2X.png')})
-    );
-
-    // The bg plane shouldn't care about the z-buffer.
-    bg.material.depthTest = false;
-    bg.material.depthWrite = false;
-
-    bgScene = new THREE.Scene();
-    bgCam = new THREE.Camera();
-    bgScene.add(bgCam);
-    bgScene.add(bg);
+var initScene = function() {
+    // FLOOR
+    var floorTexture = new THREE.ImageUtils.loadTexture( '/img/wood.jpg' );
+    floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
+    floorTexture.repeat.set( 10, 10 );
+    var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
+    var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
+    floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.position.y = -6;
+    floor.rotation.x = Math.PI / 2;
+    scene.add(floor);
+    
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
 };
+
 
 var StreamObject = function(video, texture, context){
     this.video = video;
@@ -102,11 +113,10 @@ function updateVideos() {
 function render() {   
     requestAnimationFrame(render);
     updateVideos();
-    renderer.render( bgScene, bgCam );
     renderer.render( scene, camera );
 }
 window.onload = function () {
-
+    initScene();
     $('#chatArea').css({
                 position:'absolute', 
                 top: $(window).height() - $('#chatArea').height()*2-56,
@@ -188,7 +198,7 @@ StreamObject.prototype.getContext = function() {
             //L.Logger.debug("Connected!");
             room = Erizo.Room({token: token});
 
-            localStream.addEventListener("access-accepted", function () {
+    initia        localStream.addEventListener("access-accepted", function () {
                 
                 var subscribeToStreams = function (streams) {
                     console.log("subscribe to streams");
