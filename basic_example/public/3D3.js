@@ -190,8 +190,8 @@ StreamObject.prototype.getContext = function(){
     loader.onload = function(){
         loader.options.convertUpAxis = true;
         //loader.load( 'models/collada/monster/monster.dae', function ( collada ) {
-        //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/simple-laptop/hans_erickson_simple_laptop.dae', function ( collada ) {
-        loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
+        loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/simple-laptop/hans_erickson_simple_laptop.dae', function ( collada ) {
+        //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
             dae = collada.scene;
             skin = collada.skins[ 0 ];
             dae.scale.x = dae.scale.y = dae.scale.z = 2;
