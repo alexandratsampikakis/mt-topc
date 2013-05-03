@@ -15,7 +15,6 @@ var mirrorSphere, mirrorSphereCamera; // for mirror material
 var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
-var count = 0;
 var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 var scene = new THREE.Scene();
@@ -33,7 +32,7 @@ function init() {
 	// CAMERA
 	//camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight-82;
-	var VIEW_ANGLE = 70, ASPECT = SCREEN_WIDTH / (SCREEN_HEIGHT), NEAR = 0.1, FAR = 1000;
+	var VIEW_ANGLE = 70, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 1000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(camera);
 	camera.position.set(0,0,10);
@@ -50,17 +49,11 @@ function init() {
 	container.appendChild( renderer.domElement );
 
 	// EVENTS
-	THREEx.WindowResize(renderer, camera);
+	//THREEx.WindowResize(renderer, camera);
 	//THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
 
 	// CONTROLS
 	controls = new THREE.TrackballControls( camera );
-	// STATS
-	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.bottom = '0px';
-	stats.domElement.style.zIndex = 100;
-	//container.appendChild( stats.domElement );
 
 	// LIGHT
 	var light = new THREE.PointLight(0xffffff);
