@@ -4,6 +4,7 @@ serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
+var reflectionCamera;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -16,16 +17,18 @@ document.body.appendChild(renderer.domElement);
 THREEx.WindowResize(renderer, camera);
 camera.position.z = 10;
 
+
 var initScene = function() {
     // FLOOR
-    var floorTexture = new THREE.ImageUtils.loadTexture( '/img/wood.jpg' );
-    floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
-    floorTexture.repeat.set( 10, 10 );
-    var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
     var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
+    reflectionCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
+    scene.add(reflectionCamera);
+    var floorMaterial = new THREE.MeshBasicMaterial( { envMap: mirrorCubeCamera.renderTarget } );
     floor = new THREE.Mesh(floorGeometry, floorMaterial);
     floor.position.y = -6;
     floor.rotation.x = Math.PI / 2;
+    mirrorCubeCamera.position = mirrorCube.position;
+    mirrorCubeCamera.rotation = mirrorCube.rotation;
     scene.add(floor);
     
     // SKYBOX/FOG
@@ -42,6 +45,7 @@ var initScene = function() {
     var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
     scene.add( skybox );
+
 };
 
 
@@ -122,6 +126,7 @@ function render() {
 }
 window.onload = function () {
     initScene();
+    render();
     $('#chatArea').css({
                 position:'absolute', 
                 top: $(window).height() - $('#chatArea').height()*2-56,
@@ -203,7 +208,7 @@ StreamObject.prototype.getContext = function() {
             //L.Logger.debug("Connected!");
             room = Erizo.Room({token: token});
 
-    localStream.addEventListener("access-accepted", function () {
+            localStream.addEventListener("access-accepted", function () {
                 
                 var subscribeToStreams = function (streams) {
                     console.log("subscribe to streams");
@@ -264,7 +269,6 @@ StreamObject.prototype.getContext = function() {
                     if(streamEvent.stream.getID() === localStream.getID()) {
                         initVideo(streamEvent.stream,1);
                     }
-                    render();
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
