@@ -111,7 +111,10 @@ function render() {
 }
 window.onload = function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ed7c587ad91d230132f3e5d11d19b3aeb6ce6786
 
     $('#chatArea').css({
                 position:'absolute', 
