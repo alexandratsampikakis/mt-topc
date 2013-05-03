@@ -144,9 +144,9 @@ window.onload = function () {
         });
     });
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-    $('#chatArea').width('100%');
-    $('#chatMessage').width('80%');
-    $('#sendMessage').width('19%');
+    $('#chatArea').width('50%');
+    $('#chatMessage').width('40%');
+    $('#sendMessage').width('9%');
     
 StreamObject.prototype.getVideo = function(){
     return this.video;
