@@ -50,7 +50,7 @@ function init() {
 
 	// EVENTS
 	THREEx.WindowResize(renderer, camera);
-	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+	//THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
 
 	// CONTROLS
 	controls = new THREE.TrackballControls( camera );
