@@ -15,7 +15,17 @@
 		}
 	</style>
 </head>
-<body>
+	<body>
+	<div id="nav-top" class="navbar navbar-fixed-top navbar-inverse center">
+		<div class="navbar-inner">
+			<a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
+			<a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
+			<a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+			<ul class="nav">
+				<li><a style="margin-left:-190px; color:white;" id="cafeVideoTitle" href="#">Cafés</a></li>
+			</ul>
+		</div>
+	</div>
 
 	<div id="message"></div>
 
@@ -120,17 +130,6 @@
 		////////////
 		// CUSTOM //
 		////////////
-		
-		var cubeGeom = new THREE.CubeGeometry(100, 100, 10, 1, 1, 1);
-		mirrorCubeCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
-		// mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
-		scene.add( mirrorCubeCamera );
-		var mirrorCubeMaterial = new THREE.MeshBasicMaterial( { envMap: mirrorCubeCamera.renderTarget } );
-		mirrorCube = new THREE.Mesh( cubeGeom, mirrorCubeMaterial );
-		mirrorCube.position.set(-75,50,0);
-		mirrorCubeCamera.position = mirrorCube.position;
-		scene.add(mirrorCube);	
-		
 		var sphereGeom =  new THREE.SphereGeometry( 50, 32, 16 ); // radius, segmentsWidth, segmentsHeight
 		mirrorSphereCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
 		// mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
@@ -180,6 +179,16 @@
 	}
 
 	</script>
+	<div class="navbar navbar-fixed-bottom navbar-inverse">
+		<div class="navbar-inner">
+			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
+			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
+			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
+			<a class="brand" style="font-size: 14px;" href="#feedbackModal" data-toggle="modal"><b>Feedback / Bug report</b></a>
+		</div>
+	</div>   
+
 
 </body>
 </html>
