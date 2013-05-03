@@ -8,7 +8,7 @@ var scene = new THREE.Scene();
 var bgScene = new THREE.Scene();
 var bgCam = new THREE.Camera();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
-var position = [[],[-11,4,0,0.2*Math.PI],[11,4,0,-0.2*Math.PI],[-11,0,0,0.2*Math.PI],[11,0,0,-0.2*Math.PI],[-11,-4,0,0.2*Math.PI],[11,-4,0,-0.2*Math.PI]];
+var position = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
@@ -181,26 +181,6 @@ StreamObject.prototype.getContext = function(){
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
-
-    // Collada model
-    //lib/three.js/mrdoob-three.js-28136e7/examples/models/tv-model/meuble_tv.dae
-
-    var loader = new THREE.ColladaLoader();
-    loader.options.convertUpAxis = true;
-    //loader.load( 'models/collada/monster/monster.dae', function ( collada ) {
-    loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/tv-model/meuble_tv2.dae', function ( collada ) {
-    //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
-        dae = collada.scene;
-        skin = collada.skins[ 0 ];
-
-        dae.scale.x = dae.scale.y = dae.scale.z = 2;
-        dae.position.x = 0;
-        dae.position.z = 3;
-        dae.updateMatrix();
-
-        scene.add(dae);
-
-    } );
 
     var initialize = function(roomId) {
         //
