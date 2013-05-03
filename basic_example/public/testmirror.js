@@ -8,7 +8,7 @@
 var container, scene, camera, renderer, controls, stats;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
-
+var floor;
 // custom global variables
 var mirrorSphere, mirrorSphereCamera; // for mirror material
 
@@ -73,7 +73,7 @@ function init() {
 	floorTexture.repeat.set( 10, 10 );
 	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
 	var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
-	var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+	floor = new THREE.Mesh(floorGeometry, floorMaterial);
 	floor.position.y = -3;
 	floor.rotation.x = Math.PI / 2;
 	scene.add(floor);
