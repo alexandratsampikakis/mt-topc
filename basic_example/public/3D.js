@@ -120,7 +120,11 @@ function updateVideos() {
 
 function render() {   
     requestAnimationFrame(render);
+
     updateVideos();
+    floor.visible = false;
+    reflectionCamera.updateCubeMap( renderer, scene );
+    floor.visible = true;
     renderer.render( scene, camera );
 }
 window.onload = function () {
