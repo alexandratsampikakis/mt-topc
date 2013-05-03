@@ -45,7 +45,6 @@
 	var clock = new THREE.Clock();
 
 	// custom global variables
-	var mirrorCube, mirrorCubeCamera; // for mirror material
 	var mirrorSphere, mirrorSphereCamera; // for mirror material
 
 	init();
@@ -111,7 +110,7 @@
 		var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
 		var skyboxGeom = new THREE.CubeGeometry( 5000, 5000, 5000, 1, 1, 1 );
 		var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-		scene.add( skybox );	
+		scene.add( skybox );
 		
 		////////////
 		// CUSTOM //
@@ -153,9 +152,6 @@
 		//    and apply it to the surface.
 		// need to hide surface before and after so that it does not
 		//    "get in the way" of the camera
-		mirrorCube.visible = false;
-		mirrorCubeCamera.updateCubeMap( renderer, scene );
-		mirrorCube.visible = true;
 
 		mirrorSphere.visible = false;
 		mirrorSphereCamera.updateCubeMap( renderer, scene );
