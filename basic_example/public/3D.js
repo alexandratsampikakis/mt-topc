@@ -110,16 +110,17 @@ function render() {
     renderer.render( scene, camera );
 }
 window.onload = function () {
-StreamObject.prototype.getVideo = function(){
-    return this.video;
-};
-StreamObject.prototype.getTexture = function(){
-    return this.videoTexture;
-};
 
-StreamObject.prototype.getContext = function(){
-    return this.context;
-};
+    StreamObject.prototype.getVideo = function(){
+        return this.video;
+    };
+    StreamObject.prototype.getTexture = function(){
+        return this.videoTexture;
+    };
+
+    StreamObject.prototype.getContext = function(){
+        return this.context;
+    };
 	try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
     } catch (error) {
@@ -145,13 +146,12 @@ StreamObject.prototype.getContext = function(){
     };
 
     // Collada model
-    //lib/three.js/mrdoob-three.js-28136e7/examples/models/tv-model/meuble_tv.dae
 
     var loader = new THREE.ColladaLoader();
     loader.options.convertUpAxis = true;
     //loader.load( 'models/collada/monster/monster.dae', function ( collada ) {
-    loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/simple-laptop/hans_erickson_simple_laptop.dae', function ( collada ) {
-    //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
+    //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/simple-laptop/hans_erickson_simple_laptop.dae', function ( collada ) {
+    loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
         dae = collada.scene;
         skin = collada.skins[ 0 ];
 
