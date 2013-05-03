@@ -102,8 +102,7 @@ function init() {
 
 function animate() {
     requestAnimationFrame( animate );
-	render();		
-	update();
+	render();
 }
 
 function update() {
@@ -113,7 +112,6 @@ function update() {
 	}
 	
 	controls.update();
-	stats.update();
 }
 
 function render() {
