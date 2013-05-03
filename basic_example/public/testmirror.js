@@ -74,7 +74,7 @@ function init() {
 	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
 	var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
 	floor = new THREE.Mesh(floorGeometry, floorMaterial);
-	floor.position.y = -3;
+	floor.position.y = -6;
 	floor.rotation.x = Math.PI / 2;
 	scene.add(floor);
 	
