@@ -198,7 +198,7 @@ StreamObject.prototype.getContext = function() {
             //L.Logger.debug("Connected!");
             room = Erizo.Room({token: token});
 
-    initia        localStream.addEventListener("access-accepted", function () {
+    localStream.addEventListener("access-accepted", function () {
                 
                 var subscribeToStreams = function (streams) {
                     console.log("subscribe to streams");
