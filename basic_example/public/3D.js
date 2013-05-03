@@ -102,7 +102,6 @@ function updateVideos() {
 function render() {   
     requestAnimationFrame(render);
     updateVideos();
-
     renderer.render( bgScene, bgCam );
     renderer.render( scene, camera );
 }
@@ -112,7 +111,7 @@ window.onload = function () {
                 position:'absolute', 
                 top: $(window).height() - $('#chatArea').height()*2-56,
                 left:'25%'
-            });
+    });
     $('#chatMessage').css({
         position:'absolute', 
         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
@@ -145,14 +144,14 @@ window.onload = function () {
     $('#chatMessage').width('40.5%');
     $('#sendMessage').width('9%');
     
-StreamObject.prototype.getVideo = function(){
+StreamObject.prototype.getVideo = function() {
     return this.video;
 };
-StreamObject.prototype.getTexture = function(){
+StreamObject.prototype.getTexture = function() {
     return this.videoTexture;
 };
 
-StreamObject.prototype.getContext = function(){
+StreamObject.prototype.getContext = function() {
     return this.context;
 };
 	try {
@@ -160,6 +159,7 @@ StreamObject.prototype.getContext = function(){
     } catch (error) {
         console.log('erizo error: ' + error);
     }
+
     //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
         var req = new XMLHttpRequest();
