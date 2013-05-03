@@ -3,14 +3,19 @@ var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+
 var position = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
+
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
+THREEx.WindowResize(renderer, camera);
 camera.position.z = 10;
+
 var initScene = function() {
     // FLOOR
     var floorTexture = new THREE.ImageUtils.loadTexture( '/img/wood.jpg' );
