@@ -28,7 +28,7 @@ var initScene = function() {
     floor.position.y = -6;
     floor.rotation.x = Math.PI / 2;
     reflectionCamera.position = floor.position;
-    reflectionCamera.rotation = floor.rotation;
+    //reflectionCamera.rotation = floor.rotation;
     scene.add(floor);
     
     // SKYBOX/FOG
