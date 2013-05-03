@@ -193,7 +193,7 @@ StreamObject.prototype.getContext = function(){
     loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
         dae = collada.scene;
         skin = collada.skins[ 0 ];
-        dae.scale.x = dae.scale.y = dae.scale.z = 2;
+        dae.scale.x = dae.scale.y = dae.scale.z = 0.002;
         dae.position.x = 0;
         dae.position.z = 3;
         dae.updateMatrix();
