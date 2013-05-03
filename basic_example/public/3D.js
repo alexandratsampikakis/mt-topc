@@ -1,9 +1,8 @@
 var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
-var count = 0;
 var streams = [];
-var vid, videoTexture, material, geometry, streamer, videoImageContext, dae, skin;
+var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 var scene = new THREE.Scene();
 var bgScene = new THREE.Scene();
 var bgCam = new THREE.Camera();
@@ -77,13 +76,11 @@ function initVideo(stream,pos) {
     //      movie image will be scaled to fit these dimensions.
     var movieGeometry = new THREE.PlaneGeometry(  4, 4);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    //movieScreen.position.set(1*count,1*count,0);
     movieScreen.position.set(x,y,z);
     movieScreen.rotation.y += rot;
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
-    count++;
 }
 
 function updateVideos() {
@@ -183,7 +180,7 @@ StreamObject.prototype.getContext = function(){
     };
 
     var initialize = function(roomId) {
-        //
+        
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
@@ -281,5 +278,4 @@ StreamObject.prototype.getContext = function(){
 	}
 	initialize(tableId);
 }
-//render();*/
 
