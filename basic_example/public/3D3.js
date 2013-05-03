@@ -186,22 +186,19 @@ StreamObject.prototype.getContext = function(){
     //lib/three.js/mrdoob-three.js-28136e7/examples/models/tv-model/meuble_tv.dae
 
     var loader = new THREE.ColladaLoader();
-
-    loader.onload = function(){
-        loader.options.convertUpAxis = true;
-        console.log("Ladda in monster...");
-        //loader.load( 'models/collada/monster/monster.dae', function ( collada ) {
-        //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/simple-laptop/hans_erickson_simple_laptop.dae', function ( collada ) {
-        loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
-            dae = collada.scene;
-            skin = collada.skins[ 0 ];
-            dae.scale.x = dae.scale.y = dae.scale.z = 2;
-            dae.position.x = 0;
-            dae.position.z = 3;
-            dae.updateMatrix();
-            scene.add(dae);
-        });
-    };
+    loader.options.convertUpAxis = true;
+    console.log("Ladda in monster...");
+    //loader.load( 'models/collada/monster/monster.dae', function ( collada ) {
+    //loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/simple-laptop/hans_erickson_simple_laptop.dae', function ( collada ) {
+    loader.load( '/lib/three.js/mrdoob-three.js-28136e7/examples/models/collada/monster/monster.dae', function ( collada ) {
+        dae = collada.scene;
+        skin = collada.skins[ 0 ];
+        dae.scale.x = dae.scale.y = dae.scale.z = 2;
+        dae.position.x = 0;
+        dae.position.z = 3;
+        dae.updateMatrix();
+        scene.add(dae);
+    });
 
     var initialize = function(roomId) {
         //
