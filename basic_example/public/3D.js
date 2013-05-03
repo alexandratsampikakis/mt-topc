@@ -20,7 +20,7 @@ camera.position.z = 10;
 var initScene = function() {
     // FLOOR
     var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
-    reflectionCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
+    reflectionCamera = new THREE.CubeCamera( 0.1, 40, 512 );
     scene.add(reflectionCamera);
     var floorMaterial = new THREE.MeshBasicMaterial( { envMap: reflectionCamera.renderTarget } );
     floor = new THREE.Mesh(floorGeometry, floorMaterial);
