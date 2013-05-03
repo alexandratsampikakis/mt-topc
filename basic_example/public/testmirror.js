@@ -19,13 +19,7 @@ var count = 0;
 var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 var scene = new THREE.Scene();
-var bgScene = new THREE.Scene();
-var bgCam = new THREE.Camera();
-var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var position = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight-82);
-document.body.appendChild(renderer.domElement);
 
 //camera.position.z = 10;
 
@@ -113,15 +107,13 @@ function init() {
 
 }
 
-function animate() 
-{
+function animate() {
     requestAnimationFrame( animate );
 	render();		
 	update();
 }
 
-function update()
-{
+function update() {
 	if ( keyboard.pressed("z") ) 
 	{ 
 		// do something
@@ -131,8 +123,7 @@ function update()
 	stats.update();
 }
 
-function render() 
-{
+function render() {
 	updateVideos();
 
 	mirrorSphere.visible = false;
