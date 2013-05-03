@@ -17,7 +17,6 @@ document.body.appendChild(renderer.domElement);
 THREEx.WindowResize(renderer, camera);
 camera.position.z = 10;
 
-
 var initScene = function() {
     // FLOOR
     var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
