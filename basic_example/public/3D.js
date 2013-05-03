@@ -114,12 +114,12 @@ window.onload = function () {
     $('#chatArea').css({
                 position:'absolute', 
                 top: $(window).height() - $('#chatArea').height()*2-56,
-                left:'0'
+                left:'25%'
             });
     $('#chatMessage').css({
         position:'absolute', 
         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'0'
+        left:'25%'
     });
     $('#sendMessage').css({
         position:'absolute', 
@@ -130,17 +130,17 @@ window.onload = function () {
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
-            left:'0'
+            left:'25%'
         });
         $('#chatMessage').css({
             position:'absolute', 
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'0'
+            left:'25%'
         });
         $('#sendMessage').css({
             position:'absolute', 
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'81%'
+            left:'66%'
         });
     });
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
