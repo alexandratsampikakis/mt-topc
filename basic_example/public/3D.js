@@ -124,7 +124,7 @@ window.onload = function () {
     $('#sendMessage').css({
         position:'absolute', 
         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'81%'
+        left:'66%'
     });
     $(window).resize(function() {
         $('#chatArea').css({
@@ -145,7 +145,7 @@ window.onload = function () {
     });
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
     $('#chatArea').width('50%');
-    $('#chatMessage').width('40%');
+    $('#chatMessage').width('40.5%');
     $('#sendMessage').width('9%');
     
 StreamObject.prototype.getVideo = function(){
