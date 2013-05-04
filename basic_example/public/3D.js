@@ -22,7 +22,7 @@ var initScene = function() {
     var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
     reflectionCamera = new THREE.CubeCamera( 0.1, 40, 512 );
     scene.add(reflectionCamera);
-    var floorMaterial = new THREE.MeshBasicMaterial( { envMap: reflectionCamera.renderTarget } );
+    var floorMaterial = new THREE.MeshBasicMaterial( { map: reflectionCamera.renderTarget } );
     floor = new THREE.Mesh(floorGeometry, floorMaterial);
     floor.position.y = -6;
     floor.rotation.x = Math.PI / 2;
