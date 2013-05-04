@@ -5,8 +5,10 @@ var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
 var reflectionCamera;
-var MovingCube;
+
+var MovingCube, textureCamera;
 var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
@@ -194,6 +196,16 @@ function render() {
     MovingCube.visible = true;
     renderer.render( screenScene, screenCamera, finalRenderTarget, true );
     renderer.render( scene, camera );
+
+    // update the texture camera's position and look direction
+    var relativeCameraOffset = new THREE.Vector3(0,0,1);
+    var cameraOffset = MovingCube.matrixWorld.multiplyVector3( relativeCameraOffset );
+    textureCamera.position.x = cameraOffset.x;
+    textureCamera.position.y = cameraOffset.y;
+    textureCamera.position.z = cameraOffset.z;
+    var relativeCameraLookOffset = new THREE.Vector3(0,0,-1);
+    var cameraLookOffset = relativeCameraLookOffset.applyMatrix4( MovingCube.matrixWorld );
+    textureCamera.lookAt( cameraLookOffset );
 }
 window.onload = function () {
     initScene();
