@@ -44,6 +44,11 @@ var initScene = function() {
     // reflectionCamera.position = floor.position;
     // //reflectionCamera.rotation = floor.rotation;
     // scene.add(floor);
+
+    // CAMERAS
+    // camera 2
+    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    scene.add(textureCamera);
     
     // SKYBOX/FOG
     var materialArray = [];
