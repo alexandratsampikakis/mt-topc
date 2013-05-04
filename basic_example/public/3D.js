@@ -7,7 +7,7 @@ var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 var reflectionCamera;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
-
+var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 
 var renderer = new THREE.WebGLRenderer();
@@ -18,6 +18,17 @@ THREEx.WindowResize(renderer, camera);
 camera.position.z = 10;
 
 var initScene = function() {
+
+    var cubeGeom = new THREE.CubeGeometry(20, 20, 2, 1, 1, 1);
+    mirrorCubeCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
+    // mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
+    scene.add( mirrorCubeCamera );
+    var mirrorCubeMaterial = new THREE.MeshBasicMaterial( { envMap: mirrorCubeCamera.renderTarget } );
+    mirrorCube = new THREE.Mesh( cubeGeom, mirrorCubeMaterial );
+    mirrorCube.position.set(0,-6,0);
+    mirrorCube.rotation.x = Math.PI / 2;
+    mirrorCubeCamera.position = mirrorCube.position;
+    scene.add(mirrorCube);  
     // FLOOR
     var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
     reflectionCamera = new THREE.CubeCamera( 0.1, 40, 512 );
@@ -122,9 +133,9 @@ function render() {
     requestAnimationFrame(render);
 
     updateVideos();
-    floor.visible = false;
-    reflectionCamera.updateCubeMap( renderer, scene );
-    floor.visible = true;
+    mirrorCube.visible = false;
+    mirrorCubeCamera.updateCubeMap( renderer, scene );
+    mirrorCube.visible = true;
     renderer.render( scene, camera );
 }
 window.onload = function () {
