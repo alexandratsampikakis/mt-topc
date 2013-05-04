@@ -5,6 +5,8 @@ var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
 var reflectionCamera;
+var MovingCube;
+var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
@@ -19,27 +21,27 @@ camera.position.z = 10;
 
 var initScene = function() {
 
-    var cubeGeom = new THREE.CubeGeometry(20, 20, 2, 1, 1, 1);
-    mirrorCubeCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
-    // mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
-    scene.add( mirrorCubeCamera );
-    var mirrorCubeMaterial = new THREE.MeshBasicMaterial( { envMap: mirrorCubeCamera.renderTarget } );
-    mirrorCube = new THREE.Mesh( cubeGeom, mirrorCubeMaterial );
-    mirrorCube.position.set(0,-6,0);
-    mirrorCube.rotation.x = Math.PI / 2;
-    mirrorCubeCamera.position = mirrorCube.position;
-    scene.add(mirrorCube);  
-    // FLOOR
-    var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
-    reflectionCamera = new THREE.CubeCamera( 0.1, 40, 512 );
-    scene.add(reflectionCamera);
-    var floorMaterial = new THREE.MeshBasicMaterial( { map: reflectionCamera.renderTarget } );
-    floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    floor.position.y = -6;
-    floor.rotation.x = Math.PI / 2;
-    reflectionCamera.position = floor.position;
-    //reflectionCamera.rotation = floor.rotation;
-    scene.add(floor);
+    // var cubeGeom = new THREE.CubeGeometry(20, 20, 2, 1, 1, 1);
+    // mirrorCubeCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
+    // // mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
+    // scene.add( mirrorCubeCamera );
+    // var mirrorCubeMaterial = new THREE.MeshBasicMaterial( { envMap: mirrorCubeCamera.renderTarget } );
+    // mirrorCube = new THREE.Mesh( cubeGeom, mirrorCubeMaterial );
+    // mirrorCube.position.set(0,-6,0);
+    // mirrorCube.rotation.x = Math.PI / 2;
+    // mirrorCubeCamera.position = mirrorCube.position;
+    // scene.add(mirrorCube);  
+    // // FLOOR
+    // var floorGeometry = new THREE.PlaneGeometry(20, 20, 10, 10);
+    // reflectionCamera = new THREE.CubeCamera( 0.1, 40, 512 );
+    // scene.add(reflectionCamera);
+    // var floorMaterial = new THREE.MeshBasicMaterial( { map: reflectionCamera.renderTarget } );
+    // floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    // floor.position.y = -6;
+    // floor.rotation.x = Math.PI / 2;
+    // reflectionCamera.position = floor.position;
+    // //reflectionCamera.rotation = floor.rotation;
+    // scene.add(floor);
     
     // SKYBOX/FOG
     var materialArray = [];
@@ -55,6 +57,55 @@ var initScene = function() {
     var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
     scene.add( skybox );
+
+    // create an array with six textures for a cool cube (the camera)
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    var MovingCubeMat = new THREE.MeshFaceMaterial(materialArray);
+    var MovingCubeGeom = new THREE.CubeGeometry( 4, 4, 4, 1, 1, 1, materialArray );
+    MovingCube = new THREE.Mesh( MovingCubeGeom, MovingCubeMat );
+    MovingCube.position.set(0, -5, 5);
+    scene.add( MovingCube );
+
+    // intermediate scene.
+    //   this solves the problem of the mirrored texture by mirroring it again.
+    //   consists of a camera looking at a plane with the mirrored texture on it. 
+    screenScene = new THREE.Scene();
+    
+    screenCamera = new THREE.OrthographicCamera( 
+        window.innerWidth  / -2, window.innerWidth  /  2, 
+        window.innerHeight /  2, window.innerHeight / -2, 
+        -10000, 10000 );
+    screenCamera.position.z = 5;
+    screenScene.add( screenCamera );
+                
+    var screenGeometry = new THREE.PlaneGeometry( window.innerWidth, window.innerHeight );
+    
+    firstRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );   
+    var screenMaterial = new THREE.MeshBasicMaterial( { map: firstRenderTarget } );
+    
+    var quad = new THREE.Mesh( screenGeometry, screenMaterial );
+    // quad.rotation.x = Math.PI / 2;
+    screenScene.add( quad );
+                    
+    // final version of camera texture, used in scene. 
+    var planeGeometry = new THREE.CubeGeometry( 20, 20, 1, 1 );
+    finalRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );
+    var planeMaterial = new THREE.MeshBasicMaterial( { map: finalRenderTarget } );
+    var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+    plane.position.set(0,-6,0);
+    scene.add(plane);
+    // pseudo-border for plane, to make it easier to see
+    var planeGeometry = new THREE.CubeGeometry( 22, 22, 1, 1 );
+    var planeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+    var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+    plane.position.set(0,-6.1,0);
+    scene.add(plane);
 
 };
 
@@ -133,9 +184,15 @@ function render() {
     requestAnimationFrame(render);
 
     updateVideos();
-    mirrorCube.visible = false;
-    mirrorCubeCamera.updateCubeMap( renderer, scene );
-    mirrorCube.visible = true;
+    // mirrorCube.visible = false;
+    // mirrorCubeCamera.updateCubeMap( renderer, scene );
+    // mirrorCube.visible = true;
+
+    MovingCube.visible = false; 
+    // put the result of textureCamera into the first texture.
+    renderer.render( scene, textureCamera, firstRenderTarget, true );
+    MovingCube.visible = true;
+    renderer.render( screenScene, screenCamera, finalRenderTarget, true );
     renderer.render( scene, camera );
 }
 window.onload = function () {
