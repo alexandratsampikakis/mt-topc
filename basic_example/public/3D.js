@@ -104,14 +104,16 @@ var initScene = function() {
     var planeGeometry = new THREE.CubeGeometry( 20, 20, 1, 1 );
     finalRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );
     var planeMaterial = new THREE.MeshBasicMaterial( { map: finalRenderTarget } );
-    var plane = new THREE.Mesh( planeGeometry, planeMaterial );
-    plane.position.set(0,-6,0);
-    scene.add(plane);
+    floor = new THREE.Mesh( planeGeometry, planeMaterial );
+    floor.position.set(0,-6,0);
+    floor.rotation.x = Math.Pi/2;
+    scene.add(floor);
     // pseudo-border for plane, to make it easier to see
     var planeGeometry = new THREE.CubeGeometry( 22, 22, 1, 1 );
     var planeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000 } );
     var plane = new THREE.Mesh( planeGeometry, planeMaterial );
     plane.position.set(0,-6.1,0);
+    plane.rotation.x = Math.Pi/2;
     scene.add(plane);
 
 };
