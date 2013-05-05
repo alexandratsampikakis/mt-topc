@@ -175,7 +175,7 @@ function initVideo(stream,pos) {
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
         // the geometry on which the movie will be displayed;
         //      movie image will be scaled to fit these dimensions.
-        var movieGeometry = new THREE.PlaneGeometry(  4.2, 4.2);
+        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
         reflection.position.set(-8.69,-6,0.71);
         reflection.rotation.set(1.4,0,-0.96);
@@ -185,10 +185,10 @@ function initVideo(stream,pos) {
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
         // the geometry on which the movie will be displayed;
         //      movie image will be scaled to fit these dimensions.
-        var movieGeometry = new THREE.PlaneGeometry(  4.3, 4.3);
+        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
         reflection.position.set(8.69,-6,0.71);
-        reflection.rotation.set(Math.PI-1.4,0,0.96);
+        reflection.rotation.set(1.4,0,0.96);
         scene.add(reflection);
     }
 }
