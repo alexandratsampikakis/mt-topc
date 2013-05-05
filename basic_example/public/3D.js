@@ -127,11 +127,12 @@ var initScene = function() {
 };
 
 function onDocumentMouseMove( event ) {
-
-    event.preventDefault();
-    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / (window.innerHeight-82) ) * 2 + 1;
-    console.log(mouse.x +", "+mouse.y);
+    if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
+        event.preventDefault();
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+        console.log(mouse.x +", "+mouse.y);
+    }
 }
 
 var StreamObject = function(video, texture, context){
