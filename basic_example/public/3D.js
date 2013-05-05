@@ -9,6 +9,9 @@ var reflectionCamera;
 var MovingCube, textureCamera;
 var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
 
+var mouse = new THREE.Vector2(), INTERSECTED;
+var projector, raycaster;
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
@@ -116,8 +119,20 @@ var initScene = function() {
     plane.rotation.x = Math.Pi/2;
     scene.add(plane);
 
+    projector = new THREE.Projector();
+    raycaster = new THREE.Raycaster();
+
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
 };
 
+function onDocumentMouseMove( event ) {
+
+    event.preventDefault();
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight-41 ) * 2 + 1;
+    console.log(mouse.x +", "+mouse.y);
+}
 
 var StreamObject = function(video, texture, context){
     this.video = video;
@@ -222,17 +237,34 @@ function render() {
     renderer.render( scene, textureCamera, firstRenderTarget, true );
     MovingCube.visible = true;
     renderer.render( screenScene, screenCamera, finalRenderTarget, true );
+
+    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+    projector.unprojectVector( vector, camera );
+    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    var intersects = raycaster.intersectObjects( scene.children );
+    if ( intersects.length > 0 ) {
+        if ( INTERSECTED != intersects[ 0 ].object ) {
+            if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+            INTERSECTED = intersects[ 0 ].object;
+            INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+            INTERSECTED.material.emissive.setHex( 0xff0000 );
+        }
+    } else {
+        if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        INTERSECTED = null;
+    }
+
     renderer.render( scene, camera );
 
     // update the texture camera's position and look direction
-    var relativeCameraOffset = new THREE.Vector3(0,0,1);
+    /*var relativeCameraOffset = new THREE.Vector3(0,0,1);
     var cameraOffset = MovingCube.matrixWorld.multiplyVector3( relativeCameraOffset );
     textureCamera.position.x = cameraOffset.x;
     textureCamera.position.y = cameraOffset.y;
     textureCamera.position.z = cameraOffset.z;
     var relativeCameraLookOffset = new THREE.Vector3(0,0,-1);
     var cameraLookOffset = relativeCameraLookOffset.applyMatrix4( MovingCube.matrixWorld );
-    textureCamera.lookAt( cameraLookOffset );
+    textureCamera.lookAt( cameraLookOffset );*/
 }
 window.onload = function () {
     initScene();
