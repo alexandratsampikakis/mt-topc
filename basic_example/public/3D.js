@@ -130,7 +130,7 @@ function onDocumentMouseMove( event ) {
 
     event.preventDefault();
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight-41 ) * 2 + 1;
+    mouse.y = - ( event.clientY / (window.innerHeight-82) ) * 2 + 1;
     console.log(mouse.x +", "+mouse.y);
 }
 
