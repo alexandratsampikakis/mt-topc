@@ -123,8 +123,13 @@ var initScene = function() {
     raycaster = new THREE.Raycaster();
 
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-
+    window.addEventListener( 'resize', onWindowResize, false );
 };
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
 
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
