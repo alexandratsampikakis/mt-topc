@@ -136,7 +136,7 @@ StreamObject.prototype.getContext = function(){
     return this.context;
 };
 
-
+var reflection;
 function initVideo(stream,pos) {
     var x = position[pos][0];
     var y = position[pos][1];
@@ -176,20 +176,20 @@ function initVideo(stream,pos) {
         // the geometry on which the movie will be displayed;
         //      movie image will be scaled to fit these dimensions.
         var movieGeometry = new THREE.PlaneGeometry(  4.2, 4.2);
-        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        movieScreen.position.set(-8.69,-6,0.71);
-        movieScreen.rotation.set(1.4,0,-0.96);
-        scene.add(movieScreen);
+        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+        reflection.position.set(-8.69,-6,0.71);
+        reflection.rotation.set(1.4,0,-0.96);
+        scene.add(reflection);
     }
     if(pos === 6) {
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
         // the geometry on which the movie will be displayed;
         //      movie image will be scaled to fit these dimensions.
         var movieGeometry = new THREE.PlaneGeometry(  4.3, 4.3);
-        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        movieScreen.position.set(8.69,-6,0.71);
-        movieScreen.rotation.set(Math.PI-1.4,0,Math.PI - 0.96);
-        scene.add(movieScreen);
+        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+        reflection.position.set(8.69,-6,0.71);
+        reflection.rotation.set(Math.PI-1.4,0,0.96);
+        scene.add(reflection);
     }
 }
 
