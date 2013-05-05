@@ -126,9 +126,9 @@ var initScene = function() {
     window.addEventListener( 'resize', onWindowResize, false );
 };
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
 function onDocumentMouseMove( event ) {
