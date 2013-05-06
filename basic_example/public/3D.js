@@ -143,12 +143,15 @@ function redrawNapkin() {
 
     $('#canvasNapkin').css({
         position:'absolute'
+    }); 
+    $('tabbable').css({
+        position:'absolute'
     });
 
     myImage.src = imgData;
     c.height = $(window).height() - 415;
     c.width = 1.5*c.height;
-    
+
     $('#chatArea').css({
         position:'absolute', 
         top: $(window).height() - $('#chatArea').height()*2-56,
@@ -369,6 +372,9 @@ window.onload = function () {
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     $('#canvasNapkin').css({
+        position:'absolute'
+    });
+    $('tabbable').css({
         position:'absolute'
     });
     redrawNapkin();
