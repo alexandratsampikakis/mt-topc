@@ -251,6 +251,7 @@ function render() {
     var intersects = raycaster.intersectObjects( scene.children );
     if ( intersects.length > 1 ) {
         if ( INTERSECTED != intersects[ 0 ].object ) {
+            if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
             INTERSECTED = intersects[ 0 ].object;
             /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
@@ -280,9 +281,9 @@ window.onload = function () {
     initScene();
     render();
     $('#chatArea').css({
-                position:'absolute', 
-                top: $(window).height() - $('#chatArea').height()*2-56,
-                left:'25%'
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'25%'
     });
     $('#chatMessage').css({
         position:'absolute', 
