@@ -260,7 +260,7 @@ function render() {
         }
     } else {
         //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-        INTERSECTED.rotation.set(rotationX,0,0);
+        if(INTERSECTED)INTERSECTED.rotation.set(rotationX,0,0);
         INTERSECTED = null;
     }
 
