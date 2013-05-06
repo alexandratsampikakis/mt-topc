@@ -362,7 +362,7 @@ window.onload = function () {
     $('#sendMessage').width('9%');
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
-    $('canvasNapkin').css({
+    $('#canvasNapkin').css({
         position:'absolute', 
         top: $(window).height() - $('#chatArea').height()*2-56,
         left:'25%'
