@@ -125,6 +125,7 @@ var initScene = function() {
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
 };
+
 function onWindowResize() {
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
@@ -184,14 +185,14 @@ var StreamObject = function(video, texture, context){
     this.context = context;
     return this;
 };
-StreamObject.prototype.getVideo = function(){
+StreamObject.prototype.getVideo = function() {
     return this.video;
 };
-StreamObject.prototype.getTexture = function(){
+StreamObject.prototype.getTexture = function() {
     return this.videoTexture;
 };
 
-StreamObject.prototype.getContext = function(){
+StreamObject.prototype.getContext = function() {
     return this.context;
 };
 
@@ -375,7 +376,7 @@ window.onload = function () {
     StreamObject.prototype.getContext = function() {
         return this.context;
     };
-    
+
 	try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
     } catch (error) {
