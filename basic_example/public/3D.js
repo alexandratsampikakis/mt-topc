@@ -255,7 +255,7 @@ function render() {
             /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
             INTERSECTED.material.emissive.setHex( 0xff0000 );*/
             rotation = INTERSECTED.rotation.x;
-            INTERSECTED.rotation.x(0);
+            INTERSECTED.rotation.x = 0;
         }
     } else {
         //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
