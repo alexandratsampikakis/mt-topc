@@ -144,7 +144,7 @@ function redrawNapkin() {
     $('#canvasNapkin').css({
         position:'absolute'
     }); 
-    $('tabbable').css({
+    $('.tabbable').css({
         position:'absolute'
     });
 
@@ -371,12 +371,6 @@ window.onload = function () {
     $('#sendMessage').width('9%');
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
-    $('#canvasNapkin').css({
-        position:'absolute'
-    });
-    $('tabbable').css({
-        position:'absolute'
-    });
     redrawNapkin();
     var doit;
     $(window).resize(function() {
