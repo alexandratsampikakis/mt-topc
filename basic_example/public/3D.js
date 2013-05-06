@@ -259,9 +259,9 @@ function render() {
         }
     } else {
         //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-        if(INTERSECTED) {
+        /*if(INTERSECTED) {
             INTERSECTED.rotation.x = rotation;
-        }
+        }*/
         INTERSECTED = null;
     }
 
