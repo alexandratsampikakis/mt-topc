@@ -44,7 +44,46 @@
       <div id="vid6" class="hide" style="width: 320px; height: 240px"></div>
   </div>
 
-  <canvas id="canvasNapkin" onselectstart="return false;"></canvas>
+  <div class="tabbable">
+      <ul class="nav nav-tabs" id="myTab" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
+          <li class="active"><a href="#napkin" data-toggle="tab">Napkin</a></li>
+          <button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>
+      </ul>
+
+      <div class="tab-content">
+          <div class="tab-pane active" id="napkin">
+            <center><div id="controls">
+              <select id="thickness" class="selectpicker" data-width="80px" title='Size' data-style="btn btn-mini">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+
+          <select id="color" class="selectpicker" data-width="80px" title='Color' data-style="btn btn-mini">
+            <option value="#FFFFFF">Grey</option>
+            <option value="#000000">Black</option>
+            <option value="#61b7e2">Blue</option>
+            <option value="#e261b7">Pink</option>
+            <option value="#ffff4d">Yellow</option>
+            <option value="#b7e261">Green</option>
+            <option value="#a5682a">Brown</option>
+            <option value="#ff0000">Red</option>
+          </select>
+
+          <button id="saveNapkin" style="margin-top: -10px" class="btn btn-mini">Save napkin</button>
+          <button id="clearNapkin" style="margin-top: -10px" class="btn btn-mini">Clear napkin</button>
+      </div></center>
+
+      <center><canvas id="canvasNapkin" onselectstart="return false;"></canvas></center>
+      <img id="myNapkinImg">
+          </div>
+
+      </div>
+  </div>
 
   <div class="hide">
       <textarea rows="6" id="chatArea" style="font-size:9pt;"></textarea>
@@ -68,6 +107,11 @@
   <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.WindowResize.js"></script>
+    <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tab.js"></script>
+    <script type="text/javascript" src="/tab.js"></script>
+    <script type="text/javascript" src="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/lib/FileSaver.js-master/FileSaver.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-toBlob.js-master/canvas-toBlob.js"></script>
   <script type="text/javascript" src="3D.js"></script>
 
 </body>
