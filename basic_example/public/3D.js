@@ -131,6 +131,44 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
+function redrawNapkin() {
+    var c = $('#canvasNapkin')[0];
+    var imgData = c.toDataURL();
+    var ctx = c.getContext("2d");
+    var myImage = new Image();
+    myImage.onload = function(){
+        ctx.drawImage(myImage, 0, 0,c.width,c.height);
+    }; 
+    myImage.src = imgData;
+    c.height = $(window).height() - 415;
+    c.width = 1.5*c.height;
+}
+
+function drawPath(color, thickness, path, width, height) {
+    var widthRatio = $('#canvasNapkin')[0].width/width;
+    var heightRatio = $('#canvasNapkin')[0].height/height;
+    for (var i = 0; i < path.length; i+=2) {
+        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
+    };
+}
+
+function drawLine (color, thickness, x1, y1, x2, y2) {
+    context.strokeStyle = color;
+    context.lineWidth   = thickness;
+
+    context.beginPath();
+    context.moveTo(x1, y1)
+    context.lineTo(x2, y2);
+    context.stroke();
+}
+
+function sendNapkinToNewUser() {
+    var c = document.getElementById("canvasNapkin");
+    var ctx = c.getContext("2d");
+    var napkinImgData = c.toDataURL();
+    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
         event.preventDefault();
@@ -316,17 +354,28 @@ window.onload = function () {
     $('#chatArea').width('50%');
     $('#chatMessage').width('40.5%');
     $('#sendMessage').width('9%');
-    
-StreamObject.prototype.getVideo = function() {
-    return this.video;
-};
-StreamObject.prototype.getTexture = function() {
-    return this.videoTexture;
-};
 
-StreamObject.prototype.getContext = function() {
-    return this.context;
-};
+    var context = document.getElementById("canvasNapkin").getContext('2d');
+    redrawNapkin();
+    var doit;
+    $(window).resize(function() {
+        clearTimeout(doit);
+        doit = setTimeout(function() {
+            redrawNapkin();
+        }, 100);
+    });
+    
+    StreamObject.prototype.getVideo = function() {
+        return this.video;
+    };
+    StreamObject.prototype.getTexture = function() {
+        return this.videoTexture;
+    };
+
+    StreamObject.prototype.getContext = function() {
+        return this.context;
+    };
+    
 	try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
     } catch (error) {
