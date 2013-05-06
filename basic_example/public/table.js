@@ -131,9 +131,9 @@ var initScene = function() {
     window.addEventListener( 'resize', onWindowResize, false );
 
     //NEW SHIT
-    ytScene = new THREE.ytScene();
+    ytScene = new THREE.Scene();
 
-    ytRenderer = new THREE.CSS3DytRenderer();
+    ytRenderer = new THREE.CSS3DRenderer();
     ytRenderer.setSize( window.innerWidth, window.innerHeight );
     ytRenderer.domElement.style.position = 'absolute';
     ytRenderer.domElement.style.top = 0;
@@ -401,7 +401,6 @@ function onDocumentMouseMove( event ) {
         event.preventDefault();
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-        console.log(mouse.x +", "+mouse.y);
     }
 }
 
