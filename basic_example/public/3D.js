@@ -249,7 +249,7 @@ function render() {
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
-    if ( intersects.length > 0 ) {
+    if ( intersects.length > 1 ) {
         if ( INTERSECTED != intersects[ 0 ].object ) {
             //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
             INTERSECTED = intersects[ 0 ].object;
