@@ -139,10 +139,15 @@ function redrawNapkin() {
     var myImage = new Image();
     myImage.onload = function(){
         ctx.drawImage(myImage, 0, 0,c.width,c.height);
-    }; 
+    };
     myImage.src = imgData;
     c.height = $(window).height() - 415;
     c.width = 1.5*c.height;
+    $('#chatArea').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'25%'
+    });
 }
 
 function drawPath(color, thickness, path, width, height) {
@@ -357,6 +362,11 @@ window.onload = function () {
     $('#sendMessage').width('9%');
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
+    $('canvasNapkin').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'25%'
+    });
     redrawNapkin();
     var doit;
     $(window).resize(function() {
