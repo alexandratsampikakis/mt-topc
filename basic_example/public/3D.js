@@ -137,12 +137,18 @@ function redrawNapkin() {
     var imgData = c.toDataURL();
     var ctx = c.getContext("2d");
     var myImage = new Image();
-    myImage.onload = function(){
+    myImage.onload = function() {
         ctx.drawImage(myImage, 0, 0,c.width,c.height);
     };
+
+    $('#canvasNapkin').css({
+        position:'absolute'
+    });
+
     myImage.src = imgData;
     c.height = $(window).height() - 415;
     c.width = 1.5*c.height;
+    
     $('#chatArea').css({
         position:'absolute', 
         top: $(window).height() - $('#chatArea').height()*2-56,
@@ -363,9 +369,7 @@ window.onload = function () {
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     $('#canvasNapkin').css({
-        position:'absolute', 
-        top: $(window).height() - $('#chatArea').height()*2-56,
-        left:'25%'
+        position:'absolute'
     });
     redrawNapkin();
     var doit;
