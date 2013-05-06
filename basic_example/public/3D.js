@@ -230,6 +230,7 @@ function updateVideos() {
     };
 }
 
+var rotationX;
 function render() {   
     requestAnimationFrame(render);
 
@@ -254,10 +255,12 @@ function render() {
             INTERSECTED = intersects[ 0 ].object;
             /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
             INTERSECTED.material.emissive.setHex( 0xff0000 );*/
+            rotationX = INTERSECTED.rotation.x;
             INTERSECTED.rotation.set(0,0,0);
         }
     } else {
         //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        INTERSECTED.rotation.set(rotationX,0,0);
         INTERSECTED = null;
     }
 
