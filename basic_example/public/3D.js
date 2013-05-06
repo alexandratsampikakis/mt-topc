@@ -68,7 +68,7 @@ var initScene = function() {
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
     scene.add( skybox );
 
-    // create an array with six textures for a cool cube (the camera)
+    /*// create an array with six textures for a cool cube (the camera)
     var materialArray = [];
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
@@ -117,7 +117,7 @@ var initScene = function() {
     var plane = new THREE.Mesh( planeGeometry, planeMaterial );
     plane.position.set(0,-6.1,0);
     plane.rotation.x = Math.Pi/2;
-    scene.add(plane);
+    scene.add(plane);*/
 
     projector = new THREE.Projector();
     raycaster = new THREE.Raycaster();
@@ -238,11 +238,11 @@ function render() {
     // mirrorCubeCamera.updateCubeMap( renderer, scene );
     // mirrorCube.visible = true;
 
-    MovingCube.visible = false; 
+    /*MovingCube.visible = false; 
     // put the result of textureCamera into the first texture.
     renderer.render( scene, textureCamera, firstRenderTarget, true );
     MovingCube.visible = true;
-    renderer.render( screenScene, screenCamera, finalRenderTarget, true );
+    renderer.render( screenScene, screenCamera, finalRenderTarget, true );*/
 
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, camera );
