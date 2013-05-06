@@ -230,7 +230,7 @@ function updateVideos() {
     };
 }
 
-var rotationX;
+var rotationY;
 function render() {   
     requestAnimationFrame(render);
 
@@ -255,12 +255,12 @@ function render() {
             INTERSECTED = intersects[ 0 ].object;
             /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
             INTERSECTED.material.emissive.setHex( 0xff0000 );*/
-            rotationX = INTERSECTED.rotation.x;
-            //INTERSECTED.rotation.set(0,0,0);
+            rotationY = INTERSECTED.rotation.y;
+            INTERSECTED.rotation.y = 0;
         }
     } else {
         //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-        if(INTERSECTED)INTERSECTED.rotation.set(rotationX,0,0);
+        if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
         INTERSECTED = null;
     }
 
