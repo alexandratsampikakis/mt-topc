@@ -189,7 +189,7 @@ window.onload = function () {
                             console.log(imgID);
                         }
 
-                        if(!hasImage) loadImage("http://placehold.it/320x200", imgID);
+                        if(!hasImage) loadImage("http://placehold.it/320x200", imgID,i);
 
                     }
                 }
