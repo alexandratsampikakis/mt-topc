@@ -136,7 +136,7 @@ function loadPlaceholder() {
         var context = canvas.getContext('2d');
         canvas.width = 320;
         canvas.height = 200;
-        drawImage(myImage, 0, 0,canvas.width,canvas.height);
+        context.drawImage(myImage, 0, 0,canvas.width,canvas.height);
         placeHolderData = canvas.toDataURL();
     };
     myImage.src = "http://placehold.it/320x200";
