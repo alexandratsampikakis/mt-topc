@@ -107,8 +107,8 @@ function initCanvas () {
   context.lineCap = "round";
  
   // Set control panel defaults
-  document.getElementById("thickness").selectedIndex = 2;
-  document.getElementById("color").selectedIndex = 5;
+  document.getElementById("thickness").selectedIndex = 0;
+  document.getElementById("color").selectedIndex = 1;
 }
  
 // Register callback functions to handle user input
