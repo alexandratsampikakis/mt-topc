@@ -419,11 +419,11 @@ window.onload = function () {
         return false;
     });
 
-    $('#myTab a[href=/3D.html#napkin]').click(function () {
+    $('#myTab a[href=#napkin]').click(function () {
         $('#napkinTab').show();
         $('#videoTab').show();
     });
-    $('#myTab a[href=#/3D.html#shareYTVideo]').click(function () {
+    $('#myTab a[href=#shareYTVideo]').click(function () {
         $('#napkinTab').hide();
         $('#videoTab').hide();
         $('#napkinTab2').show();
