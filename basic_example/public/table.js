@@ -2,6 +2,10 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
+
+var chairImg = new Image();
+var emptyImg = new Image();
+
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
 var reflectionCamera;
@@ -139,7 +143,7 @@ function loadPlaceholder() {
         context.drawImage(myImage, 0, 0,canvas.width,canvas.height);
         placeHolderData = canvas.toDataURL();
     };
-    myImage.src = "http://placehold.it/320x200";
+    myImage.src = "/img/emptyTable.gif";
 }
 
 function loadImage(imageData, elementID, pos) {
@@ -166,6 +170,8 @@ function loadImage(imageData, elementID, pos) {
 }
 
 window.onload = function () {
+    chairImg.src="/img/emptyChair.jpg";
+    //emptyImg.src="/img/emptyTable.gif";
     loadPlaceholder();
     initScene();
     render();
