@@ -569,6 +569,7 @@ window.onload = function () {
             resize: function(){
                 if($(this).height()<=h){
                      $("#ddMenu").hide();
+                     $('#ddMenu').empty();
                 }else{
                     overseeInTable();
                     $("#ddMenu").show();
