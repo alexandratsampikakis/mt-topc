@@ -54,7 +54,6 @@ var initScene = function() {
    
 };
 
-
 function onWindowResize() {
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
@@ -97,9 +96,76 @@ function render() {
 
 
 }
+
+function loadImage(imageData, elementID, pos) {
+    var x = position[pos][0];
+    var y = position[pos][1];
+    var z = position[pos][2];
+    var myImage = new Image();
+    myImage.onload = function(){
+        videoTexture = new THREE.Texture( myImage );
+        videoTexture.minFilter = THREE.LinearFilter;
+        videoTexture.magFilter = THREE.LinearFilter;
+        //var x = room.getStreamsByAttribute('type','media').length;
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+        // the geometry on which the movie will be displayed;
+        //      movie image will be scaled to fit these dimensions.
+        movieGeometry = new THREE.PlaneGeometry(  4, 4);
+        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+        movieScreen.position.set(x,y,z);
+        scene.add(movieScreen);
+    };
+    myImage.src = imageData;
+    myImage.className = 'centerImage';
+}
+
 window.onload = function () {
     initScene();
     render();
+
+    getCafeTables(cafe, function (response) {
+        var cafes = JSON.parse(response);
+        var tc = document.getElementById("tablecontainer");
+        if(cafes.hasOwnProperty('error')) {
+            console.log(cafes.error);
+        } else {
+            updateTitle(cafes.name);
+            tableId[1] = cafes.table1;
+            tableId[2] = cafes.table2;
+            tableId[3] = cafes.table3;
+            tableId[4] = cafes.table4;
+            tableId[5] = cafes.table5;
+            tableId[6] = cafes.table6;
+
+            getTableImage('Unik', function(response) {
+                var res = JSON.parse(response);
+                var hasImage = false;
+                var imgId;
+                var imgData
+                if(!res.hasOwnProperty('empty')){
+                    for(var i=1;i<=6;i++){
+                        hasImage = false;
+                        imgID = '#table'+i+'img';
+                        for(var j=0;j<res.records.length;j++){
+                            if(res.records[j].roomID == tableId[i]) {
+                                console.log('i: ' + i + ', j: ' + j);
+                                imgData = res.records[j].imageData;
+                                loadImage(imgData, imgID);
+                                hasImage = true;
+                                //
+                                //
+
+                            }
+                            console.log(imgID);
+                        }
+
+                        if(!hasImage) loadImage("http://placehold.it/320x200", imgID);
+
+                    }
+                }
+            });    
+        }
+    });
   
 }
 
