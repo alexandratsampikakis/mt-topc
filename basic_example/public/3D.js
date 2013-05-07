@@ -149,8 +149,8 @@ function redrawNapkin() {
     });
 
     myImage.src = imgData;
-    c.height = 40%; //$(window).height() - 415;
-    c.width = 40%; //1.5*c.height;
+    c.height = $(window).height() - 500; //415;
+    c.width = 1.5*c.height;
 
     $('#chatArea').css({
         position:'absolute', 
