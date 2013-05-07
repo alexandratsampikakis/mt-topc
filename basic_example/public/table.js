@@ -97,6 +97,21 @@ function render() {
 
 }
 
+var getTableImage = function(cafe, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getTableImg/' + cafe;
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
 function loadImage(imageData, elementID, pos) {
     var x = position[pos][0];
     var y = position[pos][1];
