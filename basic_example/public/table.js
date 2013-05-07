@@ -139,7 +139,7 @@ function loadPlaceholder() {
         drawImage(myImage, 0, 0,canvas.width,canvas.height);
         placeHolderData = canvas.toDataURL();
     };
-    myImage.src = imageData;
+    myImage.src = "http://placehold.it/320x200";
 }
 
 function loadImage(imageData, elementID, pos) {
@@ -161,11 +161,12 @@ function loadImage(imageData, elementID, pos) {
         scene.add(movieScreen);
         document.body.appendChild(myImage);
     };
-    myImage.src = "http://placehold.it/320x200";
+    myImage.src = imageData;
     myImage.className = 'centerImage';
 }
 
 window.onload = function () {
+    loadPlaceholder();
     initScene();
     render();
 
