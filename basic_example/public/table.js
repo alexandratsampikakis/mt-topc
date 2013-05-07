@@ -155,6 +155,7 @@ function loadImage(imageData, elementID, pos) {
         var videoTexture = new THREE.Texture( myImage );
         videoTexture.minFilter = THREE.LinearFilter;
         videoTexture.magFilter = THREE.LinearFilter;
+        videoTexture.needsUpdate = true;
         //var x = room.getStreamsByAttribute('type','media').length;
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
         // the geometry on which the movie will be displayed;
