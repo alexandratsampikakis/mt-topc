@@ -578,7 +578,7 @@ window.onload = function () {
                     if(open === false) {
                         overseeInTable();
                         $("#ddMenu").show();
-                        open = false;
+                        open = true;
                     }
                 }
                 
