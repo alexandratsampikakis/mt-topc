@@ -132,12 +132,10 @@ function loadImage(imageData, elementID, pos) {
     var y = position[pos][1];
     var z = position[pos][2];
     var myImage = new Image();
-    videoTexture = new THREE.Texture( myImage );
     myImage.onload = function(){
-        videoTexture.needsUpdate = true;
+        videoTexture = new THREE.Texture( myImage );
         videoTexture.minFilter = THREE.LinearFilter;
         videoTexture.magFilter = THREE.LinearFilter;
-        
         //var x = room.getStreamsByAttribute('type','media').length;
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
         // the geometry on which the movie will be displayed;
@@ -149,7 +147,6 @@ function loadImage(imageData, elementID, pos) {
         document.body.appendChild(myImage);
     };
     myImage.src = imageData;
-    videoTexture.needsUpdate = true;
     myImage.className = 'centerImage';
 }
 
