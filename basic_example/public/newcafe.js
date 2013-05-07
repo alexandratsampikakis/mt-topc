@@ -559,7 +559,7 @@ window.onload = function () {
     });
     }
     var h = parseInt($("#menuContainer").css('height')); //height mentioned in css- feel free to change
-
+    var open = false;
     $("#menuContainer").resizable({ 
             handles: {
                 "s":"#grippie"   
@@ -568,11 +568,18 @@ window.onload = function () {
             minHeight:0,
             resize: function(){
                 if($(this).height()<=h){
-                     $("#ddMenu").hide();
-                     $('#ddMenu').empty();
+                    if(open === true) {
+                        $("#ddMenu").hide();
+                        $('#ddMenu').empty();
+                        open = false;
+                    }
+
                 }else{
-                    overseeInTable();
-                    $("#ddMenu").show();
+                    if(open === false) {
+                        overseeInTable();
+                        $("#ddMenu").show();
+                        open = false;
+                    }
                 }
                 
             }
