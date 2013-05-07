@@ -132,10 +132,11 @@ function loadImage(imageData, elementID, pos) {
     var y = position[pos][1];
     var z = position[pos][2];
     var myImage = new Image();
-    videoTexture = new THREE.Texture( myImage );
-    videoTexture.minFilter = THREE.LinearFilter;
-    videoTexture.magFilter = THREE.LinearFilter;
+
     myImage.onload = function(){
+        videoTexture = new THREE.Texture( myImage );
+        videoTexture.minFilter = THREE.LinearFilter;
+        videoTexture.magFilter = THREE.LinearFilter;
         videoTexture.needsUpdate = true;
         //var x = room.getStreamsByAttribute('type','media').length;
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
