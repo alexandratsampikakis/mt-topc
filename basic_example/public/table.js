@@ -97,6 +97,21 @@ function render() {
 
 }
 
+var getCafeTables = function(cafe, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getcafe/' + cafe;
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
 var getTableImage = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getTableImg/' + cafe;
