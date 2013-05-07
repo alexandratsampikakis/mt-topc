@@ -4082,12 +4082,10 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
-  /*color: #555555;*/
-  color: #dddddd;
+  color: #555555;
   cursor: default;
-  background-color: #ffffff;
-  /*border: 1px solid #ddd;
-  background-color: transparent;*/
+  /*border: 1px solid #ddd;*/
+  background-color: transparent;
   border: 1px solid #ffffff;
   border-bottom-color: #ffffff;
 }
