@@ -6176,8 +6176,7 @@ a.badge:focus {
 
 .tableBox {
   background-color: white;
-  margin-left: 30%;
+  /*margin-left: 30%;
   margin-top: 2%;
-  width: 40%;
-  height: 100% - 37px;
+  width: 40%;*/
 }
