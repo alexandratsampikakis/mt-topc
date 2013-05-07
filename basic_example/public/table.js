@@ -47,7 +47,7 @@ var initScene = function() {
     for (var i = 0; i < 6; i++)
        materialArray[i].side = THREE.BackSide;
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-    var skyboxGeom = new THREE.CubeGeometry( 80, 40, 80, 1, 1, 1 );
+    var skyboxGeom = new THREE.CubeGeometry( 80, 70, 80, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
     scene.add( skybox );
 
