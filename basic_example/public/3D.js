@@ -211,6 +211,7 @@ StreamObject.prototype.getContext = function() {
 };
 
 var reflection;
+var movieGeometry;
 function initVideo(stream,pos) {
     var x = position[pos][0];
     var y = position[pos][1];
@@ -238,7 +239,7 @@ function initVideo(stream,pos) {
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
     // the geometry on which the movie will be displayed;
     //      movie image will be scaled to fit these dimensions.
-    var movieGeometry = new THREE.PlaneGeometry(  4, 4);
+    movieGeometry = new THREE.PlaneGeometry(  4, 4);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(x,y,z);
     movieScreen.rotation.y += rot;
