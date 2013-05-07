@@ -142,10 +142,7 @@ function redrawNapkin() {
     };
 
     $('.tabbable').css({
-        position:'absolute',
-        margin-left: '30%',
-        margin-top: '1%',
-        width: '40%'
+        position:'absolute'
     });
 
     myImage.src = imgData;
