@@ -12,6 +12,8 @@ var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
 var mouse = new THREE.Vector2(), INTERSECTED;
 var projector, raycaster;
 
+
+var placeHolderData;
 //YTube
 var ytRenderer, ytScene;
 var objects = [], player;
@@ -127,6 +129,19 @@ var getTableImage = function(cafe, callback) {
     req.send();
 };
 
+function loadPlaceholder() {
+    var myImage = new Image();
+    myImage.onload = function(){
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+        canvas.width = 320;
+        canvas.height = 200;
+        drawImage(myImage, 0, 0,canvas.width,canvas.height);
+        placeHolderData = canvas.toDataURL();
+    };
+    myImage.src = imageData;
+}
+
 function loadImage(imageData, elementID, pos) {
     var x = position[pos][0];
     var y = position[pos][1];
@@ -146,13 +161,15 @@ function loadImage(imageData, elementID, pos) {
         scene.add(movieScreen);
         document.body.appendChild(myImage);
     };
-    myImage.src = imageData;
+    myImage.src = "http://placehold.it/320x200";
     myImage.className = 'centerImage';
 }
 
 window.onload = function () {
     initScene();
     render();
+
+
 
     getCafeTables("Unik", function (response) {
         var cafes = JSON.parse(response);
@@ -190,7 +207,7 @@ window.onload = function () {
                             console.log(imgID);
                         }
 
-                        if(!hasImage) loadImage("http://placehold.it/320x200", imgID,i);
+                        if(!hasImage) loadImage(placeHolderData, imgID,i);
 
                     }
                 }
