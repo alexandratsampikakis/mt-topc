@@ -6178,5 +6178,6 @@ a.badge:focus {
   background-color: white;
   margin-left: 30%;
   margin-top: 2%;
-  width: 40%;"
+  width: 40%;
+  height: 100% - 37px;
 }
