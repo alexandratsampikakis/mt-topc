@@ -41,3 +41,34 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+#menuContainer{
+     position:absolute;
+    width:100%;
+     background-color:#A3155C;
+     overflow:hidden;
+     height:10px;
+     padding:5px 5px 12px 5px;
+}
+#ddMenu{
+    position:absolute;
+    top:25%;
+    width:100%;
+    display:none;
+}
+#grippie{
+     height:16px;
+     display:inline-block;
+     position:absolute;
+     left:50%;
+     bottom:0px;
+     color:#FFF;
+     -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    width:40px;
+    font-size:12px;
+}
