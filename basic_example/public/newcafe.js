@@ -515,6 +515,8 @@ window.onload = function () {
             $(myImage).appendTo(elementID);
         };
         myImage.src = imageData;
+        myImage.width=$(window).width/6;
+        myImage.height=myImage.width/1.6;
     }
 
 
