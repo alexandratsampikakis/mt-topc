@@ -181,6 +181,42 @@ function sendNapkinToNewUser() {
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
 
+//Adds eventlisteners to youtubeplayer
+function onYouTubePlayerReady(playerId) {
+  ytplayer = document.getElementById("myytplayer");
+  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+}
+
+//handler for youtube player state change
+function onytplayerStateChange(newState) {
+    switch (newState) {
+        case 1:
+            //play
+            dataStream.sendData({id:'ytplayer', state:1});
+            console.log("play video");
+            break;
+        case 2:
+            //pause
+            dataStream.sendData({id:'ytplayer', state:2});
+            break;
+       default:
+    }
+}
+
+//Plays the youtube video
+function play() {
+    if (ytplayer) {
+        ytplayer.playVideo();
+    }
+}
+
+//Pauses the youtube video
+function pause() {
+    if (ytplayer) {
+        ytplayer.pauseVideo();
+    }
+}
+
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
         event.preventDefault();
@@ -368,6 +404,21 @@ window.onload = function () {
     $('#chatMessage').width('40.5%');
     $('#sendMessage').width('9%');
 
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+
+    $('#closeVideo').click(function() {
+        $('#closeVideo').toggle();
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+        return false;
+    }); 
+
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
     var doit;
@@ -413,6 +464,21 @@ window.onload = function () {
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
+    
+    var showVideo = function(urlVideo) {
+        var videoID = urlVideo.split('=')[1];
+        if(videoID !== undefined) {
+            var params = { allowScriptAccess: "always" };
+            var atts = { id: "myytplayer" };
+            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+                           "youtubeVideo", "80%", "400", "8", null, null, params, atts);
+
+            $('#myytplayer').css ({visibility:'visible'});
+            $('#writeUrl').show();
+            $('#closeVideo').show();
+            $('#VideoUrl').val("");
+        }
+    }
 
     var initialize = function(roomId) {
         

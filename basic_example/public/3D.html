@@ -46,6 +46,30 @@
 
   <div class="tabbable" style="margin-left: 30%; margin-top: 2%; width: 40%;">
       <ul class="nav nav-tabs" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
+          <li class="active"><a href="#shareYTVideo" data-toggle="tab" style="color: #555555; background-color: #ffffff;">Share video</a></li>
+          <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
+      </ul>
+
+      <div class="tab-content tableBox myShadow">
+          <div class="tab-pane" id="shareYTVideo">
+              <center>
+                  <div id="writeUrl">
+                      <form class="form-inline">
+                          <input type="text" id="VideoUrl" class="input-xlarge">
+                          <button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
+                          <button id="closeVideo" class="btn btn-mini hide" style="float: right; margin-right: 10px;">Close video</button>
+                      </form>
+                  </div>
+                  <p><div id="youtubeVideo" class="embed-container hide">
+                  <a href="javascript:void(0);" onclick="play();">Play</a>
+                  </div></p>
+              </center>
+          </div>
+      </div>
+  </div>
+
+  <div class="tabbable" style="margin-left: 30%; margin-top: 2%; width: 40%;">
+      <ul class="nav nav-tabs" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
           <li class="active"><a href="#napkin" data-toggle="tab" style="color: #555555; background-color: #ffffff;">Napkin</a></li>
           <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
       </ul>
