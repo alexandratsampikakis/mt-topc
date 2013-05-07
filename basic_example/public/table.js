@@ -144,6 +144,7 @@ function loadImage(imageData, elementID, pos) {
         var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
         movieScreen.position.set(x,y,z);
         scene.add(movieScreen);
+        document.body.appendChild(myImage);
     };
     myImage.src = imageData;
     myImage.className = 'centerImage';
