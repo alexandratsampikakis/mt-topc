@@ -419,11 +419,11 @@ window.onload = function () {
         return false;
     });
 
-    $('#myTab a[href=#napkin]').click(function () {
+    $('#myTab a[href=http://satin.research.ltu.se:3001/3D.html#napkin]').click(function () {
         $('#napkinTab').show();
         $('#videoTab').show();
     });
-    $('#myTab a[href=#shareVideo]').click(function () {
+    $('#myTab a[href=http://satin.research.ltu.se:3001/3D.html#shareYTVideo]').click(function () {
         $('#napkinTab').hide();
         $('#videoTab').hide();
         $('#napkinTab2').show();
