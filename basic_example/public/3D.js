@@ -419,17 +419,6 @@ window.onload = function () {
         return false;
     });
 
-    $('#myTab a[href=#napkin]').click(function () {
-        $('#napkinTab').show();
-        $('#videoTab').show();
-    });
-    $('#myTab a[href=#shareYTVideo]').click(function () {
-        $('#napkinTab').hide();
-        $('#videoTab').hide();
-        $('#napkinTab2').show();
-        $('#videoTab2').show();
-    });
-
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
     var doit;
