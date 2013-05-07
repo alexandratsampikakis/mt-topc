@@ -123,7 +123,7 @@ window.onload = function () {
     initScene();
     render();
 
-    getCafeTables(cafe, function (response) {
+    getCafeTables("Unik", function (response) {
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
