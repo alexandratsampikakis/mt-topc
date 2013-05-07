@@ -6178,7 +6178,7 @@ a.badge:focus {
 }
 
 .myShadow {
-  -webkit-box-shadow: -7px 6px 9px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    -7px 6px 9px rgba(50, 50, 50, 0.75);
-  box-shadow:         -7px 6px 9px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: -9px 8px 8px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    -9px 8px 8px rgba(50, 50, 50, 0.75);
+  box-shadow:         -9px 8px 8px rgba(50, 50, 50, 0.75);
 }
