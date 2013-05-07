@@ -142,12 +142,15 @@ function redrawNapkin() {
     };
 
     $('.tabbable').css({
-        position:'absolute'
+        position:'absolute',
+        margin-left: '30%',
+        margin-top: '1%',
+        width: '40%'
     });
 
     myImage.src = imgData;
-    c.height = $(window).height() - 415;
-    c.width = 1.5*c.height;
+    c.height = 100%; //$(window).height() - 415;
+    c.width = 100%; //1.5*c.height;
 
     $('#chatArea').css({
         position:'absolute', 
