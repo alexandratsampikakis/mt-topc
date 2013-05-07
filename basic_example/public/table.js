@@ -133,7 +133,7 @@ function loadImage(imageData, elementID, pos) {
     var z = position[pos][2];
     var myImage = new Image();
     myImage.onload = function(){
-        videoTexture = new THREE.Texture( myImage );
+        var videoTexture = new THREE.Texture( myImage );
         videoTexture.minFilter = THREE.LinearFilter;
         videoTexture.magFilter = THREE.LinearFilter;
         //var x = room.getStreamsByAttribute('type','media').length;
