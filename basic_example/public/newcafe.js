@@ -509,6 +509,24 @@ window.onload = function () {
         myImage.src = imgData;
     }
 
+    var h = parseInt($("#menuContainer").css('height')); //height mentioned in css- feel free to change
+
+    $("#menuContainer").resizable({ 
+            handles: {
+                "s":"#grippie"   
+            },
+            maxHeight:50, 
+            minHeight:0,
+            resize: function(){
+                if($(this).height()<=h){
+                     $("#ddMenu").hide();
+                }else{
+                    $("#ddMenu").show();
+                }
+                
+            }
+    });
+
     //Table buttons
     $('#table1').click(function() {
         knock(tableId[1]);
