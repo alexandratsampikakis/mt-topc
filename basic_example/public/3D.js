@@ -367,6 +367,7 @@ function render() {
 window.onload = function () {
     initScene();
     render();
+
     $('#chatArea').css({
         position:'absolute', 
         top: $(window).height() - $('#chatArea').height()*2-56,
@@ -412,16 +413,27 @@ window.onload = function () {
         }
         return false;
     });
-
     $('#closeVideo').click(function() {
         $('#closeVideo').toggle();
         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
-    }); 
+    });
+
+    $('#myTab a[href=#napkin]').click(function () {
+        $('#napkinTab').show();
+        $('#videoTab').show();
+    });
+    $('#myTab a[href=#shareVideo]').click(function () {
+        $('#napkinTab').hide();
+        $('#videoTab').hide();
+        $('#napkinTab2').show();
+        $('#videoTab2').show();
+    });
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
     var doit;
+
     $(window).resize(function() {
         clearTimeout(doit);
         doit = setTimeout(function() {
