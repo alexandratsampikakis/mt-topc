@@ -362,7 +362,7 @@ window.onload = function () {
             tableId[5] = cafes.table5;
             tableId[6] = cafes.table6;
 
-            getTableImage('Unik', function(response) {
+            getTableImage(cafe, function(response) {
                 var res = JSON.parse(response);
                 var hasImage = false;
                 var imgId;
@@ -509,18 +509,68 @@ window.onload = function () {
         myImage.src = imgData;
     }
 
+    function initOversee(imageData, elementID) {
+        var myImage = new Image();
+        myImage.onload = function(){
+            $(myImage).appendTo(elementID);
+        };
+        myImage.src = imageData;
+    }
+
+
+    function overseeInTable() {
+        getCafeTables(cafe, function (response) {
+        var cafes = JSON.parse(response);
+        if(cafes.hasOwnProperty('error')) {
+            console.log(cafes.error);
+        } else {
+            
+            tableId[1] = cafes.table1;
+            tableId[2] = cafes.table2;
+            tableId[3] = cafes.table3;
+            tableId[4] = cafes.table4;
+            tableId[5] = cafes.table5;
+            tableId[6] = cafes.table6;
+
+            getTableImage(cafe, function(response) {
+                var res = JSON.parse(response);
+                var hasImage = false;
+                var imgId;
+                var imgData
+                if(!res.hasOwnProperty('empty')){
+                    for(var i=1;i<=6;i++){
+                        hasImage = false;
+                        for(var j=0;j<res.records.length;j++){
+                            if(res.records[j].roomID == tableId[i]) {
+                                imgData = res.records[j].imageData;
+                                initOversee(imgData, '#ddMenu');
+                                hasImage = true;
+
+                            }
+                            console.log(imgID);
+                        }
+
+                        if(!hasImage) initOversee("http://placehold.it/320x200", '#ddMenu');
+
+                    }
+                }
+            });    
+        }
+    });
+    }
     var h = parseInt($("#menuContainer").css('height')); //height mentioned in css- feel free to change
 
     $("#menuContainer").resizable({ 
             handles: {
                 "s":"#grippie"   
             },
-            maxHeight:50, 
+            maxHeight:200, 
             minHeight:0,
             resize: function(){
                 if($(this).height()<=h){
                      $("#ddMenu").hide();
                 }else{
+                    overseeInTable();
                     $("#ddMenu").show();
                 }
                 
