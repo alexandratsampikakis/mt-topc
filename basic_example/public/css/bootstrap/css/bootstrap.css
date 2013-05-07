@@ -6173,3 +6173,7 @@ a.badge:focus {
   padding: 100px;
   /*border-radius: 0.5em;*/
 }
+
+.tableBox {
+  background-color: white;
+}
