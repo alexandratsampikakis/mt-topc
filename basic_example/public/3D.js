@@ -141,9 +141,6 @@ function redrawNapkin() {
         ctx.drawImage(myImage, 0, 0,c.width,c.height);
     };
 
-    $('#canvasNapkin').css({
-        position:'absolute'
-    }); 
     $('.tabbable').css({
         position:'absolute'
     });
@@ -189,7 +186,7 @@ function onDocumentMouseMove( event ) {
         event.preventDefault();
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-        console.log(mouse.x +", "+mouse.y);
+        //console.log(mouse.x +", "+mouse.y);
     }
 }
 
