@@ -71,11 +71,7 @@ function onWindowResize() {
 }
 
 /*function onDocumentMouseMove( event ) {
-    if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
-        event.preventDefault();
-        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-    }
+    
 }*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
@@ -111,6 +107,11 @@ function onDocumentMouseDown( event ) {
 }
 
 function onDocumentMouseMove( event ) {
+    if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
+        event.preventDefault();
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    }
     mouseX = event.clientX - windowHalfX;
 
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
