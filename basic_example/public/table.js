@@ -165,8 +165,8 @@ function loadImage(imageData, elementID, pos) {
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000'}));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
-        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture }));
+        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         /*for (var i = 0; i < 6; i++)
             materialArray[i].side = THREE.BackSide;*/
         var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
