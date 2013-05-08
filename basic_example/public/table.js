@@ -58,7 +58,7 @@ var initScene = function() {
     projector = new THREE.Projector();
     raycaster = new THREE.Raycaster();
 
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
    
@@ -75,7 +75,8 @@ function onWindowResize() {
 }*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
-
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     event.preventDefault();
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, camera );
