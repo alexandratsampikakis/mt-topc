@@ -77,13 +77,10 @@ var intersects = null;
 function onDocumentMouseDown( event ) {
 
     event.preventDefault();
-
-    var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, camera );
-
-    var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-    intersects = raycaster.intersectObjects( objects );
+    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    var intersects = raycaster.intersectObjects( scene.children );
 
     if ( intersects.length > 0 ) {
 
@@ -116,7 +113,7 @@ function render() {
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
-    if(currentState === "CAFEVIEW") {
+    if(currentState === "TABLEVIEW") {
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
@@ -132,7 +129,6 @@ function render() {
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
-        console.log(intersects);
     }
     
     renderer.render( scene, camera );
