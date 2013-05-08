@@ -44,8 +44,8 @@ var initScene = function() {
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    /*for (var i = 0; i < 6; i++)
-       materialArray[i].side = THREE.BackSide;*/
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
     var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
@@ -167,8 +167,8 @@ function loadImage(imageData, elementID, pos) {
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture }));
-        for (var i = 0; i < 6; i++)
-            materialArray[i].side = THREE.BackSide;
+        /*for (var i = 0; i < 6; i++)
+            materialArray[i].side = THREE.BackSide;*/
         var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
         var skyboxGeom = new THREE.CubeGeometry( 4, 3, 0.3, 1, 1, 1 );
         //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
