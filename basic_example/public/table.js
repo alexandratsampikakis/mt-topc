@@ -73,7 +73,7 @@ function onDocumentMouseMove( event ) {
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     }
 }
-var intersects
+var intersects = null;
 function onDocumentMouseDown( event ) {
 
     event.preventDefault();
@@ -95,6 +95,7 @@ function onDocumentMouseDown( event ) {
         scene.add( particle );
 
     }
+    console.log(intersects);
 
     /*
     // Parse all the faces
