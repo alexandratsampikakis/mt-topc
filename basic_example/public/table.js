@@ -132,6 +132,7 @@ function render() {
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
+        console.log(intersects);
     }
     
     renderer.render( scene, camera );
