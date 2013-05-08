@@ -75,6 +75,7 @@ function onWindowResize() {
 }*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
+    targetRotation = targetRotationOnMouseDown = 0;
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     event.preventDefault();
