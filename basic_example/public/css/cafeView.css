@@ -49,6 +49,7 @@
      overflow:hidden;
      height:10px;
      padding:0px 0px 12px 0px;
+     z-index: 1;
 }
 #ddMenu{
     position:absolute;

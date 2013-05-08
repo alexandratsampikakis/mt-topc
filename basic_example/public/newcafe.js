@@ -705,6 +705,7 @@ window.onload = function () {
         resetConnection();
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
+        $('#menuContainer').toggle();
         return false;
     });
 
@@ -809,7 +810,7 @@ window.onload = function () {
     var initialize = function(roomId) {
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
-
+        $('#menuContainer').toggle();
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
