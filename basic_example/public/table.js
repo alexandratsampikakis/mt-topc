@@ -5,7 +5,7 @@ var streams = [];
 
 var chairImg = new Image();
 var emptyImg = new Image();
-
+var currentState = "CAFEVIEW";
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
 var reflectionCamera;
@@ -56,7 +56,7 @@ var initScene = function() {
 
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
-
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
    
 };
 
@@ -74,6 +74,39 @@ function onDocumentMouseMove( event ) {
     }
 }
 
+function onDocumentMouseDown( event ) {
+
+    event.preventDefault();
+
+    var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+    projector.unprojectVector( vector, camera );
+
+    var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+    var intersects = raycaster.intersectObjects( objects );
+
+    if ( intersects.length > 0 ) {
+
+        intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
+
+        var particle = new THREE.Particle( particleMaterial );
+        particle.position = intersects[ 0 ].point;
+        particle.scale.x = particle.scale.y = 8;
+        scene.add( particle );
+
+    }
+
+    /*
+    // Parse all the faces
+    for ( var i in intersects ) {
+
+        intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xffffff | 0x80000000 );
+
+    }
+    */
+}
+
+
 var rotationY;
 function render() {   
     requestAnimationFrame(render);
@@ -82,20 +115,22 @@ function render() {
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
-    if ( intersects.length > 1 ) {
-        if ( INTERSECTED != intersects[ 0 ].object ) {
-            if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
+    if(currentState === "CAFEVIEW") {
+        if ( intersects.length > 1 ) {
+            if ( INTERSECTED != intersects[ 0 ].object ) {
+                if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
+                //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+                INTERSECTED = intersects[ 0 ].object;
+                /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+                INTERSECTED.material.emissive.setHex( 0xff0000 );*/
+                rotationY = INTERSECTED.rotation.y;
+                INTERSECTED.rotation.y = 0;
+            }
+        } else {
             //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-            INTERSECTED = intersects[ 0 ].object;
-            /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-            INTERSECTED.material.emissive.setHex( 0xff0000 );*/
-            rotationY = INTERSECTED.rotation.y;
-            INTERSECTED.rotation.y = 0;
+            if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
+            INTERSECTED = null;
         }
-    } else {
-        //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-        if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
-        INTERSECTED = null;
     }
     
     renderer.render( scene, camera );
