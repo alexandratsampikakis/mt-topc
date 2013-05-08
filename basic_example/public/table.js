@@ -108,6 +108,7 @@ function onDocumentMouseDown( event ) {
 
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
+        console.log("test");
         event.preventDefault();
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
