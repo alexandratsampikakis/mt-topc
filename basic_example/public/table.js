@@ -124,13 +124,16 @@ function onDocumentMouseMove( event ) {
 }
 
 function onDocumentMouseUp( event ) {
+    var totalClickTime = new Date().getTime() - clickTime;
     document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
     document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
-    objectToRotate = null;
-    if(new Date().getTime() - clickTime < 100) {
+    if(totalClickTime < 100 && objectToRotate.faceIndex === 4) {
         console.log("KNOCK KNOCK");
-    } 
+    } else if(totalClickTime < 100 && objectToRotate.faceIndex === 5) {
+        console.log("overhear");
+    }
+    objectToRotate = null; 
 }
 
 function onDocumentMouseOut( event ) {
