@@ -159,7 +159,7 @@ function loadImage(imageData, elementID, pos) {
         //var x = room.getStreamsByAttribute('type','media').length;
         //var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
         // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
+        //movie image will be scaled to fit these dimensions.
         var materialArray = [];
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
@@ -172,10 +172,9 @@ function loadImage(imageData, elementID, pos) {
         var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
         var skyboxGeom = new THREE.CubeGeometry( 4, 3, 0.3, 1, 1, 1 );
         //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        skyboxGeom.position.set(x,y,z);
-        //movieScreen.position.set(x,y,z);
-        scene.add(skyboxGeom);
-        //scene.add(movieScreen);
+        var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+        movieScreen.position.set(x,y,z);
+        scene.add(movieScreen);
     };
     myImage.src = imageData;
     myImage.className = 'centerImage';
