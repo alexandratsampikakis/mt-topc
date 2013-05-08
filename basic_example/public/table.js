@@ -128,7 +128,7 @@ function onDocumentMouseUp( event ) {
     document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
     objectToRotate = null;
-    if(new Date().getTime() - clickTime > 100) {
+    if(new Date().getTime() - clickTime < 50) {
         console.log("KNOCK KNOCK");
     } 
 }
