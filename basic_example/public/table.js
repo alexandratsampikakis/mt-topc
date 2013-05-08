@@ -16,12 +16,15 @@ var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
 var mouse = new THREE.Vector2(), INTERSECTED;
 var projector, raycaster;
 
+//Rotate
+var objectToRotate;
+var targetRotation = 0;
+var targetRotationOnMouseDown = 0;
 
+var mouseX = 0;
+var mouseXOnMouseDown = 0;
+//
 var placeHolderData;
-//YTube
-var ytRenderer, ytScene;
-var objects = [], player;
-var auto = true;
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -82,14 +85,16 @@ function onDocumentMouseDown( event ) {
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
 
-    if ( intersects.length > 0 ) {
+    if ( intersects.length > 1 ) {
 
-        intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
+        objectToRotate = intersects[ 0 ];
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+        document.addEventListener( 'mouseout', onDocumentMouseOut, false );
 
-        var particle = new THREE.Particle( particleMaterial );
-        particle.position = intersects[ 0 ].point;
-        particle.scale.x = particle.scale.y = 8;
-        scene.add( particle );
+        mouseXOnMouseDown = event.clientX - windowHalfX;
+        targetRotationOnMouseDown = targetRotation;
+
 
     }
     console.log(intersects);
@@ -102,6 +107,29 @@ function onDocumentMouseDown( event ) {
 
     }
     */
+}
+
+function onDocumentMouseMove( event ) {
+    mouseX = event.clientX - windowHalfX;
+
+    targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
+}
+
+function onDocumentMouseUp( event ) {
+
+    document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+    document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+    objectToRotate = null;
+
+}
+
+function onDocumentMouseOut( event ) {
+
+    document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+    document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+    objectToRotate = null;
 }
 
 
@@ -129,6 +157,9 @@ function render() {
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
+    }
+    if(currentState === "CAFEVIEW") {
+        objectToRotate.rotation.y += ( targetRotation - objectToRotate.rotation.y ) * 0.05;
     }
     
     renderer.render( scene, camera );
