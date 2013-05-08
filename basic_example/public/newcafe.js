@@ -545,9 +545,12 @@ window.onload = function () {
                     for(var i=1;i<=6;i++){
                         hasImage = false;
                         for(var j=0;j<res.records.length;j++){
-                            if(res.records[j].roomID == tableId[i] && res.records[j].roomID != currentTable) {
+                            if(res.records[j].roomID == tableId[i]) {
                                 imgData = res.records[j].imageData;
-                                initOversee(imgData, '#ddMenu');
+                                if(res.records[j].roomID != currentTable ) {
+                                    initOversee(imgData, '#ddMenu');
+                                }
+                                
                                 hasImage = true;
 
                             }
