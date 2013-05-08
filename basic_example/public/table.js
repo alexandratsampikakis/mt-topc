@@ -23,6 +23,7 @@ var targetRotationOnMouseDown = 0;
 
 var mouseX = 0;
 var mouseXOnMouseDown = 0;
+var windowHalfX = window.innerWidth / 2;
 //
 var placeHolderData;
 
@@ -158,7 +159,7 @@ function render() {
             INTERSECTED = null;
         }
     }
-    if(currentState === "CAFEVIEW") {
+    if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.rotation.y += ( targetRotation - objectToRotate.rotation.y ) * 0.05;
     }
     
