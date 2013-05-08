@@ -8,7 +8,7 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
-
+var currentTable;
 //Plays the knocking sound
 function knockSound() {
     audioElement.play();
@@ -545,7 +545,7 @@ window.onload = function () {
                     for(var i=1;i<=6;i++){
                         hasImage = false;
                         for(var j=0;j<res.records.length;j++){
-                            if(res.records[j].roomID == tableId[i]) {
+                            if(res.records[j].roomID == tableId[i] && res.records[j].roomID != currentTable) {
                                 imgData = res.records[j].imageData;
                                 initOversee(imgData, '#ddMenu');
                                 hasImage = true;
@@ -808,6 +808,7 @@ window.onload = function () {
 //---------------------------------------------------------------------------------------------------
 
     var initialize = function(roomId) {
+        currentTable = roomId;
         $('#enterNameRow').toggle();
         $('#inTableRow').toggle();
         $('#menuContainer').toggle();
