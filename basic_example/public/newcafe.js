@@ -516,7 +516,7 @@ window.onload = function () {
         };
         myImage.src = imageData;
         myImage.width=$(window).width()/6;
-        myImage.height=myImage.width()/1.6;
+        myImage.height = myImage.width/1.6;
     }
 
 
