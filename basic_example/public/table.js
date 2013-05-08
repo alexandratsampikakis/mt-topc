@@ -73,7 +73,7 @@ function onDocumentMouseMove( event ) {
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     }
 }
-
+var intersects
 function onDocumentMouseDown( event ) {
 
     event.preventDefault();
@@ -83,7 +83,7 @@ function onDocumentMouseDown( event ) {
 
     var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
 
-    var intersects = raycaster.intersectObjects( objects );
+    intersects = raycaster.intersectObjects( objects );
 
     if ( intersects.length > 0 ) {
 
