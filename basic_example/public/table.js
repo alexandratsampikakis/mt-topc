@@ -82,7 +82,7 @@ function onDocumentMouseDown( event ) {
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
 
-    if ( intersects.length > 0 ) {
+    if ( intersects.length > 1 ) {
 
         objectToRotate = intersects[ 0 ];
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
@@ -136,7 +136,6 @@ function onDocumentMouseOut( event ) {
 
 
 var rotationY;
-var i = 0;
 function render() {   
     requestAnimationFrame(render);
 
@@ -144,7 +143,7 @@ function render() {
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
-    if(currentState === "CAFEVIEW") {
+    if(currentState === "TABLEVIEW") {
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
@@ -161,11 +160,8 @@ function render() {
             INTERSECTED = null;
         }
     }
-    if(i === 1000) {
-        console.log(intersects);
-    }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
-        objectToRotate.rotation.y += ( targetRotation - objectToRotate.rotation.y ) * 0.05;
+        objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.05;
     }
     i++;
     renderer.render( scene, camera );
