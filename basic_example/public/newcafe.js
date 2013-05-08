@@ -515,12 +515,14 @@ window.onload = function () {
             $(myImage).appendTo(elementID);
         };
         myImage.src = imageData;
-        myImage.width=$(window).width()/6;
+        myImage.width=($(window).width()/6)+0.2;
         myImage.height = myImage.width/1.6;
     }
 
 
     function overseeInTable() {
+        var maxHeight = ($(window).width()/6)/1.6
+        $("#menuContainer").resizable({maxHeight:maxHeight});
         getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
         if(cafes.hasOwnProperty('error')) {
