@@ -99,7 +99,7 @@ function onDocumentMouseDown( event ) {
 
     }
     console.log(intersects);
-
+    console.log(objectToRotate);
     /*
     // Parse all the faces
     for ( var i in intersects ) {
