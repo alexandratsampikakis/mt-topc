@@ -110,6 +110,7 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
             imageData: req.body.imgData
             
         });
+        tableImgModel.find({ roomID:roomID }).remove();
         /*tableImgModel.update({roomID:req.params.room}, { imageData: req.body.imgData }, {upsert: true}, function (err) {
             if (err) console.log(err);
         });*/
@@ -125,8 +126,7 @@ tableImgSchema.plugin(ttl, { ttl: 1000*60*5.2 });
                     if (err) console.log("Failed to create cafe");
                 });
             } else {
-                var query = tableImgModel.remove({ roomID: roomID });
-                query.exec();
+                
                 newTableImage.save(function (err) {
                     if (err) console.log("Failed to create cafe");
                 });
