@@ -70,13 +70,13 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
-function onDocumentMouseMove( event ) {
+/*function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
         event.preventDefault();
         mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     }
-}
+}*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
 
