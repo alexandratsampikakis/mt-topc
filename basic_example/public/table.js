@@ -157,14 +157,25 @@ function loadImage(imageData, elementID, pos) {
         videoTexture.magFilter = THREE.LinearFilter;
         videoTexture.needsUpdate = true;
         //var x = room.getStreamsByAttribute('type','media').length;
-        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+        //var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
         // the geometry on which the movie will be displayed;
         //      movie image will be scaled to fit these dimensions.
-        movieGeometry = new THREE.PlaneGeometry(  4, 4);
-        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        movieScreen.position.set(x,y,z);
-        scene.add(movieScreen);
-        document.body.appendChild(myImage);
+        var materialArray = [];
+        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
+        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
+        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000'}));
+        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture }));
+        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
+        for (var i = 0; i < 6; i++)
+            materialArray[i].side = THREE.BackSide;
+        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+        var skyboxGeom = new THREE.CubeGeometry( 4, 3, 0.3, 1, 1, 1 );
+        //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+        skyboxGeom.position.set(x,y,z);
+        //movieScreen.position.set(x,y,z);
+        scene.add(skyboxGeom);
+        //scene.add(movieScreen);
     };
     myImage.src = imageData;
     myImage.className = 'centerImage';
