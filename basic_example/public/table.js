@@ -39,7 +39,7 @@ renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 THREEx.WindowResize(renderer, camera);
-camera.position.set(0,-10,60);
+camera.position.set(0,-10,61);
 
 var initScene = function() {  
     // SKYBOX/FOG
