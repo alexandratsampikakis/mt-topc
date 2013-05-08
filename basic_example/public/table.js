@@ -24,6 +24,8 @@ var targetRotationOnMouseDown = 0;
 var mouseX = 0;
 var mouseXOnMouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
+
+var clickTime;
 //
 var placeHolderData;
 
@@ -75,6 +77,7 @@ function onWindowResize() {
 }*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
+    clickTime = new Date().getTime();
     targetRotation = targetRotationOnMouseDown = 0;
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
@@ -121,12 +124,13 @@ function onDocumentMouseMove( event ) {
 }
 
 function onDocumentMouseUp( event ) {
-
     document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
     document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
     objectToRotate = null;
-
+    if(new Date().getTime() - clickTime > 100) {
+        console.log("KNOCK KNOCK");
+    } 
 }
 
 function onDocumentMouseOut( event ) {
