@@ -86,7 +86,7 @@ function onDocumentMouseDown( event ) {
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
 
-    if ( intersects.length > 1 ) {
+    if ( intersects.length > 0 ) {
 
         objectToRotate = intersects[ 0 ];
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
