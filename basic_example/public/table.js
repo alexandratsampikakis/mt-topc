@@ -2,8 +2,10 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
-var isOverhearing = null;
+
 //overhear
+var isOverhearing = null;
+var overhearGroup;
 var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
 var overhearStream;
@@ -143,11 +145,14 @@ function onDocumentMouseUp( event ) {
     if(totalClickTime < 100 && objectToRotate.faceIndex === 4) {
         console.log("KNOCK KNOCK");
     } else if(totalClickTime < 100 && objectToRotate.faceIndex === 5) {
-        console.log("overhear");
-        console.log(objectToRotate.object.id);
-        console.log(objectToRotate.object);
-        overhear(tableId[parseInt(objectToRotate.object.name)]);
-        isOverhearing = objectToRotate.object.name;
+        if(isOverhearing === null  ) {
+            overhear(tableId[parseInt(objectToRotate.object.name)]);
+            isOverhearing = objectToRotate.object.name;
+        } else if(isOverhearing != null  && isOverhearing != objectToRotate.object.name) {
+            resetOverhearing();
+            isOverhearing = null;
+        }
+
     }
     objectToRotate = null; 
 }
@@ -175,6 +180,13 @@ function updateVideos() {
         }
     };
 }
+
+function resetOverhearing() {
+    overhearStream.close();
+    if(room != undefined) room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+}
+   
 
 var rotationY;
 function render() {   
@@ -207,9 +219,7 @@ function render() {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         console.log()
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y < 0.05 && objectToRotate.object.rotation.y > -0.05) {
-            overhearStream.close();
-            room.disconnect();
-            overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+            resetOverhearing();
             isOverhearing = null;
         }
     }
@@ -417,6 +427,7 @@ window.onload = function () {
         req.send(JSON.stringify(body));
     };
     var overhear = function(roomId) {
+        overhearGroup = new THREE.Object3D();
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
