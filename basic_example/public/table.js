@@ -2,7 +2,7 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
-var isOverhearing = false;
+var isOverhearing = null;
 //overhear
 var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
@@ -147,7 +147,7 @@ function onDocumentMouseUp( event ) {
         console.log(objectToRotate.object.id);
         console.log(objectToRotate.object);
         overhear(tableId[parseInt(objectToRotate.object.name)]);
-        isOverhearing = true;
+        isOverhearing = objectToRotate.object.name;
     }
     objectToRotate = null; 
 }
@@ -205,11 +205,12 @@ function render() {
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
-        if (isOverhearing === true && objectToRotate.object.rotation.y === 0) {
+        console.log()
+        if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y < 0.05 && objectToRotate.object.rotation.y > -0.05) {
             overhearStream.close();
             room.disconnect();
             overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-            isOverhearing = false;
+            isOverhearing = null;
         }
     }
     renderer.render( scene, camera );
