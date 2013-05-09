@@ -3,6 +3,8 @@ var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 
+var position = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
+
 var chairImg = new Image();
 var emptyImg = new Image();
 var currentState = "CAFEVIEW";
