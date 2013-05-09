@@ -139,7 +139,7 @@ function onDocumentMouseUp( event ) {
         console.log("overhear");
         console.log(objectToRotate.object.id);
         console.log(objectToRotate.object);
-        overhear(tableId[objectToRotate.object.id]);
+        overhear(tableId[parseInt(objectToRotate.object.name)]);
     }
     objectToRotate = null; 
 }
