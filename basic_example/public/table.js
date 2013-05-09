@@ -3,8 +3,12 @@ var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 
-var position = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
-
+//overhear
+var tableId = new Array();
+var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
+var overhearStream;
+var streams = [];
+//
 var chairImg = new Image();
 var emptyImg = new Image();
 var currentState = "CAFEVIEW";
@@ -34,7 +38,6 @@ var placeHolderData;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
-var position2 = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
@@ -180,6 +183,23 @@ function render() {
 
 }
 
+var StreamObject = function(video, texture, context){
+    this.video = video;
+    this.videoTexture = texture;
+    this.context = context;
+    return this;
+};
+StreamObject.prototype.getVideo = function() {
+    return this.video;
+};
+StreamObject.prototype.getTexture = function() {
+    return this.videoTexture;
+};
+
+StreamObject.prototype.getContext = function() {
+    return this.context;
+};
+
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -251,10 +271,43 @@ function loadImage(imageData, elementID, pos) {
         //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
         var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
         movieScreen.position.set(x,y,z);
+        moviescreen.name = "table" + pos;
         scene.add(movieScreen);
     };
     myImage.src = imageData;
     myImage.className = 'centerImage';
+}
+
+function initVideo(stream,pos) {
+    var x = oSeePosition[pos][0];
+    var y = oSeePosition[pos][1];
+    var z = oSeePosition[pos][2];
+    var vid, canvas;
+
+    vid = stream.player.video;
+    //document.getElementById('streamundefined');
+
+    
+    vid.style.width = '320px';
+    vid.style.height = '240px';
+    vid.autoplay = true;
+    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
+    var videoImageContext = canvas.getContext('2d');
+
+    videoTexture = new THREE.Texture( canvas );
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    //var x = room.getStreamsByAttribute('type','media').length;
+    var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    movieGeometry = new THREE.PlaneGeometry(  32/3, 10);
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(x,y,z);
+    scene.add(movieScreen);
+    var newStream = new StreamObject(vid, videoTexture, videoImageContext);
+    streams.push(newStream);
+    }
 }
 
 window.onload = function () {
@@ -263,8 +316,6 @@ window.onload = function () {
     loadPlaceholder();
     initScene();
     render();
-
-
 
     getCafeTables("Unik", function (response) {
         var cafes = JSON.parse(response);
@@ -309,6 +360,82 @@ window.onload = function () {
             });    
         }
     });
-  
+    var createToken = function(roomId, userName, role, callback) {
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'createToken/' + roomId;
+        var body = {username: userName, role: role};
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('POST', url, true);
+
+        req.setRequestHeader('Content-Type', 'application/json');
+        //console.log("Sending to " + url + " - " + JSON.stringify(body));
+        req.send(JSON.stringify(body));
+    };
+     var overhear = function(roomId) {
+        createToken(roomId, "user", "role", function (response) {
+            var token = response;
+            console.log('token created ', token);
+            L.Logger.setLogLevel(L.Logger.DEBUG);
+            room = Erizo.Room({token: token});
+
+            overhearStream.addEventListener("access-accepted", function () {
+                
+                var subscribeToStreams = function (streams) {
+                    if (!overhearStream.showing) {
+                        overhearStream.show();
+                    }
+                    var index, stream;
+                    for (index in streams) {
+                        if (streams.hasOwnProperty(index)) {
+                            stream = streams[index];
+                            if (overhearStream !== undefined && overhearStream.getID() !== stream.getID()) {
+                                room.subscribe(stream);
+                            } else {
+                                console.log("My own stream");
+                            }
+                        }
+                    }
+                };
+
+                room.addEventListener("room-connected", function (roomEvent) {
+                    // Publish my stream
+                    //room.publish(overhearStream);
+                    //If table is empty
+                    if(room.getStreamsByAttribute('type','media').length === 0) {
+                        console.log('Room is empty!')
+                    } else {
+                        // Subscribe to other streams
+                        subscribeToStreams(room.getStreamsByAttribute('type','media'));
+                    }
+                });
+
+                room.addEventListener("stream-subscribed", function(streamEvent) {
+                    var stream = streamEvent.stream;
+                    if (stream.getAttributes().type === 'media') {
+                        for (var i = 1; i <= 6; i++) {
+                            if ($('#overhear'+i).children().length === 0) {
+                                $('<div></div>', {
+                                    id: 'test'+stream.getID()
+                                }).css('width','100%').appendTo('#overhear'+i);
+                                stream.show("test" + stream.getID());
+                                return;
+                            }
+                        }
+                        console.log("There is no seat available at this table!");
+                    } 
+                });
+
+                room.connect();       
+
+            });
+            overhearStream.init();
+        });  
+    } 
 }
 
