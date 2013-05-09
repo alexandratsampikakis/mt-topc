@@ -137,6 +137,7 @@ function onDocumentMouseUp( event ) {
         console.log("KNOCK KNOCK");
     } else if(totalClickTime < 100 && objectToRotate.faceIndex === 5) {
         console.log("overhear");
+        overhear(tableId[objectToRotate.object.id]);
     }
     objectToRotate = null; 
 }
@@ -307,8 +308,8 @@ function initVideo(stream,pos) {
     scene.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
-    }
 }
+
 
 window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
@@ -424,6 +425,7 @@ window.onload = function () {
                                     id: 'test'+stream.getID()
                                 }).css('width','100%').appendTo('#overhear'+i);
                                 stream.show("test" + stream.getID());
+                                initVideo(stream,i); 
                                 return;
                             }
                         }
