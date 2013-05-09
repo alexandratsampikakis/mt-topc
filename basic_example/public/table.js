@@ -317,7 +317,7 @@ window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
     //emptyImg.src="/img/emptyTable.gif";
     loadPlaceholder();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:"hejja"}});
     initScene();
     render();
 
