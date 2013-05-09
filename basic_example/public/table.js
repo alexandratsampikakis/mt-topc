@@ -378,7 +378,7 @@ window.onload = function () {
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
-     var overhear = function(roomId) {
+    var overhear = function(roomId) {
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
@@ -438,6 +438,6 @@ window.onload = function () {
             });
             overhearStream.init();
         });  
-    } 
+    }; 
 }
 
