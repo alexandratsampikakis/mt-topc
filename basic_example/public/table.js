@@ -137,6 +137,8 @@ function onDocumentMouseUp( event ) {
         console.log("KNOCK KNOCK");
     } else if(totalClickTime < 100 && objectToRotate.faceIndex === 5) {
         console.log("overhear");
+        console.log(objectToRotate.object.id);
+        console.log(objectToRotate.object);
         overhear(tableId[objectToRotate.object.id]);
     }
     objectToRotate = null; 
