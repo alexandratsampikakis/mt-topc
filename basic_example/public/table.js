@@ -152,10 +152,27 @@ function onDocumentMouseOut( event ) {
     objectToRotate = null;
 }
 
+function updateVideos() {
+    var vid;
+    var videoImageContext;
+    var videoTexture; 
+
+    for (var i = 0; i < streams.length; i++) {
+        vid = streams[i].getVideo();
+        videoImageContext = streams[i].getContext();
+        videoTexture = streams[i].getTexture();
+        if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) {
+            videoImageContext.drawImage( vid, 0, 0, 320, 240 );
+               if ( videoTexture ) videoTexture.needsUpdate = true;
+        }
+    };
+}
 
 var rotationY;
 function render() {   
     requestAnimationFrame(render);
+
+    updateVideos();
 
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, camera );
