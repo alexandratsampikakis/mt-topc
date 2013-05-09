@@ -361,6 +361,9 @@ window.onload = function () {
             });    
         }
     });
+
+}
+
     var createToken = function(roomId, userName, role, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'createToken/' + roomId;
@@ -439,5 +442,3 @@ window.onload = function () {
             overhearStream.init();
         });  
     }; 
-}
-
