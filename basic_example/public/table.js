@@ -2,7 +2,7 @@ var room, localStream, serverUrl;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
-
+var isOverhearing = false;
 //overhear
 var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
@@ -65,6 +65,14 @@ var initScene = function() {
     projector = new THREE.Projector();
     raycaster = new THREE.Raycaster();
 
+    var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    movieGeometry = new THREE.PlaneGeometry(  32, 20);
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(0,-5,0);
+    scene.add(movieScreen);
+
     //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -124,7 +132,6 @@ function onDocumentMouseMove( event ) {
         mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     }
     mouseX = event.clientX - windowHalfX;
-
     targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 }
 
@@ -140,6 +147,7 @@ function onDocumentMouseUp( event ) {
         console.log(objectToRotate.object.id);
         console.log(objectToRotate.object);
         overhear(tableId[parseInt(objectToRotate.object.name)]);
+        isOverhearing = true;
     }
     objectToRotate = null; 
 }
@@ -197,6 +205,12 @@ function render() {
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
+        if (isOverhearing === true && objectToRotate.object.rotation.y === 0) {
+            overhearStream.close();
+            room.disconnect();
+            overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+            isOverhearing = false;
+        }
     }
     renderer.render( scene, camera );
 
