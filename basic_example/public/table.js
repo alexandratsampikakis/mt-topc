@@ -272,7 +272,7 @@ function loadImage(imageData, elementID, pos) {
         //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
         var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
         movieScreen.position.set(x,y,z);
-        moviescreen.name = "table" + pos;
+        movieScreen.name = pos;
         scene.add(movieScreen);
     };
     myImage.src = imageData;
