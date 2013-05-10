@@ -423,13 +423,15 @@ window.onload = function () {
             position: 'absolute',
             marginLeft: '31%',
             marginTop: '5%',
-            width: '40%'
+            width: '40%',
+            zIndex: '1'
         });
         $('#videoTab').css({
             position: 'absolute',
             marginLeft: '30%',
             marginTop: '2%',
-            width: '40%'
+            width: '40%',
+            zIndex: '0'
         });
         return false;
     });
@@ -438,13 +440,15 @@ window.onload = function () {
             position: 'absolute',
             marginLeft: '31%',
             marginTop: '5%',
-            width: '40%'
+            width: '40%',
+            zIndex: '1'
         });
         $('#napkinTab').css({
             position: 'absolute',
             marginLeft: '30%',
             marginTop: '2%',
-            width: '40%'
+            width: '40%',
+            zIndex: '0'
         });
         return false;
     });
