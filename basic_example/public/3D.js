@@ -420,11 +420,13 @@ window.onload = function () {
     });
     $('#napkinTab').click(function() {
         $('#napkinTab').css({
+            position: 'absolute',
             left: '31%',
             top: '5%',
             width: '40%'
         });
         $('#videoTab').css({
+            position: 'absolute',
             left: '30%',
             top: '2%',
             width: '40%'
@@ -433,11 +435,13 @@ window.onload = function () {
     });
     $('#videoTab').click(function() {
         $('#videoTab').css({
+            position: 'absolute',
             left: '31%',
             top: '5%',
             width: '40%'
         });
         $('#napkinTab').css({
+            position: 'absolute',
             left: '30%',
             top: '2%',
             width: '40%'
