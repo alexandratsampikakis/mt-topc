@@ -418,6 +418,14 @@ window.onload = function () {
         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
     });
+    $('#napkinTab').click(function() {
+        console.log("napkinTab pressed");
+        return false;
+    });
+    $('#videoTab').click(function() {
+        console.log("videoTab pressed");
+        return false;
+    });
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
