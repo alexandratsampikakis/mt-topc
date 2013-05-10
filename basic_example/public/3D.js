@@ -419,25 +419,25 @@ window.onload = function () {
         return false;
     });
     $('#napkinTab').click(function() {
-        $('#napkinTab').css ({
-            margin-left: '31%',
-            margin-top: '5%',
+        $('#napkinTab').css({
+            left: '31%',
+            top: '5%',
             width: '40%'
         });
-        $('#videoTab').css ({
-            margin-left: '30%',
-            margin-top: '2%',
+        $('#videoTab').css({
+            left: '30%',
+            top: '2%',
             width: '40%'
         });
         return false;
     });
     $('#videoTab').click(function() {
-        $('#videoTab').css ({
+        $('#videoTab').css({
             margin-left: '31%',
             margin-top: '5%',
             width: '40%'
         });
-        $('#napkinTab').css ({
+        $('#napkinTab').css({
             margin-left: '30%',
             margin-top: '2%',
             width: '40%'
