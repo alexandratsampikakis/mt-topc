@@ -484,6 +484,14 @@ window.onload = function () {
                     } 
                 });
 
+                room.addEventListener("stream-removed", function (streamEvent) {
+                    // Remove stream from DOM
+                    var stream = streamEvent.stream;
+                    if (stream.elementID !== undefined) {
+                        $('#'+stream.elementID).remove();
+                    }
+                });
+
                 room.connect();       
 
             });
