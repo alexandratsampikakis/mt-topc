@@ -433,13 +433,13 @@ window.onload = function () {
     });
     $('#videoTab').click(function() {
         $('#videoTab').css({
-            margin-left: '31%',
-            margin-top: '5%',
+            left: '31%',
+            top: '5%',
             width: '40%'
         });
         $('#napkinTab').css({
-            margin-left: '30%',
-            margin-top: '2%',
+            left: '30%',
+            top: '2%',
             width: '40%'
         });
         return false;
