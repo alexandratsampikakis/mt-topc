@@ -436,14 +436,14 @@ window.onload = function () {
     $('#videoTab').click(function() {
         $('#videoTab').css({
             position: 'absolute',
-            left: '31%',
-            top: '5%',
+            marginLeft: '31%',
+            marginTop: '5%',
             width: '40%'
         });
         $('#napkinTab').css({
             position: 'absolute',
-            left: '30%',
-            top: '2%',
+            marginLeft: '30%',
+            marginTop: '2%',
             width: '40%'
         });
         return false;
