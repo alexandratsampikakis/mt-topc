@@ -3,6 +3,14 @@ var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 
+//knock
+var localStream, dataStream, nameOfUser, leader;
+var audioElement;
+var knockListYes = new Object();
+var knockListNo = new Object();
+var knockTimer = 20 * 1000; //20 seconds
+var knocker = 0;
+
 //overhear
 var isOverhearing = null;
 var overhearGroup;
@@ -48,7 +56,53 @@ document.body.appendChild(renderer.domElement);
 THREEx.WindowResize(renderer, camera);
 camera.position.set(0,-10,61);
 
-var initScene = function() {  
+//Adds room to knocklist
+function addToKnockList(roomId) {
+    if(!knockListYes.hasOwnProperty(roomId)) {
+        knockListYes[roomId] = 0;
+        setTimeout(function () {removeRoomFromKnocklist(roomId)}, knockTimer+7000);
+    }
+    if(!knockListNo.hasOwnProperty(roomId)) {
+        knockListNo[roomId] = 0;
+    }
+}
+
+function addYesCount (roomId) {
+    if(knockListYes.hasOwnProperty(roomId)) {
+        knockListYes[roomId] += 1;
+    }
+}
+
+function getYesCount(roomId) {
+    if(knockListYes.hasOwnProperty(roomId)) {
+        return knockListYes[roomId];
+    }
+}
+
+function getNoCount(roomId) {
+    if(knockListNo.hasOwnProperty(roomId)) {
+        return knockListNo[roomId];
+    }
+}
+
+function addNoCount (roomId) {
+    if(knockListNo.hasOwnProperty(roomId)) {
+        knockListNo[roomId] += 1;
+    }
+}
+
+//Removes room from knocklist
+function removeRoomFromKnocklist(roomId) {
+    if(knockListYes.hasOwnProperty(roomId)) {
+        delete knockListYes[roomId];
+    }
+    if(knockListNo.hasOwnProperty(roomId)) {
+        delete knockListNo[roomId];
+    }
+}
+
+var initScene = function() { 
+
     // SKYBOX/FOG
     var materialArray = [];
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
@@ -357,10 +411,13 @@ function initVideo(stream,pos) {
 
 
 window.onload = function () {
+    nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     //emptyImg.src="/img/emptyTable.gif";
     loadPlaceholder();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:"hejja"}});
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
     initScene();
     render();
 
@@ -427,6 +484,151 @@ window.onload = function () {
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
+
+    var knock = function(roomId) {
+        if(!knockListYes.hasOwnProperty(roomId)) {
+            createToken(roomId, "user", "role", function (response) {
+                var token = response;
+                console.log('token created ', token);
+                L.Logger.setLogLevel(L.Logger.DEBUG);
+                room = Erizo.Room({token: token});
+
+                dataStream.addEventListener("access-accepted", function () {
+                    
+                    var subscribeToStreams = function (streams) {
+                        if (!dataStream.showing) {
+                            dataStream.show();
+                        }
+                        var index, stream;
+                        for (index in streams) {
+                            if (streams.hasOwnProperty(index)) {
+                                stream = streams[index];
+                                if (dataStream !== undefined && dataStream.getID() !== stream.getID()) {
+                                    room.subscribe(stream);
+                                } else {
+                                    console.log("My own stream");
+                                }
+                            }
+                        }
+                        if(room.getStreamsByAttribute('type','media').length < 6) {
+                            if(room.getStreamsByAttribute('type','media').length > 1) {
+                                knockSound();
+                            }
+                            setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
+                            addToKnockList(roomId);                        
+                        } else {
+                            deniedNotification(2);
+                            resetConnection();
+                        }
+
+                    };
+
+                    room.addEventListener("room-connected", function (roomEvent) {
+                        // Publish my stream
+                        room.publish(dataStream);
+                        //If table is empty
+                        if(room.getStreamsByAttribute('type','media').length === 0) {
+                            initialize(roomId);
+                        }
+                        // Subscribe to other streams
+                        subscribeToStreams(room.getStreamsByAttribute('type','data'));
+                    });
+
+                    room.addEventListener("stream-subscribed", function(streamEvent) {
+                        var stream = streamEvent.stream;
+                        if (stream.getAttributes().type === 'data') {
+                            stream.addEventListener("stream-data", function(evt){
+                                console.log(evt.msg);
+                                switch (evt.msg.id) {
+                                    case "chat":
+                                        if(localStream.showing === true) {
+                                            appendChatMessage(evt.msg.user, evt.msg.text);
+                                        }   
+                                        break;
+                                    case "popup":
+                                        if(localStream.showing === true) {
+                                            askToJoinTablePopup(evt.msg.user);
+                                        }
+                                        break;
+                                    case "popup-answer":
+                                        if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
+                                            addYesCount(roomId);
+                                            console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                                            console.log(getYesCount(roomId));
+                                            console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                                            if(room.getStreamsByAttribute('type','media').length === 1) {
+                                                removeRoomFromKnocklist(roomId);
+                                                initialize(roomId);
+                                                
+                                            } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
+                                                removeRoomFromKnocklist(roomId);
+                                                initialize(roomId);          
+                                            } 
+                                        } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
+                                            addNoCount(roomId);
+                                            if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
+                                                deniedNotification(1);
+                                                resetConnection();
+                                            }
+                                        } 
+                                        break;  
+                                    case "leader":
+                                        if(localStream.showing === true) {
+                                            console.log('message received :E');
+                                            setLeader(evt.msg.leader);
+                                        }
+                                        break;
+                                    case "ytplayer":
+                                        if(localStream.showing === true) {
+                                            if(evt.msg.state === 1) {
+                                                play();
+                                            } else if (evt.msg.state === 2) {
+                                                pause();
+                                            } else if (evt.msg.state === 3) {
+                                                showVideo(evt.msg.url);
+                                                console.log('Visa video stream');
+                                            };
+                                        }
+                                        break;
+                                    case "paint":
+                                        if(localStream.showing === true) {
+                                            drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
+                                        }
+                                        break;
+                                    case "currentNapkin":
+                                        if(localStream.showing === true) {
+                                            var c = document.getElementById("canvasNapkin");
+                                            var ctx = c.getContext("2d");
+                                            var myImage = new Image();
+                                            myImage.onload = function(){
+                                                ctx.drawImage(myImage, 0, 0,c.width,c.height);
+                                            }; 
+                                            myImage.src = evt.msg.napkinImgData;
+                                        }
+                                        break;
+                                    case "clearNapkin":
+                                        if(localStream.showing === true) {
+                                            var c = document.getElementById("canvasNapkin");
+                                            var ctx = c.getContext("2d");
+                                            ctx.clearRect(0,0,c.width,c.height);
+                                            console.log('Clear napkin');
+                                        }
+                                        break;
+                                   default:
+                                      
+                                }
+                            });
+                        }
+                    });
+
+                    room.connect();       
+
+                });
+                dataStream.init();
+            });
+        }   
+    }
+
     var overhear = function(roomId) {
         overhearGroup = new THREE.Object3D();
         scene.add(overhearGroup);
