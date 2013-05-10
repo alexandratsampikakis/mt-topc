@@ -219,7 +219,7 @@ function render() {
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
-        if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y/(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y/(2*Math.PI) > -0.05) {
+        if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
             
         }
