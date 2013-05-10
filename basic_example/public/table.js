@@ -182,6 +182,7 @@ function updateVideos() {
 }
 
 function resetOverhearing() {
+    scene.remove(overhearGroup);
     overhearStream.close();
     if(room != undefined) room.disconnect();
     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
@@ -349,7 +350,7 @@ function initVideo(stream,pos) {
     movieGeometry = new THREE.PlaneGeometry(  32/3, 10);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(x,y,z);
-    scene.add(movieScreen);
+    overhearGroup.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
 }
@@ -428,6 +429,7 @@ window.onload = function () {
     };
     var overhear = function(roomId) {
         overhearGroup = new THREE.Object3D();
+        scene.add(overhearGroup);
         createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
