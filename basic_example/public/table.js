@@ -198,6 +198,7 @@ function onDocumentMouseUp( event ) {
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
     if(totalClickTime < 100 && objectToRotate.faceIndex === 4) {
         console.log("KNOCK KNOCK");
+        knock(tableId[parseInt(objectToRotate.object.name)]);
     } else if(totalClickTime < 100 && objectToRotate.faceIndex === 5) {
         if(isOverhearing === null  ) {
             overhear(tableId[parseInt(objectToRotate.object.name)]);
@@ -275,7 +276,6 @@ function render() {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
-            
         }
     }
     renderer.render( scene, camera );
