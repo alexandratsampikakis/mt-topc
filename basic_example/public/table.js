@@ -185,7 +185,8 @@ function resetOverhearing() {
     scene.remove(overhearGroup);
     overhearStream.close();
     if(room != undefined) room.disconnect();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    isOverhearing = null;
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:'hejja'}});
 }
    
 
@@ -218,10 +219,9 @@ function render() {
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
-        console.log()
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y < 0.05 && objectToRotate.object.rotation.y > -0.05) {
             resetOverhearing();
-            isOverhearing = null;
+            
         }
     }
     renderer.render( scene, camera );
