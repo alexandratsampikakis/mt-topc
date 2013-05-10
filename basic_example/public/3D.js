@@ -419,11 +419,29 @@ window.onload = function () {
         return false;
     });
     $('#napkinTab').click(function() {
-        console.log("napkinTab pressed");
+        $('#napkinTab').css ({
+            margin-left: '31%',
+            margin-top: '5%',
+            width: '40%'
+        });
+        $('#videoTab').css ({
+            margin-left: '30%',
+            margin-top: '2%',
+            width: '40%'
+        });
         return false;
     });
     $('#videoTab').click(function() {
-        console.log("videoTab pressed");
+        $('#videoTab').css ({
+            margin-left: '31%',
+            margin-top: '5%',
+            width: '40%'
+        });
+        $('#napkinTab').css ({
+            margin-left: '30%',
+            margin-top: '2%',
+            width: '40%'
+        });
         return false;
     });
 
