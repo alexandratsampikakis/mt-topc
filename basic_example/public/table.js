@@ -72,7 +72,7 @@ var initScene = function() {
     //      movie image will be scaled to fit these dimensions.
     movieGeometry = new THREE.PlaneGeometry(  32, 20);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(0,-5,0);
+    movieScreen.position.set(0,-5,-0.01);
     scene.add(movieScreen);
 
     //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
@@ -219,7 +219,7 @@ function render() {
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
-        if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y < 0.05 && objectToRotate.object.rotation.y > -0.05) {
+        if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y/(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y/(2*Math.PI) > -0.05) {
             resetOverhearing();
             
         }
