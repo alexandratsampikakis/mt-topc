@@ -371,39 +371,39 @@ window.onload = function () {
     $('#chatArea').css({
         position:'absolute', 
         top: $(window).height() - $('#chatArea').height()*2-56,
-        left:'25%'
+        left:'30%'
     });
     $('#chatMessage').css({
         position:'absolute', 
         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'25%'
+        left:'30%'
     });
     $('#sendMessage').css({
         position:'absolute', 
         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'66%'
+        left:'63%'
     });
     $(window).resize(function() {
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
-            left:'25%'
+            left:'30%'
         });
         $('#chatMessage').css({
             position:'absolute', 
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'25%'
+            left:'30%'
         });
         $('#sendMessage').css({
             position:'absolute', 
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'66%'
+            left:'63%'
         });
     });
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-    $('#chatArea').width('50%');
-    $('#chatMessage').width('40.5%');
-    $('#sendMessage').width('9%');
+    $('#chatArea').width('40%');
+    $('#chatMessage').width('32.5%');
+    $('#sendMessage').width('7%');
 
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
