@@ -21,6 +21,7 @@ var streams = [];
 //
 var chairImg = new Image();
 var emptyImg = new Image();
+var overhearImg = new Image();
 var currentState = "CAFEVIEW";
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
@@ -353,6 +354,10 @@ function loadImage(imageData, elementID, pos) {
         videoTexture.minFilter = THREE.LinearFilter;
         videoTexture.magFilter = THREE.LinearFilter;
         videoTexture.needsUpdate = true;
+        var videoTexture2 = new THREE.Texture( overhearImg );
+        videoTexture2.minFilter = THREE.LinearFilter;
+        videoTexture2.magFilter = THREE.LinearFilter;
+        videoTexture2.needsUpdate = true;
         //var x = room.getStreamsByAttribute('type','media').length;
         //var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
         // the geometry on which the movie will be displayed;
@@ -363,7 +368,7 @@ function loadImage(imageData, elementID, pos) {
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000'}));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture }));
-        materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture2 }));
         /*for (var i = 0; i < 6; i++)
             materialArray[i].side = THREE.BackSide;*/
         var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
@@ -414,6 +419,7 @@ window.onload = function () {
     nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     //emptyImg.src="/img/emptyTable.gif";
+    overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
