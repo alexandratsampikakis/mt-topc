@@ -148,12 +148,6 @@ function redrawNapkin() {
     myImage.src = imgData;
     c.height = $(window).height() - 550; //415;
     c.width = 1.5*c.height;
-
-    $('#chatArea').css({
-        position:'absolute', 
-        top: $(window).height() - $('#chatArea').height()*2-56,
-        left:'25%'
-    });
 }
 
 function drawPath(color, thickness, path, width, height) {
