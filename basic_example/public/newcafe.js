@@ -382,7 +382,7 @@ window.onload = function () {
                             console.log(imgID);
                         }
 
-                        if(!hasImage) loadImage("http://placehold.it/320x200", imgID);
+                        if(!hasImage) loadImage("/img/emptyTable.gif", imgID);
 
                     }
                 }
@@ -557,7 +557,7 @@ window.onload = function () {
                             console.log(imgID);
                         }
 
-                        if(!hasImage) initOversee("http://placehold.it/320x200", '#ddMenu');
+                        if(!hasImage) initOversee("/img/emptyTable.gif", '#ddMenu');
 
                     }
                 }
