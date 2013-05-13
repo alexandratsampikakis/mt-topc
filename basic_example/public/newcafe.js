@@ -891,6 +891,7 @@ window.onload = function () {
                         }
                         console.log("There is no seat available at this table!");
                     }
+                    if(leader === undefined) leader = calculateLeader;
                     if(leader === localStream.getID()) {
                         getSnapshots();
                     } 
