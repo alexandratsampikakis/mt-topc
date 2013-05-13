@@ -280,6 +280,11 @@ app.get("/api/getcafe/:name", function (req, res) {
     });
 });
 
+app.get("/api/ping", function (req, res) {
+    res.json({
+        status: 'OK'
+    });
+});
 //################################################################
 //db END
 

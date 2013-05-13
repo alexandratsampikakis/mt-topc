@@ -290,6 +290,41 @@ var updateTitle = function(title) {
 }  
 
 //Retrieves cafe tables
+var pingServer = function(callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/ping';
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
+function pingForLeader() {
+    
+    var pingTime = 0;
+    var prePingTime = new Date().getTime();
+    pingServer(function() {
+        pingTime = new Date().getTime() - prePingTime;
+        prePingTime = new Date().getTime();
+
+        pingServer(function() {
+            pingTime = pingtime + new Date().getTime() - prePingTime;
+            prePingTime = new Date().getTime();
+
+            pingServer(function() {
+                pingTime = pingtime + new Date().getTime() - prePingTime;
+                return pingTime/3;
+            }) 
+        }) 
+    }) 
+}
+//Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
