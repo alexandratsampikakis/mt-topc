@@ -314,11 +314,11 @@ function pingForLeader() {
         prePingTime = new Date().getTime();
 
         pingServer(function() {
-            pingTime = pingtime + new Date().getTime() - prePingTime;
+            pingTime = pingTime + new Date().getTime() - prePingTime;
             prePingTime = new Date().getTime();
 
             pingServer(function() {
-                pingTime = pingtime + new Date().getTime() - prePingTime;
+                pingTime = pingTime + new Date().getTime() - prePingTime;
                 return pingTime/3;
             }) 
         }) 
