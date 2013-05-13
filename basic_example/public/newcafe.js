@@ -309,15 +309,15 @@ function pingForLeader() {
     
     var pingTime = 0;
     var prePingTime = new Date().getTime();
-    pingServer(function() {
+    pingServer(function(response) {
         pingTime = new Date().getTime() - prePingTime;
         prePingTime = new Date().getTime();
 
-        pingServer(function() {
+        pingServer(function(response) {
             pingTime = pingTime + new Date().getTime() - prePingTime;
             prePingTime = new Date().getTime();
 
-            pingServer(function() {
+            pingServer(function(response) {
                 pingTime = pingTime + new Date().getTime() - prePingTime;
                 return pingTime/3;
             }) 
