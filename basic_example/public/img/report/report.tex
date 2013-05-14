@@ -18,6 +18,44 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern} % load a font with all the characters
 \usepackage{graphicx} % includegraphics command is implemented here
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
 \begin{document}
 \maketitle
 
@@ -153,11 +191,124 @@ Overseeing in 3D worlds already exists[2][3][4][5], in a 2D world this can not b
 One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
 
 Before this project started we made a gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
-\write18{wget https://github.com/alexandratsampikakis/mt-topc/blob/master/basic_example/public/img/report/grovplanering.jpg}
-\includegraphics{grovplanering.jpg}
-Picture X: A gantt-chart to guide us through the project and manage deadlines.
+\begin{figure}[h!]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
+  \caption{A gantt-chart to guide us through the project and manage deadlines.}
+\end{figure}
+The work has been shared equally between the two participants in this project. All the planning, prestudy and implementing of the prototype was done together.
+\subsection{What the site looks like}
+These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
+\subsubsection{Index/start page}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage1.png}
+  \caption{The start page with a welcome message and some information about the site.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage2.png}
+  \caption{The start page, the buttons are the six cafés the user can visit, this is the 2D view.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage3.png}
+  \caption{The start page, the buttons are the six cafés the user can visit, this is the 3D view.}
+\end{figure}
+\subsubsection{Cafeview}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{thetables.png}
+  \caption{This picture shows the tables in the café Unik. In table 1 there is one person sitting down, the other seats is empty at that table.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{thetables3D.png}
+  \caption{This picture shows all the tables in café Unik. At the moment all the tables are empty. The green table is turned around with the mouse, if you click the on the turned table you will overhear the conversation if the table is not empty. If you click at a table you will sit down at the table.}
+\end{figure}
 
-The work has been shared equally between the two participants in this project. All the planning, prestudy and implementing of the prototype was done together. 
+\subsubsection{Tableview}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{sittingdown2D.png}
+  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone. You see the text chat and the napkin.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{sittingdown3D.png}
+  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone. You see the text chat and the napkin. The video stream in middle to the right has a mouse over it. That is why it looks different.}
+\end{figure}
+\subsection{Use cases}
+These use cases are made for a better understanding of how the system can be used. Three example will explain this.
+\subsubsection{Use case 1: Enter a café}
+Lisa has a new idea for a product she wants to discuss. She starts her web browser and open Paris Café web page. She is met with a welcoming message and a list of the available cafés. After choosing a café she will be asked to enter her name into a form before continuing to the tables of the café. Once done she will be met by six “tables”. 
+\subsubsection{Use case 2: Oversee and overhear}
+When Lisa is inside a café she can look at the six tables. Each table will display an image of the persons, if any, sitting at the tables. When she has found a table that looks interesting she can choose to overhear and oversee the persons at the table by clicking the button “overhear”. The image will then be replaced by live video streams of the participants, including audio.
+\subsubsection{Use case 3: Sit down at table}
+After finding a table to sit down at she clicks “Join table”. Participants of the group will hear a knocking sound and find a notification in the upper right corner. They will now answer yes or no. If the majority answer yes she will sit down at a table where the video chat begins.
+\section{Technologies}
+\subsection{Node.js}
+Node.js is an event-driven, non-blocking I/O JavaScript platform, built on Chrome’s V8 JavaScript runtime. The reason for using Node.js is that it makes for easily building fast and scalable network applications. The server is entirely written under the Node.js platform.
+\subsection{WebRTC}
+WebRTC (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
+
+By using peer-to-peer connection instead of sending information through a central server, it removes the need for a powerful server. A server is still needed to setup the connection between the participants.
+\subsection{Licode}
+Licode is an open-source project that is based upon WebRTC technologies. It comes with Erizo, a Multipoint Control Unit(MCU) and an easy to use API for creating video conference rooms directly in the browser. 
+\subsubsection{Erizo}
+Erizo is an MCU written in C++. It’s fully compatible with WebRTC standards and protocols. Erizo does not currently provide any transcoding of videos but it’s being worked on right now. 
+\subsubsection{Nuve}
+Nuve makes it possible to create and manage video conference rooms. It holds information about each room and let’s you ask for example a user list. It is designed to scale on the cloud.
+\subsection{MongoDB}
+MongoDB is an open-source, document-oriented database designed for ease of development and scaling. Stores data as JSON-like documents dynamically and making the integration of data and our prototype easier and faster.
+\subsection{Mongoose}
+Mongoose is an object data modeling library for MongoDB. It allows you to create models for your data, creating a structure to MongoDB while maintaining it’s flexibility.
+\subsection{Express js}
+Express is a fast and small node.js web application framework, providing a powerful routing system which allows you to easily create single and multi-page web applications. It helps you manage everything, from routes, to handling requests and views.
+\subsection{Twitter Bootstrap}
+Twitter Bootstrap is a collection of tools for creating beautiful web applications without being an expert on design. It includes HTML, JS and CSS-based design templates for typography, forms, buttons, charts, navigation and other interface components. The reason for using Twitter Bootstrap is to get a nice interface and it is easy to use.
+\subsection{HTML5}
+HTML is used to structure and presents information on a website, HTML5 is the newest HTML standard. It’s designed to make web programming easier and more interactive. Some of the new features that are interesting for our project is the <video> and <canvas> elements.
+\subsection{Three.js}
+Three.js is a lightweight cross-browser JavaScript library/API used to create and display animated 3D computer graphics on a Web browser. Three.js scripts may be used in conjunction with the HTML5 canvas element, SVG or WebGL. We decided to go with WebGL.
+\subsubsection{WebGL}
+WebGL (Web Graphics Library) is a JavaScript API that allows the client to render powerful 3D graphics within the browser without plugins. It runs on computers GPU.
+
+Our purpose of using WebGL is to try the café Paris website with a virtual 3D environment. This makes us a good case to try out a mixed reality, by combining a virtual 3D environment with the users video stream we can transfer the feeling of actually being in a real café into our website. Overseeing, overhearing and mingling
+\subsection{Github}
+For revision control and code management we use Git. Git is a open source distributed revision control system. To simplify the setup we chose to host the repository at Github.
+
+
+\section{Method}
+Some information was collected before implementing the service. A study was made in order to find suitable ways of overhearing, overseeing and mingle. And a comparison of different WebRTC frameworks was necessary for us due to the video conference features.
+\subsection{WebRTC comparison
+WebRTC is a new web standard for peer-to-peer communication. WebRTC allow browsers to send information to each other, without going through a server. The focus is currently on audio and video communication but they will implement a data channel in the future. This will drastically decrease the server load.
+
+We compared many different WebRTC framework before settling with Licode. Licode offered something that others didn’t, and something that is necessary if the system would be used on a larger scale. That feature is a Multipoint Control Unit(MCU). Here follows a short summary of the runner ups.
+\subsubsection{Easy RTC}
+EasyRTC is an open source WebRTC framework with cross browser support. It allows you to easily steup a Node.js server and provides an API for making advanced web applications in no time. EasyRTC uses websockets for fast message passing between clients.
+\subsubsection{WebRTC.io}
+WebRTC.io aims to make it easier to use the new webstandard. It does this by providing a simple abstraction layer for the otherwise semi-low level WebRTC.
+\subsubsection{Holla}
+Holla is another abstraction layer with the same goal, to make it easier to work with WebRTC. Holla provides a client and a Node.js server module. The server is used to initiate the communication between the clients. Each client registers a username that is used for making calls or sending data to each other.
+\subsection{Survey}
+A survey was made during the early stages of the project. The idea was to get a grasp of how people feel about visiting a virtual café online as well as to capture their opinion on what aspects of a real café makes it such a good place for intimate discussions.
+\subsubsection{Evaluation}
+The most important aspects of a café is the intimate environment and the other people in the café. This means that in order for us to capture that intimate feeling of a café, we have to create a design that gives a similar feeling
+
+The result showed that people like the ability to overhear other conversations going on in the café. But it also showed that it can be a disturbing factor when you can’t block out the noise.
+
+Mingle is big part of the master thesis. How can you ask to participate in a conversation without disturbing the group of people having the conversation. The answers shows that a subtle knock or a short personal message to the group would get their attention without drawing them away from the conversation.
+
+We had a few questions concerning a 3D environment. The answers however were pretty much evenly distributed between “yes” and “no” and due to the amount of participants we can’t see any clear result. However, we believe that it can be hard to imagine going to a café in a 3D virtual environment and that a new survey when we have a prototype running would result in different answers.
+\subsection{Prestudy conclusion}
+After doing this research we have noticed the huge amount of different video conferencing systems each with their own solution for specific problems. All from high-end systems designed for big businesses, to small systems for personal use.
+
+The result however, strongly motivates our research questions. While there exists a few good services for video conference and online group collaboration the only ones that support multiple groups is within a 3D environment and not one of these have strong focus on mingling.
+
+There is still room for improvements in overhearing and mingling, both inside and outside a 3D environment.
+
+If using virtual 3D environments, a mixed reality is interesting for us to mix real peoples video stream with an virtual environment. If a person who has joined a conversation at a table does not want to share his video stream he may just get an avatar to represent him instead a video stream. It would also make it possible to enable human expressions and gestures[9].
 \section{Previous work}\label{previous work}
 A much longer \LaTeXe{} example was written by Gil~\cite{Gil:02}.
 
