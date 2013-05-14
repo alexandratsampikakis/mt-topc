@@ -77,15 +77,15 @@
 \contentsline {subsection}{\numberline {5.4}Overhearing}{26}
 \contentsline {subsection}{\numberline {5.5}Overseeing}{28}
 \contentsline {subsection}{\numberline {5.6}Mingle}{29}
-\contentsline {subsection}{\numberline {5.7}Paint}{31}
-\contentsline {subsection}{\numberline {5.8}Youtube}{31}
-\contentsline {subsection}{\numberline {5.9}Chat}{31}
+\contentsline {subsection}{\numberline {5.7}Paint}{30}
+\contentsline {subsection}{\numberline {5.8}Youtube}{30}
+\contentsline {subsection}{\numberline {5.9}Chat}{30}
 \contentsline {subsection}{\numberline {5.10}Server performance}{31}
 \contentsline {subsubsection}{\numberline {5.10.1}Theory}{31}
 \contentsline {section}{\numberline {6}Discussion}{32}
 \contentsline {subsection}{\numberline {6.1}Issues}{32}
-\contentsline {subsection}{\numberline {6.2}The design}{33}
+\contentsline {subsection}{\numberline {6.2}The design}{32}
 \contentsline {subsection}{\numberline {6.3}User test}{33}
 \contentsline {subsection}{\numberline {6.4}Performance test}{33}
 \contentsline {subsection}{\numberline {6.5}Future work and improvements}{33}
-\contentsline {subsection}{\numberline {6.6}Conclusion}{34}
+\contentsline {subsection}{\numberline {6.6}Conclusion}{33}

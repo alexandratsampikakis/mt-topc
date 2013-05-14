@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  14 MAY 2013 13:27
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  14 MAY 2013 14:18
 entering extended mode
 **report.tex
 
@@ -528,52 +528,43 @@ Package pdftex.def Info: pulldownoversee.jpg used on input line 365.
 (pdftex.def)             Requested size: 312.00119pt x 142.78381pt.
  [28 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
 rt/overseeing2D.jpg>]
+<knock.png, id=116, 252.19218pt x 78.2925pt>
+File: knock.png Graphic file (type png)
+ <use knock.png>
+Package pdftex.def Info: knock.png used on input line 375.
+(pdftex.def)             Requested size: 312.00119pt x 96.86067pt.
+ [29 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+rt/pulldownoversee.jpg> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_exam
+ple/public/img/report/knock.png>] <chat.png, id=121, 496.85625pt x 170.13562pt>
+File: chat.png Graphic file (type png)
+ <use chat.png>
+Package pdftex.def Info: chat.png used on input line 389.
+(pdftex.def)             Requested size: 312.00119pt x 106.83812pt.
 
-LaTeX Warning: File `knock.jpg' not found on input line 375.
-
-
-! Package pdftex.def Error: File `knock.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.375 ...0.8\textwidth,keepaspectratio]{knock.jpg}
-                                                  
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 375.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [29 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/rep
-ort/pulldownoversee.jpg>]
-[30] [31] [32] [33]
+[30] [31 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/
+report/chat.png>] [32] [33]
 No file report.bbl.
 [34]
 (C:\Users\Seidevall\Documents\GitHub\mt-topc\basic_example\public\img\report\re
 port.aux) ) 
 Here is how much of TeX's memory you used:
- 1852 strings out of 494045
- 24388 string characters out of 3148375
+ 1821 strings out of 494045
+ 23875 string characters out of 3148375
  74111 words of memory out of 3000000
- 5107 multiletter control sequences out of 15000+200000
- 51505 words of font info for 46 fonts, out of 3000000 for 9000
+ 5079 multiletter control sequences out of 15000+200000
+ 51187 words of font info for 45 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 27i,9n,22p,842b,279s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Progra
-m Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.
+ 27i,9n,22p,842b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Pr
+ogram Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.
 9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
-mtt12.pfb>
-Output written on report.pdf (36 pages, 5335553 bytes).
+type1/public/lm/lmsy10.pfb>
+Output written on report.pdf (36 pages, 5324454 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
+ 157 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

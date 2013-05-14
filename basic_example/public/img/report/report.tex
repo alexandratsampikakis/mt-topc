@@ -372,7 +372,7 @@ To see all the snapshots in the Cafeview the client sends an HTTP request to the
 The idea was to have a subtle way of telling the participants at a certain table you want to sit down and join the conversation. We had many ideas for how this could be realised, for example a personal text message to the group, record a voice message or just a simple knock. After the study we decided to go with the knock because reading a text message or listening to a voice message would take the focus away from the conversation. 
 \begin{figure}[H]
   \centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{knock.jpg}
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{knock.png}
   \caption{A knock notification. Alexandra wants to join the room.}
 \end{figure}
 After pressing the knock button, a datastream is published and other datastreams are being subscribed to. A message is sent to all the users in the room and a notification(figure X) pops up in the upper right corner. All the users in the room gets to vote by pressing “Yes” or “No”. The notification disappears after 20 seconds. Any unanswered notification results in a “No” The answers are sent to the requesters client and depending on how many “Yes”, you have to have more than the total amount of users in the room divided by two plus one, so the majority has to answer “Yes” before a user can connect to the room and publish his or her media stream.
@@ -384,6 +384,11 @@ Many ideas starts on a napkin, maybe in a café just hanging with your colleague
 A synchronized YouTube player that plays any video from Youtube. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
 \subsection{Chat}
 The chat is very basic. You chose a username when you enter a café. This will be displayed whenever you write a message in the chat. The chat is also used for some notifications, for example when someone sits down at a table. All the text messages is shared with all participants at the table.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{chat.png}
+  \caption{A knock notification. Alexandra wants to join the room.}
+\end{figure}
 \subsection{Server performance}
 A performance test was done in order to see how the system would perform under pressure and to get a feeling of the hardware requirements on a larger scale. 4 computers including the server were used during the test.
 
