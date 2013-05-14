@@ -1,4 +1,3 @@
-
 \title{A Very Simple \LaTeXe{} Template}
 \author{
         Vitaly Surazhsky \\
@@ -19,43 +18,6 @@
 \usepackage{lmodern} % load a font with all the characters
 \usepackage{graphicx} % includegraphics command is implemented here
 \usepackage{float}
-\usepackage{listings}
-\usepackage{xcolor}
-
-\colorlet{punct}{red!60!black}
-\definecolor{background}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
-
-\lstdefinelanguage{json}{
-    basicstyle=\normalfont\ttfamily,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
-
 \begin{document}
 \maketitle
 
@@ -191,7 +153,7 @@ Overseeing in 3D worlds already exists[2][3][4][5], in a 2D world this can not b
 One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
 
 Before this project started we made a gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
   \caption{A gantt-chart to guide us through the project and manage deadlines.}
@@ -281,7 +243,7 @@ For revision control and code management we use Git. Git is a open source distri
 
 \section{Method}
 Some information was collected before implementing the service. A study was made in order to find suitable ways of overhearing, overseeing and mingle. And a comparison of different WebRTC frameworks was necessary for us due to the video conference features.
-\subsection{WebRTC comparison
+\subsection{WebRTC comparison}
 WebRTC is a new web standard for peer-to-peer communication. WebRTC allow browsers to send information to each other, without going through a server. The focus is currently on audio and video communication but they will implement a data channel in the future. This will drastically decrease the server load.
 
 We compared many different WebRTC framework before settling with Licode. Licode offered something that others didn’t, and something that is necessary if the system would be used on a larger scale. That feature is a Multipoint Control Unit(MCU). Here follows a short summary of the runner ups.
@@ -309,14 +271,93 @@ The result however, strongly motivates our research questions. While there exist
 There is still room for improvements in overhearing and mingling, both inside and outside a 3D environment.
 
 If using virtual 3D environments, a mixed reality is interesting for us to mix real peoples video stream with an virtual environment. If a person who has joined a conversation at a table does not want to share his video stream he may just get an avatar to represent him instead a video stream. It would also make it possible to enable human expressions and gestures[9].
-\section{Previous work}\label{previous work}
-A much longer \LaTeXe{} example was written by Gil~\cite{Gil:02}.
+\subsection{System architecture}
+The system consists of two different parts, the backend and the frontend.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{systemarchitecture.png}
+  \caption{A chart over the system architecture.}
+\end{figure}
+\subsubsection{Backend}
+The main part is the Node.js server. The server acts like a middleman for the Licode modules and the frontend. It communicates with the clients using standard HTTP requests and a simple RESTful API together with Express.js. It allows the client to easily GET/POST data from/to the server. The server also communicates with Nuve via a token based communication mechanism.
 
+Example: GET /api/getCafe/Unik from the database results in:
+%{
+"name": "Unik",
+"table1": "513dd08a07aa2f143700001f",
+"table2": "513dd08b07aa2f1437000020",
+"table3": "513dd08c07aa2f1437000021",
+"table4": "513dd08d07aa2f1437000022",
+"table5": "513dd08e07aa2f1437000023",
+"table6": "513dd08f07aa2f1437000024"
+%}
+\subsubsection{Database}
+The database stores all the information about the cafés, all the rooms and what rooms that belongs to what café and the snapshot taken by all leaders in each room. Each café consists of six rooms. The client communicates with the server in which the server communicated with the database.
+\subsubsection{Server}
+All the cafés and rooms are created in the server using Nuve Client. An access request will be sent and accepted via Nuve for each user trying to connect to a room via a token-based authentication mechanism. This mechanism allows these servers to create access tokens, and they will provide these tokens to their clients. 
+\subsubsection{Nuve}
+Nuve is a Licode module that manages the rooms or the tokens to access to a determined room. Nuve Client API allows the server to, for example, create rooms, get rooms, and get users of a certain room.
+\subsubsection{Erizo Controller}
+Erizo controller communicates with Erizo. It handles the subscription of streams, sends the streams to all subscribers and controls the rooms. Erizo controller scales well and spawns new instances when the pressure is high.
+\subsubsection{Frontend}
+The frontend is built using HTML5, JQuery, Javascript and Erizo. The frontend communicates with two different parts of the system. It speaks to the server for HTML/CSS/JS files, tokens and database access. All the communication between different clients goes through Erizo controller. This means that all the data (Audio, Video or data) from a stream is sent to Erizo controller and then forwarded to all the client who subscribes to said stream.
+\subsubsection{Erizo Client}
+Erizo client provides a javascript API for communicating with Erizo Controller. It allows the client to, for example, publish and subscribe streams, create video elements
 \section{Results}\label{results}
 In this section we describe the results.
 
 \section{Conclusions}\label{conclusions}
-We worked hard, and achieved very little.
+Here follows the result of the main features and different pages on the website.
+\subsection{Design}
+The design is an important feature of the system. In order to capture the feeling of being in a cafe, we need to create a modern design that is just as intimate as a real life café. The design is mostly done using Twitter Bootstrap. Bootstrap helped attaining a clean and modern look. A few goals was set up for the design, one was that the site would look just as good and work just as well on big and small resolutions. Therefore, percentage were used on almost all sizes so everything keeps the aspect ratio when the window is resized. 
+
+Another goal was the site navigation. It should be self-explanatory, easy to navigate and accessible in a few clicks.
+\subsubsection{The 2D view}
+The website has three important pages, index, cafeview and table view.
+
+When the user first enters the site they will see a welcoming message, explaining the purpose of the site. If they scroll down they will see a list of café buttons for each of the view type, 2D and 3D. On the top bar is a link to a user guide and on the bottom a link to send us a feedback mail.
+
+The Cafeview is after you have entered a café. It displays the tables of the café and an image of the participants of each table. The user can chose to sit down at a table or overhear the table by pressing respective button.
+
+The Tableview consists of 2 parts. There is what we call a table in the middle of the page, with room for 3 streams on each side. We chose to limit the number of participants in each room to six. There are tabs on the top side of the table. These are filled with features for the users. While video chatting, the users can draw, watch a youtube clip and chat together. 
+\subsubsection{The 3D view}
+The first idea was to create an environment with the feeling of being in a real café, a room with tables, the video streams in the room of all the participants and also you can walk around in the café to see all the tables. After our market research we found out that this type of environment was not desirable and also we think that we can reach a bigger audience by avoiding it. We decided to reuse the 2D view and represent it in a 3D view to enhance the feeling of being in the same room. 
+
+The Caféview has been completely remade. When you enter a cafe you will see a large room with blocks that represents tables. These blocks are rotatable. You will also see a big screen on the wall, after rotating a block and clicking on the backside,  the live video streams will show on that screen.
+
+The Tableview has been improved in many ways. The video streams are slightly rotated towards the center of the screen. This gives the feeling of sitting around a table with your friends. The background has been given depth in order to give the feeling of being in a room. The tabs with the napkin and share youtube video is now in different layers. They will switch places when you click on them.
+\subsection{Leader}
+Each room needs its own leader to enable some features below. If a room is empty when someone enter, he or she is automatically chosen to be the leader in that room. A new leader will be chosen if the current leader leaves the room, this is done by letting each user ping the server 3 times. The one with the lowest mean value becomes the leader. By doing this we know the leader will have the lowest latency of the group. If two or more users have the same mean value, the one with the highest stream ID becomes the leader.
+
+By letting the leader take care of some of the features instead of letting the server handle it, we reduce the server load. The server does not even know about what the leader is up to due to the peer-to-peer connection.
+\subsection{Peer-to-peer}
+WebRTC allows data to be sent between the clients using peer-to-peer. We chose to take advantage of this feature in order to release some stress from the server. The media and data streams are separated in order to create a simple messaging service that can be used by all features on the site, to communicate between the clients without the server.
+\subsection{Overhearing}
+You can only block out noise to some extent in a real environment. However, in a virtual environment we can chose when and what to overhear. Just like you can focus your hearing to a certain point we can chose to listen to a certain table.
+
+The audio can not be separated from the video and because of that we chose to display video as well when you overhear a table. When you press the overhearing button, you will subscribe to all the streams at the table without publishing your own stream. The snapshot image for the table will be replaced with live video streams. This means you can hear and see the group without them being able to see or hear you. When the user choses to end the overhearing, the streams will be removed and replaced with the snapshot image.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{overhear2d.jpg}
+  \caption{Real-time overseeing and overhearing in the 2D view.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{3doverhearing.jpg}
+  \caption{Real-time overseeing and overhearing in the 3D view.}
+\end{figure}
+We chose to not display the text chat, drawing or if a video is watched. This is meant to give the users a bit of privacy. 
+
+We chose not to implement overhearing when you’re in a table. This is because it would draw attention from the conversation.
+
+\subsection{Overseeing}
+The prototype has three kinds of overseeing. The first one is directly when you enter the café. You then see a snapshot of every stream for every table in the café. The snapshots updates every 30 seconds, when a new user sits down at a table and when a user leaves a table. The snapshot is sent to the server by a chosen leader of each table.
+\subsection{Mingle}
+\subsection{Paint}
+\subsection{Youtube}
+\subsection{Chat}
+\subsection{Server performance}
+\subsubsection{Theory}
 
 \bibliographystyle{abbrv}
 \bibliography{simple}
