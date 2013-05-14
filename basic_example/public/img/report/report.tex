@@ -352,13 +352,93 @@ We chose not to implement overhearing when you’re in a table. This is because 
 
 \subsection{Overseeing}
 The prototype has three kinds of overseeing. The first one is directly when you enter the café. You then see a snapshot of every stream for every table in the café. The snapshots updates every 30 seconds, when a new user sits down at a table and when a user leaves a table. The snapshot is sent to the server by a chosen leader of each table.
-\subsection{Mingle}
-\subsection{Paint}
-\subsection{Youtube}
-\subsection{Chat}
-\subsection{Server performance}
-\subsubsection{Theory}
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{overseeing2D.jpg}
+  \caption{Shows overseeing when you enter a café and view the tables.}
+\end{figure}
+The second type of overseeing is in real-time. Before you sit down at a table you can chose to oversee and overhear the by clicking a button. You can then see and hear all the participants at the table in real-time[Figure X].
 
+The third type of overseeing is when you are in a room sitting down at a table. In a real café you can actually look around the café and see the other participant while still have a conversation with your table, we decided to implement this by having a bar on the top of the page  to see the snapshots of the other tables in the same café you are in.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{pulldownoversee.jpg}
+  \caption{Pulldown overseeing from inside a café. Displays the snapshot images of the other tables in the café.}
+\end{figure}
+To enable overseeing on the website the leader takes a snapshot of every user in the room as mentioned above. The client will then encode the binary data from the image to a base64 string and send it to the server. The server will then store the string in the database.
+
+To see all the snapshots in the Cafeview the client sends an HTTP request to the server and gets a JSON-object in response.
+\subsection{Mingle}
+The idea was to have a subtle way of telling the participants at a certain table you want to sit down and join the conversation. We had many ideas for how this could be realised, for example a personal text message to the group, record a voice message or just a simple knock. After the study we decided to go with the knock because reading a text message or listening to a voice message would take the focus away from the conversation. 
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{knock.jpg}
+  \caption{A knock notification. Alexandra wants to join the room.}
+\end{figure}
+After pressing the knock button, a datastream is published and other datastreams are being subscribed to. A message is sent to all the users in the room and a notification(figure X) pops up in the upper right corner. All the users in the room gets to vote by pressing “Yes” or “No”. The notification disappears after 20 seconds. Any unanswered notification results in a “No” The answers are sent to the requesters client and depending on how many “Yes”, you have to have more than the total amount of users in the room divided by two plus one, so the majority has to answer “Yes” before a user can connect to the room and publish his or her media stream.
+
+To again save some server load the knocking is done with peer-to-peer connection, means that the server does not have a clue of who is knocking and it is all done between the clients involved.
+\subsection{Paint}
+Many ideas starts on a napkin, maybe in a café just hanging with your colleagues or friends. The napkin at the table is shared between all the users sitting at the same table and they can all draw on it together, real-time collaboration. When a new user sits down at the table he or she will get the current napkin by each tables leader. The napkin can also be saved locally to your computer. The clear napkin button will reset the napkin for all users. Color and thickness can be chosen in the dropdown menus.
+\subsection{Youtube}
+A synchronized YouTube player that plays any video from Youtube. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
+\subsection{Chat}
+The chat is very basic. You chose a username when you enter a café. This will be displayed whenever you write a message in the chat. The chat is also used for some notifications, for example when someone sits down at a table. All the text messages is shared with all participants at the table.
+\subsection{Server performance}
+A performance test was done in order to see how the system would perform under pressure and to get a feeling of the hardware requirements on a larger scale. 4 computers including the server were used during the test.
+
+Each user sends a stream to the MCU, Erizo. Erizo then perform some basic transcoding, if any, before forwarding the data to each other user in the same room.
+%Table
+\subsubsection{Theory}
+Let U denote amount of users in a room, O the amount of users overhearing a certain room and S the bandwidth of a stream. During our measurement a stream started of at 40KB/s but quickly rose to 250KB/s. The data sent to the server is then U*S for each room.
+
+The data sent from the server is U((U-1)*S) + O*U*S. This is where the bottleneck is.
+
+An example. If we have one room with 6 users and 3 people overhearing with a bitrate of 200KB/s results in:
+
+6*200 = 1 200 KB/s sent to the server
+6*(5*200) + 3*6*200 = 9 600 KB/s sent from the server.
+
+Let’s assume we have a server with a dedicated 1Gbit connection.
+
+1Gbit = 131 072   KB.
+The bandwidth needed to fill a room without overhearing is 6*(5*200) = 6 000 KB/s
+131 072/6 000 = 21.8453333333. So a 1Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that 200 KB/s equals to over 1.5 Mbit/s. In comparison, Skype recommends 500kbps bandwidth for high quality video[25].
+
+As mentioned before, the bottleneck lies in data sent from the server. The CPU usage peaked at a bit over 50% while the video quality of the streams lowered because the server couldn’t send out more than 4 MB/s.
+
+The result of the test followed the theory closely, as you can see in the table.
+%Table
+The video quality then continued to decrease for every new stream published or subscribed. We believe that once Licode start transcode/mixing the streams, the data sent from the server will be reduced and CPU usage increased. 
+\section{Discussion}
+During this project we discovered problems with some features and perhaps a way of solving some of them. All possible solutions will be presented here. Along with that discussions we also present feedback from test users.
+\subsection{Issues}
+We have one issue with the knocking function. If five people having a conversation at a table and two more people wants to join their conversation at the same time, if they both is accepted by the group they will both connect to the table. This only happens if they are trying to connect exactly at the same time, otherwise they will get rejected because we have a limit of maximum six users at once in one table. The time it takes for a user to connect to the table is the problem, the latest user will not get notified that he or she was too late. 
+\subsection{The design}
+We had almost no experience of web design and WebGL before starting this project. Here follows some improvements we think could be done to enhance the user experience.
+\begin{itemize}
+\item We have blocks representing tables in the 3D version of Cafeview. These could be exchanged with models of a table. 
+\item It would be cool to have models of a person around the tables and map the video stream or snapshots to the face of the model.
+\item Furnish the 3D Cafeview with perhaps bar, paintings and such, to make it look like like a real room.
+\end{itemize}
+\subsection{User test}
+TODO
+\subsection{Performance test}
+The test result showed that the system is really heavy on the bandwidth. We see two solutions to this problem. The first one is to transcode the streams. This would increase the CPU load but drastically decrease the data sent from the server. The second solution is to limit the bitrate of the streams. The video quality as it is now is really high and limiting it to maybe 125KB/s would drastically increase the maximum number of users on the system.
+\subsection{Future work and improvements}
+We set out to build a prototype that includes overseeing, overhearing and mingle, and that’s what we have done. But this is a project done in limited time so there are of course plenty of ways to improve the system.
+
+We wanted to activate overhearing by simply holding the mouse over a table. We tried it and it worked, but it was far from optimal. Connecting to a room and subscribing to a stream actually takes some time to do. And holding the mouse over a table for all that time is simply not something you want to do. A solution to this problem would be to first connect directly to the other users while waiting for Erizo to connect and then switch over to Erizo when it’s done. This would drastically decrease the time required to hover before you start overhearing the users in the room.
+
+To get the feeling that you actually having a conversation face to face with a person online in a video conference, the eyes and body gestures is important. In the related work part we discussed an article about eye gaze. They looked at if it is possible to do eyes correction with movement during a video conference[20]. This can be interesting to test and see if the experience gets better for the user.
+\subsection{Conclusion}
+We feel that we have reached the goals we set up earlier in the project. We have explored different solutions for overseeing, overhearing and mingling online, in a 2D and 3D world and created a working prototype using modern technologies. Although we have presented many different solutions for our main problems, we feel that we have only touched the surface of what could be done with each respective problem. But we hope this project makes a stable foundation for future research in the field.
+
+We are happy with how both views turned out, even though both of us lack experience in web design. We believe that both views are perfectly suited for the service, however, there are pros and cons of both views. The 3D view provides a more convincing feeling of being in a room, but the quality of the video streams inside the 3D world decreases. The 2D view is easier to navigate for a first time user or a less experienced user. 
+
+All the key features of the service works just as well in both views. Which view works best depends on the target group. A cool 3D environment probably draws a younger crowd than the traditional 2D view, while the 2D view works for everyone.
+
+We are very happy with the result and we look forward to see any future research in this field.
 \bibliographystyle{abbrv}
 \bibliography{simple}
 
