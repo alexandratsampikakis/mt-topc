@@ -326,16 +326,16 @@ function clearFeedback() {
 }
 
 //Close all streams, disconnect room, reset streams, clear text fields
-function resetConnection() {
-    localStream.close();
-    dataStream.close();
-    overhearStream.close();
-    room.disconnect();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-    clearTextFields();
-}
+// function resetConnection() {
+//     localStream.close();
+//     dataStream.close();
+//     overhearStream.close();
+//     room.disconnect();
+//     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+//     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+//     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+//     clearTextFields();
+// }
 
 var rotationY;
 function render() {   
