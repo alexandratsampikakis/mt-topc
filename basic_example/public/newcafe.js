@@ -305,8 +305,7 @@ var pingServer = function(callback) {
     req.send();
 };
 
-function pingForLeader() {
-    
+function pingForLeader() {    
     var pingTime = 0;
     var prePingTime = new Date().getTime();
     pingServer(function(response) {
@@ -325,6 +324,7 @@ function pingForLeader() {
     });
     return pingTime; 
 }
+
 //Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
