@@ -380,6 +380,7 @@ window.onload = function () {
             redrawNapkin();
         }, 100);
     });
+    
     //focus "enternametextfield"
     $("#userName").focus();
 

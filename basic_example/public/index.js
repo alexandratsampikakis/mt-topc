@@ -38,7 +38,7 @@ window.onload = function () {
             var cafeName = cafes.cafe[i].name;
             a.innerHTML += cafeName;
             dcb.appendChild(a);
-            a.setAttribute("href", "http://satin.research.ltu.se:3001/3d2.html?cafe=" + cafeName);
+            a.setAttribute("href", "http://satin.research.ltu.se:3001/table.html?cafe=" + cafeName);
             a.setAttribute("class", "buttonCafe btn");
             a.setAttribute("type", "button");
         };
