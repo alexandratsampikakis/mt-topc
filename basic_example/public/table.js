@@ -239,7 +239,7 @@ function resetOverhearing() {
     overhearStream.close();
     if(room != undefined) room.disconnect();
     isOverhearing = null;
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:'hejja'}});
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
 }
    
 
@@ -346,6 +346,7 @@ function loadImage(imageData, elementID, pos) {
     var y = position[pos][1];
     var z = position[pos][2];
     var myImage = new Image();
+
     myImage.onload = function(){
         var videoTexture = new THREE.Texture( myImage );
         videoTexture.minFilter = THREE.LinearFilter;
@@ -387,7 +388,6 @@ function initVideo(stream,pos) {
     var vid, canvas;
 
     vid = stream.player.video;
-    //document.getElementById('streamundefined');
     
     vid.style.width = '320px';
     vid.style.height = '240px';
@@ -398,10 +398,7 @@ function initVideo(stream,pos) {
     videoTexture = new THREE.Texture( canvas );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
-    //var x = room.getStreamsByAttribute('type','media').length;
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true } );
-    // the geometry on which the movie will be displayed;
-    //      movie image will be scaled to fit these dimensions.
     movieGeometry = new THREE.PlaneGeometry(  32/3, 10);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(x,y,z);
@@ -412,20 +409,17 @@ function initVideo(stream,pos) {
 
 
 window.onload = function () {
-    nameOfUser = 'hejja';
+    //nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
 
     overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
     initScene();
     render();
 
     //focus "enternametextfield"
-    //$("#userName").focus();
+    $("#userName").focus();
 
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
@@ -492,6 +486,28 @@ window.onload = function () {
         req.setRequestHeader('Content-Type', 'application/json');
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
+    };
+
+    $('#submitUsername').click(function() {
+        enterName();
+        return false;
+    });
+
+    var enterName = function() {
+        if($('#userName').val() !== "") {
+            nameOfUser = $('#userName').val();
+            $('#enterName').toggle();
+            $('#tablecontainer').toggle();
+            $('#markis').toggle();
+
+            try {
+                overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+                localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+                dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+            } catch (error) {
+                console.log('erizo error: ' + error);
+            }
+        }
     };
 
 }
