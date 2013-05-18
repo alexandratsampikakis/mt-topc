@@ -319,10 +319,11 @@ function pingForLeader() {
 
             pingServer(function(response) {
                 pingTime = pingTime + new Date().getTime() - prePingTime;
-                return pingTime/3;
+                pingTime = pingTime/3;
             }); 
         }); 
-    }); 
+    });
+    return pingTime; 
 }
 //Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
