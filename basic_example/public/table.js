@@ -564,24 +564,6 @@ window.onload = function () {
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
 
-    var createToken = function(roomId, userName, role, callback) {
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/' + roomId;
-        var body = {username: userName, role: role};
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('POST', url, true);
-
-        req.setRequestHeader('Content-Type', 'application/json');
-        //console.log("Sending to " + url + " - " + JSON.stringify(body));
-        req.send(JSON.stringify(body));
-    };
-
     $('#submitUsername').click(function() {
         enterName();
         return false;
@@ -605,6 +587,24 @@ window.onload = function () {
     };
 
 }
+
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('POST', url, true);
+
+    req.setRequestHeader('Content-Type', 'application/json');
+    //console.log("Sending to " + url + " - " + JSON.stringify(body));
+    req.send(JSON.stringify(body));
+};
 
 var knock = function(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
