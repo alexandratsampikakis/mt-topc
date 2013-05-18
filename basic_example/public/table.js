@@ -441,7 +441,7 @@ function loadImage(imageData, elementID, pos) {
     var z = position[pos][2];
     var myImage = new Image();
 
-    myImage.onload = function(){
+    myImage.onload = function() {
         var videoTexture = new THREE.Texture( myImage );
         videoTexture.minFilter = THREE.LinearFilter;
         videoTexture.magFilter = THREE.LinearFilter;
@@ -506,6 +506,8 @@ window.onload = function () {
     //nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
+    overhearImg.src = "/img/clicktooverhear.png";
+    loadPlaceholder();
 
     //focus "enternametextfield"
     $("#userName").focus();
@@ -587,8 +589,6 @@ window.onload = function () {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
             //$('#tablecontainer').toggle();
-            overhearImg.src = "/img/clicktooverhear.png";
-            loadPlaceholder();
             initScene();
             render();
             try {
