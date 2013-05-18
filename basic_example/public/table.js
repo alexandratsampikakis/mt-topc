@@ -326,16 +326,16 @@ function clearFeedback() {
 }
 
 //Close all streams, disconnect room, reset streams, clear text fields
-// function resetConnection() {
-//     localStream.close();
-//     dataStream.close();
-//     overhearStream.close();
-//     room.disconnect();
-//     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-//     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-//     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-//     clearTextFields();
-// }
+function resetConnection() {
+    localStream.close();
+    dataStream.close();
+    overhearStream.close();
+    room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+    clearTextFields();
+}
 
 var rotationY;
 function render() {   
@@ -573,7 +573,6 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            //$('#tablecontainer').toggle();
             initScene();
             render();
             try {
@@ -600,9 +599,7 @@ var createToken = function(roomId, userName, role, callback) {
     };
 
     req.open('POST', url, true);
-
     req.setRequestHeader('Content-Type', 'application/json');
-    //console.log("Sending to " + url + " - " + JSON.stringify(body));
     req.send(JSON.stringify(body));
 };
 
