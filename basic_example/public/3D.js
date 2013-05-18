@@ -1,5 +1,6 @@
-var room, localStream, serverUrl;
-var tableId = "513dcfda07aa2f143700001c";
+var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
+var audioElement;
+//var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
@@ -132,6 +133,19 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
+//Plays the knocking sound
+function knockSound() {
+    audioElement.play();
+}
+
+function toggleButton(element) {
+   if(element.css('display') === 'none') {
+       element.css('display','inline-block') 
+   } else {
+       element.css('display','none');
+   }
+}
+
 function redrawNapkin() {
     var c = $('#canvasNapkin')[0];
     var imgData = c.toDataURL();
@@ -211,6 +225,23 @@ function pause() {
     }
 }
 
+//Notifys users of newly joined user by writing in chat
+function hasJoinedTheRoom(username) {
+    var message = username + " sat down at the table.";
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+}
+
+//Clears feedback text fields
+function clearFeedback() {
+    $('#feedbackSubject').val("");
+    $('#feedbackMail').val("");
+    $('#feedbackMessage').val("");
+}
+
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
         event.preventDefault();
@@ -250,8 +281,6 @@ function initVideo(stream,pos) {
     } else {
         vid = stream.player.video;
     }
-    //document.getElementById('streamundefined');
-
     
     vid.style.width = '320px';
     vid.style.height = '240px';

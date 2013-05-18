@@ -9,6 +9,7 @@ var knocker = 0;
 var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var currentTable;
+
 //Plays the knocking sound
 function knockSound() {
     audioElement.play();

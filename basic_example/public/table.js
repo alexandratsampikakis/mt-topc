@@ -1,5 +1,5 @@
 var room, cafe, localStream, serverUrl;
-var tableId = "513dcfda07aa2f143700001c";
+//var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 
@@ -338,9 +338,8 @@ function resetConnection() {
 }
 
 var rotationY;
-function render() {   
+function render() {
     requestAnimationFrame(render);
-
     updateVideos();
 
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
@@ -374,8 +373,6 @@ function render() {
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
     renderer.render( scene, camera );
-
-
 }
 
 var StreamObject = function(video, texture, context){
