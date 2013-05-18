@@ -101,6 +101,18 @@ function removeRoomFromKnocklist(roomId) {
         delete knockListNo[roomId];
     }
 }
+//Plays the knocking sound
+function knockSound() {
+    audioElement.play();
+}
+
+function toggleButton(element) {
+   if(element.css('display') === 'none') {
+       element.css('display','inline-block') 
+   } else {
+       element.css('display','none');
+   }
+}
 
 //Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
@@ -114,9 +126,61 @@ var getCafeTables = function(cafe, callback) {
     };
 
     req.open('GET', url, true);
-
     req.send();
 };
+
+//Calculates leader. Highest stream ID wins. Only counts 'media' streams.
+//Leader is used for sending snapshots to server
+function calculateLeader() {
+    var keys = [];
+    var highest = parseInt(localStream.getID());
+    for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
+        var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
+        if (streamID > highest) highest=streamID;
+    }
+    console.log(highest);
+    return highest;
+}
+
+function setLeader(id) {
+    leader = id;
+}
+
+function getLeader() {
+    return leader;
+}
+
+//Tells the room who the leader is.
+function broadcastLeader() {
+    dataStream.sendData({id:'leader',leader:leader});
+    console.log('broadcasting leader');
+}
+
+//Clears textfields
+function clearTextFields() {
+    $('#chatArea').val("");
+    $('#chatMessage').val("");
+    $('#VideoUrl').val("");
+}
+
+//Retrieves the query strings
+var getQueryString = function getQueryString(key, default_) {
+    if (default_==null) default_="";
+    key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+    var qs = regex.exec(window.location.href);
+    if(qs == null)
+        return default_;
+    else
+        return qs[1];
+}
+
+//Update titles
+var updateTitle = function(title) {
+    $('#cafeTitle').html(title);
+    $('#cafeTableTitle').html(title);
+    $('#cafeVideoTitle').html(title);
+} 
 
 var initScene = function() { 
 
@@ -158,9 +222,6 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
-/*function onDocumentMouseMove( event ) {
-    
-}*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
     clickTime = new Date().getTime();
@@ -227,7 +288,6 @@ function onDocumentMouseUp( event ) {
 }
 
 function onDocumentMouseOut( event ) {
-
     document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
     document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
@@ -257,7 +317,25 @@ function resetOverhearing() {
     isOverhearing = null;
     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
 }
-   
+
+//Clears feedback text fields
+function clearFeedback() {
+    $('#feedbackSubject').val("");
+    $('#feedbackMail').val("");
+    $('#feedbackMessage').val("");
+}
+
+//Close all streams, disconnect room, reset streams, clear text fields
+function resetConnection() {
+    localStream.close();
+    dataStream.close();
+    overhearStream.close();
+    room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+    clearTextFields();
+}
 
 var rotationY;
 function render() {   
