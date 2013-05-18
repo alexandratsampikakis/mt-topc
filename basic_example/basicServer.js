@@ -292,7 +292,7 @@ app.get('/cafeView.html', function(req, res){
   res.send('cafe: ' + req.query.cafe);
 });
 
-app.get('/3d2.html', function(req, res){
+app.get('/table.html', function(req, res){
   res.send('cafe: ' + req.query.cafe);
 });
 
