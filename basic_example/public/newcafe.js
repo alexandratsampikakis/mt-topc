@@ -590,19 +590,18 @@ window.onload = function () {
                                 }
                                 
                                 hasImage = true;
-
                             }
                             console.log(imgID);
                         }
-
                         if(!hasImage) initOversee("/img/emptyTable.gif", '#ddMenu');
-
+                        }
                     }
-                }
-            });    
-        }
-    });
+                });    
+            }
+        });
     }
+
+    
     var h = parseInt($("#menuContainer").css('height')); //height mentioned in css- feel free to change
     var open = false;
     $("#menuContainer").resizable({ 

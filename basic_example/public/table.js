@@ -687,104 +687,15 @@ function updateVideos() {
 
 
 window.onload = function () {
-    //nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
+
     overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
-
-    //focus "enternametextfield"
-    $("#userName").focus();
-
-    $('#chatArea').css({
-        position:'absolute', 
-        top: $(window).height() - $('#chatArea').height()*2-56,
-        left:'30%'
-    });
-    $('#chatMessage').css({
-        position:'absolute', 
-        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'30%'
-    });
-    $('#sendMessage').css({
-        position:'absolute', 
-        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'63%'
-    });
-    $(window).resize(function() {
-        $('#chatArea').css({
-            position:'absolute', 
-            top: $(window).height() - $('#chatArea').height()*2-56,
-            left:'30%'
-        });
-        $('#chatMessage').css({
-            position:'absolute', 
-            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'30%'
-        });
-        $('#sendMessage').css({
-            position:'absolute', 
-            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'63%'
-        });
-    });
-    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-    $('#chatArea').width('40%');
-    $('#chatMessage').width('32.5%');
-    $('#sendMessage').width('7%');
-
-    $('#getVideoUrl').click(function() {
-        if($('#VideoUrl').val() !== "") {
-            urlVideo = $('#VideoUrl').val();
-            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
-            showVideo(urlVideo);
-        }
-        return false;
-    });
-    $('#closeVideo').click(function() {
-        $('#closeVideo').toggle();
-        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
-        return false;
-    });
-    $('#napkinTab').click(function() {
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
-    $('#videoTab').click(function() {
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
     var doit;
-
     $(window).resize(function() {
         clearTimeout(doit);
         doit = setTimeout(function() {
@@ -792,15 +703,11 @@ window.onload = function () {
         }, 100);
     });
 
-    try {
-      localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
-    } catch (error) {
-        console.log('erizo error: ' + error);
-    }
+    //focus "enternametextfield"
+    $("#userName").focus();    
 
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
-        //var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
         } else {
@@ -817,11 +724,11 @@ window.onload = function () {
                 var hasImage = false;
                 var imgId;
                 var imgData
-                if(!res.hasOwnProperty('empty')){
-                    for(var i=1;i<=6;i++){
+                if(!res.hasOwnProperty('empty')) {
+                    for(var i=1;i<=6;i++) {
                         hasImage = false;
                         imgID = '#table'+i+'img';
-                        for(var j=0;j<res.records.length;j++){
+                        for(var j=0;j<res.records.length;j++) {
                             if(res.records[j].roomID == tableId[i]) {
                                 console.log('i: ' + i + ', j: ' + j);
                                 imgData = res.records[j].imageData;
@@ -842,6 +749,11 @@ window.onload = function () {
         }
     });
 
+    //Initializes the audio element used for playing the knocking sound
+    audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '/media/knock.mp3');
+    audioElement.load();
+
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -856,11 +768,6 @@ window.onload = function () {
             $('#VideoUrl').val("");
         }
     }
-
-    //Initializes the audio element used for playing the knocking sound
-    audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', '/media/knock.mp3');
-    audioElement.load();
 
     $('#submitUsername').click(function() {
         enterName();
@@ -883,7 +790,125 @@ window.onload = function () {
         }
     };
 
+    var createToken = function(roomId, userName, role, callback) {
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'createToken/' + roomId;
+        var body = {username: userName, role: role};
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('POST', url, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.send(JSON.stringify(body));
+    };
+
     var initialize = function(roomId) {
+        currentTable = roomId;
+        $('#chatArea').css({
+            position:'absolute', 
+            top: $(window).height() - $('#chatArea').height()*2-56,
+            left:'30%'
+        });
+        $('#chatMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'30%'
+        });
+        $('#sendMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'63%'
+        });
+        $(window).resize(function() {
+            $('#chatArea').css({
+                position:'absolute', 
+                top: $(window).height() - $('#chatArea').height()*2-56,
+                left:'30%'
+            });
+            $('#chatMessage').css({
+                position:'absolute', 
+                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+                left:'30%'
+            });
+            $('#sendMessage').css({
+                position:'absolute', 
+                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+                left:'63%'
+            });
+        });
+        $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+        $('#chatArea').width('40%');
+        $('#chatMessage').width('32.5%');
+        $('#sendMessage').width('7%');
+
+        $('#getVideoUrl').click(function() {
+            if($('#VideoUrl').val() !== "") {
+                urlVideo = $('#VideoUrl').val();
+                dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+                showVideo(urlVideo);
+            }
+            return false;
+        });
+        $('#closeVideo').click(function() {
+            $('#closeVideo').toggle();
+            $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+            return false;
+        });
+        $('#napkinTab').click(function() {
+            $('#napkinTab').css({
+                position: 'absolute',
+                marginLeft: '31%',
+                marginTop: '5%',
+                width: '40%',
+                zIndex: '1'
+            });
+            $('#videoTab').css({
+                position: 'absolute',
+                marginLeft: '30%',
+                marginTop: '2%',
+                width: '40%',
+                zIndex: '0'
+            });
+            return false;
+        });
+        $('#videoTab').click(function() {
+            $('#videoTab').css({
+                position: 'absolute',
+                marginLeft: '31%',
+                marginTop: '5%',
+                width: '40%',
+                zIndex: '1'
+            });
+            $('#napkinTab').css({
+                position: 'absolute',
+                marginLeft: '30%',
+                marginTop: '2%',
+                width: '40%',
+                zIndex: '0'
+            });
+            return false;
+        });
+
+        var context = document.getElementById("canvasNapkin").getContext('2d');
+        redrawNapkin();
+        var doit;
+
+        $(window).resize(function() {
+            clearTimeout(doit);
+            doit = setTimeout(function() {
+                redrawNapkin();
+            }, 100);
+        });
+
+        try {
+          localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
+        } catch (error) {
+            console.log('erizo error: ' + error);
+        }
         
         createToken(roomId, "user", "role", function (response) {
             var token = response;
@@ -970,31 +995,13 @@ window.onload = function () {
                         $('#'+stream.elementID).remove();
                     }
                 });
-
-                room.connect();
                 localStream.show("vid1");
             });
             localStream.init();
         });
     }
-    initialize(tableId);
+    //initialize(tableId);
 }
-
-var createToken = function(roomId, userName, role, callback) {
-    var req = new XMLHttpRequest();
-    var url = serverUrl + 'createToken/' + roomId;
-    var body = {username: userName, role: role};
-
-    req.onreadystatechange = function () {
-        if (req.readyState === 4) {
-            callback(req.responseText);
-        }
-    };
-
-    req.open('POST', url, true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.send(JSON.stringify(body));
-};
 
 
 
