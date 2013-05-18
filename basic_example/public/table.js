@@ -102,6 +102,22 @@ function removeRoomFromKnocklist(roomId) {
     }
 }
 
+//Retrieves cafe tables
+var getCafeTables = function(cafe, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'api/getcafe/' + cafe;
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('GET', url, true);
+
+    req.send();
+};
+
 var initScene = function() { 
 
     // SKYBOX/FOG
