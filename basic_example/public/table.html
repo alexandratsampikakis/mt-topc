@@ -1,14 +1,17 @@
 <html>
 <head>
-    <title>Café</title>
+    <title>iDipity</title>
 
     <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/cafeView.css" />
+    <link rel="stylesheet" type="text/css" href="css/napkin.css" />
     <script type="text/javascript" src="erizo.js"></script>
     
     <script type="text/javascript" src="feedback.js"></script>
+    <script type="text/javascript" src="napkin.js"></script>
+
     <script src="/lib/three.js/mrdoob-three.js-28136e7/build/three.js"></script>
     <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/loaders/ColladaLoader.js"></script>
     <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/controls/TrackballControls.js"></script>
@@ -68,6 +71,79 @@
       </div>
   </div>
 
+  <div id="videoTab" class="tabbable" style="margin-left: 30%; margin-top: 2%; width: 40%;">
+      <ul class="nav nav-tabs myShadow" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
+          <li class="active"><a href="#shareYTVideo" data-toggle="tab" style="border: 1px solid #ddd; color: #555555; background-color: #ffffff; border-bottom-color: white; ">Share video</a></li>
+          <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
+      </ul>
+
+      <div class="tab-content tableBox myShadow" style="height: 500 px; border: 1px solid #ddd; margin-left: -0.5px;">
+          <div class="tab-pane active" id="shareYTVideo">
+              <center>
+                  <div id="writeUrl" style="margin-top: 10px;">
+                      <form class="form-inline">
+                          <input type="text" id="VideoUrl" class="input-xlarge">
+                          <button type="submit" id="getVideoUrl" class="btn btn-mini">Show video</button>
+                          <button id="closeVideo" class="btn btn-mini hide" style="float: right; margin-right: 10px;">Close video</button>
+                      </form>
+                  </div>
+                  <p><div id="youtubeVideo" class="embed-container hide">
+                  <a href="javascript:void(0);" onclick="play();">Play</a>
+                  </div></p>
+              </center>
+          </div>
+      </div>
+  </div>
+
+  <div id="napkinTab" class="tabbable" style="margin-left: 31%; margin-top: 5%; width: 40%;">
+      <ul class="nav nav-tabs myShadow" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
+          <li class="active"><a href="#napkin" data-toggle="tab" style="border: 1px solid #ddd; color: #555555; background-color: #ffffff; border-bottom-color: white; ">Napkin</a></li>
+          <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
+      </ul>
+
+      <div class="tab-content tableBox myShadow" style="padding-bottom: 10px; border: 1px solid #ddd; margin-left: -0.5px;">
+          <div class="tab-pane active" id="napkin">
+            <center><div id="controls" style="padding-top: 10px;">
+              <select id="thickness" class="selectpicker" data-width="80px" title='Size' data-style="btn btn-mini" style="width: 15%;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+
+          <select id="color" class="selectpicker" data-width="80px" title='Color' data-style="btn btn-mini" style="width: 15%;">
+            <option value="#FFFFFF">Grey</option>
+            <option value="#000000">Black</option>
+            <option value="#61b7e2">Blue</option>
+            <option value="#e261b7">Pink</option>
+            <option value="#ffff4d">Yellow</option>
+            <option value="#b7e261">Green</option>
+            <option value="#a5682a">Brown</option>
+            <option value="#ff0000">Red</option>
+          </select>
+
+          <button id="saveNapkin" style="margin-top: -10px" class="btn btn-mini">Save napkin</button>
+          <button id="clearNapkin" style="margin-top: -10px" class="btn btn-mini">Clear napkin</button>
+      </div></center>
+
+      <center><canvas id="canvasNapkin" onselectstart="return false;"></canvas></center>
+      <img id="myNapkinImg">
+          </div>
+
+      </div>
+  </div>
+
+  <div class="hide">
+      <textarea rows="6" id="chatArea" style="font-size:9pt;"></textarea>
+      <form class="form-inline" style="margin:0px;">
+          <input type="text" id="chatMessage" class="input-xlarge">
+          <button type="submit" id="sendMessage" class="btn btn-small">Send</button>
+      </form>
+  </div>
+
   <div id="feedbackModal" class="modal hide fade in" style="display: none; ">
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>
@@ -117,6 +193,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.WindowResize.js"></script>
   <script type="text/javascript" src="table.js"></script>
+  <script type="text/javascript" src="/tab.js"></script>
+  <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tab.js"></script>
+  <script type="text/javascript" src="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.js"></script>
+  <script type="text/javascript" src="/lib/FileSaver.js-master/FileSaver.min.js"></script>
+  <script type="text/javascript" src="/lib/canvas-toBlob.js-master/canvas-toBlob.js"></script>
 
 </body>
 </html>

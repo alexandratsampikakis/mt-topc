@@ -180,7 +180,50 @@ var updateTitle = function(title) {
     $('#cafeVideoTitle').html(title);
 } 
 
-var initScene = function() { 
+function redrawNapkin() {
+    var c = $('#canvasNapkin')[0];
+    var imgData = c.toDataURL();
+    var ctx = c.getContext("2d");
+    var myImage = new Image();
+    myImage.onload = function() {
+        ctx.drawImage(myImage, 0, 0,c.width,c.height);
+    };
+
+    $('.tabbable').css({
+        position:'absolute'
+    });
+
+    myImage.src = imgData;
+    c.height = $(window).height() - 550; //415;
+    c.width = 1.5*c.height;
+}
+
+function drawPath(color, thickness, path, width, height) {
+    var widthRatio = $('#canvasNapkin')[0].width/width;
+    var heightRatio = $('#canvasNapkin')[0].height/height;
+    for (var i = 0; i < path.length; i+=2) {
+        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
+    };
+}
+
+function drawLine (color, thickness, x1, y1, x2, y2) {
+    context.strokeStyle = color;
+    context.lineWidth   = thickness;
+
+    context.beginPath();
+    context.moveTo(x1, y1)
+    context.lineTo(x2, y2);
+    context.stroke();
+}
+
+function sendNapkinToNewUser() {
+    var c = document.getElementById("canvasNapkin");
+    var ctx = c.getContext("2d");
+    var napkinImgData = c.toDataURL();
+    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
+var initSceneTables = function() { 
 
     // SKYBOX/FOG
     var materialArray = [];
@@ -212,6 +255,34 @@ var initScene = function() {
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
    
+};
+
+var initSceneInTable = function() {
+    // CAMERAS
+    // camera 2
+    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    scene.add(textureCamera);
+    
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
+
+    projector = new THREE.Projector();
+    raycaster = new THREE.Raycaster();
+
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    window.addEventListener( 'resize', onWindowResize, false );
 };
 
 function onWindowResize() {
@@ -336,7 +407,7 @@ function resetConnection() {
 }
 
 var rotationY;
-function render() {
+function renderTables() {
     requestAnimationFrame(render);
     updateVideos();
 
@@ -370,6 +441,33 @@ function render() {
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
+    renderer.renderTables( scene, camera );
+}
+
+var rotationYInTable;
+function renderInTable() {   
+    requestAnimationFrame(render);
+    updateVideos();
+
+    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+    projector.unprojectVector( vector, camera );
+    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    var intersects = raycaster.intersectObjects( scene.children );
+    if ( intersects.length > 1 ) {
+        if ( INTERSECTED != intersects[ 0 ].object ) {
+            if(INTERSECTED)INTERSECTED.rotation.y = rotationYInTable;
+            //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+            INTERSECTED = intersects[ 0 ].object;
+            /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+            INTERSECTED.material.emissive.setHex( 0xff0000 );*/
+            rotationYInTable = INTERSECTED.rotation.y;
+            INTERSECTED.rotation.y = 0;
+        }
+    } else {
+        //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        if(INTERSECTED)INTERSECTED.rotation.y = rotationYInTable;
+        INTERSECTED = null;
+    }
     renderer.render( scene, camera );
 }
 
@@ -378,16 +476,6 @@ var StreamObject = function(video, texture, context){
     this.videoTexture = texture;
     this.context = context;
     return this;
-};
-StreamObject.prototype.getVideo = function() {
-    return this.video;
-};
-StreamObject.prototype.getTexture = function() {
-    return this.videoTexture;
-};
-
-StreamObject.prototype.getContext = function() {
-    return this.context;
 };
 
 var getCafeTables = function(cafe, callback) {
@@ -473,7 +561,7 @@ function loadImage(imageData, elementID, pos) {
     myImage.className = 'centerImage';
 }
 
-function initVideo(stream,pos) {
+function initVideoTables(stream,pos) {
     var x = oSeePosition[pos][0];
     var y = oSeePosition[pos][1];
     var z = oSeePosition[pos][2];
@@ -499,6 +587,104 @@ function initVideo(stream,pos) {
     streams.push(newStream);
 }
 
+function onDocumentMouseMove( event ) {
+    if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
+        event.preventDefault();
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+        //console.log(mouse.x +", "+mouse.y);
+    }
+}
+
+var StreamObject = function(video, texture, context){
+    this.video = video;
+    this.videoTexture = texture;
+    this.context = context;
+    return this;
+};
+StreamObject.prototype.getVideo = function() {
+    return this.video;
+};
+StreamObject.prototype.getTexture = function() {
+    return this.videoTexture;
+};
+
+StreamObject.prototype.getContext = function() {
+    return this.context;
+};
+
+var reflection;
+var movieGeometry;
+function initVideoInTable(stream,pos) {
+    var x = position[pos][0];
+    var y = position[pos][1];
+    var z = position[pos][2];
+    var rot = position[pos][3];
+    var vid, canvas;
+    if(stream.getID() === localStream.getID()) {
+        vid = localStream.player.video;
+    } else {
+        vid = stream.player.video;
+    }
+    
+    vid.style.width = '320px';
+    vid.style.height = '240px';
+    vid.autoplay = true;
+    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
+    var videoImageContext = canvas.getContext('2d');
+
+    videoTexture = new THREE.Texture( canvas );
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    //var x = room.getStreamsByAttribute('type','media').length;
+    var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    movieGeometry = new THREE.PlaneGeometry(  4, 4);
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(x,y,z);
+    movieScreen.rotation.y += rot;
+    scene.add(movieScreen);
+    var newStream = new StreamObject(vid, videoTexture, videoImageContext);
+    streams.push(newStream);
+    if(pos === 5) {
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
+        // the geometry on which the movie will be displayed;
+        //      movie image will be scaled to fit these dimensions.
+        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+        reflection.position.set(-8.69,-6,0.71);
+        reflection.rotation.set(1.4,0,-0.96);
+        scene.add(reflection);
+    }
+    if(pos === 6) {
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
+        // the geometry on which the movie will be displayed;
+        //      movie image will be scaled to fit these dimensions.
+        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+        reflection.position.set(8.69,-6,0.71);
+        reflection.rotation.set(1.4,0,0.96);
+        scene.add(reflection);
+    }
+}
+
+function updateVideos() {
+    var vid;
+    var videoImageContext;
+    var videoTexture; 
+
+    for (var i = 0; i < streams.length; i++) {
+        vid = streams[i].getVideo();
+        videoImageContext = streams[i].getContext();
+        videoTexture = streams[i].getTexture();
+        if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) {
+            videoImageContext.drawImage( vid, 0, 0, 320, 240 );
+               if ( videoTexture ) videoTexture.needsUpdate = true;
+        }
+    };
+}
+
 
 window.onload = function () {
     //nameOfUser = 'hejja';
@@ -509,6 +695,108 @@ window.onload = function () {
 
     //focus "enternametextfield"
     $("#userName").focus();
+
+    $('#chatArea').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'30%'
+    });
+    $('#chatMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'30%'
+    });
+    $('#sendMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'63%'
+    });
+    $(window).resize(function() {
+        $('#chatArea').css({
+            position:'absolute', 
+            top: $(window).height() - $('#chatArea').height()*2-56,
+            left:'30%'
+        });
+        $('#chatMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'30%'
+        });
+        $('#sendMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'63%'
+        });
+    });
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+    $('#chatArea').width('40%');
+    $('#chatMessage').width('32.5%');
+    $('#sendMessage').width('7%');
+
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#closeVideo').toggle();
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+        return false;
+    });
+    $('#napkinTab').click(function() {
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+    $('#videoTab').click(function() {
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+
+    var context = document.getElementById("canvasNapkin").getContext('2d');
+    redrawNapkin();
+    var doit;
+
+    $(window).resize(function() {
+        clearTimeout(doit);
+        doit = setTimeout(function() {
+            redrawNapkin();
+        }, 100);
+    });
+
+    try {
+      localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
+    } catch (error) {
+        console.log('erizo error: ' + error);
+    }
 
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
@@ -554,6 +842,21 @@ window.onload = function () {
         }
     });
 
+    var showVideo = function(urlVideo) {
+        var videoID = urlVideo.split('=')[1];
+        if(videoID !== undefined) {
+            var params = { allowScriptAccess: "always" };
+            var atts = { id: "myytplayer" };
+            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+                           "youtubeVideo", "80%", "400", "8", null, null, params, atts);
+
+            $('#myytplayer').css ({visibility:'visible'});
+            $('#writeUrl').show();
+            $('#closeVideo').show();
+            $('#VideoUrl').val("");
+        }
+    }
+
     //Initializes the audio element used for playing the knocking sound
     audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '/media/knock.mp3');
@@ -568,8 +871,8 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            initScene();
-            render();
+            initSceneTables();
+            renderTables();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
                 localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
@@ -580,6 +883,101 @@ window.onload = function () {
         }
     };
 
+    var initialize = function(roomId) {
+        
+        createToken(roomId, "user", "role", function (response) {
+            var token = response;
+            console.log('token created ', token);
+            L.Logger.setLogLevel(L.Logger.DEBUG);
+            //L.Logger.debug("Connected!");
+            room = Erizo.Room({token: token});
+
+            localStream.addEventListener("access-accepted", function () {
+                
+                var subscribeToStreams = function (streams) {
+                    console.log("subscribe to streams");
+                    if (!localStream.showing) {
+                        localStream.show();
+                        console.log("LocalStream showing");
+                    }
+                    var index, stream;
+                    for (index in streams) {
+                        if (streams.hasOwnProperty(index)) {
+                            stream = streams[index];
+                            if (localStream !== undefined && localStream.getID() !== stream.getID()) {
+                                room.subscribe(stream);
+                            } else {
+                                console.log("My own stream");
+                            }
+                        }
+                    }
+                };
+
+                room.addEventListener("room-connected", function (roomEvent) {
+                    // Publish my stream
+                    room.publish(localStream);
+
+                    // Subscribe to other streams
+                    subscribeToStreams(roomEvent.streams);
+                    console.log("streams: " + roomEvent.streams.length);
+                });
+
+                room.addEventListener("stream-subscribed", function(streamEvent) {
+                    console.log("stream stream-subscribed");
+                    var stream = streamEvent.stream;
+                    
+                    for (var i = 2; i <= 6; i++) {
+                        if ($('#vid'+i).children().length === 0) {
+                            $('<div></div>', {
+                                id: 'test'+stream.getID()
+                            }).css('width','100%').appendTo('#vid'+i);
+                            stream.show("test" + stream.getID());
+                            console.log("InitVideo stream-subscribed");
+                            initVideoInTable(stream,i);                            
+                            return;
+                        }
+                    }
+                    console.log("There is no seat available at this table!");
+                });
+
+                room.addEventListener("stream-added", function (streamEvent) {
+                    // Subscribe to added streams
+                    var streams = [];
+                    streams.push(streamEvent.stream);
+                    subscribeToStreams(streams);
+
+                    //If table is empty, become the leader
+                    var currStreams = room.getStreamsByAttribute('type','media');
+                    console.log('InitVideo stream-added');
+                    if(streamEvent.stream.getID() === localStream.getID()) {
+                        initVideoInTable(streamEvent.stream,1);
+                    }
+                });
+
+                room.addEventListener("stream-removed", function (streamEvent) {
+                    // Remove stream from DOM
+                    var stream = streamEvent.stream;
+                    if (stream.elementID !== undefined) {
+                        console.log('stream: ' + stream.getID());
+                        console.log(stream.getID() === leader);
+                        console.log('leader: ' + leader);
+                        if(stream.getID() === leader) {
+                            console.log('kommer jag hit?');
+                            leader = getLeader();
+                            console.log(getLeader());
+                        }
+                        console.log("Removing " + stream.elementID);
+                        $('#'+stream.elementID).remove();
+                    }
+                });
+
+                room.connect();
+                localStream.show("vid1");
+            });
+            localStream.init();
+        });
+    }
+    initialize(tableId);
 }
 
 var createToken = function(roomId, userName, role, callback) {
@@ -597,6 +995,13 @@ var createToken = function(roomId, userName, role, callback) {
     req.setRequestHeader('Content-Type', 'application/json');
     req.send(JSON.stringify(body));
 };
+
+
+
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 var knock = function(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
@@ -733,14 +1138,18 @@ var knock = function(roomId) {
                         });
                     }
                 });
-
-                room.connect();       
-
+                room.connect();
             });
             dataStream.init();
         });
     }   
 }
+
+
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 var overhear = function(roomId) {
     overhearGroup = new THREE.Object3D();
@@ -791,7 +1200,7 @@ var overhear = function(roomId) {
                                 id: 'test'+stream.getID()
                             }).css('width','100%').appendTo('#overhear'+i);
                             stream.show("test" + stream.getID());
-                            initVideo(stream,i); 
+                            initVideoTables(stream,i); 
                             return;
                         }
                     }
@@ -806,9 +1215,7 @@ var overhear = function(roomId) {
                     $('#'+stream.elementID).remove();
                 }
             });
-
-            room.connect();       
-
+            room.connect();
         });
         overhearStream.init();
     });  

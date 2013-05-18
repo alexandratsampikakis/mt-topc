@@ -388,6 +388,7 @@ function render() {
     var cameraLookOffset = relativeCameraLookOffset.applyMatrix4( MovingCube.matrixWorld );
     textureCamera.lookAt( cameraLookOffset );*/
 }
+
 window.onload = function () {
     initScene();
     render();
