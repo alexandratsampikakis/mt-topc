@@ -413,17 +413,12 @@ window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
     cafe = getQueryString('cafe');
 
-    overhearImg.src = "/img/clicktooverhear.png";
-    loadPlaceholder();
-    initScene();
-    render();
-
     //focus "enternametextfield"
     $("#userName").focus();
 
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
-        var tc = document.getElementById("tablecontainer");
+        //var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
         } else {
@@ -497,9 +492,11 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            $('#tablecontainer').toggle();
-            $('#markis').toggle();
-
+            //$('#tablecontainer').toggle();
+            overhearImg.src = "/img/clicktooverhear.png";
+            loadPlaceholder();
+            initScene();
+            render();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
                 localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});

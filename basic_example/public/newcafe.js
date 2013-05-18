@@ -380,7 +380,7 @@ window.onload = function () {
             redrawNapkin();
         }, 100);
     });
-    
+
     //focus "enternametextfield"
     $("#userName").focus();
 
@@ -798,7 +798,6 @@ window.onload = function () {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
             $('#tablecontainer').toggle();
-            $('#markis').toggle();
 
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
