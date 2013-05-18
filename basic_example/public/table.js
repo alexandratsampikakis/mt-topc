@@ -370,6 +370,9 @@ function render() {
             resetOverhearing();
         }
     }
+    camera.aspect = window.innerWidth / (window.innerHeight-82);
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight-82 );
     renderer.render( scene, camera );
 
 
