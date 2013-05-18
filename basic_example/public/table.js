@@ -1,7 +1,5 @@
 var room, cafe, localStream, serverUrl;
-//var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
-var streams = [];
 
 //knock
 var localStream, dataStream, nameOfUser, leader;
@@ -18,7 +16,7 @@ var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
 var overhearStream;
 var streams = [];
-//
+
 var chairImg = new Image();
 var emptyImg = new Image();
 var overhearImg = new Image();
