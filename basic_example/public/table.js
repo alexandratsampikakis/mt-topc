@@ -859,6 +859,22 @@ var deniedNotification = function(whatCase) {
     }
 }
 
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+};
+
 var initialize = function(roomId) {
     currentTable = roomId;
     initSceneInTable();
@@ -904,7 +920,7 @@ var initialize = function(roomId) {
     $('#chatArea').width('40%');
     $('#chatMessage').width('32.5%');
     $('#sendMessage').width('7%');
-    
+
     $('#napkinTab').click(function() {
         $('#napkinTab').css({
             position: 'absolute',
@@ -1029,23 +1045,6 @@ var initialize = function(roomId) {
     });
     localStream.init();
 }
-
-var createToken = function(roomId, userName, role, callback) {
-    var req = new XMLHttpRequest();
-    var url = serverUrl + 'createToken/' + roomId;
-    var body = {username: userName, role: role};
-
-    req.onreadystatechange = function () {
-        if (req.readyState === 4) {
-            callback(req.responseText);
-        }
-    };
-
-    req.open('POST', url, true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.send(JSON.stringify(body));
-};
-
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
@@ -1193,7 +1192,6 @@ var knock = function(roomId) {
         });
     }   
 }
-
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
