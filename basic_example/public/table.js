@@ -2,7 +2,7 @@ var room, cafe, localStream, serverUrl;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 //knock
-var dataStream, nameOfUser, leader;
+var dataStream, nameOfUser, leader, currentTable;
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
@@ -223,6 +223,25 @@ function sendNapkinToNewUser() {
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
 
+//Appends chat message to chatArea
+function appendChatMessage(username, message) {
+    var message = username + ": " + message;
+    var scrollbot = false;
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+}
+
+//Sends the chat message to other users
+function sendChatMessage(message) {
+    dataStream.sendData({id:'chat',text:message, user:nameOfUser});
+    $('#chatMessage').val("");
+    appendChatMessage(nameOfUser, message);
+    $("#myTextBox").focus();
+}
+
 var initSceneTables = function() { 
 
     // SKYBOX/FOG
@@ -351,7 +370,6 @@ function onDocumentMouseUp( event ) {
             resetOverhearing();
             isOverhearing = null;
         }
-
     }
     objectToRotate = null; 
 }
@@ -415,6 +433,7 @@ function render() {
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
+
     if(currentState === "TABLEVIEW") {
         console.log("nu är vi i TABLEVIEW");
         if ( intersects.length > 1 ) {
@@ -432,13 +451,13 @@ function render() {
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
-    }
-    if(currentState === "CAFEVIEW" && objectToRotate != null) {
+    } else if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
     }
+
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
@@ -451,6 +470,16 @@ var StreamObject = function(video, texture, context){
     this.videoTexture = texture;
     this.context = context;
     return this;
+};
+
+StreamObject.prototype.getVideo = function() {
+    return this.video;
+};
+StreamObject.prototype.getTexture = function() {
+    return this.videoTexture;
+};
+StreamObject.prototype.getContext = function() {
+    return this.context;
 };
 
 var getCafeTables = function(cafe, callback) {
@@ -577,16 +606,6 @@ var StreamObject = function(video, texture, context){
     this.context = context;
     return this;
 };
-StreamObject.prototype.getVideo = function() {
-    return this.video;
-};
-StreamObject.prototype.getTexture = function() {
-    return this.videoTexture;
-};
-
-StreamObject.prototype.getContext = function() {
-    return this.context;
-};
 
 var reflection;
 var movieGeometry;
@@ -679,7 +698,7 @@ window.onload = function () {
     });
 
     //focus "enternametextfield"
-    $("#userName").focus();    
+    $("#userName").focus();
 
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
@@ -729,6 +748,102 @@ window.onload = function () {
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
 
+    //Send chat message
+    $('#sendMessage').click(function() {
+        if($('#chatMessage').val() !== "") {
+            sendChatMessage($('#chatMessage').val());
+        }
+        return false;
+    });
+    $('#submitUsername').click(function() {
+        enterName();
+        return false;
+    });
+    $('#askToJoinTable').click(function() {
+        dataStream.sendData({id:'popup', user:nameOfUser});
+        return false;
+    });
+    $('#leaveTableButton').click(function() {
+        resetConnection();
+        $('#enterName').show();
+        $('#videoTab').hide();
+        $('#napkinTab').hide();
+        currentState = "TABLEVIEW";
+        return false;
+    });
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#closeVideo').toggle();
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+        return false;
+    });
+    //Sends message details to server which in turn sends an email to iDipity google group
+    $('#sendFeedback').click(function() {
+        if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
+        sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
+            console.log(response);
+            clearFeedback();
+            $('#feedbackModal').modal('hide')
+        });
+    });
+    $('#closeFeedback').click(function() {
+        clearFeedback();
+    });
+    $('#clearNapkin').click(function() {
+        dataStream.sendData({id:'clearNapkin'});
+        var c = document.getElementById("canvasNapkin");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0,0,c.width,c.height);
+    });
+    $('#saveNapkin').click(function() {
+        var c = document.getElementById("canvasNapkin");
+        ctx = c.getContext("2d");
+        c.toBlob(function(blob) {
+            saveAs(blob, "myNapkin.png");
+        });
+    });
+    $('#napkinTab').click(function() {
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+    $('#videoTab').click(function() {
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -743,11 +858,6 @@ window.onload = function () {
             $('#VideoUrl').val("");
         }
     }
-
-    $('#submitUsername').click(function() {
-        enterName();
-        return false;
-    });
 
     var enterName = function() {
         if($('#userName').val() !== "") {
@@ -764,25 +874,50 @@ window.onload = function () {
             }
         }
     };
+}
 
-    var createToken = function(roomId, userName, role, callback) {
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/' + roomId;
-        var body = {username: userName, role: role};
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('POST', url, true);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify(body));
+var askToJoinTablePopup = function(nameOfUser) {
+        knockSound();
+        $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
-    var initialize = function(roomId) {
-        currentTable = roomId;
+    var deniedNotification = function(whatCase) {
+        switch (whatCase) {
+            case 1:
+                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
+                break;
+            case 2:
+                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
+                break;
+           default:
+        }
+    }
+
+var initialize = function(roomId) {
+    currentTable = roomId;
+    initSceneInTable();
+    //render();
+
+    $('#leaveTableButton').show();
+    $('#videoTab').show();
+    $('#napkinTab').show();
+
+    $('#chatArea').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'30%'
+    });
+    $('#chatMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'30%'
+    });
+    $('#sendMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'63%'
+    });
+    $(window).resize(function() {
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
@@ -798,186 +933,117 @@ window.onload = function () {
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
             left:'63%'
         });
-        $(window).resize(function() {
-            $('#chatArea').css({
-                position:'absolute', 
-                top: $(window).height() - $('#chatArea').height()*2-56,
-                left:'30%'
-            });
-            $('#chatMessage').css({
-                position:'absolute', 
-                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-                left:'30%'
-            });
-            $('#sendMessage').css({
-                position:'absolute', 
-                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-                left:'63%'
-            });
-        });
-        $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-        $('#chatArea').width('40%');
-        $('#chatMessage').width('32.5%');
-        $('#sendMessage').width('7%');
+    });
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+    $('#chatArea').width('40%');
+    $('#chatMessage').width('32.5%');
+    $('#sendMessage').width('7%');
 
-        $('#getVideoUrl').click(function() {
-            if($('#VideoUrl').val() !== "") {
-                urlVideo = $('#VideoUrl').val();
-                dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
-                showVideo(urlVideo);
-            }
-            return false;
-        });
-        $('#closeVideo').click(function() {
-            $('#closeVideo').toggle();
-            $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
-            return false;
-        });
-        $('#napkinTab').click(function() {
-            $('#napkinTab').css({
-                position: 'absolute',
-                marginLeft: '31%',
-                marginTop: '5%',
-                width: '40%',
-                zIndex: '1'
-            });
-            $('#videoTab').css({
-                position: 'absolute',
-                marginLeft: '30%',
-                marginTop: '2%',
-                width: '40%',
-                zIndex: '0'
-            });
-            return false;
-        });
-        $('#videoTab').click(function() {
-            $('#videoTab').css({
-                position: 'absolute',
-                marginLeft: '31%',
-                marginTop: '5%',
-                width: '40%',
-                zIndex: '1'
-            });
-            $('#napkinTab').css({
-                position: 'absolute',
-                marginLeft: '30%',
-                marginTop: '2%',
-                width: '40%',
-                zIndex: '0'
-            });
-            return false;
-        });
-
-        var context = document.getElementById("canvasNapkin").getContext('2d');
-        redrawNapkin();
-        var doit;
-
-        $(window).resize(function() {
-            clearTimeout(doit);
-            doit = setTimeout(function() {
-                redrawNapkin();
-            }, 100);
-        });
-
-        try {
-          localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
-        } catch (error) {
-            console.log('erizo error: ' + error);
-        }
-        
-        createToken(roomId, "user", "role", function (response) {
-            var token = response;
-            console.log('token created ', token);
-            L.Logger.setLogLevel(L.Logger.DEBUG);
-            //L.Logger.debug("Connected!");
-            room = Erizo.Room({token: token});
-
-            localStream.addEventListener("access-accepted", function () {
-                
-                var subscribeToStreams = function (streams) {
-                    console.log("subscribe to streams");
-                    if (!localStream.showing) {
-                        localStream.show();
-                        console.log("LocalStream showing");
-                    }
-                    var index, stream;
-                    for (index in streams) {
-                        if (streams.hasOwnProperty(index)) {
-                            stream = streams[index];
-                            if (localStream !== undefined && localStream.getID() !== stream.getID()) {
-                                room.subscribe(stream);
-                            } else {
-                                console.log("My own stream");
-                            }
-                        }
-                    }
-                };
-
-                room.addEventListener("room-connected", function (roomEvent) {
-                    // Publish my stream
-                    room.publish(localStream);
-
-                    // Subscribe to other streams
-                    subscribeToStreams(roomEvent.streams);
-                    console.log("streams: " + roomEvent.streams.length);
-                });
-
-                room.addEventListener("stream-subscribed", function(streamEvent) {
-                    console.log("stream stream-subscribed");
-                    var stream = streamEvent.stream;
-                    
-                    for (var i = 2; i <= 6; i++) {
-                        if ($('#vid'+i).children().length === 0) {
-                            $('<div></div>', {
-                                id: 'test'+stream.getID()
-                            }).css('width','100%').appendTo('#vid'+i);
-                            stream.show("test" + stream.getID());
-                            console.log("InitVideo stream-subscribed");
-                            initVideoInTable(stream,i);                            
-                            return;
-                        }
-                    }
-                    console.log("There is no seat available at this table!");
-                });
-
-                room.addEventListener("stream-added", function (streamEvent) {
-                    // Subscribe to added streams
-                    var streams = [];
-                    streams.push(streamEvent.stream);
-                    subscribeToStreams(streams);
-
-                    //If table is empty, become the leader
-                    var currStreams = room.getStreamsByAttribute('type','media');
-                    console.log('InitVideo stream-added');
-                    if(streamEvent.stream.getID() === localStream.getID()) {
-                        initVideoInTable(streamEvent.stream,1);
-                    }
-                });
-
-                room.addEventListener("stream-removed", function (streamEvent) {
-                    // Remove stream from DOM
-                    var stream = streamEvent.stream;
-                    if (stream.elementID !== undefined) {
-                        console.log('stream: ' + stream.getID());
-                        console.log(stream.getID() === leader);
-                        console.log('leader: ' + leader);
-                        if(stream.getID() === leader) {
-                            console.log('kommer jag hit?');
-                            leader = getLeader();
-                            console.log(getLeader());
-                        }
-                        console.log("Removing " + stream.elementID);
-                        $('#'+stream.elementID).remove();
-                    }
-                });
-                localStream.show("vid1");
-            });
-            localStream.init();
-        });
+    try {
+      localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
+    } catch (error) {
+        console.log('erizo error: ' + error);
     }
-    //initialize(tableId);
+
+    localStream.addEventListener("access-accepted", function () {            
+        var subscribeToStreams = function (streams) {
+            console.log("subscribe to streams");
+            if (!localStream.showing) {
+                localStream.show();
+                console.log("LocalStream showing");
+            }
+            var index, stream;
+            for (index in streams) {
+                if (streams.hasOwnProperty(index)) {
+                    stream = streams[index];
+                    if (localStream !== undefined && localStream.getID() !== stream.getID()) {
+                        room.subscribe(stream);
+                    } else {
+                        console.log("My own stream");
+                    }
+                }
+            }
+        };
+
+        room.addEventListener("room-connected", function (roomEvent) {
+            // Publish my stream
+            room.publish(localStream);
+
+            // Subscribe to other streams
+            subscribeToStreams(roomEvent.streams);
+            console.log("streams: " + roomEvent.streams.length);
+        });
+
+        room.addEventListener("stream-subscribed", function(streamEvent) {
+            console.log("stream stream-subscribed");
+            var stream = streamEvent.stream;
+            
+            for (var i = 2; i <= 6; i++) {
+                if ($('#vid'+i).children().length === 0) {
+                    $('<div></div>', {
+                        id: 'test'+stream.getID()
+                    }).css('width','100%').appendTo('#vid'+i);
+                    stream.show("test" + stream.getID());
+                    console.log("InitVideo stream-subscribed");
+                    initVideoInTable(stream,i);
+                    currentState = "TABLEVIEW";                         
+                    return;
+                }
+            }
+            console.log("There is no seat available at this table!");
+        });
+
+        room.addEventListener("stream-added", function (streamEvent) {
+            // Subscribe to added streams
+            var streams = [];
+            streams.push(streamEvent.stream);
+            subscribeToStreams(streams);
+
+            //If table is empty, become the leader
+            var currStreams = room.getStreamsByAttribute('type','media');
+            console.log('InitVideo stream-added');
+            if(streamEvent.stream.getID() === localStream.getID()) {
+                initVideoInTable(streamEvent.stream,1);
+                currentState = "TABLEVIEW";
+            }
+        });
+
+        room.addEventListener("stream-removed", function (streamEvent) {
+            // Remove stream from DOM
+            var stream = streamEvent.stream;
+            if (stream.elementID !== undefined) {
+                console.log('stream: ' + stream.getID());
+                console.log(stream.getID() === leader);
+                console.log('leader: ' + leader);
+                if(stream.getID() === leader) {
+                    console.log('kommer jag hit?');
+                    leader = getLeader();
+                    console.log(getLeader());
+                }
+                console.log("Removing " + stream.elementID);
+                $('#'+stream.elementID).remove();
+            }
+        });
+        localStream.show("vid1");
+    });
+    localStream.init();
 }
 
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+};
 
 
 //---------------------------------------------------------------------------------------------------
@@ -1201,4 +1267,4 @@ var overhear = function(roomId) {
         });
         overhearStream.init();
     });  
-}; 
+};
