@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  14 MAY 2013 14:18
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  19 MAY 2013 22:48
 entering extended mode
 **report.tex
 
@@ -417,154 +417,170 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 <grovplanering.jpg, id=51, 1034.86626pt x 570.13pt>
 File: grovplanering.jpg Graphic file (type jpg)
  <use grovplanering.jpg>
-Package pdftex.def Info: grovplanering.jpg used on input line 158.
+Package pdftex.def Info: grovplanering.jpg used on input line 178.
 (pdftex.def)             Requested size: 312.00119pt x 171.88417pt.
 
-[13 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
-t/grovplanering.jpg>] <indexpage1.png, id=55, 1030.60031pt x 491.58656pt>
+[13] <indexpage1.png, id=55, 1030.60031pt x 491.58656pt>
 File: indexpage1.png Graphic file (type png)
-
-<use indexpage1.png>
-Package pdftex.def Info: indexpage1.png used on input line 167.
+ <use indexpage1.png>
+Package pdftex.def Info: indexpage1.png used on input line 189.
 (pdftex.def)             Requested size: 312.00119pt x 148.81978pt.
- <indexpage2.png, id=56, 1029.8475pt x 493.0922pt>
-File: indexpage2.png Graphic file (type png)
 
-<use indexpage2.png>
-Package pdftex.def Info: indexpage2.png used on input line 172.
+<indexpage2.png, id=56, 1029.8475pt x 493.0922pt>
+File: indexpage2.png Graphic file (type png)
+ <use indexpage2.png>
+Package pdftex.def Info: indexpage2.png used on input line 194.
 (pdftex.def)             Requested size: 312.00119pt x 149.38092pt.
- <indexpage3.png, id=57, 1026.08344pt x 494.59781pt>
+ [14 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+rt/grovplanering.jpg>] <indexpage3.png, id=60, 1026.08344pt x 494.59781pt>
 File: indexpage3.png Graphic file (type png)
 
 <use indexpage3.png>
-Package pdftex.def Info: indexpage3.png used on input line 177.
+Package pdftex.def Info: indexpage3.png used on input line 199.
 (pdftex.def)             Requested size: 312.00119pt x 150.38797pt.
- [14 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+ [15 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
 rt/indexpage1.png> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/p
 ublic/img/report/indexpage2.png>]
-<thetables.png, id=61, 1029.09468pt x 493.0922pt>
+<thetables.png, id=64, 1029.09468pt x 493.0922pt>
 File: thetables.png Graphic file (type png)
  <use thetables.png>
-Package pdftex.def Info: thetables.png used on input line 183.
+Package pdftex.def Info: thetables.png used on input line 205.
 (pdftex.def)             Requested size: 312.00119pt x 149.49377pt.
 
-<thetables3D.png, id=62, 1029.09468pt x 490.08093pt>
+<thetables3D.png, id=65, 1029.09468pt x 490.08093pt>
 File: thetables3D.png Graphic file (type png)
  <use thetables3D.png>
-Package pdftex.def Info: thetables3D.png used on input line 188.
+Package pdftex.def Info: thetables3D.png used on input line 210.
 (pdftex.def)             Requested size: 312.00119pt x 148.58084pt.
 
-[15 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
+[16 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
 t/indexpage3.png> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/pu
 blic/img/report/thetables.png>]
-<sittingdown2D.png, id=66, 1443.14156pt x 727.96968pt>
+<sittingdown2D.png, id=69, 1443.14156pt x 727.96968pt>
 File: sittingdown2D.png Graphic file (type png)
  <use sittingdown2D.png>
-Package pdftex.def Info: sittingdown2D.png used on input line 195.
+Package pdftex.def Info: sittingdown2D.png used on input line 217.
 (pdftex.def)             Requested size: 312.00119pt x 157.37685pt.
 
-<sittingdown3D.png, id=67, 1443.89438pt x 727.21687pt>
+<sittingdown3D.png, id=70, 1443.89438pt x 727.21687pt>
 File: sittingdown3D.png Graphic file (type png)
  <use sittingdown3D.png>
-Package pdftex.def Info: sittingdown3D.png used on input line 200.
+Package pdftex.def Info: sittingdown3D.png used on input line 222.
 (pdftex.def)             Requested size: 312.00119pt x 157.13641pt.
 
-[16 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
+[17 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
 t/thetables3D.png> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/p
-ublic/img/report/sittingdown2D.png>] [17 <C:/Users/Seidevall/Documents/GitHub/m
-t-topc/basic_example/public/img/report/sittingdown3D.png>] [18] [19] [20]
-[21] <systemarchitecture.png, id=87, 860.21375pt x 347.2975pt>
+ublic/img/report/sittingdown2D.png>] [18 <C:/Users/Seidevall/Documents/GitHub/m
+t-topc/basic_example/public/img/report/sittingdown3D.png>] [19] [20] [21]
+[22] <systemarchitecture.png, id=90, 860.21375pt x 347.2975pt>
 File: systemarchitecture.png Graphic file (type png)
 
 <use systemarchitecture.png>
-Package pdftex.def Info: systemarchitecture.png used on input line 278.
+Package pdftex.def Info: systemarchitecture.png used on input line 300.
 (pdftex.def)             Requested size: 312.00119pt x 125.96498pt.
- [22]
-Overfull \hbox (50.04118pt too wide) in paragraph at lines 284--294
+ [23]
+Overfull \hbox (50.04118pt too wide) in paragraph at lines 306--316
 \T1/lmr/m/n/12 "Unik", "ta-ble1": "513dd08a07aa2f143700001f", "ta-ble2": "513dd
 08b07aa2f1437000020",
  []
 
 
-Overfull \hbox (12.14326pt too wide) in paragraph at lines 284--294
+Overfull \hbox (12.14326pt too wide) in paragraph at lines 306--316
 \T1/lmr/m/n/12 "ta-ble3": "513dd08c07aa2f1437000021", "ta-ble4": "513dd08d07aa2
 f1437000022",
  []
 
 
-Overfull \hbox (5.94153pt too wide) in paragraph at lines 284--294
+Overfull \hbox (5.94153pt too wide) in paragraph at lines 306--316
 \T1/lmr/m/n/12 "ta-ble5": "513dd08e07aa2f1437000023", "ta-ble6": "513dd08f07aa2
 f1437000024" 
  []
 
-[23 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
-t/systemarchitecture.png>] [24] [25]
-<overhear2d.jpg, id=103, 665.48625pt x 268.00125pt>
+[24 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
+t/systemarchitecture.png>] [25] [26] [27]
+<overhear2d.jpg, id=109, 665.48625pt x 268.00125pt>
 File: overhear2d.jpg Graphic file (type jpg)
  <use overhear2d.jpg>
-Package pdftex.def Info: overhear2d.jpg used on input line 341.
+Package pdftex.def Info: overhear2d.jpg used on input line 362.
 (pdftex.def)             Requested size: 312.00119pt x 125.6498pt.
 
-[26] <3doverhearing.jpg, id=107, 1358.07375pt x 537.00626pt>
+<3doverhearing.jpg, id=110, 1358.07375pt x 537.00626pt>
 File: 3doverhearing.jpg Graphic file (type jpg)
 
 <use 3doverhearing.jpg>
-Package pdftex.def Info: 3doverhearing.jpg used on input line 346.
+Package pdftex.def Info: 3doverhearing.jpg used on input line 367.
 (pdftex.def)             Requested size: 312.00119pt x 123.36954pt.
- <overseeing2D.jpg, id=108, 487.8225pt x 391.4625pt>
-File: overseeing2D.jpg Graphic file (type jpg)
-
-<use overseeing2D.jpg>
-Package pdftex.def Info: overseeing2D.jpg used on input line 357.
-(pdftex.def)             Requested size: 312.00119pt x 250.37386pt.
- [27 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+ [28 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
 rt/overhear2d.jpg> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/p
 ublic/img/report/3doverhearing.jpg>]
-<pulldownoversee.jpg, id=112, 1351.0475pt x 618.31pt>
+<overseeing2D.jpg, id=114, 487.8225pt x 391.4625pt>
+File: overseeing2D.jpg Graphic file (type jpg)
+ <use overseeing2D.jpg>
+Package pdftex.def Info: overseeing2D.jpg used on input line 378.
+(pdftex.def)             Requested size: 312.00119pt x 250.37386pt.
+
+<pulldownoversee.jpg, id=115, 1351.0475pt x 618.31pt>
 File: pulldownoversee.jpg Graphic file (type jpg)
 
 <use pulldownoversee.jpg>
-Package pdftex.def Info: pulldownoversee.jpg used on input line 365.
+Package pdftex.def Info: pulldownoversee.jpg used on input line 386.
 (pdftex.def)             Requested size: 312.00119pt x 142.78381pt.
- [28 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+ [29 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
 rt/overseeing2D.jpg>]
-<knock.png, id=116, 252.19218pt x 78.2925pt>
+<knock.png, id=120, 252.19218pt x 78.2925pt>
 File: knock.png Graphic file (type png)
  <use knock.png>
-Package pdftex.def Info: knock.png used on input line 375.
+Package pdftex.def Info: knock.png used on input line 396.
 (pdftex.def)             Requested size: 312.00119pt x 96.86067pt.
- [29 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
-rt/pulldownoversee.jpg> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_exam
-ple/public/img/report/knock.png>] <chat.png, id=121, 496.85625pt x 170.13562pt>
+ [30 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+rt/pulldownoversee.jpg>] [31 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic
+_example/public/img/report/knock.png>] <chat.png, id=127, 496.85625pt x 170.135
+62pt>
 File: chat.png Graphic file (type png)
- <use chat.png>
-Package pdftex.def Info: chat.png used on input line 389.
-(pdftex.def)             Requested size: 312.00119pt x 106.83812pt.
 
-[30] [31 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/
-report/chat.png>] [32] [33]
+<use chat.png>
+Package pdftex.def Info: chat.png used on input line 410.
+(pdftex.def)             Requested size: 312.00119pt x 106.83812pt.
+ [32 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+rt/chat.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 426--440
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 443--450
+
+ []
+
+[33]
+Overfull \hbox (45.76056pt too wide) in paragraph at lines 481--491
+ [] 
+ []
+
+[34] [35] [36] [37]
 No file report.bbl.
-[34]
+[38]
 (C:\Users\Seidevall\Documents\GitHub\mt-topc\basic_example\public\img\report\re
 port.aux) ) 
 Here is how much of TeX's memory you used:
- 1821 strings out of 494045
- 23875 string characters out of 3148375
- 74111 words of memory out of 3000000
- 5079 multiletter control sequences out of 15000+200000
+ 1819 strings out of 494045
+ 23853 string characters out of 3148375
+ 74093 words of memory out of 3000000
+ 5077 multiletter control sequences out of 15000+200000
  51187 words of font info for 45 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  27i,9n,22p,842b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Pr
-ogram Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.
-9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/lm/lmsy10.pfb>
-Output written on report.pdf (36 pages, 5324454 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Progra
+m Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.
+9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/
+lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy1
+0.pfb>
+Output written on report.pdf (40 pages, 5338642 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
+ 175 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

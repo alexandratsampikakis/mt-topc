@@ -24,7 +24,7 @@
 \begin{abstract}
 Cafés are the home to many interesting ideas, it also a place where people go to meet new interesting people. In this report we discuss how a café environment can be realized online. The problem faced during the project includes overseeing, how one can look around and see other groups of people talking to each other. Overhearing, how one can listen to and find inspiration from other conversations going on in the café. Mingle, how one can move between these conversations in a subtle way.
 
-A prototype was built using WebRTC, HTML5 and Javascript in order to solve these problems. Multiple solutions for each problem, together with a 2- and 3-dimensional views are being presented. The prototype consists of a video chat with multiple extra features for collaboration, like shared napkin to paint on and  synchronized Youtube watching, implemented to enhance the feeling of sitting at the same table. 
+A prototype was built using WebRTC, HTML5 and Javascript in order to solve these problems. Multiple solutions for each problem, together with a 2- and 3-dimensional views are being presented. The prototype consists of a video chat with multiple extra features for collaboration, like shared napkin to paint on and  synchronized YouTube watching, implemented to enhance the feeling of sitting at the same table. 
 \end{abstract}
 \tableofcontents
 \section{Introduction}
@@ -63,6 +63,26 @@ The project had a few restrictions of what technologies to use, WebRTC for media
 \subsection{Project delimitations}
 This is a big project and it need some limitations, it is our imagination and time that decides. We decided to limit us to have six cafés, six tables in each café and six persons at each table maximum. The server we are using have limitations and therefore the amount of people at each table is limited.
 \subsection{Research questions}
+The questions we want to answer is:
+\begin{itemize}
+	\item Does the ability to oversee other groups of people in the same virtual room affect the experience of online video chat?
+		\begin{itemize}
+			\item What is the effect?
+		\end{itemize}
+	\item Does the ability to overhear other conversations in the same virtual room affect the experience of online video chat?
+		\begin{itemize}
+			\item What is the effect?
+		\end{itemize}
+	\item Does knowing that you and your group can be overheard by other people affect the experience of online video chat?
+		\begin{itemize}
+			\item What is the effect?
+		\end{itemize}
+	\item Does knowing that you and your group can be overseen by other people affect the experience of online video chat?
+		\begin{itemize}
+			\item What is the effect?
+		\end{itemize}
+\end{itemize}
+
 Imagine a café in Paris where people come and sit down for a coffee and conversation. Around them other things will happen; they will see people, they will overhear conversations, they might meet old friends and engage in conversation with them for a short while. This can be done online with video chat, text chat, view videos and draw together for example on a napkin as you might do in a real café. Good video quality is needed and the fewer steps from the index-page to the actual conversation is better, due to the simplicity for the user and therefore easier to make the users experience as good as possible and hopefully they will come back.
 
 As a part of the research, the prototype will be tested in both 2D- and 3D-view to discover which of them that achieves the most realistic way of presenting a café in Paris online.
@@ -159,6 +179,8 @@ Before this project started we made a gantt-chart, a rough plan of our milestone
   \caption{A gantt-chart to guide us through the project and manage deadlines.}
 \end{figure}
 The work has been shared equally between the two participants in this project. All the planning, prestudy and implementing of the prototype was done together.
+
+A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in javascript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. However, Patrik worked more on the backend and modifying Licode, while Alexandra had more focus on the design and additional features like paint and Youtube.
 \subsection{What the site looks like}
 These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
 \subsubsection{Index/start page}
@@ -303,10 +325,9 @@ Erizo controller communicates with Erizo. It handles the subscription of streams
 The frontend is built using HTML5, JQuery, Javascript and Erizo. The frontend communicates with two different parts of the system. It speaks to the server for HTML/CSS/JS files, tokens and database access. All the communication between different clients goes through Erizo controller. This means that all the data (Audio, Video or data) from a stream is sent to Erizo controller and then forwarded to all the client who subscribes to said stream.
 \subsubsection{Erizo Client}
 Erizo client provides a javascript API for communicating with Erizo Controller. It allows the client to, for example, publish and subscribe streams, create video elements
-\section{Results}\label{results}
-In this section we describe the results.
-
-\section{Conclusions}\label{conclusions}
+\subsection{Setting up a connection}
+The client requests a token from the server which in turn ask Nuve. The token includes an ip-address to Erizo Controller. When you connect to a room the client establishes a websocket connection with Erizo Controller. When you publish your own stream or subscribe to other streams the web client exchanges Session Description Protocol messages with Erizo Controller in order to negotiate media type, format and all associated properties. When the negotiation is done the client and Erizo Controller establish a Secure Real-time Transport Protocol connection to deliver audio and video.
+\section{Result}
 Here follows the result of the main features and different pages on the website.
 \subsection{Design}
 The design is an important feature of the system. In order to capture the feeling of being in a cafe, we need to create a modern design that is just as intimate as a real life café. The design is mostly done using Twitter Bootstrap. Bootstrap helped attaining a clean and modern look. A few goals was set up for the design, one was that the site would look just as good and work just as well on big and small resolutions. Therefore, percentage were used on almost all sizes so everything keeps the aspect ratio when the window is resized. 
@@ -390,30 +411,85 @@ The chat is very basic. You chose a username when you enter a café. This will b
   \caption{A knock notification. Alexandra wants to join the room.}
 \end{figure}
 \subsection{Server performance}
-A performance test was done in order to see how the system would perform under pressure and to get a feeling of the hardware requirements on a larger scale. 4 computers including the server were used during the test.
+The reason for using an MCU is to reduce the required bandwidth for every client. This means that more people with not as good bandwidth can still use the service even if they don’t have very high bandwidth. 
 
-Each user sends a stream to the MCU, Erizo. Erizo then perform some basic transcoding, if any, before forwarding the data to each other user in the same room.
+Using peer-to-peer would mean that every user sends his or her stream to every other user in the room, as well as to everyone that is overhearing. Instead by using an MCU, each user sends a stream to the MCU, Erizo. Erizo then perform some basic transcoding, if any, before forwarding the data to each other user in the same room, as well as to everyone who is overhearing.
+
 %Table
 \subsubsection{Theory}
-Let U denote amount of users in a room, O the amount of users overhearing a certain room and S the bandwidth of a stream. During our measurement a stream started of at 40KB/s but quickly rose to 250KB/s. The data sent to the server is then U*S for each room.
+To understand the importance of an MCU, we will now compare the required bandwidth on both server and client, with and without the MCU.
+\paragraph{Without MCU.}
+Scenario: A room with 6 users and 2 people overhearing and overseeing in real-time.
 
-The data sent from the server is U((U-1)*S) + O*U*S. This is where the bottleneck is.
+Let U denote amount of users in a room, O the amount of users overhearing a certain room and S the bandwidth of a stream. 
 
-An example. If we have one room with 6 users and 3 people overhearing with a bitrate of 200KB/s results in:
+Each client then send his or her stream to each other client in the room, plus each overhearing client.
+\\*
+\\*
+The data sent from each client is then $S*(U-1)+S*O$\\*
+The data received at each client is $S*(U-1)$\\*
+The data received at each overhearing client is $S*U$\\*
+The data sent from and to the server is close to zero and will not be counted.
+\\*\\*
+Let’s say each stream has a bandwidth of 200 KB/s and calculate the above scenario.
+\\*
+\\*
+$200*5 + 200*3 = 1600$ KB/s $= 12.8$ Mbps sent from each client in the room\\*
+$200*5 = 1000$ KB/S  $= 8$ Mbps sent to each client in the room\\*
+$200*6 = 1200$ KB/s $= 9.6$ Mbps sent to each overhearing client\\*
 
-6*200 = 1 200 KB/s sent to the server
-6*(5*200) + 3*6*200 = 9 600 KB/s sent from the server.
+The calculations show that for a client to work with our service with streams of $200$ KB/s, it needs a bandwidth of atleast 8 Mbit downstream and atleast 8 Mbit upstream. And this is without anyone overhearing. This is very high bandwidth requirements for one person and service and it also would not work on a larger scale if some table gets too many people overhearing at the same time. If the system instead had a MCU it would not matter which table got overheard since the total amount of data sent from the server would not change depending on if five people are overhearing the same table or five different tables.
+\paragraph{With MCU.}
+So same scenario again, this time with the MCU. All clients will now send their stream to the MCU, which forwards it to all subscribers.
+\\*
+\\*
+The data sent from the server is $U((U-1)*S) + O*U*S$.\\* 
+The date sent to the server is $U*S$.\\*
+The data received at each client is $S*(U-1)$.\\*
+The data received at each overhearing client is $S*U$.\\*
 
-Let’s assume we have a server with a dedicated 1Gbit connection.
+An example. If we have one room with 6 users and 3 people overhearing with a bitrate of $200$ KB/s results in:
 
-1Gbit = 131 072   KB.
-The bandwidth needed to fill a room without overhearing is 6*(5*200) = 6 000 KB/s
-131 072/6 000 = 21.8453333333. So a 1Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that 200 KB/s equals to over 1.5 Mbit/s. In comparison, Skype recommends 500kbps bandwidth for high quality video[25].
+$6*200 = 1 200 KB/s = 9.6$ Mbps sent to the server.
+$6*(5*200) + 3*6*200 = 9 600$ KB/s = $76.80$ Mbps sent from the server.
+$200*5 = 1000$ KB/S  = $8$ Mbps sent to each client in the room
+$200*6 = 1200$ KB/s = $9.6$ Mbps sent to each overhearing client
 
-As mentioned before, the bottleneck lies in data sent from the server. The CPU usage peaked at a bit over 50% while the video quality of the streams lowered because the server couldn’t send out more than 4 MB/s.
+Now let’s assume we have a server with a dedicated 1Gbit connection.
+
+1Gbit $= 131 072$ KB.
+The bandwidth needed to fill a room without overhearing is $6*(5*200) = 6 000 KB/s$
+$131 072/6 000 = 21.8453333333$. So a 1Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that $200$ KB/s equals to over 1.5 Mbps. In comparison, Skype recommends 500 kbps bandwidth for high quality video[25].
+\subsubsection{Performance test}
+
+A performance test was done in order to see how the system would perform under pressure and to get a feeling of the hardware requirements on a larger scale. 4 computers including the server were used during the test.
+\begin{center}
+    \begin{tabular}{| l | l | l | l | l |}
+    \hline
+    Device & OS & Processor & Ram \\ \hline
+    iMac & Mac OS X & Intel Core i5 3.1 GHz & 16 GB\\ \hline
+    Asus Laptop & Windows 7 & Intel Core i7 2.2 GHz & 8 GB \\ \hline
+    Mac mini & Mac OS X & Intel Core i7 2.7 GHz & 4 GB \\ \hline
+    Server & Ubuntu 12.10 & Intel Xeon i5 2.4 GHz & 2 GB\\ \hline
+    \end{tabular}
+\end{center}
+As we saw from the theory, the bottleneck lies in data sent from the server. The CPU usage peaked at a bit over 50\% while the video quality of the streams lowered because the server couldn't send out more than 4 MB/s.
 
 The result of the test followed the theory closely, as you can see in the table.
-%Table
+
+\begin{center}
+    \begin{tabular}{| l | l | l | l |}
+    \hline
+    Streams(Nr) & Incoming data(KB/s) & Outgoing data(KB/s) & Comment \\ \hline
+    1 & 45 & 0 & \\ \hline
+    2 & 250 & 500 & \\ \hline
+    3 & 800 & 1600 & \\ \hline
+    4 & 1000 & 3200 &\\ \hline
+    4 & 1000 & 4000 &\\ \hline
+    4 & 800 & 4000 & Lower video quality\\ \hline
+    \end{tabular}
+\end{center}
+
 The video quality then continued to decrease for every new stream published or subscribed. We believe that once Licode start transcode/mixing the streams, the data sent from the server will be reduced and CPU usage increased. 
 \section{Discussion}
 During this project we discovered problems with some features and perhaps a way of solving some of them. All possible solutions will be presented here. Along with that discussions we also present feedback from test users.
@@ -427,9 +503,20 @@ We had almost no experience of web design and WebGL before starting this project
 \item Furnish the 3D Cafeview with perhaps bar, paintings and such, to make it look like like a real room.
 \end{itemize}
 \subsection{User test}
-TODO
+We collected a group of people to test our prototype in an attempt to get answers on our research questions. The test begun with that everybody entered the same café and the same table, all the features were tested, a drawing was made, we watched a youtube video together and sending text messages to each other. After a time of playing around we sent them out of the room, one by one, to try the features outside the table, in the overview of all tables, overseeing and overhearing. We also tested overseeing when sitting at a table.
+
+After the whole group tested all the features, they answered a questionnaire based on our research question.
+
+The group found the snapshot images very practical and a good way to display the visitors or the café. They also liked being able to "look around" at the other tables while sitting at a table of their own. The overhearing part seems to have been a nice experience but they felt a bit freaky when listening to and seeing another conversation while not being a part of it. But they also said they would probably feel more comfortable overseeing and overhearing other people after using the service for a while.
+
+People generally like the knocking because it was a good way see who wants to sit down at the table. However, they would like some more information about the person before deciding if he or she can join the conversation, for example a personal text message or being to check a user profile.
+
+There were mixed feelings about having other people overhearing the conversation. Some thought it was exciting and a bit scary, others didn’t even think about it. The group agreed on that the content of the conversation changes when they know other can be listening in on the conversation. That you have to think about what you say, just like in public places.
+
 \subsection{Performance test}
-The test result showed that the system is really heavy on the bandwidth. We see two solutions to this problem. The first one is to transcode the streams. This would increase the CPU load but drastically decrease the data sent from the server. The second solution is to limit the bitrate of the streams. The video quality as it is now is really high and limiting it to maybe 125KB/s would drastically increase the maximum number of users on the system.
+The test result showed that the system is really heavy on the bandwidth. The MCU helps a lot by taking the stress away from the clients and making it easier for us to decide on a minimum bandwidth requirement. But it's not needed as much when there are few people in a room with no one overhearing. In fact, if there are only two people in the room both alternatives uses as much bandwidth, but a peer-to-peer connection would send the stream directly to each other resulting in less stress on the server without increasing the load on the clients.
+
+So we see that we need an MCU in order for the service to work well with a large amount of clients. But the problem is still the bandwidth requirement and we see two solutions to this problem. The first one is to transcode the streams. This would increase the CPU load but drastically decrease the data sent from the server. The second solution is to limit the bitrate of the streams. The video quality as it is now is really high and limiting it to maybe 125 KB/s would drastically increase the maximum number of users on the system.
 \subsection{Future work and improvements}
 We set out to build a prototype that includes overseeing, overhearing and mingle, and that’s what we have done. But this is a project done in limited time so there are of course plenty of ways to improve the system.
 
@@ -443,7 +530,13 @@ We are happy with how both views turned out, even though both of us lack experie
 
 All the key features of the service works just as well in both views. Which view works best depends on the target group. A cool 3D environment probably draws a younger crowd than the traditional 2D view, while the 2D view works for everyone.
 
-We are very happy with the result and we look forward to see any future research in this field.
+We had four research questions for this project that we now feel comfortable answering. These real life café features like overseeing, overhearing and mingling all has an effect on the experience of online video chat.
+
+They all make it more like a real life experience like going to café. People will have a favorite café with regular visitors. Overseeing helps to recognize friends and help find new interesting people. Recognizing people also makes it feel like a good place to be if your friends might be there.
+
+Overhearing makes the participants think before talking which can lead to more serious conversations but it can also lead to shy people holding back even more. But we think that it is a good effect because people will get use to it and hopefully not have problem with it in the future.
+
+We believe this is a step forward towards achieving more lifelike environments online. Lots of people go to conferences every year to meet interesting people. This costs a lot of for the participants or their companies. Imagine if they instead could use a service like The Online Paris Café, meet and mingle online and get the same experience as you would on a conference. This may one day be possible if more research is done in this field.
 \bibliographystyle{abbrv}
 \bibliography{simple}
 
