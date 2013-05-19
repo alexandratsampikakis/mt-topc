@@ -679,7 +679,7 @@ window.onload = function () {
     });
 
     //focus "enternametextfield"
-    $("#userName").focus();    
+    $("#userName").focus();
 
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
@@ -729,6 +729,102 @@ window.onload = function () {
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
 
+    //Send chat message
+    $('#sendMessage').click(function() {
+        if($('#chatMessage').val() !== "") {
+            sendChatMessage($('#chatMessage').val());
+        }
+        return false;
+    });
+    $('#submitUsername').click(function() {
+        enterName();
+        return false;
+    });
+    $('#askToJoinTable').click(function() {
+        dataStream.sendData({id:'popup', user:nameOfUser});
+        return false;
+    });
+    $('#leaveTableButton').click(function() {
+        resetConnection();
+        $('#enterName').show();
+        $('#videoTab').hide();
+        $('#napkinTab').hide();
+        currentState = "TABLEVIEW";
+        return false;
+    });
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#closeVideo').toggle();
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+        return false;
+    });
+    //Sends message details to server which in turn sends an email to iDipity google group
+    $('#sendFeedback').click(function() {
+        if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
+        sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {
+            console.log(response);
+            clearFeedback();
+            $('#feedbackModal').modal('hide')
+        });
+    });
+    $('#closeFeedback').click(function() {
+        clearFeedback();
+    });
+    $('#clearNapkin').click(function() {
+        dataStream.sendData({id:'clearNapkin'});
+        var c = document.getElementById("canvasNapkin");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0,0,c.width,c.height);
+    });
+    $('#saveNapkin').click(function() {
+        var c = document.getElementById("canvasNapkin");
+        ctx = c.getContext("2d");
+        c.toBlob(function(blob) {
+            saveAs(blob, "myNapkin.png");
+        });
+    });
+    $('#napkinTab').click(function() {
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+    $('#videoTab').click(function() {
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -743,11 +839,6 @@ window.onload = function () {
             $('#VideoUrl').val("");
         }
     }
-
-    $('#submitUsername').click(function() {
-        enterName();
-        return false;
-    });
 
     var enterName = function() {
         if($('#userName').val() !== "") {
@@ -783,6 +874,9 @@ window.onload = function () {
 
     var initialize = function(roomId) {
         currentTable = roomId;
+        $('#leaveTableButton').show();
+        $('#videoTab').show();
+        $('#napkinTab').show();
 
         $('#chatArea').css({
             position:'absolute', 
@@ -820,71 +914,6 @@ window.onload = function () {
         $('#chatArea').width('40%');
         $('#chatMessage').width('32.5%');
         $('#sendMessage').width('7%');
-
-        $('#leaveTableButton').click(function() {
-            resetConnection();
-            $('#enterName').toggle();
-            return false;
-        });
-
-        $('#getVideoUrl').click(function() {
-            if($('#VideoUrl').val() !== "") {
-                urlVideo = $('#VideoUrl').val();
-                dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
-                showVideo(urlVideo);
-            }
-            return false;
-        });
-        $('#closeVideo').click(function() {
-            $('#closeVideo').toggle();
-            $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
-            return false;
-        });
-        $('#napkinTab').click(function() {
-            $('#napkinTab').css({
-                position: 'absolute',
-                marginLeft: '31%',
-                marginTop: '5%',
-                width: '40%',
-                zIndex: '1'
-            });
-            $('#videoTab').css({
-                position: 'absolute',
-                marginLeft: '30%',
-                marginTop: '2%',
-                width: '40%',
-                zIndex: '0'
-            });
-            return false;
-        });
-        $('#videoTab').click(function() {
-            $('#videoTab').css({
-                position: 'absolute',
-                marginLeft: '31%',
-                marginTop: '5%',
-                width: '40%',
-                zIndex: '1'
-            });
-            $('#napkinTab').css({
-                position: 'absolute',
-                marginLeft: '30%',
-                marginTop: '2%',
-                width: '40%',
-                zIndex: '0'
-            });
-            return false;
-        });
-
-        var context = document.getElementById("canvasNapkin").getContext('2d');
-        redrawNapkin();
-        var doit;
-
-        $(window).resize(function() {
-            clearTimeout(doit);
-            doit = setTimeout(function() {
-                redrawNapkin();
-            }, 100);
-        });
 
         try {
           localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
