@@ -41,7 +41,7 @@ var mouseXOnMouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 
 var clickTime;
-//
+
 var placeHolderData;
 
 var scene = new THREE.Scene();
@@ -407,7 +407,7 @@ function resetConnection() {
 }
 
 var rotationY;
-function renderTables() {
+function render() {
     requestAnimationFrame(render);
     updateVideos();
 
@@ -441,35 +441,9 @@ function renderTables() {
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
-    renderer.renderTables( scene, camera );
-}
-
-var rotationYInTable;
-function renderInTable() {   
-    requestAnimationFrame(render);
-    updateVideos();
-
-    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, camera );
-    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( scene.children );
-    if ( intersects.length > 1 ) {
-        if ( INTERSECTED != intersects[ 0 ].object ) {
-            if(INTERSECTED)INTERSECTED.rotation.y = rotationYInTable;
-            //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-            INTERSECTED = intersects[ 0 ].object;
-            /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-            INTERSECTED.material.emissive.setHex( 0xff0000 );*/
-            rotationYInTable = INTERSECTED.rotation.y;
-            INTERSECTED.rotation.y = 0;
-        }
-    } else {
-        //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
-        if(INTERSECTED)INTERSECTED.rotation.y = rotationYInTable;
-        INTERSECTED = null;
-    }
     renderer.render( scene, camera );
 }
+
 
 var StreamObject = function(video, texture, context){
     this.video = video;
@@ -779,7 +753,7 @@ window.onload = function () {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
             initSceneTables();
-            renderTables();
+            render();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
                 localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
