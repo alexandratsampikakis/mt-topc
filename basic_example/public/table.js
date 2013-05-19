@@ -896,7 +896,7 @@ var askToJoinTablePopup = function(nameOfUser) {
 var initialize = function(roomId) {
     currentTable = roomId;
     initSceneInTable();
-    render();
+    //render();
 
     $('#leaveTableButton').show();
     $('#videoTab').show();
