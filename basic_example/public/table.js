@@ -899,8 +899,8 @@ var initialize = function(roomId) {
     //render();
 
     $('#leaveTableButton').show();
-    $('#videoTab').show();
-    $('#napkinTab').show();
+    //$('#videoTab').show();
+    //$('#napkinTab').show();
 
     $('#chatArea').css({
         position:'absolute', 
