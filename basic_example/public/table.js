@@ -872,16 +872,33 @@ window.onload = function () {
             }
         }
     };
+}
 
-    var initialize = function(roomId) {
-        currentTable = roomId;
-        initSceneInTable();
-        render();
+var initialize = function(roomId) {
+    currentTable = roomId;
+    initSceneInTable();
+    render();
 
-        $('#leaveTableButton').show();
-        $('#videoTab').show();
-        $('#napkinTab').show();
+    $('#leaveTableButton').show();
+    $('#videoTab').show();
+    $('#napkinTab').show();
 
+    $('#chatArea').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'30%'
+    });
+    $('#chatMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'30%'
+    });
+    $('#sendMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'63%'
+    });
+    $(window).resize(function() {
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
@@ -897,46 +914,292 @@ window.onload = function () {
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
             left:'63%'
         });
-        $(window).resize(function() {
-            $('#chatArea').css({
-                position:'absolute', 
-                top: $(window).height() - $('#chatArea').height()*2-56,
-                left:'30%'
-            });
-            $('#chatMessage').css({
-                position:'absolute', 
-                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-                left:'30%'
-            });
-            $('#sendMessage').css({
-                position:'absolute', 
-                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-                left:'63%'
-            });
+    });
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+    $('#chatArea').width('40%');
+    $('#chatMessage').width('32.5%');
+    $('#sendMessage').width('7%');
+
+    try {
+      localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
+    } catch (error) {
+        console.log('erizo error: ' + error);
+    }
+
+    localStream.addEventListener("access-accepted", function () {            
+        var subscribeToStreams = function (streams) {
+            console.log("subscribe to streams");
+            if (!localStream.showing) {
+                localStream.show();
+                console.log("LocalStream showing");
+            }
+            var index, stream;
+            for (index in streams) {
+                if (streams.hasOwnProperty(index)) {
+                    stream = streams[index];
+                    if (localStream !== undefined && localStream.getID() !== stream.getID()) {
+                        room.subscribe(stream);
+                    } else {
+                        console.log("My own stream");
+                    }
+                }
+            }
+        };
+
+        room.addEventListener("room-connected", function (roomEvent) {
+            // Publish my stream
+            room.publish(localStream);
+
+            // Subscribe to other streams
+            subscribeToStreams(roomEvent.streams);
+            console.log("streams: " + roomEvent.streams.length);
         });
-        $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-        $('#chatArea').width('40%');
-        $('#chatMessage').width('32.5%');
-        $('#sendMessage').width('7%');
 
-        try {
-          localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
-        } catch (error) {
-            console.log('erizo error: ' + error);
+        room.addEventListener("stream-subscribed", function(streamEvent) {
+            console.log("stream stream-subscribed");
+            var stream = streamEvent.stream;
+            
+            for (var i = 2; i <= 6; i++) {
+                if ($('#vid'+i).children().length === 0) {
+                    $('<div></div>', {
+                        id: 'test'+stream.getID()
+                    }).css('width','100%').appendTo('#vid'+i);
+                    stream.show("test" + stream.getID());
+                    console.log("InitVideo stream-subscribed");
+                    initVideoInTable(stream,i);
+                    currentState = "TABLEVIEW";                         
+                    return;
+                }
+            }
+            console.log("There is no seat available at this table!");
+        });
+
+        room.addEventListener("stream-added", function (streamEvent) {
+            // Subscribe to added streams
+            var streams = [];
+            streams.push(streamEvent.stream);
+            subscribeToStreams(streams);
+
+            //If table is empty, become the leader
+            var currStreams = room.getStreamsByAttribute('type','media');
+            console.log('InitVideo stream-added');
+            if(streamEvent.stream.getID() === localStream.getID()) {
+                initVideoInTable(streamEvent.stream,1);
+                currentState = "TABLEVIEW";
+            }
+        });
+
+        room.addEventListener("stream-removed", function (streamEvent) {
+            // Remove stream from DOM
+            var stream = streamEvent.stream;
+            if (stream.elementID !== undefined) {
+                console.log('stream: ' + stream.getID());
+                console.log(stream.getID() === leader);
+                console.log('leader: ' + leader);
+                if(stream.getID() === leader) {
+                    console.log('kommer jag hit?');
+                    leader = getLeader();
+                    console.log(getLeader());
+                }
+                console.log("Removing " + stream.elementID);
+                $('#'+stream.elementID).remove();
+            }
+        });
+        localStream.show("vid1");
+    });
+    localStream.init();
+}
+
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
         }
+    };
 
-        localStream.addEventListener("access-accepted", function () {            
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+};
+
+
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+
+var knock = function(roomId) {
+    if(!knockListYes.hasOwnProperty(roomId)) {
+        createToken(roomId, "user", "role", function (response) {
+            var token = response;
+            console.log('token created ', token);
+            L.Logger.setLogLevel(L.Logger.DEBUG);
+            room = Erizo.Room({token: token});
+
+            dataStream.addEventListener("access-accepted", function () {
+                
+                var subscribeToStreams = function (streams) {
+                    if (!dataStream.showing) {
+                        dataStream.show();
+                    }
+                    var index, stream;
+                    for (index in streams) {
+                        if (streams.hasOwnProperty(index)) {
+                            stream = streams[index];
+                            if (dataStream !== undefined && dataStream.getID() !== stream.getID()) {
+                                room.subscribe(stream);
+                            } else {
+                                console.log("My own stream");
+                            }
+                        }
+                    }
+                    if(room.getStreamsByAttribute('type','media').length < 6) {
+                        if(room.getStreamsByAttribute('type','media').length > 1) {
+                            knockSound();
+                        }
+                        setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
+                        addToKnockList(roomId);                        
+                    } else {
+                        deniedNotification(2);
+                        resetConnection();
+                    }
+
+                };
+
+                room.addEventListener("room-connected", function (roomEvent) {
+                    // Publish my stream
+                    room.publish(dataStream);
+                    //If table is empty
+                    if(room.getStreamsByAttribute('type','media').length === 0) {
+                        initialize(roomId);
+                    }
+                    // Subscribe to other streams
+                    subscribeToStreams(room.getStreamsByAttribute('type','data'));
+                });
+
+                room.addEventListener("stream-subscribed", function(streamEvent) {
+                    var stream = streamEvent.stream;
+                    if (stream.getAttributes().type === 'data') {
+                        stream.addEventListener("stream-data", function(evt){
+                            console.log(evt.msg);
+                            switch (evt.msg.id) {
+                                case "chat":
+                                    if(localStream.showing === true) {
+                                        appendChatMessage(evt.msg.user, evt.msg.text);
+                                    }   
+                                    break;
+                                case "popup":
+                                    if(localStream.showing === true) {
+                                        askToJoinTablePopup(evt.msg.user);
+                                    }
+                                    break;
+                                case "popup-answer":
+                                    if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
+                                        addYesCount(roomId);
+                                        console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                                        console.log(getYesCount(roomId));
+                                        console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                                        if(room.getStreamsByAttribute('type','media').length === 1) {
+                                            removeRoomFromKnocklist(roomId);
+                                            initialize(roomId);
+                                            
+                                        } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
+                                            removeRoomFromKnocklist(roomId);
+                                            initialize(roomId);          
+                                        } 
+                                    } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
+                                        addNoCount(roomId);
+                                        if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
+                                            deniedNotification(1);
+                                            resetConnection();
+                                        }
+                                    } 
+                                    break;  
+                                case "leader":
+                                    if(localStream.showing === true) {
+                                        console.log('message received :E');
+                                        setLeader(evt.msg.leader);
+                                    }
+                                    break;
+                                case "ytplayer":
+                                    if(localStream.showing === true) {
+                                        if(evt.msg.state === 1) {
+                                            play();
+                                        } else if (evt.msg.state === 2) {
+                                            pause();
+                                        } else if (evt.msg.state === 3) {
+                                            showVideo(evt.msg.url);
+                                            console.log('Visa video stream');
+                                        };
+                                    }
+                                    break;
+                                case "paint":
+                                    if(localStream.showing === true) {
+                                        drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
+                                    }
+                                    break;
+                                case "currentNapkin":
+                                    if(localStream.showing === true) {
+                                        var c = document.getElementById("canvasNapkin");
+                                        var ctx = c.getContext("2d");
+                                        var myImage = new Image();
+                                        myImage.onload = function(){
+                                            ctx.drawImage(myImage, 0, 0,c.width,c.height);
+                                        }; 
+                                        myImage.src = evt.msg.napkinImgData;
+                                    }
+                                    break;
+                                case "clearNapkin":
+                                    if(localStream.showing === true) {
+                                        var c = document.getElementById("canvasNapkin");
+                                        var ctx = c.getContext("2d");
+                                        ctx.clearRect(0,0,c.width,c.height);
+                                        console.log('Clear napkin');
+                                    }
+                                    break;
+                               default:
+                                  
+                            }
+                        });
+                    }
+                });
+                room.connect();
+            });
+            dataStream.init();
+        });
+    }   
+}
+
+
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+
+var overhear = function(roomId) {
+    overhearGroup = new THREE.Object3D();
+    scene.add(overhearGroup);
+    createToken(roomId, "user", "role", function (response) {
+        var token = response;
+        console.log('token created ', token);
+        L.Logger.setLogLevel(L.Logger.DEBUG);
+        room = Erizo.Room({token: token});
+
+        overhearStream.addEventListener("access-accepted", function () {
+            
             var subscribeToStreams = function (streams) {
-                console.log("subscribe to streams");
-                if (!localStream.showing) {
-                    localStream.show();
-                    console.log("LocalStream showing");
+                if (!overhearStream.showing) {
+                    overhearStream.show();
                 }
                 var index, stream;
                 for (index in streams) {
                     if (streams.hasOwnProperty(index)) {
                         stream = streams[index];
-                        if (localStream !== undefined && localStream.getID() !== stream.getID()) {
+                        if (overhearStream !== undefined && overhearStream.getID() !== stream.getID()) {
                             room.subscribe(stream);
                         } else {
                             console.log("My own stream");
@@ -947,305 +1210,42 @@ window.onload = function () {
 
             room.addEventListener("room-connected", function (roomEvent) {
                 // Publish my stream
-                room.publish(localStream);
-
-                // Subscribe to other streams
-                subscribeToStreams(roomEvent.streams);
-                console.log("streams: " + roomEvent.streams.length);
+                //room.publish(overhearStream);
+                //If table is empty
+                if(room.getStreamsByAttribute('type','media').length === 0) {
+                    console.log('Room is empty!')
+                } else {
+                    // Subscribe to other streams
+                    subscribeToStreams(room.getStreamsByAttribute('type','media'));
+                }
             });
 
             room.addEventListener("stream-subscribed", function(streamEvent) {
-                console.log("stream stream-subscribed");
                 var stream = streamEvent.stream;
-                
-                for (var i = 2; i <= 6; i++) {
-                    if ($('#vid'+i).children().length === 0) {
-                        $('<div></div>', {
-                            id: 'test'+stream.getID()
-                        }).css('width','100%').appendTo('#vid'+i);
-                        stream.show("test" + stream.getID());
-                        console.log("InitVideo stream-subscribed");
-                        initVideoInTable(stream,i);
-                        currentState = "TABLEVIEW";                         
-                        return;
+                if (stream.getAttributes().type === 'media') {
+                    for (var i = 1; i <= 6; i++) {
+                        if ($('#overhear'+i).children().length === 0) {
+                            $('<div></div>', {
+                                id: 'test'+stream.getID()
+                            }).css('width','100%').appendTo('#overhear'+i);
+                            stream.show("test" + stream.getID());
+                            initVideoTables(stream,i); 
+                            return;
+                        }
                     }
-                }
-                console.log("There is no seat available at this table!");
-            });
-
-            room.addEventListener("stream-added", function (streamEvent) {
-                // Subscribe to added streams
-                var streams = [];
-                streams.push(streamEvent.stream);
-                subscribeToStreams(streams);
-
-                //If table is empty, become the leader
-                var currStreams = room.getStreamsByAttribute('type','media');
-                console.log('InitVideo stream-added');
-                if(streamEvent.stream.getID() === localStream.getID()) {
-                    initVideoInTable(streamEvent.stream,1);
-                    currentState = "TABLEVIEW";
-                }
+                    console.log("There is no seat available at this table!");
+                } 
             });
 
             room.addEventListener("stream-removed", function (streamEvent) {
                 // Remove stream from DOM
                 var stream = streamEvent.stream;
                 if (stream.elementID !== undefined) {
-                    console.log('stream: ' + stream.getID());
-                    console.log(stream.getID() === leader);
-                    console.log('leader: ' + leader);
-                    if(stream.getID() === leader) {
-                        console.log('kommer jag hit?');
-                        leader = getLeader();
-                        console.log(getLeader());
-                    }
-                    console.log("Removing " + stream.elementID);
                     $('#'+stream.elementID).remove();
                 }
             });
-            localStream.show("vid1");
+            room.connect();
         });
-        localStream.init();
-    }
-
-    var createToken = function(roomId, userName, role, callback) {
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/' + roomId;
-        var body = {username: userName, role: role};
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('POST', url, true);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify(body));
-    };
-
-
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-
-    var knock = function(roomId) {
-        if(!knockListYes.hasOwnProperty(roomId)) {
-            createToken(roomId, "user", "role", function (response) {
-                var token = response;
-                console.log('token created ', token);
-                L.Logger.setLogLevel(L.Logger.DEBUG);
-                room = Erizo.Room({token: token});
-
-                dataStream.addEventListener("access-accepted", function () {
-                    
-                    var subscribeToStreams = function (streams) {
-                        if (!dataStream.showing) {
-                            dataStream.show();
-                        }
-                        var index, stream;
-                        for (index in streams) {
-                            if (streams.hasOwnProperty(index)) {
-                                stream = streams[index];
-                                if (dataStream !== undefined && dataStream.getID() !== stream.getID()) {
-                                    room.subscribe(stream);
-                                } else {
-                                    console.log("My own stream");
-                                }
-                            }
-                        }
-                        if(room.getStreamsByAttribute('type','media').length < 6) {
-                            if(room.getStreamsByAttribute('type','media').length > 1) {
-                                knockSound();
-                            }
-                            setTimeout(function () {dataStream.sendData({id:'popup', user:nameOfUser})},5000);
-                            addToKnockList(roomId);                        
-                        } else {
-                            deniedNotification(2);
-                            resetConnection();
-                        }
-
-                    };
-
-                    room.addEventListener("room-connected", function (roomEvent) {
-                        // Publish my stream
-                        room.publish(dataStream);
-                        //If table is empty
-                        if(room.getStreamsByAttribute('type','media').length === 0) {
-                            initialize(roomId);
-                        }
-                        // Subscribe to other streams
-                        subscribeToStreams(room.getStreamsByAttribute('type','data'));
-                    });
-
-                    room.addEventListener("stream-subscribed", function(streamEvent) {
-                        var stream = streamEvent.stream;
-                        if (stream.getAttributes().type === 'data') {
-                            stream.addEventListener("stream-data", function(evt){
-                                console.log(evt.msg);
-                                switch (evt.msg.id) {
-                                    case "chat":
-                                        if(localStream.showing === true) {
-                                            appendChatMessage(evt.msg.user, evt.msg.text);
-                                        }   
-                                        break;
-                                    case "popup":
-                                        if(localStream.showing === true) {
-                                            askToJoinTablePopup(evt.msg.user);
-                                        }
-                                        break;
-                                    case "popup-answer":
-                                        if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
-                                            addYesCount(roomId);
-                                            console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
-                                            console.log(getYesCount(roomId));
-                                            console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
-                                            if(room.getStreamsByAttribute('type','media').length === 1) {
-                                                removeRoomFromKnocklist(roomId);
-                                                initialize(roomId);
-                                                
-                                            } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
-                                                removeRoomFromKnocklist(roomId);
-                                                initialize(roomId);          
-                                            } 
-                                        } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
-                                            addNoCount(roomId);
-                                            if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
-                                                deniedNotification(1);
-                                                resetConnection();
-                                            }
-                                        } 
-                                        break;  
-                                    case "leader":
-                                        if(localStream.showing === true) {
-                                            console.log('message received :E');
-                                            setLeader(evt.msg.leader);
-                                        }
-                                        break;
-                                    case "ytplayer":
-                                        if(localStream.showing === true) {
-                                            if(evt.msg.state === 1) {
-                                                play();
-                                            } else if (evt.msg.state === 2) {
-                                                pause();
-                                            } else if (evt.msg.state === 3) {
-                                                showVideo(evt.msg.url);
-                                                console.log('Visa video stream');
-                                            };
-                                        }
-                                        break;
-                                    case "paint":
-                                        if(localStream.showing === true) {
-                                            drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
-                                        }
-                                        break;
-                                    case "currentNapkin":
-                                        if(localStream.showing === true) {
-                                            var c = document.getElementById("canvasNapkin");
-                                            var ctx = c.getContext("2d");
-                                            var myImage = new Image();
-                                            myImage.onload = function(){
-                                                ctx.drawImage(myImage, 0, 0,c.width,c.height);
-                                            }; 
-                                            myImage.src = evt.msg.napkinImgData;
-                                        }
-                                        break;
-                                    case "clearNapkin":
-                                        if(localStream.showing === true) {
-                                            var c = document.getElementById("canvasNapkin");
-                                            var ctx = c.getContext("2d");
-                                            ctx.clearRect(0,0,c.width,c.height);
-                                            console.log('Clear napkin');
-                                        }
-                                        break;
-                                   default:
-                                      
-                                }
-                            });
-                        }
-                    });
-                    room.connect();
-                });
-                dataStream.init();
-            });
-        }   
-    }
-
-
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-
-    var overhear = function(roomId) {
-        overhearGroup = new THREE.Object3D();
-        scene.add(overhearGroup);
-        createToken(roomId, "user", "role", function (response) {
-            var token = response;
-            console.log('token created ', token);
-            L.Logger.setLogLevel(L.Logger.DEBUG);
-            room = Erizo.Room({token: token});
-
-            overhearStream.addEventListener("access-accepted", function () {
-                
-                var subscribeToStreams = function (streams) {
-                    if (!overhearStream.showing) {
-                        overhearStream.show();
-                    }
-                    var index, stream;
-                    for (index in streams) {
-                        if (streams.hasOwnProperty(index)) {
-                            stream = streams[index];
-                            if (overhearStream !== undefined && overhearStream.getID() !== stream.getID()) {
-                                room.subscribe(stream);
-                            } else {
-                                console.log("My own stream");
-                            }
-                        }
-                    }
-                };
-
-                room.addEventListener("room-connected", function (roomEvent) {
-                    // Publish my stream
-                    //room.publish(overhearStream);
-                    //If table is empty
-                    if(room.getStreamsByAttribute('type','media').length === 0) {
-                        console.log('Room is empty!')
-                    } else {
-                        // Subscribe to other streams
-                        subscribeToStreams(room.getStreamsByAttribute('type','media'));
-                    }
-                });
-
-                room.addEventListener("stream-subscribed", function(streamEvent) {
-                    var stream = streamEvent.stream;
-                    if (stream.getAttributes().type === 'media') {
-                        for (var i = 1; i <= 6; i++) {
-                            if ($('#overhear'+i).children().length === 0) {
-                                $('<div></div>', {
-                                    id: 'test'+stream.getID()
-                                }).css('width','100%').appendTo('#overhear'+i);
-                                stream.show("test" + stream.getID());
-                                initVideoTables(stream,i); 
-                                return;
-                            }
-                        }
-                        console.log("There is no seat available at this table!");
-                    } 
-                });
-
-                room.addEventListener("stream-removed", function (streamEvent) {
-                    // Remove stream from DOM
-                    var stream = streamEvent.stream;
-                    if (stream.elementID !== undefined) {
-                        $('#'+stream.elementID).remove();
-                    }
-                });
-                room.connect();
-            });
-            overhearStream.init();
-        });  
-    };
-} 
+        overhearStream.init();
+    });  
+};
