@@ -898,7 +898,7 @@ var initialize = function(roomId) {
     initSceneInTable();
     //render();
 
-    $('#leaveTableButton').show();
+    //$('#leaveTableButton').show();
     //$('#videoTab').show();
     //$('#napkinTab').show();
 
