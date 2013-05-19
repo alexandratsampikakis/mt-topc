@@ -351,7 +351,6 @@ function onDocumentMouseUp( event ) {
             resetOverhearing();
             isOverhearing = null;
         }
-
     }
     objectToRotate = null; 
 }
@@ -415,6 +414,7 @@ function render() {
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
+
     if(currentState === "TABLEVIEW") {
         console.log("nu är vi i TABLEVIEW");
         if ( intersects.length > 1 ) {
@@ -432,13 +432,13 @@ function render() {
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
-    }
-    if(currentState === "CAFEVIEW" && objectToRotate != null) {
+    } else if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
     }
+
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
@@ -783,6 +783,7 @@ window.onload = function () {
 
     var initialize = function(roomId) {
         currentTable = roomId;
+
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
@@ -819,6 +820,12 @@ window.onload = function () {
         $('#chatArea').width('40%');
         $('#chatMessage').width('32.5%');
         $('#sendMessage').width('7%');
+
+        $('#leaveTableButton').click(function() {
+            resetConnection();
+            $('#enterName').toggle();
+            return false;
+        });
 
         $('#getVideoUrl').click(function() {
             if($('#VideoUrl').val() !== "") {
@@ -933,7 +940,8 @@ window.onload = function () {
                             }).css('width','100%').appendTo('#vid'+i);
                             stream.show("test" + stream.getID());
                             console.log("InitVideo stream-subscribed");
-                            initVideoInTable(stream,i);                            
+                            initVideoInTable(stream,i);
+                            currentState = "TABLEVIEW";                         
                             return;
                         }
                     }
@@ -951,6 +959,7 @@ window.onload = function () {
                     console.log('InitVideo stream-added');
                     if(streamEvent.stream.getID() === localStream.getID()) {
                         initVideoInTable(streamEvent.stream,1);
+                        currentState = "TABLEVIEW";
                     }
                 });
 
