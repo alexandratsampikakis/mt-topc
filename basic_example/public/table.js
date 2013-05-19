@@ -577,31 +577,6 @@ var StreamObject = function(video, texture, context){
     this.context = context;
     return this;
 };
-StreamObject.prototype.getVideo = function() {
-    return this.video;
-};
-StreamObject.prototype.getTexture = function() {
-    return this.videoTexture;
-};
-
-StreamObject.prototype.getContext = function() {
-    return this.context;
-};
-var createToken = function(roomId, userName, role, callback) {
-    var req = new XMLHttpRequest();
-    var url = serverUrl + 'createToken/' + roomId;
-    var body = {username: userName, role: role};
-
-    req.onreadystatechange = function () {
-        if (req.readyState === 4) {
-            callback(req.responseText);
-        }
-    };
-
-    req.open('POST', url, true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.send(JSON.stringify(body));
-};
 
 var reflection;
 var movieGeometry;
@@ -840,6 +815,31 @@ window.onload = function () {
         return false;
     });
 
+    StreamObject.prototype.getVideo = function() {
+        return this.video;
+    };
+    StreamObject.prototype.getTexture = function() {
+        return this.videoTexture;
+    };
+    StreamObject.prototype.getContext = function() {
+        return this.context;
+    };
+    var createToken = function(roomId, userName, role, callback) {
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'createToken/' + roomId;
+        var body = {username: userName, role: role};
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('POST', url, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.send(JSON.stringify(body));
+    };
+
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -871,24 +871,11 @@ window.onload = function () {
         }
     };
 
-    // var createToken = function(roomId, userName, role, callback) {
-    //     var req = new XMLHttpRequest();
-    //     var url = serverUrl + 'createToken/' + roomId;
-    //     var body = {username: userName, role: role};
-
-    //     req.onreadystatechange = function () {
-    //         if (req.readyState === 4) {
-    //             callback(req.responseText);
-    //         }
-    //     };
-
-    //     req.open('POST', url, true);
-    //     req.setRequestHeader('Content-Type', 'application/json');
-    //     req.send(JSON.stringify(body));
-    // };
-
     var initialize = function(roomId) {
         currentTable = roomId;
+        initSceneInTable();
+        render();
+
         $('#leaveTableButton').show();
         $('#videoTab').show();
         $('#napkinTab').show();
