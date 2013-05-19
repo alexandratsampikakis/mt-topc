@@ -587,6 +587,21 @@ StreamObject.prototype.getTexture = function() {
 StreamObject.prototype.getContext = function() {
     return this.context;
 };
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+};
 
 var reflection;
 var movieGeometry;
@@ -856,21 +871,21 @@ window.onload = function () {
         }
     };
 
-    var createToken = function(roomId, userName, role, callback) {
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/' + roomId;
-        var body = {username: userName, role: role};
+    // var createToken = function(roomId, userName, role, callback) {
+    //     var req = new XMLHttpRequest();
+    //     var url = serverUrl + 'createToken/' + roomId;
+    //     var body = {username: userName, role: role};
 
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
+    //     req.onreadystatechange = function () {
+    //         if (req.readyState === 4) {
+    //             callback(req.responseText);
+    //         }
+    //     };
 
-        req.open('POST', url, true);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify(body));
-    };
+    //     req.open('POST', url, true);
+    //     req.setRequestHeader('Content-Type', 'application/json');
+    //     req.send(JSON.stringify(body));
+    // };
 
     var initialize = function(roomId) {
         currentTable = roomId;
