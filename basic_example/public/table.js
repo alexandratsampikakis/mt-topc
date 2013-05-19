@@ -809,40 +809,6 @@ window.onload = function () {
             saveAs(blob, "myNapkin.png");
         });
     });
-    $('#napkinTab').click(function() {
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
-    $('#videoTab').click(function() {
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
 
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
@@ -938,6 +904,41 @@ var initialize = function(roomId) {
     $('#chatArea').width('40%');
     $('#chatMessage').width('32.5%');
     $('#sendMessage').width('7%');
+    
+    $('#napkinTab').click(function() {
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+    $('#videoTab').click(function() {
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
 
     try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
