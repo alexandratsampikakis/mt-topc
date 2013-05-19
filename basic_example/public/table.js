@@ -2,7 +2,7 @@ var room, cafe, localStream, serverUrl;
 serverUrl = "http://satin.research.ltu.se:3001/";
 
 //knock
-var dataStream, nameOfUser, leader;
+var dataStream, nameOfUser, leader, currentTable;
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
@@ -221,6 +221,25 @@ function sendNapkinToNewUser() {
     var ctx = c.getContext("2d");
     var napkinImgData = c.toDataURL();
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
+//Appends chat message to chatArea
+function appendChatMessage(username, message) {
+    var message = username + ": " + message;
+    var scrollbot = false;
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+}
+
+//Sends the chat message to other users
+function sendChatMessage(message) {
+    dataStream.sendData({id:'chat',text:message, user:nameOfUser});
+    $('#chatMessage').val("");
+    appendChatMessage(nameOfUser, message);
+    $("#myTextBox").focus();
 }
 
 var initSceneTables = function() { 
@@ -825,23 +844,6 @@ window.onload = function () {
         return false;
     });
 
-    var askToJoinTablePopup = function(nameOfUser) {
-        knockSound();
-        $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
-    };
-
-    var deniedNotification = function(whatCase) {
-        switch (whatCase) {
-            case 1:
-                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
-                break;
-            case 2:
-                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
-                break;
-           default:
-        }
-    }
-
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -873,6 +875,23 @@ window.onload = function () {
         }
     };
 }
+
+var askToJoinTablePopup = function(nameOfUser) {
+        knockSound();
+        $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
+    };
+
+    var deniedNotification = function(whatCase) {
+        switch (whatCase) {
+            case 1:
+                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
+                break;
+            case 2:
+                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
+                break;
+           default:
+        }
+    }
 
 var initialize = function(roomId) {
     currentTable = roomId;
