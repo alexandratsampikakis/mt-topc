@@ -1017,7 +1017,7 @@ window.onload = function () {
             localStream.init();
         });
     }
-    //initialize(tableId);
+    initialize(tableId);
 }
 
 var createToken = function(roomId, userName, role, callback) {
