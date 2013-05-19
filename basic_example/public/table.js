@@ -453,6 +453,16 @@ var StreamObject = function(video, texture, context){
     return this;
 };
 
+StreamObject.prototype.getVideo = function() {
+    return this.video;
+};
+StreamObject.prototype.getTexture = function() {
+    return this.videoTexture;
+};
+StreamObject.prototype.getContext = function() {
+    return this.context;
+};
+
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -815,31 +825,6 @@ window.onload = function () {
         return false;
     });
 
-    StreamObject.prototype.getVideo = function() {
-        return this.video;
-    };
-    StreamObject.prototype.getTexture = function() {
-        return this.videoTexture;
-    };
-    StreamObject.prototype.getContext = function() {
-        return this.context;
-    };
-    var createToken = function(roomId, userName, role, callback) {
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'createToken/' + roomId;
-        var body = {username: userName, role: role};
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('POST', url, true);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify(body));
-    };
-
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -1018,6 +1003,21 @@ window.onload = function () {
     //initialize(tableId);
 }
 
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
+    };
+
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+};
 
 
 //---------------------------------------------------------------------------------------------------
