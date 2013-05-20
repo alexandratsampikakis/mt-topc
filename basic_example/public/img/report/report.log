@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  19 MAY 2013 22:48
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  20 MAY 2013 16:50
 entering extended mode
 **report.tex
 
@@ -405,52 +405,60 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 2.
  [1] [2])
 \tf@toc=\write3
- [3]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 46.
+ [3] [4
+
+]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 47.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 46.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 47.
+ [5] [6] [7] [8]
+Overfull \hbox (10.76378pt too wide) in paragraph at lines 127--128
+\T1/lmr/m/n/12 your friends in a vir-tual 3D en-vi-ron-ment. One ap-pli-ca-tion
+, We-bGL Meeting[[]],
+ []
 
-[4] [5] [6] [7] [8] [9] [10] [11] [12]
-<grovplanering.jpg, id=51, 1034.86626pt x 570.13pt>
+[9] [10] [11] [12] [13] <grovplanering.jpg, id=54, 1034.86626pt x 570.13pt>
 File: grovplanering.jpg Graphic file (type jpg)
- <use grovplanering.jpg>
-Package pdftex.def Info: grovplanering.jpg used on input line 178.
-(pdftex.def)             Requested size: 312.00119pt x 171.88417pt.
 
-[13] <indexpage1.png, id=55, 1030.60031pt x 491.58656pt>
+<use grovplanering.jpg>
+Package pdftex.def Info: grovplanering.jpg used on input line 179.
+(pdftex.def)             Requested size: 312.00119pt x 171.88417pt.
+ [14 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+rt/grovplanering.jpg>]
+<indexpage1.png, id=58, 1030.60031pt x 491.58656pt>
 File: indexpage1.png Graphic file (type png)
  <use indexpage1.png>
-Package pdftex.def Info: indexpage1.png used on input line 189.
+Package pdftex.def Info: indexpage1.png used on input line 190.
 (pdftex.def)             Requested size: 312.00119pt x 148.81978pt.
 
-<indexpage2.png, id=56, 1029.8475pt x 493.0922pt>
+<indexpage2.png, id=59, 1029.8475pt x 493.0922pt>
 File: indexpage2.png Graphic file (type png)
  <use indexpage2.png>
-Package pdftex.def Info: indexpage2.png used on input line 194.
+Package pdftex.def Info: indexpage2.png used on input line 195.
 (pdftex.def)             Requested size: 312.00119pt x 149.38092pt.
- [14 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
-rt/grovplanering.jpg>] <indexpage3.png, id=60, 1026.08344pt x 494.59781pt>
-File: indexpage3.png Graphic file (type png)
 
-<use indexpage3.png>
-Package pdftex.def Info: indexpage3.png used on input line 199.
+<indexpage3.png, id=60, 1026.08344pt x 494.59781pt>
+File: indexpage3.png Graphic file (type png)
+ <use indexpage3.png>
+Package pdftex.def Info: indexpage3.png used on input line 200.
 (pdftex.def)             Requested size: 312.00119pt x 150.38797pt.
- [15 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
-rt/indexpage1.png> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/p
-ublic/img/report/indexpage2.png>]
+
+[15 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
+t/indexpage1.png> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/pu
+blic/img/report/indexpage2.png>]
 <thetables.png, id=64, 1029.09468pt x 493.0922pt>
 File: thetables.png Graphic file (type png)
  <use thetables.png>
-Package pdftex.def Info: thetables.png used on input line 205.
+Package pdftex.def Info: thetables.png used on input line 206.
 (pdftex.def)             Requested size: 312.00119pt x 149.49377pt.
 
 <thetables3D.png, id=65, 1029.09468pt x 490.08093pt>
 File: thetables3D.png Graphic file (type png)
  <use thetables3D.png>
-Package pdftex.def Info: thetables3D.png used on input line 210.
+Package pdftex.def Info: thetables3D.png used on input line 211.
 (pdftex.def)             Requested size: 312.00119pt x 148.58084pt.
 
 [16 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
@@ -459,13 +467,13 @@ blic/img/report/thetables.png>]
 <sittingdown2D.png, id=69, 1443.14156pt x 727.96968pt>
 File: sittingdown2D.png Graphic file (type png)
  <use sittingdown2D.png>
-Package pdftex.def Info: sittingdown2D.png used on input line 217.
+Package pdftex.def Info: sittingdown2D.png used on input line 218.
 (pdftex.def)             Requested size: 312.00119pt x 157.37685pt.
 
 <sittingdown3D.png, id=70, 1443.89438pt x 727.21687pt>
 File: sittingdown3D.png Graphic file (type png)
  <use sittingdown3D.png>
-Package pdftex.def Info: sittingdown3D.png used on input line 222.
+Package pdftex.def Info: sittingdown3D.png used on input line 223.
 (pdftex.def)             Requested size: 312.00119pt x 157.13641pt.
 
 [17 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
@@ -511,76 +519,328 @@ File: 3doverhearing.jpg Graphic file (type jpg)
 Package pdftex.def Info: 3doverhearing.jpg used on input line 367.
 (pdftex.def)             Requested size: 312.00119pt x 123.36954pt.
  [28 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
-rt/overhear2d.jpg> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/p
-ublic/img/report/3doverhearing.jpg>]
+rt/overhear2d.jpg>]
 <overseeing2D.jpg, id=114, 487.8225pt x 391.4625pt>
 File: overseeing2D.jpg Graphic file (type jpg)
  <use overseeing2D.jpg>
 Package pdftex.def Info: overseeing2D.jpg used on input line 378.
 (pdftex.def)             Requested size: 312.00119pt x 250.37386pt.
 
-<pulldownoversee.jpg, id=115, 1351.0475pt x 618.31pt>
+[29 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
+t/3doverhearing.jpg>] <pulldownoversee.jpg, id=119, 1351.0475pt x 618.31pt>
 File: pulldownoversee.jpg Graphic file (type jpg)
 
 <use pulldownoversee.jpg>
 Package pdftex.def Info: pulldownoversee.jpg used on input line 386.
 (pdftex.def)             Requested size: 312.00119pt x 142.78381pt.
- [29 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+ [30 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
 rt/overseeing2D.jpg>]
-<knock.png, id=120, 252.19218pt x 78.2925pt>
+<knock.png, id=123, 252.19218pt x 78.2925pt>
 File: knock.png Graphic file (type png)
  <use knock.png>
 Package pdftex.def Info: knock.png used on input line 396.
 (pdftex.def)             Requested size: 312.00119pt x 96.86067pt.
- [30 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
-rt/pulldownoversee.jpg>] [31 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic
-_example/public/img/report/knock.png>] <chat.png, id=127, 496.85625pt x 170.135
-62pt>
+ [31 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
+rt/pulldownoversee.jpg> <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_exam
+ple/public/img/report/knock.png>] <chat.png, id=127, 496.85625pt x 170.13562pt>
 File: chat.png Graphic file (type png)
-
-<use chat.png>
+ <use chat.png>
 Package pdftex.def Info: chat.png used on input line 410.
 (pdftex.def)             Requested size: 312.00119pt x 106.83812pt.
- [32 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repo
-rt/chat.png>]
+
+[32]
 Underfull \hbox (badness 10000) in paragraph at lines 426--440
 
  []
 
-
+[33 <C:/Users/Seidevall/Documents/GitHub/mt-topc/basic_example/public/img/repor
+t/chat.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 443--450
 
  []
 
-[33]
+[34]
 Overfull \hbox (45.76056pt too wide) in paragraph at lines 481--491
  [] 
  []
 
-[34] [35] [36] [37]
-No file report.bbl.
-[38]
+[35] [36] [37] [38]
+Underfull \hbox (badness 10000) in paragraph at lines 551--555
+[]\T1/lmr/m/n/12 Protonmedia, \T1/lmr/m/it/12 Pro-to-sphere\T1/lmr/m/n/12 . Feb
+ru-ary 2013,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 557--561
+[]\T1/lmr/m/n/12 Linden Labs, inc, \T1/lmr/m/it/12 Sec-ond Life\T1/lmr/m/n/12 .
+ Febru-ary 2013,
+ []
+
+
+Overfull \hbox (49.67432pt too wide) in paragraph at lines 563--567
+[]\T1/lmr/m/n/12 SAIC, \T1/lmr/m/it/12 O.L.I.V.E\T1/lmr/m/n/12 . Febru-ary 2013
+, http://www.saic.com/products/simulation/olive. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 575--579
+[]\T1/lmr/m/n/12 Google, \T1/lmr/m/it/12 Google Hang-out\T1/lmr/m/n/12 . Febru-
+ary 2013,
+ []
+
+[39]
+Underfull \hbox (badness 10000) in paragraph at lines 593--598
+[]\T1/lmr/m/n/12 Tuomas Kan-to-nen, Charles Wood-ward, Neil Katz,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--598
+\T1/lmr/m/it/12 Mixed re-al-ity in vir-tual world tele-con-fer-enc-ing\T1/lmr/m
+/n/12 . VTT
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--598
+\T1/lmr/m/n/12 Tech-ni-cal Re-search Cen-tre of Fin-land, March 2010,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--615
+[]\T1/lmr/m/n/12 Team XSock-ets.NET.\T1/lmr/m/it/12 Browser Meet-ing\T1/lmr/m/n
+/12 . Febru-ary 2013,
+ []
+
+
+Underfull \hbox (badness 5091) in paragraph at lines 617--620
+[]\T1/lmr/m/n/12 Google. \T1/lmr/m/it/12 Hello Fire-fox this is Chrome call-ing
+\T1/lmr/m/n/12 . Febru-ary 2013,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 617--620
+\T1/lmr/m/n/12 http://blog.chromium.org/2013/02/hello-firefox-this-is-chrome-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--637
+[]\T1/lmr/m/n/12 Chong Luo, Jiang Li, and Shipeng Li, \T1/lmr/m/it/12 DigiMetro
+ -
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--637
+\T1/lmr/m/it/12 An Application-Level Mul-ti-cast Sys-tem For Multi-Party
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--637
+\T1/lmr/m/it/12 Video Con-fer-enc-ing\T1/lmr/m/n/12 . Mi-crosoft Re-search Asia
+, 2004,
+ []
+
+
+Underfull \hbox (badness 3078) in paragraph at lines 639--643
+\T1/lmr/m/n/12 and Yu-taka Mat-sushita, \T1/lmr/m/it/12 MA-JIC Video-con-fer-en
+c-ing Sys-tem: Ex-
+ []
+
+
+Underfull \hbox (badness 4518) in paragraph at lines 639--643
+\T1/lmr/m/it/12 per-i-ments, Eval-u-a-tion and Im-prove-ment\T1/lmr/m/n/12 . EC
+-SCW'95 Pro-ceed-ings
+ []
+
+
+Underfull \hbox (badness 2142) in paragraph at lines 639--643
+\T1/lmr/m/n/12 of the fourth con-fer-ence on Eu-ro-pean Con-fer-ence on Compute
+r-
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 639--643
+\T1/lmr/m/n/12 Supported Co-op-er-a-tive Work, Pages 279-292, Septem-ber 2008.
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 645--648
+[]\T1/lmr/m/n/12 Jerome Eti-enne, \T1/lmr/m/it/12 We-bGL Meet-ing\T1/lmr/m/n/12
+ . Oc-to-ber 2012,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 645--648
+\T1/lmr/m/n/12 http://learningthreejs.com/blog/2012/04/12/video-conference-on-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--654
+[]\T1/lmr/m/n/12 Hideyuki Nakan-ishi, Yuki Mu-rakami, Kei Kato, \T1/lmr/m/it/12
+ Mov-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--654
+\T1/lmr/m/it/12 able Cam-eras En-hance So-cial Telep-res-ence in Me-dia Spaces\
+T1/lmr/m/n/12 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--654
+\T1/lmr/m/n/12 De-part-ment of Adap-tive Ma-chine Sys-tems. Os-aka Uni-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--654
+\T1/lmr/m/n/12 ver-sity, Ya-madaoka, Suita, Os-aka, Japan, April 2009.
+ []
+
+
+Overfull \hbox (165.15125pt too wide) in paragraph at lines 650--654
+\T1/lmr/m/n/12 http://www.academia.edu/3274831/Movable_cameras_enhance_social_t
+elepresence_in_media_spaces 
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 656--660
+\T1/lmr/m/n/12 pin, Moira McIn-tyre, Adri-ana Pena, Oye-wole Oyekoya, and Will
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 656--660
+\T1/lmr/m/n/12 Step-toe, \T1/lmr/m/it/12 Com-mu-ni-cat-ing Eye-gaze Across a Di
+s-tance: Com-par-ing
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 656--660
+\T1/lmr/m/it/12 an Eye-gaze en-abled Im-mer-sive Col-lab-o-ra-tive Vir-tual En-
+vi-ron-ment,
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 656--660
+\T1/lmr/m/it/12 Aligned Video Con-fer-enc-ing, and Be-ing To-gether\T1/lmr/m/n/
+12 . Uni-ver-sity of
+ []
+
+
+Underfull \hbox (badness 4673) in paragraph at lines 656--660
+\T1/lmr/m/n/12 Sal-ford, Uni-ver-sity of Roe-hamp-ton, Uni-ver-sity Col-lege Lo
+n-don,
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 656--660
+\T1/lmr/m/n/12 Uni-ver-sity of Read-ing, Lafayette, Louisiana, USA, March 2009.
+
+ []
+
+
+Overfull \hbox (62.96451pt too wide) in paragraph at lines 656--660
+\T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
+arnumber=4811013 
+ []
+
+
+Underfull \hbox (badness 1616) in paragraph at lines 662--666
+[]\T1/lmr/m/n/12 Claudia Kuster, Tiberiu Popa, Jean-Charles Bazin, Craig Gots-
+ []
+
+
+Overfull \hbox (62.96451pt too wide) in paragraph at lines 662--666
+\T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
+arnumber=4811013 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 668--671
+[]\T1/lmr/m/n/12 Jim Gem-mell, Ken-taro Toyama, C. Lawrence Zit-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 668--671
+\T1/lmr/m/n/12 nick, Thomas Kang, Steven Seitz, \T1/lmr/m/it/12 Gaze Aware-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 668--671
+\T1/lmr/m/it/12 ness for Video-con-fer-enc-ing: A Soft-ware Ap-proach
+ []
+
+
+Overfull \hbox (57.08952pt too wide) in paragraph at lines 668--671
+\T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
+arnumber=895152 
+ []
+
+
+Underfull \hbox (badness 5022) in paragraph at lines 673--677
+\T1/lmr/m/n/12 Belt, \T1/lmr/m/it/12 3DP-RES-ENCE  A SYS-TEM CON-CEPT FOR MULT
+I-
+ []
+
+
+Underfull \hbox (badness 4036) in paragraph at lines 673--677
+\T1/lmr/m/it/12 USER AND MULTI-PARTY IM-MER-SIVE 3D VIDEO-CON-FER-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 673--677
+\T1/lmr/m/it/12 ENC-ING\T1/lmr/m/n/12 . Fraun-hofer In-sti-tute for Telecommuni
+cations/Heinrich-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 673--677
+\T1/lmr/m/n/12 Hertz In-sti-tut, Berlin, Ger-many, Novem-ber 2008.
+ []
+
+
+Overfull \hbox (62.96451pt too wide) in paragraph at lines 673--677
+\T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
+arnumber=4778747 
+ []
+
+[41]
+Overfull \hbox (51.26167pt too wide) in paragraph at lines 679--683
+\T1/lmr/m/n/12 http://www.thinkmind.org/download.php?articleid=etelemed_2012_1_
+50_40110 
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 685--689
+[]\T1/lmr/m/n/12 Microsoft,  \T1/lmr/m/it/12 How much band-width does Skype nee
+d?\T1/lmr/m/n/12 . May 2013,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 685--689
+\T1/lmr/m/n/12 https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-
+
+ []
+
+[42]
 (C:\Users\Seidevall\Documents\GitHub\mt-topc\basic_example\public\img\report\re
 port.aux) ) 
 Here is how much of TeX's memory you used:
- 1819 strings out of 494045
- 23853 string characters out of 3148375
- 74093 words of memory out of 3000000
- 5077 multiletter control sequences out of 15000+200000
- 51187 words of font info for 45 fonts, out of 3000000 for 9000
+ 1856 strings out of 494045
+ 24007 string characters out of 3148375
+ 74228 words of memory out of 3000000
+ 5114 multiletter control sequences out of 15000+200000
+ 55449 words of font info for 46 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 27i,9n,22p,842b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Progra
-m Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.
-9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/
+ 27i,9n,22p,858b,223s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Progra
+m Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fo
+nts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/
 lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy1
-0.pfb>
-Output written on report.pdf (40 pages, 5338642 bytes).
+e1/public/lm/lmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri1
+2.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb>
+Output written on report.pdf (44 pages, 5371302 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
+ 192 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

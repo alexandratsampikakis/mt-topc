@@ -1,35 +1,35 @@
-\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {1}Introduction}{4}
 \contentsline {subsection}{\numberline {1.1}Problem description}{4}
-\contentsline {subsection}{\numberline {1.2}Project goals}{4}
+\contentsline {subsection}{\numberline {1.2}Project goals}{5}
 \contentsline {subsubsection}{\numberline {1.2.1}Overseeing}{5}
 \contentsline {subsubsection}{\numberline {1.2.2}Overhearing}{5}
 \contentsline {subsubsection}{\numberline {1.2.3}Mingle}{5}
-\contentsline {subsection}{\numberline {1.3}Project requirements}{5}
-\contentsline {subsection}{\numberline {1.4}Project delimitations}{5}
+\contentsline {subsection}{\numberline {1.3}Project requirements}{6}
+\contentsline {subsection}{\numberline {1.4}Project delimitations}{6}
 \contentsline {subsection}{\numberline {1.5}Research questions}{6}
-\contentsline {subsection}{\numberline {1.6}Related work}{6}
+\contentsline {subsection}{\numberline {1.6}Related work}{7}
 \contentsline {subsubsection}{\numberline {1.6.1}Traditional video conference}{7}
 \contentsline {subsubsection}{\numberline {1.6.2}3D Virtual environments}{7}
-\contentsline {subsubsection}{\numberline {1.6.3}Mixed reality}{7}
-\contentsline {subsubsection}{\numberline {1.6.4}Criteria}{7}
-\contentsline {subsection}{\numberline {1.7}Related services}{8}
-\contentsline {subsection}{\numberline {1.8}Google WebRTC}{8}
+\contentsline {subsubsection}{\numberline {1.6.3}Mixed reality}{8}
+\contentsline {subsubsection}{\numberline {1.6.4}Criteria}{8}
+\contentsline {subsection}{\numberline {1.7}Related services}{9}
+\contentsline {subsection}{\numberline {1.8}Google WebRTC}{9}
 \contentsline {subsubsection}{\numberline {1.8.1}Browser meeting}{9}
 \contentsline {subsubsection}{\numberline {1.8.2}frisB}{9}
 \contentsline {subsubsection}{\numberline {1.8.3}Video Conference in 3D Environment}{9}
 \contentsline {subsection}{\numberline {1.9}Protonsphere}{9}
-\contentsline {subsection}{\numberline {1.10}O.L.I.V.E}{9}
-\contentsline {subsection}{\numberline {1.11}OpenQwaq}{9}
+\contentsline {subsection}{\numberline {1.10}O.L.I.V.E}{10}
+\contentsline {subsection}{\numberline {1.11}OpenQwaq}{10}
 \contentsline {subsection}{\numberline {1.12}Paltalk}{10}
-\contentsline {subsection}{\numberline {1.13}Tiny Chat}{10}
+\contentsline {subsection}{\numberline {1.13}Tinychat}{10}
 \contentsline {subsection}{\numberline {1.14}Skype}{10}
-\contentsline {subsection}{\numberline {1.15}Google Hangout}{10}
-\contentsline {subsection}{\numberline {1.16}ooVoo}{10}
+\contentsline {subsection}{\numberline {1.15}Google Hangout}{11}
+\contentsline {subsection}{\numberline {1.16}ooVoo}{11}
 \contentsline {subsection}{\numberline {1.17}Second Life}{11}
 \contentsline {subsection}{\numberline {1.18}The Word Cafe online community}{11}
-\contentsline {subsection}{\numberline {1.19}Related papers}{11}
+\contentsline {subsection}{\numberline {1.19}Related papers}{12}
 \contentsline {subsection}{\numberline {1.20}Project transparency}{13}
-\contentsline {subsection}{\numberline {1.21}What the site looks like}{14}
+\contentsline {subsection}{\numberline {1.21}What the site looks like}{15}
 \contentsline {subsubsection}{\numberline {1.21.1}Index/start page}{15}
 \contentsline {subsubsection}{\numberline {1.21.2}Cafeview}{16}
 \contentsline {subsubsection}{\numberline {1.21.3}Tableview}{17}
@@ -45,21 +45,21 @@
 \contentsline {subsubsection}{\numberline {2.3.2}Nuve}{20}
 \contentsline {subsection}{\numberline {2.4}MongoDB}{20}
 \contentsline {subsection}{\numberline {2.5}Mongoose}{20}
-\contentsline {subsection}{\numberline {2.6}Express js}{20}
+\contentsline {subsection}{\numberline {2.6}Express}{20}
 \contentsline {subsection}{\numberline {2.7}Twitter Bootstrap}{20}
 \contentsline {subsection}{\numberline {2.8}HTML5}{20}
 \contentsline {subsection}{\numberline {2.9}Three.js}{21}
 \contentsline {subsubsection}{\numberline {2.9.1}WebGL}{21}
-\contentsline {subsection}{\numberline {2.10}Github}{21}
+\contentsline {subsection}{\numberline {2.10}GitHub}{21}
 \contentsline {section}{\numberline {3}Method}{21}
 \contentsline {subsection}{\numberline {3.1}WebRTC comparison}{21}
 \contentsline {subsubsection}{\numberline {3.1.1}Easy RTC}{22}
 \contentsline {subsubsection}{\numberline {3.1.2}WebRTC.io}{22}
 \contentsline {subsubsection}{\numberline {3.1.3}Holla}{22}
 \contentsline {subsection}{\numberline {3.2}Survey}{22}
-\contentsline {subsubsection}{\numberline {3.2.1}Evaluation}{22}
+\contentsline {subsubsection}{\numberline {3.2.1}Evaluation}{23}
 \contentsline {subsection}{\numberline {3.3}Prestudy conclusion}{23}
-\contentsline {subsection}{\numberline {3.4}System architecture}{23}
+\contentsline {subsection}{\numberline {3.4}System architecture}{24}
 \contentsline {subsubsection}{\numberline {3.4.1}Backend}{24}
 \contentsline {subsubsection}{\numberline {3.4.2}Database}{24}
 \contentsline {subsubsection}{\numberline {3.4.3}Server}{24}
@@ -71,24 +71,24 @@
 \contentsline {section}{\numberline {4}Result}{26}
 \contentsline {subsection}{\numberline {4.1}Design}{26}
 \contentsline {subsubsection}{\numberline {4.1.1}The 2D view}{26}
-\contentsline {subsubsection}{\numberline {4.1.2}The 3D view}{26}
+\contentsline {subsubsection}{\numberline {4.1.2}The 3D view}{27}
 \contentsline {subsection}{\numberline {4.2}Leader}{27}
 \contentsline {subsection}{\numberline {4.3}Peer-to-peer}{27}
 \contentsline {subsection}{\numberline {4.4}Overhearing}{28}
 \contentsline {subsection}{\numberline {4.5}Overseeing}{29}
-\contentsline {subsection}{\numberline {4.6}Mingle}{30}
-\contentsline {subsection}{\numberline {4.7}Paint}{31}
-\contentsline {subsection}{\numberline {4.8}Youtube}{31}
+\contentsline {subsection}{\numberline {4.6}Mingle}{31}
+\contentsline {subsection}{\numberline {4.7}Paint}{32}
+\contentsline {subsection}{\numberline {4.8}YouTube}{32}
 \contentsline {subsection}{\numberline {4.9}Chat}{32}
-\contentsline {subsection}{\numberline {4.10}Server performance}{32}
-\contentsline {subsubsection}{\numberline {4.10.1}Theory}{32}
-\contentsline {paragraph}{Without MCU.}{32}
-\contentsline {paragraph}{With MCU.}{33}
-\contentsline {subsubsection}{\numberline {4.10.2}Performance test}{34}
-\contentsline {section}{\numberline {5}Discussion}{35}
-\contentsline {subsection}{\numberline {5.1}Issues}{35}
-\contentsline {subsection}{\numberline {5.2}The design}{35}
-\contentsline {subsection}{\numberline {5.3}User test}{35}
-\contentsline {subsection}{\numberline {5.4}Performance test}{36}
-\contentsline {subsection}{\numberline {5.5}Future work and improvements}{37}
-\contentsline {subsection}{\numberline {5.6}Conclusion}{37}
+\contentsline {subsection}{\numberline {4.10}Server performance}{33}
+\contentsline {subsubsection}{\numberline {4.10.1}Theory}{33}
+\contentsline {paragraph}{Without MCU.}{33}
+\contentsline {paragraph}{With MCU.}{34}
+\contentsline {subsubsection}{\numberline {4.10.2}Performance test}{35}
+\contentsline {section}{\numberline {5}Discussion}{36}
+\contentsline {subsection}{\numberline {5.1}Issues}{36}
+\contentsline {subsection}{\numberline {5.2}The design}{36}
+\contentsline {subsection}{\numberline {5.3}User test}{36}
+\contentsline {subsection}{\numberline {5.4}Performance test}{37}
+\contentsline {subsection}{\numberline {5.5}Future work and improvements}{38}
+\contentsline {subsection}{\numberline {5.6}Conclusion}{38}
