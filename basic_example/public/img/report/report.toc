@@ -29,66 +29,66 @@
 \contentsline {subsection}{\numberline {1.18}The Word Cafe online community}{11}
 \contentsline {subsection}{\numberline {1.19}Related papers}{12}
 \contentsline {subsection}{\numberline {1.20}Project transparency}{13}
-\contentsline {subsection}{\numberline {1.21}What the site looks like}{15}
-\contentsline {subsubsection}{\numberline {1.21.1}Index/start page}{15}
-\contentsline {subsubsection}{\numberline {1.21.2}Cafeview}{16}
-\contentsline {subsubsection}{\numberline {1.21.3}Tableview}{17}
-\contentsline {subsection}{\numberline {1.22}Use cases}{18}
-\contentsline {subsubsection}{\numberline {1.22.1}Use case 1: Enter a caf\IeC {\'e}}{18}
-\contentsline {subsubsection}{\numberline {1.22.2}Use case 2: Oversee and overhear}{18}
-\contentsline {subsubsection}{\numberline {1.22.3}Use case 3: Sit down at table}{19}
-\contentsline {section}{\numberline {2}Technologies}{19}
-\contentsline {subsection}{\numberline {2.1}Node.js}{19}
-\contentsline {subsection}{\numberline {2.2}WebRTC}{19}
-\contentsline {subsection}{\numberline {2.3}Licode}{19}
-\contentsline {subsubsection}{\numberline {2.3.1}Erizo}{19}
-\contentsline {subsubsection}{\numberline {2.3.2}Nuve}{20}
-\contentsline {subsection}{\numberline {2.4}MongoDB}{20}
-\contentsline {subsection}{\numberline {2.5}Mongoose}{20}
-\contentsline {subsection}{\numberline {2.6}Express}{20}
-\contentsline {subsection}{\numberline {2.7}Twitter Bootstrap}{20}
-\contentsline {subsection}{\numberline {2.8}HTML5}{20}
-\contentsline {subsection}{\numberline {2.9}Three.js}{21}
-\contentsline {subsubsection}{\numberline {2.9.1}WebGL}{21}
-\contentsline {subsection}{\numberline {2.10}GitHub}{21}
-\contentsline {section}{\numberline {3}Method}{21}
-\contentsline {subsection}{\numberline {3.1}WebRTC comparison}{21}
-\contentsline {subsubsection}{\numberline {3.1.1}Easy RTC}{22}
-\contentsline {subsubsection}{\numberline {3.1.2}WebRTC.io}{22}
-\contentsline {subsubsection}{\numberline {3.1.3}Holla}{22}
-\contentsline {subsection}{\numberline {3.2}Survey}{22}
-\contentsline {subsubsection}{\numberline {3.2.1}Evaluation}{23}
-\contentsline {subsection}{\numberline {3.3}Prestudy conclusion}{23}
-\contentsline {subsection}{\numberline {3.4}System architecture}{24}
-\contentsline {subsubsection}{\numberline {3.4.1}Backend}{24}
-\contentsline {subsubsection}{\numberline {3.4.2}Database}{24}
-\contentsline {subsubsection}{\numberline {3.4.3}Server}{24}
-\contentsline {subsubsection}{\numberline {3.4.4}Nuve}{25}
-\contentsline {subsubsection}{\numberline {3.4.5}Erizo Controller}{25}
-\contentsline {subsubsection}{\numberline {3.4.6}Frontend}{25}
-\contentsline {subsubsection}{\numberline {3.4.7}Erizo Client}{25}
-\contentsline {subsection}{\numberline {3.5}Setting up a connection}{25}
-\contentsline {section}{\numberline {4}Result}{26}
-\contentsline {subsection}{\numberline {4.1}Design}{26}
-\contentsline {subsubsection}{\numberline {4.1.1}The 2D view}{26}
-\contentsline {subsubsection}{\numberline {4.1.2}The 3D view}{27}
-\contentsline {subsection}{\numberline {4.2}Leader}{27}
-\contentsline {subsection}{\numberline {4.3}Peer-to-peer}{27}
-\contentsline {subsection}{\numberline {4.4}Overhearing}{28}
-\contentsline {subsection}{\numberline {4.5}Overseeing}{29}
-\contentsline {subsection}{\numberline {4.6}Mingle}{31}
-\contentsline {subsection}{\numberline {4.7}Paint}{32}
-\contentsline {subsection}{\numberline {4.8}YouTube}{32}
-\contentsline {subsection}{\numberline {4.9}Chat}{32}
-\contentsline {subsection}{\numberline {4.10}Server performance}{33}
-\contentsline {subsubsection}{\numberline {4.10.1}Theory}{33}
-\contentsline {paragraph}{Without MCU.}{33}
-\contentsline {paragraph}{With MCU.}{34}
-\contentsline {subsubsection}{\numberline {4.10.2}Performance test}{35}
-\contentsline {section}{\numberline {5}Discussion}{36}
-\contentsline {subsection}{\numberline {5.1}Issues}{36}
-\contentsline {subsection}{\numberline {5.2}The design}{36}
-\contentsline {subsection}{\numberline {5.3}User test}{36}
-\contentsline {subsection}{\numberline {5.4}Performance test}{37}
-\contentsline {subsection}{\numberline {5.5}Future work and improvements}{38}
-\contentsline {subsection}{\numberline {5.6}Conclusion}{38}
+\contentsline {section}{\numberline {2}What the site looks like}{16}
+\contentsline {subsection}{\numberline {2.1}Index/start page}{16}
+\contentsline {subsection}{\numberline {2.2}Cafeview}{17}
+\contentsline {subsection}{\numberline {2.3}Tableview}{18}
+\contentsline {subsection}{\numberline {2.4}Use cases}{19}
+\contentsline {subsubsection}{\numberline {2.4.1}Use case 1: Enter a caf\IeC {\'e}}{19}
+\contentsline {subsubsection}{\numberline {2.4.2}Use case 2: Oversee and overhear}{19}
+\contentsline {subsubsection}{\numberline {2.4.3}Use case 3: Sit down at table}{20}
+\contentsline {section}{\numberline {3}Technologies}{21}
+\contentsline {subsection}{\numberline {3.1}Node.js}{21}
+\contentsline {subsection}{\numberline {3.2}WebRTC}{21}
+\contentsline {subsection}{\numberline {3.3}Licode}{21}
+\contentsline {subsubsection}{\numberline {3.3.1}Erizo}{21}
+\contentsline {subsubsection}{\numberline {3.3.2}Nuve}{21}
+\contentsline {subsection}{\numberline {3.4}MongoDB}{22}
+\contentsline {subsection}{\numberline {3.5}Mongoose}{22}
+\contentsline {subsection}{\numberline {3.6}Express}{22}
+\contentsline {subsection}{\numberline {3.7}Twitter Bootstrap}{22}
+\contentsline {subsection}{\numberline {3.8}HTML5}{22}
+\contentsline {subsection}{\numberline {3.9}Three.js}{22}
+\contentsline {subsubsection}{\numberline {3.9.1}WebGL}{23}
+\contentsline {subsection}{\numberline {3.10}GitHub}{23}
+\contentsline {section}{\numberline {4}Method}{24}
+\contentsline {subsection}{\numberline {4.1}WebRTC comparison}{24}
+\contentsline {subsubsection}{\numberline {4.1.1}Easy RTC}{24}
+\contentsline {subsubsection}{\numberline {4.1.2}WebRTC.io}{24}
+\contentsline {subsubsection}{\numberline {4.1.3}Holla}{24}
+\contentsline {subsection}{\numberline {4.2}Survey}{25}
+\contentsline {subsubsection}{\numberline {4.2.1}Evaluation}{25}
+\contentsline {subsection}{\numberline {4.3}Prestudy conclusion}{25}
+\contentsline {subsection}{\numberline {4.4}System architecture}{26}
+\contentsline {subsubsection}{\numberline {4.4.1}Backend}{26}
+\contentsline {subsubsection}{\numberline {4.4.2}Database}{27}
+\contentsline {subsubsection}{\numberline {4.4.3}Server}{27}
+\contentsline {subsubsection}{\numberline {4.4.4}Nuve}{27}
+\contentsline {subsubsection}{\numberline {4.4.5}Erizo Controller}{27}
+\contentsline {subsubsection}{\numberline {4.4.6}Frontend}{27}
+\contentsline {subsubsection}{\numberline {4.4.7}Erizo Client}{27}
+\contentsline {subsection}{\numberline {4.5}Setting up a connection}{28}
+\contentsline {section}{\numberline {5}Result}{29}
+\contentsline {subsection}{\numberline {5.1}Design}{29}
+\contentsline {subsubsection}{\numberline {5.1.1}The 2D view}{29}
+\contentsline {subsubsection}{\numberline {5.1.2}The 3D view}{29}
+\contentsline {subsection}{\numberline {5.2}Leader}{30}
+\contentsline {subsection}{\numberline {5.3}Peer-to-peer}{30}
+\contentsline {subsection}{\numberline {5.4}Overhearing}{31}
+\contentsline {subsection}{\numberline {5.5}Overseeing}{32}
+\contentsline {subsection}{\numberline {5.6}Mingle}{33}
+\contentsline {subsection}{\numberline {5.7}Paint}{34}
+\contentsline {subsection}{\numberline {5.8}YouTube}{35}
+\contentsline {subsection}{\numberline {5.9}Text chat}{36}
+\contentsline {subsection}{\numberline {5.10}Server performance}{36}
+\contentsline {subsubsection}{\numberline {5.10.1}Theory}{37}
+\contentsline {paragraph}{Without MCU.}{37}
+\contentsline {paragraph}{With MCU.}{38}
+\contentsline {subsubsection}{\numberline {5.10.2}Performance test}{38}
+\contentsline {section}{\numberline {6}Discussion}{40}
+\contentsline {subsection}{\numberline {6.1}Issues}{40}
+\contentsline {subsection}{\numberline {6.2}The design}{40}
+\contentsline {subsection}{\numberline {6.3}User test}{40}
+\contentsline {subsection}{\numberline {6.4}Performance test}{41}
+\contentsline {subsection}{\numberline {6.5}Future work and improvements}{42}
+\contentsline {subsection}{\numberline {6.6}Conclusion}{42}

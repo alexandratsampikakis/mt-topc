@@ -1,17 +1,3 @@
-\title{A Very Simple \LaTeXe{} Template}
-\author{
-        Vitaly Surazhsky \\
-                Department of Computer Science\\
-        Technion---Israel Institute of Technology\\
-        Technion City, Haifa 32000, \underline{Israel}
-            \and
-        Yossi Gil\\
-        Department of Computer Science\\
-        Technion---Israel Institute of Technology\\
-        Technion City, Haifa 32000, \underline{Israel}
-}
-\date{\today}
-
 \documentclass[12pt, titlepage]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -19,10 +5,21 @@
 \usepackage{graphicx} % includegraphics command is implemented here
 \usepackage{float}
 \usepackage{titlesec}
+\usepackage{pdfpages}
 \newcommand{\sectionbreak}{\clearpage}
-
+\title{The Online Paris Café}
+\author{
+        Alexandra Tsampikakis \\
+                Department of Computer Science and Engineering\\
+        Luleå University of Technology\\
+            \and
+        Patrik Burström\\
+                Department of Computer Science and Engineering\\
+        Luleå University of Technology\\
+}
+\date{\today}
 \begin{document}
-\maketitle
+%\maketitle
 \newpage
 \begin{abstract}
 Cafés are the home to many interesting ideas, it also a place where people go to meet new interesting people. In this report we discuss how a café environment can be realized online. The problem faced during the project includes overseeing, how one can look around and see other groups of people talking to each other. Overhearing, how one can listen to and find inspiration from other conversations going on in the café. Mingle, how one can move between these conversations in a subtle way.
@@ -182,12 +179,14 @@ Before this project started we made a gantt-chart, a rough plan of our milestone
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
   \caption{A gantt-chart to guide us through the project and manage deadlines.}
 \end{figure}
-The work has been shared equally between the two participants in this project. All the planning, prestudy and implementing of the prototype was done together.
+The work has been shared equally between the two participants in this project. All the prestudy, planning and implementing of the prototype was done together. The first step was the prestudy, Alexandra started finding some related services and Patrik related papers. We then worked together to find more specific services and papers to complete the prestudy.
 
-A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in javascript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. However, Patrik worked more on the backend and modifying Licode, while Alexandra had more focus on the design and additional features like paint and YouTube.
-\subsection{What the site looks like}
+A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in javascript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. We also practised pair programming which means that we both programmed on the same computer at the same time. This method works really good and we added as much functionality as if we were working separately, but with much higher quality of the code.
+
+However, Patrik worked more on the backend, creating rooms, setting up routes, the RESTful API and modifying Licode, while Alexandra set up the database and had more focus on the design, and additional features like paint, text chat and YouTube. She also focused more on keeping track of the progress and what needed to be done in order to meet the deadlines. All the solutions to our main problems overseeing, overhearing and mingling were solved together but Alexandra had more focus on the overseeing part and Patrik the overhearing. The mingling part were mostly solved together. We practised pair programming on the harder parts and when someone got stuck.
+\section{What the site looks like}
 These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
-\subsubsection{Index/start page}
+\subsection{Index/start page}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage1.png}
@@ -203,28 +202,28 @@ These pictures will give you an idea of how the site is build up and it is easie
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage3.png}
   \caption{The start page, the buttons are the six cafés the user can visit, this is the 3D view.}
 \end{figure}
-\subsubsection{Cafeview}
+\subsection{Cafeview}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{thetables.png}
-  \caption{This picture shows the tables in the café Unik. In table 1 there is one person sitting down, the other seats is empty at that table.}
+  \caption{The 2D view of the tables in the café Unik. In table 1 there is one person sitting down, the other seats is empty at that table.}
 \end{figure}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{thetables3D.png}
-  \caption{This picture shows all the tables in café Unik. At the moment all the tables are empty. The green table is turned around with the mouse, if you click the on the turned table you will overhear the conversation if the table is not empty. If you click at a table you will sit down at the table.}
+  \caption{The 3D view of all the tables in café Unik. At the moment all the tables are empty. The green table is turned around with the mouse, if you click the on the turned table you will overhear the conversation if the table is not empty. If you click at a table you will sit down at the table.}
 \end{figure}
 
-\subsubsection{Tableview}
+\subsection{Tableview}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{sittingdown2D.png}
-  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone. You see the text chat and the napkin.}
+  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone in the 2D view. You see the text chat and the napkin.}
 \end{figure}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{sittingdown3D.png}
-  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone. You see the text chat and the napkin. The video stream in middle to the right has a mouse over it. That is why it looks different.}
+  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone in the 3D view. You see the text chat and the napkin. The video stream in middle to the right has a mouse over it. That is why it looks different.}
 \end{figure}
 \subsection{Use cases}
 These use cases are made for a better understanding of how the system can be used. Three example will explain this.
@@ -761,5 +760,6 @@ https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-skype-need.
   May 2013,
   http://mt-topc.blogspot.se/.       
 \end{thebibliography}
+\includepdf[pages={-}]{studie.pdf}
+\includepdf[pages={-}]{feas.pdf}
 \end{document}
-This is never printed
