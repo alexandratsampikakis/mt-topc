@@ -18,6 +18,9 @@
 \usepackage{lmodern} % load a font with all the characters
 \usepackage{graphicx} % includegraphics command is implemented here
 \usepackage{float}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
 \begin{document}
 \maketitle
 \newpage
@@ -33,14 +36,14 @@ A café is a very stimulating environment to many people. It’s a place where y
 
 We want to transfer this feeling of being in a real café online. With the ability of seeing each other through video conference, collaborate together on a drawing, watch YouTube videos, reading pdfs together and of course being able to communicate through a text chat with all the participants sitting down at a table. Three other important aspects of transferring this feeling is overseeing, overhearing and mingling. These parts will be investigated and tested with a prototype.
 
-When you are walking by a table in a real café you will hear what their conversation is about and also see all the participants, this is overhearing and overseeing. Before you can sit down at a table and join a conversation you will gently ask if it is okay without trying to disturb their conversation too much.
+When you are walking by a table in a real café you will hear what their conversation is about and also see all the participants, this is what we call overhearing and overseeing. Before you can sit down at a table and join a conversation you will gently ask if it is okay without trying to disturb their conversation too much.
 
 The prototype contains a 2D- and 3D-view where overseeing, overhearing and mingling is realized.
 
 \subsection{Problem description}
 The problem we set out to solve was how to create a web based environment for sharing the feeling of being in a Paris Café including how to convey a feeling of overseeing, overhearing and mingling. Unlike traditional video chats where there is only one group of people participating, we want to create a video chat service with multiple rooms and multiple groups in each room. Where users can see the other groups and overhear conversations and move between the tables in an easy way.
 
-Also how we can realize this feeling in a 2 and 3 dimensional view and still keep the café feeling, low latency so it feels like a "real" meeting, video streams instead of avatars and present them in a nice way in both views.
+Also how we can realize this feeling in a 2 and 3 dimensional view and still keep the café feeling, low latency so it feels like a real life meeting and present it all in a nice way in both views.
 \subsection{Project goals}
 The goal of the project is to:
 \begin{itemize}
@@ -60,7 +63,7 @@ How can one hear the conversations from the other groups sitting at another tabl
 How can participants easily move between different conversations? I.e. if I oversee and overhear another interesting conversation, how can I gently move into that without too much interruption? This can be done by, for example, knocking, avatar gestures in a 3D world or writing a message to the group.
 
 \subsection{Project requirements}
-The project had a few restrictions of what technologies to use, WebRTC for media and data communication between clients, javascript and HTML5 for frontend. At the moment WebRTC is still under development. These technologies is used to promote using native browsers without any plugins.
+The project had a few restrictions of what technologies to use, WebRTC for media and data communication between clients, javascript and HTML5 for frontend. At the moment WebRTC is still under development. These technologies are used to promote using native browsers without any plugins.
 \subsection{Project delimitations}
 This is a big project and it need some limitations, it is our imagination and time that decides. We decided to limit us to have six cafés, six tables in each café and six persons at each table maximum. The server we are using have limitations and therefore the amount of people at each table is limited.
 \subsection{Research questions}
@@ -118,7 +121,7 @@ The criteria for the comparison of the different services are based on three thi
 \subsection{Related services}
 Here follow some information about each service and what makes them unique. Each service is compared to the list of criterias.
 \subsection{Google WebRTC}
-WebRTC is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple Javascript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{13}.
+WebRTC\cite{27} is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple Javascript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{13}.
 \subsubsection{Browser meeting}
 Browser meeting\cite{12} is a web application using WebRTC. It's a web conference tool which is very easy to use. Simply create a room and invite your friends.
 \subsubsection{frisB}
@@ -171,7 +174,7 @@ Online mingle and overhearing have received little attention from researchers. O
 
 Overseeing in 3D worlds already exists\cite{2}\cite{3}\cite{4}\cite{5}, in a 2D world this can not be realized in the same way as i in a 3D world. That will be a part of our master thesis to discover if there is a way to realize it.
 \subsection{Project transparency}
-One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
+One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{37}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
 
 Before this project started we made a gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
 \begin{figure}[H]
@@ -233,11 +236,11 @@ When Lisa is inside a café she can look at the six tables. Each table will disp
 After finding a table to sit down at she clicks “Join table”. Participants of the group will hear a knocking sound and find a notification in the upper right corner. They will now answer yes or no. If the majority answer yes she will sit down at a table where the video chat begins.
 \section{Technologies}
 \subsection{Node.js}
-Node.js\cite{26} is an event-driven, non-blocking I/O JavaScript platform, built on Chrome's V8 JavaScript runtime. The reason for using Node.js is that it makes for easily building fast and scalable network applications. The server is entirely written under the Node.js platform.
+Node.js\cite{26} is an event-driven, non-blocking I/O JavaScript platform, built on Chrome's V8 JavaScript runtime. The reason for using Node.js is that it makes it easy to build fast and scalable network applications. The server is entirely written under the Node.js platform.
 \subsection{WebRTC}
 WebRTC\cite{27} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
 
-By using peer-to-peer connection instead of sending information through a central server, it removes the need for a powerful server. A server is still needed to setup the connection between the participants.
+Using peer-to-peer connection instead of sending information through a central server removes the need for a powerful server. A server is still needed to setup the connection between the participants.
 \subsection{Licode}
 Licode\cite{28} is an open-source project that is based upon WebRTC technologies. It comes with Erizo, a Multipoint Control Unit(MCU) and an easy to use API for creating video conference rooms directly in the browser. 
 \subsubsection{Erizo}
@@ -316,7 +319,7 @@ Example: GET /api/getCafe/Unik from the database results in:
 \subsubsection{Database}
 The database stores all the information about the cafés, all the rooms and what rooms that belongs to what café and the snapshot taken by all leaders in each room. Each café consists of six rooms. The client communicates with the server in which the server communicated with the database.
 \subsubsection{Server}
-All the cafés and rooms are created in the server using Nuve Client. An access request will be sent and accepted via Nuve for each user trying to connect to a room via a token-based authentication mechanism. This mechanism allows these servers to create access tokens, and they will provide these tokens to their clients. 
+All the cafés and rooms are created in the server using Nuve Client. An access request will be sent and accepted via Nuve for each user trying to connect to a room via a token-based authentication mechanism. This mechanism allows the server to create access tokens, and it will provide these tokens to the clients. 
 \subsubsection{Nuve}
 Nuve is a Licode module that manages the rooms or the tokens to access to a determined room. Nuve Client API allows the server to, for example, create rooms, get rooms, and get users of a certain room.
 \subsubsection{Erizo Controller}
@@ -372,15 +375,15 @@ We chose to not display the text chat, drawing or if a video is watched. This is
 We chose not to implement overhearing when you're in a table. This is because it would draw attention from the conversation.
 
 \subsection{Overseeing}
-The prototype has three kinds of overseeing. The first one is directly when you enter the café. You then see a snapshot of every stream for every table in the café. The snapshots updates every 30 seconds, when a new user sits down at a table and when a user leaves a table. The snapshot is sent to the server by a chosen leader of each table.
+The prototype has three kinds of overseeing. The first one is directly when you enter the café. You then see a snapshot of every stream for every table in the café[Figure 12]. The snapshots updates every 30 seconds, when a new user sits down at a table and when a user leaves a table. The snapshot is sent to the server by a chosen leader of each table.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{overseeing2D.jpg}
   \caption{Shows overseeing when you enter a café and view the tables.}
 \end{figure}
-The second type of overseeing is in real-time. Before you sit down at a table you can chose to oversee and overhear the by clicking a button. You can then see and hear all the participants at the table in real-time[Figure X].
+The second type of overseeing is in real-time. Before you sit down at a table you can chose to oversee and overhear the by clicking a button. You can then see and hear all the participants at the table in real-time[Figure 10, 11].
 
-The third type of overseeing is when you are in a room sitting down at a table. In a real café you can actually look around the café and see the other participant while still have a conversation with your table, we decided to implement this by having a bar on the top of the page  to see the snapshots of the other tables in the same café you are in.
+The third type of overseeing is when you are in a room sitting down at a table. In a real café you can actually look around the café and see the other participant while still have a conversation with your table, we decided to implement this by having a bar on the top of the page that you can pull down[Figure 13] to see the snapshots of the other tables in the same café you are in.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{pulldownoversee.jpg}
@@ -396,15 +399,25 @@ The idea was to have a subtle way of telling the participants at a certain table
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{knock.png}
   \caption{A knock notification. Alexandra wants to join the room.}
 \end{figure}
-After pressing the knock button, a datastream is published and other datastreams are being subscribed to. A message is sent to all the users in the room and a notification(figure X) pops up in the upper right corner. All the users in the room gets to vote by pressing “Yes” or “No”. The notification disappears after 20 seconds. Any unanswered notification results in a “No” The answers are sent to the requesters client and depending on how many “Yes”, you have to have more than the total amount of users in the room divided by two plus one, so the majority has to answer “Yes” before a user can connect to the room and publish his or her media stream.
+After pressing the knock button, a datastream is published and other datastreams are being subscribed to. A message is sent to all the users in the room and a notification[Figure 14] pops up in the upper right corner. All the users in the room gets to vote by pressing “Yes” or “No”. The notification disappears after 20 seconds. Any unanswered notification results in a “No” The answers are sent to the requesters client and depending on how many “Yes”, you have to have more than the total amount of users in the room divided by two plus one, so the majority has to answer “Yes” before a user can connect to the room and publish his or her media stream.
 
 To again save some server load the knocking is done with peer-to-peer connection, means that the server does not have a clue of who is knocking and it is all done between the clients involved.
 \subsection{Paint}
-Many ideas starts on a napkin, maybe in a café just hanging with your colleagues or friends. The napkin at the table is shared between all the users sitting at the same table and they can all draw on it together, real-time collaboration. When a new user sits down at the table he or she will get the current napkin by each tables leader. The napkin can also be saved locally to your computer. The clear napkin button will reset the napkin for all users. Color and thickness can be chosen in the dropdown menus.
+Many ideas starts on a napkin, maybe in a café just hanging with your colleagues or friends. The napkin at the table is shared between all the users sitting at the same table and they can all draw on it together[Figure 15], real-time collaboration. When a new user sits down at the table he or she will get the current napkin by each tables leader. The napkin can also be saved locally to your computer. The clear napkin button will reset the napkin for all users. Color and thickness can be chosen in the dropdown menus.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{theNapkin.png}
+  \caption{A drawing on the napkin shared with all participants in the room.}
+\end{figure}
 \subsection{YouTube}
-A synchronized YouTube player that plays any video from YouTube. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
-\subsection{Chat}
-The chat is very basic. You chose a username when you enter a café. This will be displayed whenever you write a message in the chat. The chat is also used for some notifications, for example when someone sits down at a table. All the text messages is shared with all participants at the table.
+A synchronized YouTube player that plays any video from YouTube[Figure 16]. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{youtubeToReport.png}
+  \caption{The youtube player in the 2D view.}
+\end{figure}
+\subsection{Text chat}
+The text chat is very basic[Figure 17]. You chose a username when you enter a café. This will be displayed whenever you write a message in the chat. The chat is also used for some notifications, for example when someone sits down at a table. All the text messages is shared with all participants at the table.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{chat.png}
@@ -741,7 +754,12 @@ https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-skype-need.
   Tinychat Co,
   \emph{Tinychat}.
   May 2013,
-  http://tinychat.com/.    
+  http://tinychat.com/.
+\bibitem{37}
+  Project group,
+  \emph{Project blog}.
+  May 2013,
+  http://mt-topc.blogspot.se/.       
 \end{thebibliography}
 \end{document}
 This is never printed
