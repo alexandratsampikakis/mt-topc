@@ -809,40 +809,6 @@ window.onload = function () {
             saveAs(blob, "myNapkin.png");
         });
     });
-    $('#napkinTab').click(function() {
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
-    $('#videoTab').click(function() {
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
 
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
@@ -877,30 +843,46 @@ window.onload = function () {
 }
 
 var askToJoinTablePopup = function(nameOfUser) {
-        knockSound();
-        $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
+    knockSound();
+    $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
+};
+
+var deniedNotification = function(whatCase) {
+    switch (whatCase) {
+        case 1:
+            $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
+            break;
+        case 2:
+            $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
+            break;
+       default:
+    }
+}
+
+var createToken = function(roomId, userName, role, callback) {
+    var req = new XMLHttpRequest();
+    var url = serverUrl + 'createToken/' + roomId;
+    var body = {username: userName, role: role};
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) {
+            callback(req.responseText);
+        }
     };
 
-    var deniedNotification = function(whatCase) {
-        switch (whatCase) {
-            case 1:
-                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
-                break;
-            case 2:
-                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
-                break;
-           default:
-        }
-    }
+    req.open('POST', url, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(JSON.stringify(body));
+};
 
 var initialize = function(roomId) {
     currentTable = roomId;
     initSceneInTable();
     //render();
 
-    $('#leaveTableButton').show();
-    $('#videoTab').show();
-    $('#napkinTab').show();
+    //$('#leaveTableButton').show();
+    //$('#videoTab').show();
+    //$('#napkinTab').show();
 
     $('#chatArea').css({
         position:'absolute', 
@@ -938,6 +920,41 @@ var initialize = function(roomId) {
     $('#chatArea').width('40%');
     $('#chatMessage').width('32.5%');
     $('#sendMessage').width('7%');
+
+    $('#napkinTab').click(function() {
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+    $('#videoTab').click(function() {
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
 
     try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
@@ -1028,23 +1045,6 @@ var initialize = function(roomId) {
     });
     localStream.init();
 }
-
-var createToken = function(roomId, userName, role, callback) {
-    var req = new XMLHttpRequest();
-    var url = serverUrl + 'createToken/' + roomId;
-    var body = {username: userName, role: role};
-
-    req.onreadystatechange = function () {
-        if (req.readyState === 4) {
-            callback(req.responseText);
-        }
-    };
-
-    req.open('POST', url, true);
-    req.setRequestHeader('Content-Type', 'application/json');
-    req.send(JSON.stringify(body));
-};
-
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
@@ -1192,7 +1192,6 @@ var knock = function(roomId) {
         });
     }   
 }
-
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------

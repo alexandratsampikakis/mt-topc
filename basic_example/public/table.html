@@ -3,15 +3,18 @@
     <title>iDipity</title>
 
     <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/napkin.css" />
 
     <!-- Notify CSS -->
     <link href="/lib/bootstrap-notify-master/css/bootstrap-notify.css" rel="stylesheet" />
     <link href="/lib/bootstrap-notify-master/css/styles/alert-bangtidy.css" rel="stylesheet" />
     <link href="/lib/bootstrap-notify-master/css/styles/alert-blackgloss.css" rel="stylesheet" />
     <link href="/lib/bootstrap-notify-master/css/styles/alert-notification-animations.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/napkin.css" />
+    <link rel="stylesheet" type="text/css" href="css/cafeView.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.css" />
 
     <script type="text/javascript" src="erizo.js"></script>    
     <script type="text/javascript" src="feedback.js"></script>
@@ -31,7 +34,7 @@
       <a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
         <ul class="nav">
           <li><a style="margin-left:-190px;" id="cafeVideoTitle" href="#"></a></li>
-          <button id="leaveTableButton" class="btn btn-mini hide" style="">Leave table</button>
+          <!--<button id="leaveTableButton" class="btn btn-mini hide" style="">Leave table</button>-->
         </ul>
         <div id="knocking" class='notifications top-right'></div>
       </div>
@@ -84,7 +87,7 @@
           <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
       </ul>
 
-      <div class="tab-content tableBox myShadow" style="height: 500 px; border: 1px solid #ddd; margin-left: -0.5px;">
+      <div class="tab-content tableBox myShadow" style="border: 1px solid #ddd; margin-left: -0.5px;">
           <div class="tab-pane active" id="shareYTVideo">
               <center>
                   <div id="writeUrl" style="margin-top: 10px;">
@@ -197,15 +200,15 @@
 
   <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
   <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.WindowResize.js"></script>
-  <script type="text/javascript" src="table.js"></script>
-  <script type="text/javascript" src="/tab.js"></script>
   <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tab.js"></script>
+
   <script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+  <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+  <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
   <script type="text/javascript" src="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.js"></script>
+
   <script type="text/javascript" src="/lib/FileSaver.js-master/FileSaver.min.js"></script>
   <script type="text/javascript" src="/lib/canvas-toBlob.js-master/canvas-toBlob.js"></script>
 
@@ -215,6 +218,8 @@
   <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
   <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
   <script type="text/javascript" src="/lib/swfobject/src/swfobject.js"></script>
+  
+  <script type="text/javascript" src="table.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function () {
