@@ -1,5 +1,7 @@
 var room, cafe, localStream, serverUrl;
 serverUrl = "http://satin.research.ltu.se:3001/";
+var streams = [];
+var tableId = new Array();
 
 //knock
 var dataStream, nameOfUser, leader, currentTable;
@@ -12,10 +14,8 @@ var knocker = 0;
 //overhear
 var isOverhearing = null;
 var overhearGroup;
-var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
 var overhearStream;
-var streams = [];
 
 var chairImg = new Image();
 var emptyImg = new Image();
@@ -333,14 +333,6 @@ function onDocumentMouseDown( event ) {
     }
     console.log(intersects);
     console.log(objectToRotate);
-    /*
-    // Parse all the faces
-    for ( var i in intersects ) {
-
-        intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xffffff | 0x80000000 );
-
-    }
-    */
 }
 
 function onDocumentMouseMove( event ) {
@@ -413,16 +405,16 @@ function clearFeedback() {
 }
 
 //Close all streams, disconnect room, reset streams, clear text fields
-function resetConnection() {
-    localStream.close();
-    dataStream.close();
-    overhearStream.close();
-    room.disconnect();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-    clearTextFields();
-}
+// function resetConnection() {
+//     localStream.close();
+//     dataStream.close();
+//     overhearStream.close();
+//     room.disconnect();
+//     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+//     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+//     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+//     clearTextFields();
+// }
 
 var rotationY;
 function render() {
@@ -435,33 +427,29 @@ function render() {
     var intersects = raycaster.intersectObjects( scene.children );
 
     if(currentState === "TABLEVIEW") {
-        console.log("nu är vi i TABLEVIEW");
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
-                //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
                 INTERSECTED = intersects[ 0 ].object;
-                /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-                INTERSECTED.material.emissive.setHex( 0xff0000 );*/
                 rotationY = INTERSECTED.rotation.y;
                 INTERSECTED.rotation.y = 0;
             }
         } else {
-            //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
-    } else if(currentState === "CAFEVIEW" && objectToRotate != null) {
+    }
+    if(currentState === "CAFEVIEW" && objectToRotate != null) {
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
     }
 
+    renderer.render( scene, camera );
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
-    renderer.render( scene, camera );
 }
 
 
@@ -540,10 +528,6 @@ function loadImage(imageData, elementID, pos) {
         videoTexture2.minFilter = THREE.LinearFilter;
         videoTexture2.magFilter = THREE.LinearFilter;
         videoTexture2.needsUpdate = true;
-        //var x = room.getStreamsByAttribute('type','media').length;
-        //var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
-        // the geometry on which the movie will be displayed;
-        //movie image will be scaled to fit these dimensions.
         var materialArray = [];
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
@@ -551,11 +535,9 @@ function loadImage(imageData, elementID, pos) {
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture2 }));
-        /*for (var i = 0; i < 6; i++)
-            materialArray[i].side = THREE.BackSide;*/
+    
         var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
         var skyboxGeom = new THREE.CubeGeometry( 4, 3, 0.3, 1, 1, 1 );
-        //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
         var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
         movieScreen.position.set(x,y,z);
         movieScreen.name = pos;
@@ -590,22 +572,6 @@ function initVideoTables(stream,pos) {
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
 }
-
-function onDocumentMouseMove( event ) {
-    if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
-        event.preventDefault();
-        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-        //console.log(mouse.x +", "+mouse.y);
-    }
-}
-
-var StreamObject = function(video, texture, context){
-    this.video = video;
-    this.videoTexture = texture;
-    this.context = context;
-    return this;
-};
 
 var reflection;
 var movieGeometry;
@@ -662,23 +628,6 @@ function initVideoInTable(stream,pos) {
         scene.add(reflection);
     }
 }
-
-function updateVideos() {
-    var vid;
-    var videoImageContext;
-    var videoTexture; 
-
-    for (var i = 0; i < streams.length; i++) {
-        vid = streams[i].getVideo();
-        videoImageContext = streams[i].getContext();
-        videoTexture = streams[i].getTexture();
-        if ( vid.readyState === vid.HAVE_ENOUGH_DATA ) {
-            videoImageContext.drawImage( vid, 0, 0, 320, 240 );
-               if ( videoTexture ) videoTexture.needsUpdate = true;
-        }
-    };
-}
-
 
 window.onload = function () {
     chairImg.src="/img/emptyChair.jpg";
@@ -759,31 +708,6 @@ window.onload = function () {
         enterName();
         return false;
     });
-    $('#askToJoinTable').click(function() {
-        dataStream.sendData({id:'popup', user:nameOfUser});
-        return false;
-    });
-    $('#leaveTableButton').click(function() {
-        resetConnection();
-        $('#enterName').show();
-        $('#videoTab').hide();
-        $('#napkinTab').hide();
-        currentState = "TABLEVIEW";
-        return false;
-    });
-    $('#getVideoUrl').click(function() {
-        if($('#VideoUrl').val() !== "") {
-            urlVideo = $('#VideoUrl').val();
-            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
-            showVideo(urlVideo);
-        }
-        return false;
-    });
-    $('#closeVideo').click(function() {
-        $('#closeVideo').toggle();
-        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
-        return false;
-    });
     //Sends message details to server which in turn sends an email to iDipity google group
     $('#sendFeedback').click(function() {
         if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
@@ -795,19 +719,6 @@ window.onload = function () {
     });
     $('#closeFeedback').click(function() {
         clearFeedback();
-    });
-    $('#clearNapkin').click(function() {
-        dataStream.sendData({id:'clearNapkin'});
-        var c = document.getElementById("canvasNapkin");
-        var ctx = c.getContext("2d");
-        ctx.clearRect(0,0,c.width,c.height);
-    });
-    $('#saveNapkin').click(function() {
-        var c = document.getElementById("canvasNapkin");
-        ctx = c.getContext("2d");
-        c.toBlob(function(blob) {
-            saveAs(blob, "myNapkin.png");
-        });
     });
 
     var showVideo = function(urlVideo) {
@@ -883,6 +794,40 @@ var initialize = function(roomId) {
     //$('#leaveTableButton').show();
     //$('#videoTab').show();
     //$('#napkinTab').show();
+    // $('#leaveTableButton').click(function() {
+    //     resetConnection();
+    //     $('#enterName').show();
+    //     $('#videoTab').hide();
+    //     $('#napkinTab').hide();
+    //     currentState = "TABLEVIEW";
+    //     return false;
+    // });
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#closeVideo').toggle();
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+        return false;
+    });
+    $('#clearNapkin').click(function() {
+        dataStream.sendData({id:'clearNapkin'});
+        var c = document.getElementById("canvasNapkin");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0,0,c.width,c.height);
+    });
+    $('#saveNapkin').click(function() {
+        var c = document.getElementById("canvasNapkin");
+        ctx = c.getContext("2d");
+        c.toBlob(function(blob) {
+            saveAs(blob, "myNapkin.png");
+        });
+    });
 
     $('#chatArea').css({
         position:'absolute', 
