@@ -259,6 +259,15 @@ var StreamObject = function(video, texture, context){
     this.context = context;
     return this;
 };
+StreamObject.prototype.getVideo = function() {
+    return this.video;
+};
+StreamObject.prototype.getTexture = function() {
+    return this.videoTexture;
+};
+StreamObject.prototype.getContext = function() {
+    return this.context;
+};
 
 var reflection;
 var movieGeometry;
@@ -479,17 +488,6 @@ window.onload = function () {
             redrawNapkin();
         }, 100);
     });
-    
-    StreamObject.prototype.getVideo = function() {
-        return this.video;
-    };
-    StreamObject.prototype.getTexture = function() {
-        return this.videoTexture;
-    };
-
-    StreamObject.prototype.getContext = function() {
-        return this.context;
-    };
 
 	try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
@@ -533,7 +531,7 @@ window.onload = function () {
 
     var initialize = function(roomId) {
         
-        createToken(roomId, "user", "role", function (response) {
+        createToken(roomId, nameOfUser, "role", function (response) {
             var token = response;
             console.log('token created ', token);
             L.Logger.setLogLevel(L.Logger.DEBUG);
