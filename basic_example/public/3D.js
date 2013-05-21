@@ -1,6 +1,6 @@
 var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
-//var tableId = "513dcfda07aa2f143700001c";
+var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var tableId = new Array();
