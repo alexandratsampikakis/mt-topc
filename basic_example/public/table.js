@@ -1,5 +1,7 @@
 var room, cafe, localStream, serverUrl;
 serverUrl = "http://satin.research.ltu.se:3001/";
+var streams = [];
+var tableId = new Array();
 
 //knock
 var dataStream, nameOfUser, leader, currentTable;
@@ -12,10 +14,8 @@ var knocker = 0;
 //overhear
 var isOverhearing = null;
 var overhearGroup;
-var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
 var overhearStream;
-var streams = [];
 
 var chairImg = new Image();
 var emptyImg = new Image();
@@ -438,15 +438,11 @@ function render() {
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
-                //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
                 INTERSECTED = intersects[ 0 ].object;
-                /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-                INTERSECTED.material.emissive.setHex( 0xff0000 );*/
                 rotationY = INTERSECTED.rotation.y;
                 INTERSECTED.rotation.y = 0;
             }
         } else {
-            //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
