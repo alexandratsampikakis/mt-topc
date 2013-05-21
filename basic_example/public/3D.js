@@ -134,18 +134,6 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
-//Plays the knocking sound
-function knockSound() {
-    audioElement.play();
-}
-
-function toggleButton(element) {
-   if(element.css('display') === 'none') {
-       element.css('display','inline-block') 
-   } else {
-       element.css('display','none');
-   }
-}
 
 function redrawNapkin() {
     var c = $('#canvasNapkin')[0];
@@ -183,48 +171,7 @@ function drawLine (color, thickness, x1, y1, x2, y2) {
     context.stroke();
 }
 
-function sendNapkinToNewUser() {
-    var c = document.getElementById("canvasNapkin");
-    var ctx = c.getContext("2d");
-    var napkinImgData = c.toDataURL();
-    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
-}
 
-//Adds eventlisteners to youtubeplayer
-function onYouTubePlayerReady(playerId) {
-  ytplayer = document.getElementById("myytplayer");
-  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
-}
-
-//handler for youtube player state change
-function onytplayerStateChange(newState) {
-    switch (newState) {
-        case 1:
-            //play
-            dataStream.sendData({id:'ytplayer', state:1});
-            console.log("play video");
-            break;
-        case 2:
-            //pause
-            dataStream.sendData({id:'ytplayer', state:2});
-            break;
-       default:
-    }
-}
-
-//Plays the youtube video
-function play() {
-    if (ytplayer) {
-        ytplayer.playVideo();
-    }
-}
-
-//Pauses the youtube video
-function pause() {
-    if (ytplayer) {
-        ytplayer.pauseVideo();
-    }
-}
 
 //Notifys users of newly joined user by writing in chat
 function hasJoinedTheRoom(username) {
@@ -236,12 +183,6 @@ function hasJoinedTheRoom(username) {
     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
 }
 
-//Clears feedback text fields
-function clearFeedback() {
-    $('#feedbackSubject').val("");
-    $('#feedbackMail').val("");
-    $('#feedbackMessage').val("");
-}
 
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
@@ -257,15 +198,6 @@ var StreamObject = function(video, texture, context){
     this.videoTexture = texture;
     this.context = context;
     return this;
-};
-StreamObject.prototype.getVideo = function() {
-    return this.video;
-};
-StreamObject.prototype.getTexture = function() {
-    return this.videoTexture;
-};
-StreamObject.prototype.getContext = function() {
-    return this.context;
 };
 
 var reflection;
@@ -489,6 +421,16 @@ window.onload = function () {
         }, 100);
     });
 
+    StreamObject.prototype.getVideo = function() {
+        return this.video;
+    };
+    StreamObject.prototype.getTexture = function() {
+        return this.videoTexture;
+    };
+    StreamObject.prototype.getContext = function() {
+        return this.context;
+    };
+
 	try {
       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
     } catch (error) {
@@ -513,21 +455,6 @@ window.onload = function () {
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
-    
-    var showVideo = function(urlVideo) {
-        var videoID = urlVideo.split('=')[1];
-        if(videoID !== undefined) {
-            var params = { allowScriptAccess: "always" };
-            var atts = { id: "myytplayer" };
-            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
-                           "youtubeVideo", "80%", "400", "8", null, null, params, atts);
-
-            $('#myytplayer').css ({visibility:'visible'});
-            $('#writeUrl').show();
-            $('#closeVideo').show();
-            $('#VideoUrl').val("");
-        }
-    }
 
     var initialize = function(roomId) {
 
