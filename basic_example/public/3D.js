@@ -1,6 +1,5 @@
 var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
-nameOfUser = "kalle";
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
@@ -390,6 +389,7 @@ function render() {
 }
 
 window.onload = function () {
+    nameOfUser = "kalle";
     initScene();
     render();
 
@@ -530,7 +530,7 @@ window.onload = function () {
     }
 
     var initialize = function(roomId) {
-        
+
         createToken(roomId, nameOfUser, "role", function (response) {
             var token = response;
             console.log('token created ', token);
