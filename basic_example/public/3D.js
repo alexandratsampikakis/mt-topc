@@ -1,5 +1,6 @@
 var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
 var audioElement;
+nameOfUser = "kalle";
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
@@ -257,16 +258,6 @@ var StreamObject = function(video, texture, context){
     this.videoTexture = texture;
     this.context = context;
     return this;
-};
-StreamObject.prototype.getVideo = function() {
-    return this.video;
-};
-StreamObject.prototype.getTexture = function() {
-    return this.videoTexture;
-};
-
-StreamObject.prototype.getContext = function() {
-    return this.context;
 };
 
 var reflection;
