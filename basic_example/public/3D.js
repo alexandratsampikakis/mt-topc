@@ -458,7 +458,7 @@ window.onload = function () {
 
     var initialize = function(roomId) {
 
-        createToken(roomId, nameOfUser, "role", function (response) {
+        createToken(roomId, "user", "role", function (response) {
             var token = response;
             console.log('token created ', token);
             L.Logger.setLogLevel(L.Logger.DEBUG);
