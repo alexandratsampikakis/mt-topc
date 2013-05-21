@@ -3,7 +3,7 @@ var audioElement;
 var tableId = "513dcfda07aa2f143700001c";
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
-var tableId = new Array();
+//var tableId = new Array();
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 
 var reflectionCamera;
