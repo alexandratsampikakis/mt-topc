@@ -242,66 +242,67 @@ function sendChatMessage(message) {
     $("#myTextBox").focus();
 }
 
-var initSceneTables = function() { 
+var initScene = function() {
+    if(currentState === "TABLEVIEW") {
+        // SKYBOX/FOG
+        var materialArray = [];
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        for (var i = 0; i < 6; i++)
+           materialArray[i].side = THREE.BackSide;
+        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+        var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
+        var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+        scene.add( skybox );
 
-    // SKYBOX/FOG
-    var materialArray = [];
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    for (var i = 0; i < 6; i++)
-       materialArray[i].side = THREE.BackSide;
-    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-    var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
-    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    scene.add( skybox );
+        projector = new THREE.Projector();
+        raycaster = new THREE.Raycaster();
 
-    projector = new THREE.Projector();
-    raycaster = new THREE.Raycaster();
+        var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
+        // the geometry on which the movie will be displayed;
+        //      movie image will be scaled to fit these dimensions.
+        movieGeometry = new THREE.PlaneGeometry(  32, 20);
+        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+        movieScreen.position.set(0,-5,-0.01);
+        scene.add(movieScreen);
 
-    var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
-    // the geometry on which the movie will be displayed;
-    //      movie image will be scaled to fit these dimensions.
-    movieGeometry = new THREE.PlaneGeometry(  32, 20);
-    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(0,-5,-0.01);
-    scene.add(movieScreen);
+        //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        window.addEventListener( 'resize', onWindowResize, false );
+        document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+    }
 
-    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    window.addEventListener( 'resize', onWindowResize, false );
-    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+    if(currentState === "CAFEVIEW") {
+        // CAMERAS
+        // camera 2
+        textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+        scene.add(textureCamera);
+        
+        // SKYBOX/FOG
+        var materialArray = [];
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+        for (var i = 0; i < 6; i++)
+           materialArray[i].side = THREE.BackSide;
+        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+        var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+        var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+        scene.add( skybox );
+
+        projector = new THREE.Projector();
+        raycaster = new THREE.Raycaster();
+
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
    
-};
-
-var initSceneInTable = function() {
-    // CAMERAS
-    // camera 2
-    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
-    scene.add(textureCamera);
-    
-    // SKYBOX/FOG
-    var materialArray = [];
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    for (var i = 0; i < 6; i++)
-       materialArray[i].side = THREE.BackSide;
-    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
-    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    scene.add( skybox );
-
-    projector = new THREE.Projector();
-    raycaster = new THREE.Raycaster();
-
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    window.addEventListener( 'resize', onWindowResize, false );
 };
 
 function onWindowResize() {
@@ -405,16 +406,17 @@ function clearFeedback() {
 }
 
 //Close all streams, disconnect room, reset streams, clear text fields
-// function resetConnection() {
-//     localStream.close();
-//     dataStream.close();
-//     overhearStream.close();
-//     room.disconnect();
-//     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-//     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-//     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-//     clearTextFields();
-// }
+function resetConnection() {
+    currentState = "CAFEVIEW";
+    localStream.close();
+    dataStream.close();
+    overhearStream.close();
+    room.disconnect();
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+    clearTextFields();
+}
 
 var rotationY;
 function render() {
@@ -547,85 +549,87 @@ function loadImage(imageData, elementID, pos) {
     myImage.className = 'centerImage';
 }
 
-function initVideoTables(stream,pos) {
-    var x = oSeePosition[pos][0];
-    var y = oSeePosition[pos][1];
-    var z = oSeePosition[pos][2];
-    var vid, canvas;
-
-    vid = stream.player.video;
-    
-    vid.style.width = '320px';
-    vid.style.height = '240px';
-    vid.autoplay = true;
-    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
-    var videoImageContext = canvas.getContext('2d');
-
-    videoTexture = new THREE.Texture( canvas );
-    videoTexture.minFilter = THREE.LinearFilter;
-    videoTexture.magFilter = THREE.LinearFilter;
-    var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true } );
-    movieGeometry = new THREE.PlaneGeometry(  32/3, 10);
-    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(x,y,z);
-    overhearGroup.add(movieScreen);
-    var newStream = new StreamObject(vid, videoTexture, videoImageContext);
-    streams.push(newStream);
-}
-
 var reflection;
 var movieGeometry;
-function initVideoInTable(stream,pos) {
-    var x = position[pos][0];
-    var y = position[pos][1];
-    var z = position[pos][2];
-    var rot = position[pos][3];
-    var vid, canvas;
-    if(stream.getID() === localStream.getID()) {
-        vid = localStream.player.video;
-    } else {
-        vid = stream.player.video;
-    }
-    
-    vid.style.width = '320px';
-    vid.style.height = '240px';
-    vid.autoplay = true;
-    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
-    var videoImageContext = canvas.getContext('2d');
+function initVideo(stream,pos) {    
+    if(currentState === "TABLEVIEW") {
+        var x = oSeePosition[pos][0];
+        var y = oSeePosition[pos][1];
+        var z = oSeePosition[pos][2];
+        var vid, canvas;
 
-    videoTexture = new THREE.Texture( canvas );
-    videoTexture.minFilter = THREE.LinearFilter;
-    videoTexture.magFilter = THREE.LinearFilter;
-    //var x = room.getStreamsByAttribute('type','media').length;
-    var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
-    // the geometry on which the movie will be displayed;
-    //      movie image will be scaled to fit these dimensions.
-    movieGeometry = new THREE.PlaneGeometry(  4, 4);
-    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-    movieScreen.position.set(x,y,z);
-    movieScreen.rotation.y += rot;
-    scene.add(movieScreen);
-    var newStream = new StreamObject(vid, videoTexture, videoImageContext);
-    streams.push(newStream);
-    if(pos === 5) {
-        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
+        vid = stream.player.video;
+        
+        vid.style.width = '320px';
+        vid.style.height = '240px';
+        vid.autoplay = true;
+        canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
+        var videoImageContext = canvas.getContext('2d');
+
+        videoTexture = new THREE.Texture( canvas );
+        videoTexture.minFilter = THREE.LinearFilter;
+        videoTexture.magFilter = THREE.LinearFilter;
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true } );
+        movieGeometry = new THREE.PlaneGeometry(  32/3, 10);
+        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+        movieScreen.position.set(x,y,z);
+        overhearGroup.add(movieScreen);
+        var newStream = new StreamObject(vid, videoTexture, videoImageContext);
+        streams.push(newStream);
+        }
+
+    if(currentState === "CAFEVIEW") {
+        var x = position[pos][0];
+        var y = position[pos][1];
+        var z = position[pos][2];
+        var rot = position[pos][3];
+        var vid, canvas;
+        if(stream.getID() === localStream.getID()) {
+            vid = localStream.player.video;
+        } else {
+            vid = stream.player.video;
+        }
+        
+        vid.style.width = '320px';
+        vid.style.height = '240px';
+        vid.autoplay = true;
+        canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
+        var videoImageContext = canvas.getContext('2d');
+
+        videoTexture = new THREE.Texture( canvas );
+        videoTexture.minFilter = THREE.LinearFilter;
+        videoTexture.magFilter = THREE.LinearFilter;
+        //var x = room.getStreamsByAttribute('type','media').length;
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
         // the geometry on which the movie will be displayed;
         //      movie image will be scaled to fit these dimensions.
-        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
-        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
-        reflection.position.set(-8.69,-6,0.71);
-        reflection.rotation.set(1.4,0,-0.96);
-        scene.add(reflection);
-    }
-    if(pos === 6) {
-        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
-        // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
-        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
-        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
-        reflection.position.set(8.69,-6,0.71);
-        reflection.rotation.set(1.4,0,0.96);
-        scene.add(reflection);
+        movieGeometry = new THREE.PlaneGeometry(  4, 4);
+        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+        movieScreen.position.set(x,y,z);
+        movieScreen.rotation.y += rot;
+        scene.add(movieScreen);
+        var newStream = new StreamObject(vid, videoTexture, videoImageContext);
+        streams.push(newStream);
+        if(pos === 5) {
+            var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
+            // the geometry on which the movie will be displayed;
+            //      movie image will be scaled to fit these dimensions.
+            var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+            reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+            reflection.position.set(-8.69,-6,0.71);
+            reflection.rotation.set(1.4,0,-0.96);
+            scene.add(reflection);
+        }
+        if(pos === 6) {
+            var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
+            // the geometry on which the movie will be displayed;
+            //      movie image will be scaled to fit these dimensions.
+            var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+            reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+            reflection.position.set(8.69,-6,0.71);
+            reflection.rotation.set(1.4,0,0.96);
+            scene.add(reflection);
+        }
     }
 }
 
@@ -740,7 +744,7 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            initSceneTables();
+            initScene();
             render();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
@@ -787,21 +791,22 @@ var createToken = function(roomId, userName, role, callback) {
 };
 
 var initialize = function(roomId) {
+    //resetConnection(); Testa om detta löser buggen: i rum --> overhearing --> in i rum igen??
     currentTable = roomId;
-    initSceneInTable();
-    //render();
+    initScene();
 
-    //$('#leaveTableButton').show();
-    //$('#videoTab').show();
-    //$('#napkinTab').show();
-    // $('#leaveTableButton').click(function() {
-    //     resetConnection();
-    //     $('#enterName').show();
-    //     $('#videoTab').hide();
-    //     $('#napkinTab').hide();
-    //     currentState = "TABLEVIEW";
-    //     return false;
-    // });
+    $('#leaveTableButton').show();
+    $('#videoTab').show();
+    $('#napkinTab').show();
+
+    $('#leaveTableButton').click(function() {
+        resetConnection();
+        $('#enterName').show();
+        $('#videoTab').hide();
+        $('#napkinTab').hide();
+        currentState = "TABLEVIEW";
+        return false;
+    });
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
             urlVideo = $('#VideoUrl').val();
@@ -947,8 +952,8 @@ var initialize = function(roomId) {
                     }).css('width','100%').appendTo('#vid'+i);
                     stream.show("test" + stream.getID());
                     console.log("InitVideo stream-subscribed");
-                    initVideoInTable(stream,i);
-                    currentState = "TABLEVIEW";                         
+                    currentState = "TABLEVIEW";    
+                    initVideo(stream,i);                     
                     return;
                 }
             }
@@ -965,8 +970,8 @@ var initialize = function(roomId) {
             var currStreams = room.getStreamsByAttribute('type','media');
             console.log('InitVideo stream-added');
             if(streamEvent.stream.getID() === localStream.getID()) {
-                initVideoInTable(streamEvent.stream,1);
                 currentState = "TABLEVIEW";
+                initVideo(streamEvent.stream,1);
             }
         });
 
@@ -1192,7 +1197,7 @@ var overhear = function(roomId) {
                                 id: 'test'+stream.getID()
                             }).css('width','100%').appendTo('#overhear'+i);
                             stream.show("test" + stream.getID());
-                            initVideoTables(stream,i); 
+                            initVideo(stream,i); 
                             return;
                         }
                     }
