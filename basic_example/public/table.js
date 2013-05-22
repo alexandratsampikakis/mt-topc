@@ -278,6 +278,7 @@ var initScene = function() {
     if(currentState === "CAFEVIEW") {
         // CAMERAS
         // camera 2
+        camera.position.z = 10;
         textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
         scene.add(textureCamera);
         
