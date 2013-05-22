@@ -243,7 +243,7 @@ function sendChatMessage(message) {
 }
 
 var initScene = function() {
-    if(currentState === "TABLEVIEW") {
+    if(currentState === "CAFEVIEW") {
         // SKYBOX/FOG
         var materialArray = [];
         materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
@@ -275,7 +275,7 @@ var initScene = function() {
         document.addEventListener( 'mousedown', onDocumentMouseDown, false );
     }
 
-    if(currentState === "CAFEVIEW") {
+    if(currentState === "TABLEVIEW") {
         // CAMERAS
         // camera 2
         camera.position.z = 10;
@@ -553,7 +553,7 @@ function loadImage(imageData, elementID, pos) {
 var reflection;
 var movieGeometry;
 function initVideo(stream,pos) {    
-    if(currentState === "TABLEVIEW") {
+    if(currentState === "CAFEVIEW") {
         var x = oSeePosition[pos][0];
         var y = oSeePosition[pos][1];
         var z = oSeePosition[pos][2];
@@ -579,7 +579,7 @@ function initVideo(stream,pos) {
         streams.push(newStream);
         }
 
-    if(currentState === "CAFEVIEW") {
+    if(currentState === "TABLEVIEW") {
         var x = position[pos][0];
         var y = position[pos][1];
         var z = position[pos][2];
