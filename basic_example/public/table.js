@@ -792,6 +792,7 @@ var createToken = function(roomId, userName, role, callback) {
 
 var initialize = function(roomId) {
     //resetConnection(); Testa om detta löser buggen: i rum --> overhearing --> in i rum igen??
+    currentState = "TABLEVIEW";
     currentTable = roomId;
     initScene();
 
@@ -804,7 +805,7 @@ var initialize = function(roomId) {
         $('#enterName').show();
         $('#videoTab').hide();
         $('#napkinTab').hide();
-        currentState = "TABLEVIEW";
+        currentState = "CAFEVIEW";
         return false;
     });
     $('#getVideoUrl').click(function() {
