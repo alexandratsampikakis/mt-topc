@@ -355,7 +355,6 @@ function onDocumentMouseUp( event ) {
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
     if(totalClickTime < 100 && objectToRotate.faceIndex === 4) {
         console.log("KNOCK KNOCK");
-        console.log(parseInt(objectToRotate.object.name));
         knock(tableId[parseInt(objectToRotate.object.name)]);
     } else if(totalClickTime < 100 && objectToRotate.faceIndex === 5) {
         if(isOverhearing === null  ) {
@@ -409,7 +408,6 @@ function clearFeedback() {
 
 //Close all streams, disconnect room, reset streams, clear text fields
 function resetConnection() {
-    currentState = "CAFEVIEW";
     localStream.close();
     dataStream.close();
     overhearStream.close();
