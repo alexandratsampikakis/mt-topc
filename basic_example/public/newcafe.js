@@ -736,7 +736,7 @@ window.onload = function () {
         return false;
     });
 
-    $('#askToJoinTable').click(function() {
+    $('#askToJoinTable').click(function() { //denna används inte???
         dataStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
