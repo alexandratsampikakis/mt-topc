@@ -1062,6 +1062,7 @@ window.onload = function () {
 //---------------------------------------------------------------------------------------------------
 
     var knock = function(roomId) {
+        resetOverhearing();
         if(!knockListYes.hasOwnProperty(roomId)) {
             createToken(roomId, "user", "role", function (response) {
                 var token = response;
