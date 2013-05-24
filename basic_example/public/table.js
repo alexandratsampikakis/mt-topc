@@ -45,15 +45,19 @@ var clickTime;
 var placeHolderData;
 
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+var cameraCafeView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+var cameraTableView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
-THREEx.WindowResize(renderer, camera);
-camera.position.set(0,-10,61);
+THREEx.WindowResize(renderer, cameraCafeView);
+cameraCafeView.position.set(0,-10,61);
+
+THREEx.WindowResize(renderer, cameraTableView);
+cameraTableView.position.set(0,10,0);
 
 //Adds room to knocklist
 function addToKnockList(roomId) {
@@ -242,73 +246,69 @@ function sendChatMessage(message) {
     $("#myTextBox").focus();
 }
 
-var initScene = function() {
-    if(currentState === "CAFEVIEW") {
-        // SKYBOX/FOG
-        var materialArray = [];
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        for (var i = 0; i < 6; i++)
-           materialArray[i].side = THREE.BackSide;
-        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-        var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
-        var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-        scene.add( skybox );
+var initSceneCafeView = function() {
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
 
-        projector = new THREE.Projector();
-        raycaster = new THREE.Raycaster();
+    projector = new THREE.Projector();
+    raycaster = new THREE.Raycaster();
 
-        var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
-        // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
-        movieGeometry = new THREE.PlaneGeometry(  32, 20);
-        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        movieScreen.position.set(0,-5,-0.01);
-        scene.add(movieScreen);
+    var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    movieGeometry = new THREE.PlaneGeometry(  32, 20);
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(0,-5,-0.01);
+    scene.add(movieScreen);
 
-        //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-        window.addEventListener( 'resize', onWindowResize, false );
-        document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-    }
+    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    window.addEventListener( 'resize', onWindowResize, false );
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+};
 
-    if(currentState === "TABLEVIEW") {
-        // CAMERAS
-        // camera 2
-        camera.position.z = 10;
-        textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
-        scene.add(textureCamera);
-        
-        // SKYBOX/FOG
-        var materialArray = [];
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        for (var i = 0; i < 6; i++)
-           materialArray[i].side = THREE.BackSide;
-        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-        var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
-        var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-        scene.add( skybox );
+var initSceneTableView = function() {
+    // CAMERAS
+    // camera 2
+    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    scene.add(textureCamera);
+    
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
 
-        projector = new THREE.Projector();
-        raycaster = new THREE.Raycaster();
+    projector = new THREE.Projector();
+    raycaster = new THREE.Raycaster();
 
-        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-        window.addEventListener( 'resize', onWindowResize, false );
-    }
-   
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    window.addEventListener( 'resize', onWindowResize, false );   
 };
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / (window.innerHeight-82);
-    camera.updateProjectionMatrix();
+    cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
+    cameraTableView.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
@@ -320,8 +320,8 @@ function onDocumentMouseDown( event ) {
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     event.preventDefault();
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, camera );
-    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    projector.unprojectVector( vector, cameraTableView );
+    raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
 
     if ( intersects.length > 1 ) {
@@ -423,12 +423,11 @@ function render() {
     requestAnimationFrame(render);
     updateVideos();
 
-    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, camera );
-    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( scene.children );
-
     if(currentState === "TABLEVIEW") {
+        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+        projector.unprojectVector( vector, cameraTableView );
+        raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
+        var intersects = raycaster.intersectObjects( scene.children );
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
@@ -442,6 +441,11 @@ function render() {
         }
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
+        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+        projector.unprojectVector( vector, cameraCafeView );
+        raycaster.set( cameraCafeView.position, vector.sub( cameraCafeView.position ).normalize() );
+        var intersects = raycaster.intersectObjects( scene.children );
+        
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
@@ -744,7 +748,7 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            initScene();
+            initSceneCafeView();
             render();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
@@ -794,7 +798,8 @@ var initialize = function(roomId) {
     //resetConnection(); Testa om detta löser buggen: i rum --> overhearing --> in i rum igen??
     currentState = "TABLEVIEW";
     currentTable = roomId;
-    initScene();
+    initSceneTableView();
+    render();
 
     $('#leaveTableButton').show();
     $('#videoTab').show();
