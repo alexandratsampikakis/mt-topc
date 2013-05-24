@@ -792,6 +792,7 @@ var initialize = function(roomId) {
     currentState = "TABLEVIEW";
     currentTable = roomId;
     initSceneTableView();
+    render();
 
     $('#leaveTableButton').show();
     $('#videoTab').show();
