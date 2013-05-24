@@ -44,9 +44,11 @@ var clickTime;
 
 var placeHolderData;
 
-var scene = new THREE.Scene();
+var sceneCafeView = new THREE.Scene();
+var sceneTableView = new THREE.Scene();
 var cameraCafeView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var cameraTableView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
 var renderer = new THREE.WebGLRenderer();
@@ -260,7 +262,7 @@ var initSceneCafeView = function() {
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
     var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    scene.add( skybox );
+    sceneCafeView.add( skybox );
 
     projector = new THREE.Projector();
     raycaster = new THREE.Raycaster();
@@ -271,7 +273,7 @@ var initSceneCafeView = function() {
     movieGeometry = new THREE.PlaneGeometry(  32, 20);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(0,-5,-0.01);
-    scene.add(movieScreen);
+    sceneCafeView.add(movieScreen);
 
     //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
@@ -282,7 +284,7 @@ var initSceneTableView = function() {
     // CAMERAS
     // camera 2
     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
-    scene.add(textureCamera);
+    sceneTableView.add(textureCamera);
     
     // SKYBOX/FOG
     var materialArray = [];
@@ -297,7 +299,7 @@ var initSceneTableView = function() {
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
     var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    scene.add( skybox );
+    sceneTableView.add( skybox );
 
     projector = new THREE.Projector();
     raycaster = new THREE.Raycaster();
@@ -322,7 +324,7 @@ function onDocumentMouseDown( event ) {
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, cameraTableView );
     raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
-    var intersects = raycaster.intersectObjects( scene.children );
+    var intersects = raycaster.intersectObjects( sceneCafeView.children );
 
     if ( intersects.length > 1 ) {
         objectToRotate = intersects[ 0 ];
@@ -392,7 +394,7 @@ function updateVideos() {
 }
 
 function resetOverhearing() {
-    scene.remove(overhearGroup);
+    sceneCafeView.remove(overhearGroup);
     overhearStream.close();
     if(room != undefined) room.disconnect();
     isOverhearing = null;
@@ -427,7 +429,7 @@ function render() {
         var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
         projector.unprojectVector( vector, cameraTableView );
         raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
-        var intersects = raycaster.intersectObjects( scene.children );
+        var intersects = raycaster.intersectObjects( sceneTableView.children );
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
@@ -439,23 +441,26 @@ function render() {
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
+        renderer.render( sceneTableView, cameraTableView );
+        cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
+        cameraTableView.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight-82 );
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
         projector.unprojectVector( vector, cameraCafeView );
         raycaster.set( cameraCafeView.position, vector.sub( cameraCafeView.position ).normalize() );
-        var intersects = raycaster.intersectObjects( scene.children );
-        
+        var intersects = raycaster.intersectObjects( sceneCafeView.children );
+
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
+        renderer.render( sceneCafeView, cameraCafeView );
+        cameraCafeView.aspect = window.innerWidth / (window.innerHeight-82);
+        cameraCafeView.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight-82 );
     }
-
-    renderer.render( scene, camera );
-    camera.aspect = window.innerWidth / (window.innerHeight-82);
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
 
@@ -547,7 +552,7 @@ function loadImage(imageData, elementID, pos) {
         var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
         movieScreen.position.set(x,y,z);
         movieScreen.name = pos;
-        scene.add(movieScreen);
+        sceneCafeView.add(movieScreen);
     };
     myImage.src = imageData;
     myImage.className = 'centerImage';
@@ -611,7 +616,7 @@ function initVideo(stream,pos) {
         var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
         movieScreen.position.set(x,y,z);
         movieScreen.rotation.y += rot;
-        scene.add(movieScreen);
+        sceneTableView.add(movieScreen);
         var newStream = new StreamObject(vid, videoTexture, videoImageContext);
         streams.push(newStream);
         if(pos === 5) {
@@ -622,7 +627,7 @@ function initVideo(stream,pos) {
             reflection = new THREE.Mesh( movieGeometry, movieMaterial );
             reflection.position.set(-8.69,-6,0.71);
             reflection.rotation.set(1.4,0,-0.96);
-            scene.add(reflection);
+            sceneTableView.add(reflection);
         }
         if(pos === 6) {
             var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
@@ -632,7 +637,7 @@ function initVideo(stream,pos) {
             reflection = new THREE.Mesh( movieGeometry, movieMaterial );
             reflection.position.set(8.69,-6,0.71);
             reflection.rotation.set(1.4,0,0.96);
-            scene.add(reflection);
+            sceneTableView.add(reflection);
         }
     }
 }
@@ -1156,7 +1161,7 @@ var knock = function(roomId) {
 
 var overhear = function(roomId) {
     overhearGroup = new THREE.Object3D();
-    scene.add(overhearGroup);
+    sceneCafeView.add(overhearGroup);
     createToken(roomId, "user", "role", function (response) {
         var token = response;
         console.log('token created ', token);
