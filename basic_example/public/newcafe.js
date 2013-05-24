@@ -843,6 +843,7 @@ window.onload = function () {
 
     var isVideoLoaded = function(streamId) {
         setTimeout(function(){
+            console.log("strömID: " + streamId);
             if($('#stream'+streamId).length > 0 && $('#stream'+streamId)[0].networkState === 2) {
                 console.log('Snapshot sent at ' + Date.now());
                 getSnapshots();
