@@ -45,15 +45,19 @@ var clickTime;
 var placeHolderData;
 
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+var cameraCafeView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+var cameraTableView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
-THREEx.WindowResize(renderer, camera);
-camera.position.set(0,-10,61);
+THREEx.WindowResize(renderer, cameraCafeView);
+cameraCafeView.position.set(0,-10,61);
+
+THREEx.WindowResize(renderer, cameraTableView);
+cameraTableView.position.set(0,10,0);
 
 //Adds room to knocklist
 function addToKnockList(roomId) {
@@ -277,7 +281,6 @@ var initSceneCafeView = function() {
 var initSceneTableView = function() {
     // CAMERAS
     // camera 2
-    camera.position.z = 10;
     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
     scene.add(textureCamera);
     
@@ -304,8 +307,8 @@ var initSceneTableView = function() {
 };
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / (window.innerHeight-82);
-    camera.updateProjectionMatrix();
+    cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
+    cameraTableView.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
@@ -317,8 +320,8 @@ function onDocumentMouseDown( event ) {
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     event.preventDefault();
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, camera );
-    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    projector.unprojectVector( vector, cameraTableView );
+    raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
     var intersects = raycaster.intersectObjects( scene.children );
 
     if ( intersects.length > 1 ) {
@@ -420,12 +423,11 @@ function render() {
     requestAnimationFrame(render);
     updateVideos();
 
-    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, camera );
-    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( scene.children );
-
     if(currentState === "TABLEVIEW") {
+        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+        projector.unprojectVector( vector, cameraTableView );
+        raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
+        var intersects = raycaster.intersectObjects( scene.children );
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
@@ -439,6 +441,11 @@ function render() {
         }
     }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
+        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+        projector.unprojectVector( vector, cameraCafeView );
+        raycaster.set( cameraCafeView.position, vector.sub( cameraCafeView.position ).normalize() );
+        var intersects = raycaster.intersectObjects( scene.children );
+        
         objectToRotate.object.rotation.y += ( targetRotation - objectToRotate.object.rotation.y ) * 0.01;
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
