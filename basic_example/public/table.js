@@ -242,68 +242,65 @@ function sendChatMessage(message) {
     $("#myTextBox").focus();
 }
 
-var initScene = function() {
-    if(currentState === "CAFEVIEW") {
-        // SKYBOX/FOG
-        var materialArray = [];
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        for (var i = 0; i < 6; i++)
-           materialArray[i].side = THREE.BackSide;
-        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-        var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
-        var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-        scene.add( skybox );
+var initSceneCafeView = function() {
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
 
-        projector = new THREE.Projector();
-        raycaster = new THREE.Raycaster();
+    projector = new THREE.Projector();
+    raycaster = new THREE.Raycaster();
 
-        var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
-        // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
-        movieGeometry = new THREE.PlaneGeometry(  32, 20);
-        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        movieScreen.position.set(0,-5,-0.01);
-        scene.add(movieScreen);
+    var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    movieGeometry = new THREE.PlaneGeometry(  32, 20);
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(0,-5,-0.01);
+    scene.add(movieScreen);
 
-        //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-        window.addEventListener( 'resize', onWindowResize, false );
-        document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-    }
+    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    window.addEventListener( 'resize', onWindowResize, false );
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+};
 
-    if(currentState === "TABLEVIEW") {
-        // CAMERAS
-        // camera 2
-        camera.position.z = 10;
-        textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
-        scene.add(textureCamera);
-        
-        // SKYBOX/FOG
-        var materialArray = [];
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-        for (var i = 0; i < 6; i++)
-           materialArray[i].side = THREE.BackSide;
-        var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-        var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
-        var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-        scene.add( skybox );
+var initSceneTableView = function() {
+    // CAMERAS
+    // camera 2
+    camera.position.z = 10;
+    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    scene.add(textureCamera);
+    
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
 
-        projector = new THREE.Projector();
-        raycaster = new THREE.Raycaster();
+    projector = new THREE.Projector();
+    raycaster = new THREE.Raycaster();
 
-        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-        window.addEventListener( 'resize', onWindowResize, false );
-    }
-   
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    window.addEventListener( 'resize', onWindowResize, false );   
 };
 
 function onWindowResize() {
@@ -744,7 +741,7 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            initScene();
+            initSceneCafeView();
             render();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
@@ -794,7 +791,7 @@ var initialize = function(roomId) {
     //resetConnection(); Testa om detta löser buggen: i rum --> overhearing --> in i rum igen??
     currentState = "TABLEVIEW";
     currentTable = roomId;
-    initScene();
+    initSceneTableView();
 
     $('#leaveTableButton').show();
     $('#videoTab').show();
