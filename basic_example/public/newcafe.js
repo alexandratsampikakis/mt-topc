@@ -976,7 +976,7 @@ window.onload = function () {
                         } else if(leader === localStream.getID()) {
                             broadcastLeader();
                             sendNapkinToNewUser();
-                            isVideoLoaded(streamId);
+                            isVideoLoaded(streamEvent.stream.getID());
                         }  
                     }
                     
