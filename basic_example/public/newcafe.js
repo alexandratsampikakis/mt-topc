@@ -841,6 +841,16 @@ window.onload = function () {
         }
     }
 
+    var isVideoLoaded = function(streamId) {
+         setTimeout(function(){
+            if($('#stream'+streamId)) {
+                console.log('Snapshot sent at ' + Date.now());
+                getSnapshots();
+            }else {
+                isVideoLoaded(streamId);
+            }
+        },1000*5);
+    }
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
@@ -956,6 +966,7 @@ window.onload = function () {
                         if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
                             console.log('Snapshot sent at ' + Date.now());
                             leader = localStream.getID();
+
                             getSnapshots();
                             setInterval(function(){
                                 console.log('Snapshot sent at ' + Date.now());
@@ -964,6 +975,7 @@ window.onload = function () {
                         } else if(leader === localStream.getID()) {
                             broadcastLeader();
                             sendNapkinToNewUser();
+                            isVideoLoaded(streamId);
                         }  
                     }
                     
