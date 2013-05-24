@@ -842,11 +842,11 @@ window.onload = function () {
     }
 
     var isVideoLoaded = function(streamId) {
-         setTimeout(function(){
-            if($('#stream'+streamId)[0].networkState === 2) {
+        setTimeout(function(){
+            if($('#stream'+streamId).length > 0 && $('#stream'+streamId)[0].networkState === 2) {
                 console.log('Snapshot sent at ' + Date.now());
                 getSnapshots();
-            }else {
+            } else {
                 console.log("nope!");
                 isVideoLoaded(streamId);
             }
