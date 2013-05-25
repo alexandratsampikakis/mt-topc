@@ -309,8 +309,12 @@ var initSceneCafeView = function() {
 // };
 
 function onWindowResize() {
-    cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
-    cameraTableView.updateProjectionMatrix();
+    cameraCafeView.aspect = window.innerWidth / (window.innerHeight-82);
+    cameraCafeView.updateProjectionMatrix();
+
+    // cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
+    // cameraTableView.updateProjectionMatrix();
+
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
