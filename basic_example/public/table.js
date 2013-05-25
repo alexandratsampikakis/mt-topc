@@ -26,7 +26,7 @@ var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 var reflectionCamera;
 
 var MovingCube, textureCamera;
-var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
+//var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
 
 var mouse = new THREE.Vector2(), INTERSECTED;
 var projector, raycaster;
@@ -45,9 +45,9 @@ var clickTime;
 var placeHolderData;
 
 var sceneCafeView = new THREE.Scene();
-var sceneTableView = new THREE.Scene();
+//var sceneTableView = new THREE.Scene();
 var cameraCafeView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
-var cameraTableView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+//var cameraTableView = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
@@ -132,30 +132,30 @@ var getCafeTables = function(cafe, callback) {
 
 //Calculates leader. Highest stream ID wins. Only counts 'media' streams.
 //Leader is used for sending snapshots to server
-function calculateLeader() {
-    var keys = [];
-    var highest = parseInt(localStream.getID());
-    for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
-        var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
-        if (streamID > highest) highest=streamID;
-    }
-    console.log(highest);
-    return highest;
-}
+// function calculateLeader() {
+//     var keys = [];
+//     var highest = parseInt(localStream.getID());
+//     for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
+//         var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
+//         if (streamID > highest) highest=streamID;
+//     }
+//     console.log(highest);
+//     return highest;
+// }
 
-function setLeader(id) {
-    leader = id;
-}
+// function setLeader(id) {
+//     leader = id;
+// }
 
-function getLeader() {
-    return leader;
-}
+// function getLeader() {
+//     return leader;
+// }
 
-//Tells the room who the leader is.
-function broadcastLeader() {
-    dataStream.sendData({id:'leader',leader:leader});
-    console.log('broadcasting leader');
-}
+// //Tells the room who the leader is.
+// function broadcastLeader() {
+//     dataStream.sendData({id:'leader',leader:leader});
+//     console.log('broadcasting leader');
+// }
 
 //Clears textfields
 function clearTextFields() {
@@ -183,67 +183,67 @@ var updateTitle = function(title) {
     $('#cafeVideoTitle').html(title);
 } 
 
-function redrawNapkin() {
-    var c = $('#canvasNapkin')[0];
-    var imgData = c.toDataURL();
-    var ctx = c.getContext("2d");
-    var myImage = new Image();
-    myImage.onload = function() {
-        ctx.drawImage(myImage, 0, 0,c.width,c.height);
-    };
+// function redrawNapkin() {
+//     var c = $('#canvasNapkin')[0];
+//     var imgData = c.toDataURL();
+//     var ctx = c.getContext("2d");
+//     var myImage = new Image();
+//     myImage.onload = function() {
+//         ctx.drawImage(myImage, 0, 0,c.width,c.height);
+//     };
 
-    $('.tabbable').css({
-        position:'absolute'
-    });
+//     $('.tabbable').css({
+//         position:'absolute'
+//     });
 
-    myImage.src = imgData;
-    c.height = $(window).height() - 550; //415;
-    c.width = 1.5*c.height;
-}
+//     myImage.src = imgData;
+//     c.height = $(window).height() - 550; //415;
+//     c.width = 1.5*c.height;
+// }
 
-function drawPath(color, thickness, path, width, height) {
-    var widthRatio = $('#canvasNapkin')[0].width/width;
-    var heightRatio = $('#canvasNapkin')[0].height/height;
-    for (var i = 0; i < path.length; i+=2) {
-        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
-    };
-}
+// function drawPath(color, thickness, path, width, height) {
+//     var widthRatio = $('#canvasNapkin')[0].width/width;
+//     var heightRatio = $('#canvasNapkin')[0].height/height;
+//     for (var i = 0; i < path.length; i+=2) {
+//         drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
+//     };
+// }
 
-function drawLine (color, thickness, x1, y1, x2, y2) {
-    context.strokeStyle = color;
-    context.lineWidth   = thickness;
+// function drawLine (color, thickness, x1, y1, x2, y2) {
+//     context.strokeStyle = color;
+//     context.lineWidth   = thickness;
 
-    context.beginPath();
-    context.moveTo(x1, y1)
-    context.lineTo(x2, y2);
-    context.stroke();
-}
+//     context.beginPath();
+//     context.moveTo(x1, y1)
+//     context.lineTo(x2, y2);
+//     context.stroke();
+// }
 
-function sendNapkinToNewUser() {
-    var c = document.getElementById("canvasNapkin");
-    var ctx = c.getContext("2d");
-    var napkinImgData = c.toDataURL();
-    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
-}
+// function sendNapkinToNewUser() {
+//     var c = document.getElementById("canvasNapkin");
+//     var ctx = c.getContext("2d");
+//     var napkinImgData = c.toDataURL();
+//     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+// }
 
 //Appends chat message to chatArea
-function appendChatMessage(username, message) {
-    var message = username + ": " + message;
-    var scrollbot = false;
-    if($('#chatArea').val() !== "") {
-        message = "\n"+message;
-    }
-    $('#chatArea').append(message);
-    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
-}
+// function appendChatMessage(username, message) {
+//     var message = username + ": " + message;
+//     var scrollbot = false;
+//     if($('#chatArea').val() !== "") {
+//         message = "\n"+message;
+//     }
+//     $('#chatArea').append(message);
+//     $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+// }
 
-//Sends the chat message to other users
-function sendChatMessage(message) {
-    dataStream.sendData({id:'chat',text:message, user:nameOfUser});
-    $('#chatMessage').val("");
-    appendChatMessage(nameOfUser, message);
-    $("#myTextBox").focus();
-}
+// //Sends the chat message to other users
+// function sendChatMessage(message) {
+//     dataStream.sendData({id:'chat',text:message, user:nameOfUser});
+//     $('#chatMessage').val("");
+//     appendChatMessage(nameOfUser, message);
+//     $("#myTextBox").focus();
+// }
 
 var initSceneCafeView = function() {
     // SKYBOX/FOG
@@ -277,36 +277,36 @@ var initSceneCafeView = function() {
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 };
 
-var initSceneTableView = function() {
-    THREEx.WindowResize(renderer, cameraTableView);
-    cameraTableView.position.set(0,10,0);
+// var initSceneTableView = function() {
+//     THREEx.WindowResize(renderer, cameraTableView);
+//     cameraTableView.position.set(0,10,0);
 
-    // CAMERAS
-    // camera 2
-    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
-    sceneTableView.add(textureCamera);
+//     // CAMERAS
+//     // camera 2
+//     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+//     sceneTableView.add(textureCamera);
     
-    // SKYBOX/FOG
-    var materialArray = [];
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
-    for (var i = 0; i < 6; i++)
-       materialArray[i].side = THREE.BackSide;
-    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
-    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
-    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    sceneTableView.add( skybox );
+//     // SKYBOX/FOG
+//     var materialArray = [];
+//     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+//     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+//     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+//     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+//     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+//     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+//     for (var i = 0; i < 6; i++)
+//        materialArray[i].side = THREE.BackSide;
+//     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+//     var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+//     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+//     sceneTableView.add( skybox );
 
-    projector = new THREE.Projector();
-    raycaster = new THREE.Raycaster();
+//     projector = new THREE.Projector();
+//     raycaster = new THREE.Raycaster();
 
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    window.addEventListener( 'resize', onWindowResize, false );   
-};
+//     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+//     window.addEventListener( 'resize', onWindowResize, false );   
+// };
 
 function onWindowResize() {
     cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
@@ -409,43 +409,43 @@ function clearFeedback() {
 }
 
 //Close all streams, disconnect room, reset streams, clear text fields
-function resetConnection() {
-    localStream.close();
-    dataStream.close();
-    overhearStream.close();
-    room.disconnect();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-    clearTextFields();
-}
+// function resetConnection() {
+//     localStream.close();
+//     dataStream.close();
+//     overhearStream.close();
+//     room.disconnect();
+//     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+//     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+//     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+//     clearTextFields();
+// }
 
 var rotationY;
 function render() {
     requestAnimationFrame(render);
     updateVideos();
 
-    if(currentState === "TABLEVIEW") {
-        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-        projector.unprojectVector( vector, cameraTableView );
-        raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
-        var intersects = raycaster.intersectObjects( sceneTableView.children );
-        if ( intersects.length > 1 ) {
-            if ( INTERSECTED != intersects[ 0 ].object ) {
-                if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
-                INTERSECTED = intersects[ 0 ].object;
-                rotationY = INTERSECTED.rotation.y;
-                INTERSECTED.rotation.y = 0;
-            }
-        } else {
-            if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
-            INTERSECTED = null;
-        }
-        renderer.render( sceneTableView, cameraTableView );
-        cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
-        cameraTableView.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight-82 );
-    }
+    // if(currentState === "TABLEVIEW") {
+    //     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+    //     projector.unprojectVector( vector, cameraTableView );
+    //     raycaster.set( cameraTableView.position, vector.sub( cameraTableView.position ).normalize() );
+    //     var intersects = raycaster.intersectObjects( sceneTableView.children );
+    //     if ( intersects.length > 1 ) {
+    //         if ( INTERSECTED != intersects[ 0 ].object ) {
+    //             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
+    //             INTERSECTED = intersects[ 0 ].object;
+    //             rotationY = INTERSECTED.rotation.y;
+    //             INTERSECTED.rotation.y = 0;
+    //         }
+    //     } else {
+    //         if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
+    //         INTERSECTED = null;
+    //     }
+    //     renderer.render( sceneTableView, cameraTableView );
+    //     cameraTableView.aspect = window.innerWidth / (window.innerHeight-82);
+    //     cameraTableView.updateProjectionMatrix();
+    //     renderer.setSize( window.innerWidth, window.innerHeight-82 );
+    // }
     if(currentState === "CAFEVIEW" && objectToRotate != null) {
         var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
         projector.unprojectVector( vector, cameraCafeView );
@@ -479,21 +479,6 @@ StreamObject.prototype.getTexture = function() {
 };
 StreamObject.prototype.getContext = function() {
     return this.context;
-};
-
-var getCafeTables = function(cafe, callback) {
-    var req = new XMLHttpRequest();
-    var url = serverUrl + 'api/getcafe/' + cafe;
-
-    req.onreadystatechange = function () {
-        if (req.readyState === 4) {
-            callback(req.responseText);
-        }
-    };
-
-    req.open('GET', url, true);
-
-    req.send();
 };
 
 var getTableImage = function(cafe, callback) {
@@ -587,59 +572,59 @@ function initVideo(stream,pos) {
         streams.push(newStream);
         }
 
-    if(currentState === "TABLEVIEW") {
-        var x = position[pos][0];
-        var y = position[pos][1];
-        var z = position[pos][2];
-        var rot = position[pos][3];
-        var vid, canvas;
-        if(stream.getID() === localStream.getID()) {
-            vid = localStream.player.video;
-        } else {
-            vid = stream.player.video;
-        }
+    // if(currentState === "TABLEVIEW") {
+    //     var x = position[pos][0];
+    //     var y = position[pos][1];
+    //     var z = position[pos][2];
+    //     var rot = position[pos][3];
+    //     var vid, canvas;
+    //     if(stream.getID() === localStream.getID()) {
+    //         vid = localStream.player.video;
+    //     } else {
+    //         vid = stream.player.video;
+    //     }
         
-        vid.style.width = '320px';
-        vid.style.height = '240px';
-        vid.autoplay = true;
-        canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
-        var videoImageContext = canvas.getContext('2d');
+    //     vid.style.width = '320px';
+    //     vid.style.height = '240px';
+    //     vid.autoplay = true;
+    //     canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
+    //     var videoImageContext = canvas.getContext('2d');
 
-        videoTexture = new THREE.Texture( canvas );
-        videoTexture.minFilter = THREE.LinearFilter;
-        videoTexture.magFilter = THREE.LinearFilter;
-        //var x = room.getStreamsByAttribute('type','media').length;
-        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
-        // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
-        movieGeometry = new THREE.PlaneGeometry(  4, 4);
-        var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-        movieScreen.position.set(x,y,z);
-        movieScreen.rotation.y += rot;
-        sceneTableView.add(movieScreen);
-        var newStream = new StreamObject(vid, videoTexture, videoImageContext);
-        streams.push(newStream);
-        if(pos === 5) {
-            var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
-            // the geometry on which the movie will be displayed;
-            //      movie image will be scaled to fit these dimensions.
-            var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
-            reflection = new THREE.Mesh( movieGeometry, movieMaterial );
-            reflection.position.set(-8.69,-6,0.71);
-            reflection.rotation.set(1.4,0,-0.96);
-            sceneTableView.add(reflection);
-        }
-        if(pos === 6) {
-            var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
-            // the geometry on which the movie will be displayed;
-            //      movie image will be scaled to fit these dimensions.
-            var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
-            reflection = new THREE.Mesh( movieGeometry, movieMaterial );
-            reflection.position.set(8.69,-6,0.71);
-            reflection.rotation.set(1.4,0,0.96);
-            sceneTableView.add(reflection);
-        }
-    }
+    //     videoTexture = new THREE.Texture( canvas );
+    //     videoTexture.minFilter = THREE.LinearFilter;
+    //     videoTexture.magFilter = THREE.LinearFilter;
+    //     //var x = room.getStreamsByAttribute('type','media').length;
+    //     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+    //     // the geometry on which the movie will be displayed;
+    //     //      movie image will be scaled to fit these dimensions.
+    //     movieGeometry = new THREE.PlaneGeometry(  4, 4);
+    //     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    //     movieScreen.position.set(x,y,z);
+    //     movieScreen.rotation.y += rot;
+    //     sceneTableView.add(movieScreen);
+    //     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
+    //     streams.push(newStream);
+    //     if(pos === 5) {
+    //         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
+    //         // the geometry on which the movie will be displayed;
+    //         //      movie image will be scaled to fit these dimensions.
+    //         var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+    //         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+    //         reflection.position.set(-8.69,-6,0.71);
+    //         reflection.rotation.set(1.4,0,-0.96);
+    //         sceneTableView.add(reflection);
+    //     }
+    //     if(pos === 6) {
+    //         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
+    //         // the geometry on which the movie will be displayed;
+    //         //      movie image will be scaled to fit these dimensions.
+    //         var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+    //         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+    //         reflection.position.set(8.69,-6,0.71);
+    //         reflection.rotation.set(1.4,0,0.96);
+    //         sceneTableView.add(reflection);
+    //     }
+    // }
 }
 
 window.onload = function () {
@@ -649,15 +634,15 @@ window.onload = function () {
     overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
 
-    var context = document.getElementById("canvasNapkin").getContext('2d');
-    redrawNapkin();
-    var doit;
-    $(window).resize(function() {
-        clearTimeout(doit);
-        doit = setTimeout(function() {
-            redrawNapkin();
-        }, 100);
-    });
+    // var context = document.getElementById("canvasNapkin").getContext('2d');
+    // redrawNapkin();
+    // var doit;
+    // $(window).resize(function() {
+    //     clearTimeout(doit);
+    //     doit = setTimeout(function() {
+    //         redrawNapkin();
+    //     }, 100);
+    // });
 
     //focus "enternametextfield"
     $("#userName").focus();
@@ -711,12 +696,12 @@ window.onload = function () {
     audioElement.load();
 
     //Send chat message
-    $('#sendMessage').click(function() {
-        if($('#chatMessage').val() !== "") {
-            sendChatMessage($('#chatMessage').val());
-        }
-        return false;
-    });
+    // $('#sendMessage').click(function() {
+    //     if($('#chatMessage').val() !== "") {
+    //         sendChatMessage($('#chatMessage').val());
+    //     }
+    //     return false;
+    // });
     $('#submitUsername').click(function() {
         enterName();
         return false;
@@ -734,20 +719,20 @@ window.onload = function () {
         clearFeedback();
     });
 
-    var showVideo = function(urlVideo) {
-        var videoID = urlVideo.split('=')[1];
-        if(videoID !== undefined) {
-            var params = { allowScriptAccess: "always" };
-            var atts = { id: "myytplayer" };
-            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
-                           "youtubeVideo", "80%", "400", "8", null, null, params, atts);
+    // var showVideo = function(urlVideo) {
+    //     var videoID = urlVideo.split('=')[1];
+    //     if(videoID !== undefined) {
+    //         var params = { allowScriptAccess: "always" };
+    //         var atts = { id: "myytplayer" };
+    //         swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+    //                        "youtubeVideo", "80%", "400", "8", null, null, params, atts);
 
-            $('#myytplayer').css ({visibility:'visible'});
-            $('#writeUrl').show();
-            $('#closeVideo').show();
-            $('#VideoUrl').val("");
-        }
-    }
+    //         $('#myytplayer').css ({visibility:'visible'});
+    //         $('#writeUrl').show();
+    //         $('#closeVideo').show();
+    //         $('#VideoUrl').val("");
+    //     }
+    // }
 
     var enterName = function() {
         if($('#userName').val() !== "") {
@@ -799,213 +784,213 @@ var createToken = function(roomId, userName, role, callback) {
     req.send(JSON.stringify(body));
 };
 
-var initialize = function(roomId) {
-    //resetConnection(); Testa om detta löser buggen: i rum --> overhearing --> in i rum igen??
-    currentState = "TABLEVIEW";
-    currentTable = roomId;
-    initSceneTableView();
-    //render();
+// var initialize = function(roomId) {
+//     //resetConnection(); Testa om detta löser buggen: i rum --> overhearing --> in i rum igen??
+//     currentState = "TABLEVIEW";
+//     currentTable = roomId;
+//     initSceneTableView();
+//     //render();
 
-    $('#leaveTableButton').show();
-    $('#videoTab').show();
-    $('#napkinTab').show();
+//     $('#leaveTableButton').show();
+//     $('#videoTab').show();
+//     $('#napkinTab').show();
 
-    $('#leaveTableButton').click(function() {
-        resetConnection();
-        $('#enterName').show();
-        $('#videoTab').hide();
-        $('#napkinTab').hide();
-        currentState = "CAFEVIEW";
-        return false;
-    });
-    $('#getVideoUrl').click(function() {
-        if($('#VideoUrl').val() !== "") {
-            urlVideo = $('#VideoUrl').val();
-            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
-            showVideo(urlVideo);
-        }
-        return false;
-    });
-    $('#closeVideo').click(function() {
-        $('#closeVideo').toggle();
-        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
-        return false;
-    });
-    $('#clearNapkin').click(function() {
-        dataStream.sendData({id:'clearNapkin'});
-        var c = document.getElementById("canvasNapkin");
-        var ctx = c.getContext("2d");
-        ctx.clearRect(0,0,c.width,c.height);
-    });
-    $('#saveNapkin').click(function() {
-        var c = document.getElementById("canvasNapkin");
-        ctx = c.getContext("2d");
-        c.toBlob(function(blob) {
-            saveAs(blob, "myNapkin.png");
-        });
-    });
+//     $('#leaveTableButton').click(function() {
+//         resetConnection();
+//         $('#enterName').show();
+//         $('#videoTab').hide();
+//         $('#napkinTab').hide();
+//         currentState = "CAFEVIEW";
+//         return false;
+//     });
+//     $('#getVideoUrl').click(function() {
+//         if($('#VideoUrl').val() !== "") {
+//             urlVideo = $('#VideoUrl').val();
+//             dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+//             showVideo(urlVideo);
+//         }
+//         return false;
+//     });
+//     $('#closeVideo').click(function() {
+//         $('#closeVideo').toggle();
+//         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+//         return false;
+//     });
+//     $('#clearNapkin').click(function() {
+//         dataStream.sendData({id:'clearNapkin'});
+//         var c = document.getElementById("canvasNapkin");
+//         var ctx = c.getContext("2d");
+//         ctx.clearRect(0,0,c.width,c.height);
+//     });
+//     $('#saveNapkin').click(function() {
+//         var c = document.getElementById("canvasNapkin");
+//         ctx = c.getContext("2d");
+//         c.toBlob(function(blob) {
+//             saveAs(blob, "myNapkin.png");
+//         });
+//     });
 
-    $('#chatArea').css({
-        position:'absolute', 
-        top: $(window).height() - $('#chatArea').height()*2-56,
-        left:'30%'
-    });
-    $('#chatMessage').css({
-        position:'absolute', 
-        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'30%'
-    });
-    $('#sendMessage').css({
-        position:'absolute', 
-        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-        left:'63%'
-    });
-    $(window).resize(function() {
-        $('#chatArea').css({
-            position:'absolute', 
-            top: $(window).height() - $('#chatArea').height()*2-56,
-            left:'30%'
-        });
-        $('#chatMessage').css({
-            position:'absolute', 
-            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'30%'
-        });
-        $('#sendMessage').css({
-            position:'absolute', 
-            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-            left:'63%'
-        });
-    });
-    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-    $('#chatArea').width('40%');
-    $('#chatMessage').width('32.5%');
-    $('#sendMessage').width('7%');
+//     $('#chatArea').css({
+//         position:'absolute', 
+//         top: $(window).height() - $('#chatArea').height()*2-56,
+//         left:'30%'
+//     });
+//     $('#chatMessage').css({
+//         position:'absolute', 
+//         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+//         left:'30%'
+//     });
+//     $('#sendMessage').css({
+//         position:'absolute', 
+//         top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+//         left:'63%'
+//     });
+//     $(window).resize(function() {
+//         $('#chatArea').css({
+//             position:'absolute', 
+//             top: $(window).height() - $('#chatArea').height()*2-56,
+//             left:'30%'
+//         });
+//         $('#chatMessage').css({
+//             position:'absolute', 
+//             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+//             left:'30%'
+//         });
+//         $('#sendMessage').css({
+//             position:'absolute', 
+//             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+//             left:'63%'
+//         });
+//     });
+//     $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+//     $('#chatArea').width('40%');
+//     $('#chatMessage').width('32.5%');
+//     $('#sendMessage').width('7%');
 
-    $('#napkinTab').click(function() {
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
-    $('#videoTab').click(function() {
-        $('#videoTab').css({
-            position: 'absolute',
-            marginLeft: '31%',
-            marginTop: '5%',
-            width: '40%',
-            zIndex: '1'
-        });
-        $('#napkinTab').css({
-            position: 'absolute',
-            marginLeft: '30%',
-            marginTop: '2%',
-            width: '40%',
-            zIndex: '0'
-        });
-        return false;
-    });
+//     $('#napkinTab').click(function() {
+//         $('#napkinTab').css({
+//             position: 'absolute',
+//             marginLeft: '31%',
+//             marginTop: '5%',
+//             width: '40%',
+//             zIndex: '1'
+//         });
+//         $('#videoTab').css({
+//             position: 'absolute',
+//             marginLeft: '30%',
+//             marginTop: '2%',
+//             width: '40%',
+//             zIndex: '0'
+//         });
+//         return false;
+//     });
+//     $('#videoTab').click(function() {
+//         $('#videoTab').css({
+//             position: 'absolute',
+//             marginLeft: '31%',
+//             marginTop: '5%',
+//             width: '40%',
+//             zIndex: '1'
+//         });
+//         $('#napkinTab').css({
+//             position: 'absolute',
+//             marginLeft: '30%',
+//             marginTop: '2%',
+//             width: '40%',
+//             zIndex: '0'
+//         });
+//         return false;
+//     });
 
-    try {
-      localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
-    } catch (error) {
-        console.log('erizo error: ' + error);
-    }
+//     try {
+//       localStream = Erizo.Stream({audio: true, video: true, data: true, attributes:{type:'media'}});
+//     } catch (error) {
+//         console.log('erizo error: ' + error);
+//     }
 
-    localStream.addEventListener("access-accepted", function () {            
-        var subscribeToStreams = function (streams) {
-            console.log("subscribe to streams");
-            if (!localStream.showing) {
-                localStream.show();
-                console.log("LocalStream showing");
-            }
-            var index, stream;
-            for (index in streams) {
-                if (streams.hasOwnProperty(index)) {
-                    stream = streams[index];
-                    if (localStream !== undefined && localStream.getID() !== stream.getID()) {
-                        room.subscribe(stream);
-                    } else {
-                        console.log("My own stream");
-                    }
-                }
-            }
-        };
+//     localStream.addEventListener("access-accepted", function () {            
+//         var subscribeToStreams = function (streams) {
+//             console.log("subscribe to streams");
+//             if (!localStream.showing) {
+//                 localStream.show();
+//                 console.log("LocalStream showing");
+//             }
+//             var index, stream;
+//             for (index in streams) {
+//                 if (streams.hasOwnProperty(index)) {
+//                     stream = streams[index];
+//                     if (localStream !== undefined && localStream.getID() !== stream.getID()) {
+//                         room.subscribe(stream);
+//                     } else {
+//                         console.log("My own stream");
+//                     }
+//                 }
+//             }
+//         };
 
-        room.addEventListener("room-connected", function (roomEvent) {
-            // Publish my stream
-            room.publish(localStream);
+//         room.addEventListener("room-connected", function (roomEvent) {
+//             // Publish my stream
+//             room.publish(localStream);
 
-            // Subscribe to other streams
-            subscribeToStreams(roomEvent.streams);
-            console.log("streams: " + roomEvent.streams.length);
-        });
+//             // Subscribe to other streams
+//             subscribeToStreams(roomEvent.streams);
+//             console.log("streams: " + roomEvent.streams.length);
+//         });
 
-        room.addEventListener("stream-subscribed", function(streamEvent) {
-            console.log("stream stream-subscribed");
-            var stream = streamEvent.stream;
+//         room.addEventListener("stream-subscribed", function(streamEvent) {
+//             console.log("stream stream-subscribed");
+//             var stream = streamEvent.stream;
             
-            for (var i = 2; i <= 6; i++) {
-                if ($('#vid'+i).children().length === 0) {
-                    $('<div></div>', {
-                        id: 'test'+stream.getID()
-                    }).css('width','100%').appendTo('#vid'+i);
-                    stream.show("test" + stream.getID());
-                    console.log("InitVideo stream-subscribed");
-                    currentState = "TABLEVIEW";    
-                    initVideo(stream,i);                     
-                    return;
-                }
-            }
-            console.log("There is no seat available at this table!");
-        });
+//             for (var i = 2; i <= 6; i++) {
+//                 if ($('#vid'+i).children().length === 0) {
+//                     $('<div></div>', {
+//                         id: 'test'+stream.getID()
+//                     }).css('width','100%').appendTo('#vid'+i);
+//                     stream.show("test" + stream.getID());
+//                     console.log("InitVideo stream-subscribed");
+//                     currentState = "TABLEVIEW";    
+//                     initVideo(stream,i);                     
+//                     return;
+//                 }
+//             }
+//             console.log("There is no seat available at this table!");
+//         });
 
-        room.addEventListener("stream-added", function (streamEvent) {
-            // Subscribe to added streams
-            var streams = [];
-            streams.push(streamEvent.stream);
-            subscribeToStreams(streams);
+//         room.addEventListener("stream-added", function (streamEvent) {
+//             // Subscribe to added streams
+//             var streams = [];
+//             streams.push(streamEvent.stream);
+//             subscribeToStreams(streams);
 
-            //If table is empty, become the leader
-            var currStreams = room.getStreamsByAttribute('type','media');
-            console.log('InitVideo stream-added');
-            if(streamEvent.stream.getID() === localStream.getID()) {
-                currentState = "TABLEVIEW";
-                initVideo(streamEvent.stream,1);
-            }
-        });
+//             //If table is empty, become the leader
+//             var currStreams = room.getStreamsByAttribute('type','media');
+//             console.log('InitVideo stream-added');
+//             if(streamEvent.stream.getID() === localStream.getID()) {
+//                 currentState = "TABLEVIEW";
+//                 initVideo(streamEvent.stream,1);
+//             }
+//         });
 
-        room.addEventListener("stream-removed", function (streamEvent) {
-            // Remove stream from DOM
-            var stream = streamEvent.stream;
-            if (stream.elementID !== undefined) {
-                console.log('stream: ' + stream.getID());
-                console.log(stream.getID() === leader);
-                console.log('leader: ' + leader);
-                if(stream.getID() === leader) {
-                    console.log('kommer jag hit?');
-                    leader = getLeader();
-                    console.log(getLeader());
-                }
-                console.log("Removing " + stream.elementID);
-                $('#'+stream.elementID).remove();
-            }
-        });
-        localStream.show("vid1");
-    });
-    localStream.init();
-}
+//         room.addEventListener("stream-removed", function (streamEvent) {
+//             // Remove stream from DOM
+//             var stream = streamEvent.stream;
+//             if (stream.elementID !== undefined) {
+//                 console.log('stream: ' + stream.getID());
+//                 console.log(stream.getID() === leader);
+//                 console.log('leader: ' + leader);
+//                 if(stream.getID() === leader) {
+//                     console.log('kommer jag hit?');
+//                     leader = getLeader();
+//                     console.log(getLeader());
+//                 }
+//                 console.log("Removing " + stream.elementID);
+//                 $('#'+stream.elementID).remove();
+//             }
+//         });
+//         localStream.show("vid1");
+//     });
+//     localStream.init();
+// }
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
