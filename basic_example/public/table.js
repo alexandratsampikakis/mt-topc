@@ -58,9 +58,6 @@ document.body.appendChild(renderer.domElement);
 THREEx.WindowResize(renderer, cameraCafeView);
 cameraCafeView.position.set(0,-10,61);
 
-THREEx.WindowResize(renderer, cameraTableView);
-cameraTableView.position.set(0,10,0);
-
 //Adds room to knocklist
 function addToKnockList(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
@@ -281,6 +278,9 @@ var initSceneCafeView = function() {
 };
 
 var initSceneTableView = function() {
+    THREEx.WindowResize(renderer, cameraTableView);
+    cameraTableView.position.set(0,10,0);
+
     // CAMERAS
     // camera 2
     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
