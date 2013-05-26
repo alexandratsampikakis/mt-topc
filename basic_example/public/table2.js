@@ -425,7 +425,7 @@ function loadImage(imageData, elementID, pos) {
     myImage.className = 'centerImage';
 }
 
-function initVideo(stream,pos) {
+function initOSVideo(stream,pos) {
     var x = oSeePosition[pos][0];
     var y = oSeePosition[pos][1];
     var z = oSeePosition[pos][2];
@@ -455,6 +455,61 @@ function initVideo(stream,pos) {
     streams.push(newStream);
 }
 
+var reflection;
+var movieGeometry;
+function initVideo(stream,pos) {
+    var x = position[pos][0];
+    var y = position[pos][1];
+    var z = position[pos][2];
+    var rot = position[pos][3];
+    var vid, canvas;
+    if(stream.getID() === localStream.getID()) {
+        vid = localStream.player.video;
+    } else {
+        vid = stream.player.video;
+    }
+    
+    vid.style.width = '320px';
+    vid.style.height = '240px';
+    vid.autoplay = true;
+    canvas = $('<canvas width="320" height="240"></canvas>').appendTo('#canvases')[0];
+    var videoImageContext = canvas.getContext('2d');
+
+    videoTexture = new THREE.Texture( canvas );
+    videoTexture.minFilter = THREE.LinearFilter;
+    videoTexture.magFilter = THREE.LinearFilter;
+    //var x = room.getStreamsByAttribute('type','media').length;
+    var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+    // the geometry on which the movie will be displayed;
+    //      movie image will be scaled to fit these dimensions.
+    movieGeometry = new THREE.PlaneGeometry(  4, 4);
+    var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+    movieScreen.position.set(x,y,z);
+    movieScreen.rotation.y += rot;
+    scene.add(movieScreen);
+    var newStream = new StreamObject(vid, videoTexture, videoImageContext);
+    streams.push(newStream);
+    if(pos === 5) {
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
+        // the geometry on which the movie will be displayed;
+        //      movie image will be scaled to fit these dimensions.
+        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+        reflection.position.set(-8.69,-6,0.71);
+        reflection.rotation.set(1.4,0,-0.96);
+        scene.add(reflection);
+    }
+    if(pos === 6) {
+        var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
+        // the geometry on which the movie will be displayed;
+        //      movie image will be scaled to fit these dimensions.
+        var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
+        reflection = new THREE.Mesh( movieGeometry, movieMaterial );
+        reflection.position.set(8.69,-6,0.71);
+        reflection.rotation.set(1.4,0,0.96);
+        scene.add(reflection);
+    }
+}
 
 window.onload = function () {
     cafe = getQueryString('cafe');
@@ -726,7 +781,7 @@ var overhear = function(roomId) {
                                 id: 'test'+stream.getID()
                             }).css('width','100%').appendTo('#overhear'+i);
                             stream.show("test" + stream.getID());
-                            initVideo(stream,i); 
+                            initOSVideo(stream,i); 
                             return;
                         }
                     }
