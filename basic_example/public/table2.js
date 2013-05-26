@@ -1,5 +1,6 @@
 var room, localStream, serverUrl;
-var tableId = "513dcfda07aa2f143700001c";
+//var tableId = "513dcfda07aa2f143700001c";
+var tableId = new Array();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 
@@ -298,6 +299,18 @@ StreamObject.prototype.getContext = function() {
     return this.context;
 };
 
+//Retrieves the query strings
+var getQueryString = function getQueryString(key, default_) {
+    if (default_==null) default_="";
+    key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+    var qs = regex.exec(window.location.href);
+    if(qs == null)
+        return default_;
+    else
+        return qs[1];
+}
+
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -412,6 +425,7 @@ function initVideo(stream,pos) {
 
 
 window.onload = function () {
+    cafe = getQueryString('cafe');
     nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     //emptyImg.src="/img/emptyTable.gif";
@@ -423,7 +437,7 @@ window.onload = function () {
     initScene();
     render();
 
-    getCafeTables("Unik", function (response) {
+    getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tablecontainer");
         if(cafes.hasOwnProperty('error')) {
@@ -437,7 +451,7 @@ window.onload = function () {
             tableId[5] = cafes.table5;
             tableId[6] = cafes.table6;
 
-            getTableImage('Unik', function(response) {
+            getTableImage(cafe, function(response) {
                 var res = JSON.parse(response);
                 var hasImage = false;
                 var imgId;
