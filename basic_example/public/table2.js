@@ -250,6 +250,12 @@ function onDocumentMouseOut( event ) {
     objectToRotate = null;
 }
 
+function setVisibility(state, group) {
+    for(var i = 0; i<group.children.length; i++) {
+        group.children[i].visible = state;
+    }
+} 
+
 function updateVideos() {
     var vid;
     var videoImageContext;
@@ -805,6 +811,8 @@ var overhear = function(roomId) {
 };
 
  var initialize = function(roomId) {
+    initTableview();
+    setVisibility(false, cvGroup); 
     createToken(roomId, "user", "role", function (response) {
         var token = response;
         console.log('token created ', token);
