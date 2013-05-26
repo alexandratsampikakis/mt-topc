@@ -105,7 +105,7 @@ function removeRoomFromKnocklist(roomId) {
     }
 }
 
-var initScene = function() { 
+var initCafeview = function() { 
 
     // SKYBOX/FOG
     var materialArray = [];
@@ -137,6 +137,31 @@ var initScene = function() {
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
    
+};
+
+var initTableview = function() {
+    // CAMERAS
+    // camera 2
+    textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    scene.add(textureCamera);
+    
+    // SKYBOX/FOG
+    var materialArray = [];
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/grey_wash_wall.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+    for (var i = 0; i < 6; i++)
+       materialArray[i].side = THREE.BackSide;
+    var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
+    var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
+    var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
+    scene.add( skybox );
+
+    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    //window.addEventListener( 'resize', onWindowResize, false );
 };
 
 function onWindowResize() {
@@ -437,7 +462,7 @@ window.onload = function () {
     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-    initScene();
+    initCafeview();
     render();
 
     getCafeTables(cafe, function (response) {

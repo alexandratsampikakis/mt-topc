@@ -460,11 +460,12 @@ function render() {
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
-        renderer.render( sceneCafeView, cameraCafeView );
+        
         /*cameraCafeView.aspect = window.innerWidth / (window.innerHeight-82);
         cameraCafeView.updateProjectionMatrix();
         renderer.setSize( window.innerWidth, window.innerHeight-82 );*/
     }
+    renderer.render( sceneCafeView, cameraCafeView );
 }
 
 
