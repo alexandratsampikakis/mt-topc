@@ -13,7 +13,7 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 
 //
-var cvGroup new THREE.Object3D();
+var cvGroup = new THREE.Object3D();
 var currentState = "CAFEVIEW";
 //overhear
 var isOverhearing = null;
