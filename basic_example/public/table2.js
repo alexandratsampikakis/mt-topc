@@ -187,7 +187,7 @@ function onDocumentMouseDown( event ) {
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( scene.children );
+    var intersects = raycaster.intersectObjects( cvGroup.children );
 
     if ( intersects.length > 1 ) {
         objectToRotate = intersects[ 0 ];
