@@ -12,6 +12,8 @@ var knockListNo = new Object();
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 
+//
+var currentState = "CAFEVIEW";
 //overhear
 var isOverhearing = null;
 var overhearGroup;
@@ -23,14 +25,14 @@ var streams = [];
 var chairImg = new Image();
 var emptyImg = new Image();
 var overhearImg = new Image();
-var currentState = "CAFEVIEW";
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
-
+//Tableview
 var reflectionCamera;
 
 var MovingCube, textureCamera;
 var screenScene, screenCamera, firstRenderTarget, finalRenderTarget;
 
+//END
 var mouse = new THREE.Vector2(), INTERSECTED;
 var projector, raycaster;
 
@@ -276,8 +278,9 @@ function render() {
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
+        renderer.render( cvScene, cvCamera );
     }
-    renderer.render( cvScene, cvCamera );
+    
 
 
 }
