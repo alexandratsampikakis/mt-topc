@@ -747,4 +747,101 @@ var overhear = function(roomId) {
         });
         overhearStream.init();
     });  
-}; 
+};
+
+ var initialize = function(roomId) {
+    createToken(roomId, "user", "role", function (response) {
+        var token = response;
+        console.log('token created ', token);
+        L.Logger.setLogLevel(L.Logger.DEBUG);
+        //L.Logger.debug("Connected!");
+        room = Erizo.Room({token: token});
+
+        localStream.addEventListener("access-accepted", function () {
+            
+            var subscribeToStreams = function (streams) {
+                console.log("subscribe to streams");
+                if (!localStream.showing) {
+                    localStream.show();
+                    console.log("LocalStream showing");
+                }
+                var index, stream;
+                for (index in streams) {
+                    if (streams.hasOwnProperty(index)) {
+                        stream = streams[index];
+                        if (localStream !== undefined && localStream.getID() !== stream.getID()) {
+                            room.subscribe(stream);
+                        } else {
+                            console.log("My own stream");
+                        }
+                    }
+                }
+            };
+
+            room.addEventListener("room-connected", function (roomEvent) {
+                // Publish my stream
+                room.publish(localStream);
+
+                // Subscribe to other streams
+                subscribeToStreams(roomEvent.streams);
+                console.log("streams: " + roomEvent.streams.length);
+            });
+
+            room.addEventListener("stream-subscribed", function(streamEvent) {
+                console.log("stream stream-subscribed");
+                var stream = streamEvent.stream;
+                
+                for (var i = 2; i <= 6; i++) {
+                    if ($('#vid'+i).children().length === 0) {
+                        $('<div></div>', {
+                            id: 'test'+stream.getID()
+                        }).css('width','100%').appendTo('#vid'+i);
+                        stream.show("test" + stream.getID());
+                        console.log("InitVideo stream-subscribed");
+                        initVideo(stream,i);                            
+                        return;
+                    }
+                }
+
+                console.log("There is no seat available at this table!");
+            });
+
+            room.addEventListener("stream-added", function (streamEvent) {
+                // Subscribe to added streams
+                var streams = [];
+                streams.push(streamEvent.stream);
+                subscribeToStreams(streams);
+
+                //If table is empty, become the leader
+                var currStreams = room.getStreamsByAttribute('type','media');
+                console.log('InitVideo stream-added');
+                if(streamEvent.stream.getID() === localStream.getID()) {
+                    initVideo(streamEvent.stream,1);
+                }
+            });
+
+            room.addEventListener("stream-removed", function (streamEvent) {
+                // Remove stream from DOM
+                var stream = streamEvent.stream;
+                if (stream.elementID !== undefined) {
+                    console.log('stream: ' + stream.getID());
+                    console.log(stream.getID() === leader);
+                    console.log('leader: ' + leader);
+                    if(stream.getID() === leader) {
+                        console.log('kommer jag hit?');
+                        leader = getLeader();
+                        console.log(getLeader());
+                    }
+                    console.log("Removing " + stream.elementID);
+                    $('#'+stream.elementID).remove();
+                }
+            });
+
+            room.connect();        
+
+            localStream.show("vid1");
+        });
+        localStream.init();
+    });
+}
+
