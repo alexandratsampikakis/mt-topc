@@ -13,6 +13,7 @@ var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 
 //
+var cvGroup;
 var currentState = "CAFEVIEW";
 //overhear
 var isOverhearing = null;
@@ -27,6 +28,7 @@ var emptyImg = new Image();
 var overhearImg = new Image();
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 //Tableview
+var tvGroup
 var reflectionCamera;
 
 var MovingCube, textureCamera;
@@ -49,16 +51,16 @@ var clickTime;
 //
 var placeHolderData;
 
-var cvScene = new THREE.Scene();
-var cvCamera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
-THREEx.WindowResize(renderer, cvCamera);
-cvCamera.position.set(0,-10,61);
+THREEx.WindowResize(renderer, camera);
+camera.position.set(0,-10,61);
 
 //Adds room to knocklist
 function addToKnockList(roomId) {
@@ -120,7 +122,7 @@ var initCafeview = function() {
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
     var skyboxGeom = new THREE.CubeGeometry( 80, 50, 110, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    cvScene.add( skybox );
+    cvGroup.add( skybox );
 
     projector = new THREE.Projector();
     raycaster = new THREE.Raycaster();
@@ -131,8 +133,8 @@ var initCafeview = function() {
     movieGeometry = new THREE.PlaneGeometry(  32, 20);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(0,-5,-0.01);
-    cvScene.add(movieScreen);
-
+    cvGroup.add(movieScreen);
+    scene.add(cvGroup);
     //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -142,8 +144,9 @@ var initCafeview = function() {
 var initTableview = function() {
     // CAMERAS
     // camera 2
+    tvGroup = new THREE.Object3D();
     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
-    scene.add(textureCamera);
+    tvGroup.add(textureCamera);
     
     // SKYBOX/FOG
     var materialArray = [];
@@ -158,15 +161,16 @@ var initTableview = function() {
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
     var skyboxGeom = new THREE.CubeGeometry( 40, 40, 40, 1, 1, 1 );
     var skybox = new THREE.Mesh( skyboxGeom, skyboxMaterial );
-    scene.add( skybox );
+    tvGroup.add( skybox );
 
-    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    //window.addEventListener( 'resize', onWindowResize, false );
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    window.addEventListener( 'resize', onWindowResize, false );
+    scene.add(tvGroup);
 };
 
 function onWindowResize() {
-    cvCamera.aspect = window.innerWidth / (window.innerHeight-82);
-    cvCamera.updateProjectionMatrix();
+    camera.aspect = window.innerWidth / (window.innerHeight-82);
+    camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
@@ -181,9 +185,9 @@ function onDocumentMouseDown( event ) {
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     event.preventDefault();
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, cvCamera );
-    raycaster.set( cvCamera.position, vector.sub( cvCamera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( cvScene.children );
+    projector.unprojectVector( vector, camera );
+    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    var intersects = raycaster.intersectObjects( scene.children );
 
     if ( intersects.length > 1 ) {
         objectToRotate = intersects[ 0 ];
@@ -263,7 +267,7 @@ function updateVideos() {
 }
 
 function resetOverhearing() {
-    cvScene.remove(overhearGroup);
+    cvGroup.remove(overhearGroup);
     overhearStream.close();
     if(room != undefined) room.disconnect();
     isOverhearing = null;
@@ -278,9 +282,9 @@ function render() {
     updateVideos();
 
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, cvCamera );
-    raycaster.set( cvCamera.position, vector.sub( cvCamera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( cvScene.children );
+    projector.unprojectVector( vector, camera );
+    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+    var intersects = raycaster.intersectObjects( scene.children );
     if(currentState === "TABLEVIEW") {
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
@@ -303,9 +307,9 @@ function render() {
         if (isOverhearing === objectToRotate.object.name && objectToRotate.object.rotation.y%(2*Math.PI) < 0.05 && objectToRotate.object.rotation.y%(2*Math.PI) > -0.05) {
             resetOverhearing();
         }
-        renderer.render( cvScene, cvCamera );
     }
     
+    renderer.render( scene, camera );
 
 
 }
@@ -415,7 +419,7 @@ function loadImage(imageData, elementID, pos) {
         var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
         movieScreen.position.set(x,y,z);
         movieScreen.name = pos;
-        cvScene.add(movieScreen);
+        cvGroup.add(movieScreen);
     };
     myImage.src = imageData;
     myImage.className = 'centerImage';
@@ -675,7 +679,7 @@ var knock = function(roomId) {
 
 var overhear = function(roomId) {
     overhearGroup = new THREE.Object3D();
-    cvScene.add(overhearGroup);
+    cvGroup.add(overhearGroup);
     createToken(roomId, "user", "role", function (response) {
         var token = response;
         console.log('token created ', token);
