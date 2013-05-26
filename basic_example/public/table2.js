@@ -464,10 +464,10 @@ function initOSVideo(stream,pos) {
 var reflection;
 var movieGeometry;
 function initVideo(stream,pos) {
-    var x = position[pos][0];
-    var y = position[pos][1];
-    var z = position[pos][2];
-    var rot = position[pos][3];
+    var x = tvPosition[pos][0];
+    var y = tvPosition[pos][1];
+    var z = tvPosition[pos][2];
+    var rot = tvPosition[pos][3];
     var vid, canvas;
     if(stream.getID() === localStream.getID()) {
         vid = localStream.player.video;
@@ -492,7 +492,7 @@ function initVideo(stream,pos) {
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(x,y,z);
     movieScreen.rotation.y += rot;
-    scene.add(movieScreen);
+    tvGroup.add(movieScreen);
     var newStream = new StreamObject(vid, videoTexture, videoImageContext);
     streams.push(newStream);
     if(pos === 5) {
@@ -503,7 +503,7 @@ function initVideo(stream,pos) {
         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
         reflection.position.set(-8.69,-6,0.71);
         reflection.rotation.set(1.4,0,-0.96);
-        scene.add(reflection);
+        tvGroup.add(reflection);
     }
     if(pos === 6) {
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
@@ -513,7 +513,7 @@ function initVideo(stream,pos) {
         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
         reflection.position.set(8.69,-6,0.71);
         reflection.rotation.set(1.4,0,0.96);
-        scene.add(reflection);
+        tvGroup.add(reflection);
     }
 }
 
@@ -813,12 +813,6 @@ var overhear = function(roomId) {
  var initialize = function(roomId) {
     initTableview();
     setVisibility(false, cvGroup); 
-    createToken(roomId, "user", "role", function (response) {
-        var token = response;
-        console.log('token created ', token);
-        L.Logger.setLogLevel(L.Logger.DEBUG);
-        //L.Logger.debug("Connected!");
-        room = Erizo.Room({token: token});
 
         localStream.addEventListener("access-accepted", function () {
             
@@ -899,8 +893,7 @@ var overhear = function(roomId) {
                     $('#'+stream.elementID).remove();
                 }
             });
-
-            room.connect();        
+     
 
             localStream.show("vid1");
         });
