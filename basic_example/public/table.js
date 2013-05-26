@@ -427,7 +427,7 @@ function clearFeedback() {
 var rotationY;
 function render() {
     requestAnimationFrame(render);
-    updateVideos();
+    //updateVideos();
 
     // if(currentState === "TABLEVIEW") {
     //     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
@@ -461,9 +461,9 @@ function render() {
             resetOverhearing();
         }
         renderer.render( sceneCafeView, cameraCafeView );
-        cameraCafeView.aspect = window.innerWidth / (window.innerHeight-82);
+        /*cameraCafeView.aspect = window.innerWidth / (window.innerHeight-82);
         cameraCafeView.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight-82 );
+        renderer.setSize( window.innerWidth, window.innerHeight-82 );*/
     }
 }
 
