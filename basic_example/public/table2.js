@@ -1156,11 +1156,11 @@ var overhear = function(roomId) {
  var initialize = function(roomId) {
     initTableview();
     setVisibility(false, cvGroup); 
+    $('#theTable').show();
 
-
-    $('#leaveTableButton').show();
+    /*$('#leaveTableButton').show();
     $('#videoTab').show();
-    $('#napkinTab').show();
+    $('#napkinTab').show();*/
 
     $('#leaveTableButton').click(function() {
         resetConnection();
