@@ -62,7 +62,7 @@ renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 THREEx.WindowResize(renderer, camera);
-camera.position.set(cameraPos[0][0],cameraPos[0][1]cameraPos[0][2]);
+camera.position.set(cameraPos[0][0],cameraPos[0][1],cameraPos[0][2]);
 
 //Adds room to knocklist
 function addToKnockList(roomId) {
@@ -168,7 +168,7 @@ var initTableview = function() {
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     scene.add(tvGroup);
-    camera.position.set(cameraPos[1][0],cameraPos[1][1]cameraPos[1][2]);
+    camera.position.set(cameraPos[1][0],cameraPos[1][1],cameraPos[1][2]);
 };
 
 function onWindowResize() {
