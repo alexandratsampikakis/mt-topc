@@ -1210,7 +1210,6 @@ var overhear = function(roomId) {
 
         // Subscribe to other streams
         subscribeToStreams(room.getStreamsByAttribute('type','media'));
-        console.log("streams: " + roomEvent.streams.length);
     });
     localStream.init();
 
