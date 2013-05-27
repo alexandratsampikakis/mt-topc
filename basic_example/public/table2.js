@@ -1209,7 +1209,7 @@ var overhear = function(roomId) {
         room.publish(localStream);
 
         // Subscribe to other streams
-        subscribeToStreams(roomEvent.streams);
+        subscribeToStreams(room.getStreamsByAttribute('type','media'));
         console.log("streams: " + roomEvent.streams.length);
     });
     localStream.init();
