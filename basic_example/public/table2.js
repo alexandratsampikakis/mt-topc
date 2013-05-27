@@ -1,4 +1,4 @@
-var room, cafe, localStream, serverUrl;
+var room, cafe, serverUrl;
 //var tableId = "513dcfda07aa2f143700001c";
 var tableId = new Array();
 serverUrl = "http://satin.research.ltu.se:3001/";
@@ -20,6 +20,7 @@ var isOverhearing = null;
 var overhearGroup;
 var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
+var tvPosition = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 var overhearStream;
 var streams = [];
 //
@@ -55,12 +56,173 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
+var cameraPos = [[0,-10,61],[0,0,10]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 THREEx.WindowResize(renderer, camera);
-camera.position.set(0,-10,61);
+camera.position.set(cameraPos[0][0],cameraPos[0][1],cameraPos[0][2]);
+
+
+/// NAPKIN
+function redrawNapkin() {
+    var c = $('#canvasNapkin')[0];
+    var imgData = c.toDataURL();
+    var ctx = c.getContext("2d");
+    var myImage = new Image();
+    myImage.onload = function() {
+        ctx.drawImage(myImage, 0, 0,c.width,c.height);
+    };
+
+    $('.tabbable').css({
+        position:'absolute'
+    });
+
+    myImage.src = imgData;
+    c.height = $(window).height() - 550; //415;
+    c.width = 1.5*c.height;
+}
+
+function drawPath(color, thickness, path, width, height) {
+    var widthRatio = $('#canvasNapkin')[0].width/width;
+    var heightRatio = $('#canvasNapkin')[0].height/height;
+    for (var i = 0; i < path.length; i+=2) {
+        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
+    };
+}
+
+function drawLine (color, thickness, x1, y1, x2, y2) {
+    context.strokeStyle = color;
+    context.lineWidth   = thickness;
+
+    context.beginPath();
+    context.moveTo(x1, y1)
+    context.lineTo(x2, y2);
+    context.stroke();
+}
+
+/// END NAPKIN
+
+/// GREJS
+//Adds eventlisteners to youtubeplayer
+function onYouTubePlayerReady(playerId) {
+  ytplayer = document.getElementById("myytplayer");
+  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+}
+
+//handler for youtube player state change
+function onytplayerStateChange(newState) {
+    switch (newState) {
+        case 1:
+            //play
+            dataStream.sendData({id:'ytplayer', state:1});
+            console.log("play video");
+            break;
+        case 2:
+            //pause
+            dataStream.sendData({id:'ytplayer', state:2});
+            break;
+       default:
+    }
+}
+
+//Plays the youtube video
+function play() {
+    if (ytplayer) {
+        ytplayer.playVideo();
+    }
+}
+
+//Pauses the youtube video
+function pause() {
+    if (ytplayer) {
+        ytplayer.pauseVideo();
+    }
+}
+
+//Calculates leader. Highest stream ID wins. Only counts 'media' streams.
+//Leader is used for sending snapshots to server
+function calculateLeader() {
+    var keys = [];
+    var highest = parseInt(localStream.getID());
+    for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
+        var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
+        if (streamID > highest) highest=streamID;
+    }
+    console.log(highest);
+    return highest;
+}
+
+function setLeader(id) {
+    leader = id;
+}
+
+function getLeader() {
+    return leader;
+}
+
+//Tells the room who the leader is.
+function broadcastLeader() {
+    dataStream.sendData({id:'leader',leader:leader});
+    console.log('broadcasting leader');
+}
+
+function sendNapkinToNewUser() {
+    var c = document.getElementById("canvasNapkin");
+    var ctx = c.getContext("2d");
+    var napkinImgData = c.toDataURL();
+    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
+//Clears textfields
+function clearTextFields() {
+    $('#chatArea').val("");
+    $('#chatMessage').val("");
+    $('#VideoUrl').val("");
+}
+
+//Appends chat message to chatArea
+function appendChatMessage(username, message) {
+    var message = username + ": " + message;
+    var scrollbot = false;
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+}
+
+//Sends the chat message to other users
+function sendChatMessage(message) {
+    dataStream.sendData({id:'chat',text:message, user:nameOfUser});
+    $('#chatMessage').val("");
+    appendChatMessage(nameOfUser, message);
+    $("#myTextBox").focus();
+}
+//Update titles
+var updateTitle = function(title) {
+    $('#cafeTitle').html(title);
+    $('#cafeTableTitle').html(title);
+    $('#cafeVideoTitle').html(title);
+}  
+/// END GREJS
+//Clears feedback text fields
+function clearFeedback() {
+    $('#feedbackSubject').val("");
+    $('#feedbackMail').val("");
+    $('#feedbackMessage').val("");
+}
+
+//Notifys users of newly joined user by writing in chat
+function hasJoinedTheRoom(username) {
+    var message = username + " sat down at the table.";
+    if($('#chatArea').val() !== "") {
+        message = "\n"+message;
+    }
+    $('#chatArea').append(message);
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+}
 
 //Adds room to knocklist
 function addToKnockList(roomId) {
@@ -166,6 +328,7 @@ var initTableview = function() {
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     scene.add(tvGroup);
+    camera.position.set(cameraPos[1][0],cameraPos[1][1],cameraPos[1][2]);
 };
 
 function onWindowResize() {
@@ -574,8 +737,163 @@ window.onload = function () {
         }
     });
 
-}
+    //loops through and takes a snapshot of each stream. Merges into one image, sends to server.
+    function getSnapshots() {
+        //Width and height of popover where the image will be displayed.
+        var w = 320;
+        var h = 200
+        //Get all media streams
+        var streams = room.getStreamsByAttribute('type','media');
+        var length = streams.length;
 
+        var canvas = document.createElement('canvas');
+        var context = canvas.getContext('2d');
+
+        var height = $('#myVideo').height();
+        var width = $('#myVideo').width();
+
+        //what the image will look like with 6 media streams
+        //'''''''''''''//
+        //  1   2   3  //
+        //  4   5   6  //
+        //,,,,,,,,,,,,,//
+        canvas.width = 3*width;
+        canvas.height = 2*height;
+        for(var i = 0; i<length;i++) {
+            var y = 0;
+            //if i>2, go to "second row" of image
+            if (i>2) {
+                var y = height;
+            }
+            
+            //For some reason, the stream you get from room.getStreamsByAttribute
+            // and room.remoteStreams that equals localStream, does not contain 
+            //all the things localStream does, therefor, special case for LocalStream.
+            if(streams[i].getID() === localStream.getID()) {
+                var bitmap;
+                bitmap = localStream.getVideoFrame();
+                context.putImageData(bitmap, (i%3)*width, y);        
+            } else {
+                var bitmap;
+                bitmap = streams[i].getVideoFrame();
+                context.putImageData(bitmap, (i%3)*width, y);
+            }
+
+        }
+
+        for(var i = length; i<6;i++) {
+            var y = 0;
+            //if i>2, go to "second row" of image
+            if (i>2) {
+                var y = height;
+            }
+            context.drawImage(chairImg, (i%3)*width, y, width, height);        
+        }
+
+        //Draw the image on a new canvas in order to rescale.
+        var canvas2 = document.createElement('canvas');
+        var context2 = canvas2.getContext('2d');
+
+        var imgData = canvas.toDataURL();
+        var myImage = new Image();
+        canvas2.width = 320;
+        canvas2.height = 200;
+        myImage.onload = function(){
+            context2.drawImage(myImage, 0, 0,w,h);
+            //console.log(canvas);
+            //document.body.appendChild(canvas2);
+            //Convert to base64 and send to server.
+            sendTableImg(cafe, canvas2.toDataURL(), room.roomID, function (response) {
+                console.log(response);
+            });
+        }; 
+        myImage.src = imgData;
+    }
+
+    function initOversee(imageData, elementID) {
+        var myImage = new Image();
+        myImage.onload = function(){
+            $(myImage).appendTo(elementID);
+        };
+        myImage.src = imageData;
+        myImage.width=($(window).width()/6)+0.2;
+        myImage.height = myImage.width/1.6;
+    }
+
+
+    function overseeInTable() {
+        var maxHeight = ($(window).width()/6)/1.6
+        $("#menuContainer").resizable({maxHeight:maxHeight});
+        getCafeTables(cafe, function (response) {
+        var cafes = JSON.parse(response);
+        if(cafes.hasOwnProperty('error')) {
+            console.log(cafes.error);
+        } else {
+            
+            tableId[1] = cafes.table1;
+            tableId[2] = cafes.table2;
+            tableId[3] = cafes.table3;
+            tableId[4] = cafes.table4;
+            tableId[5] = cafes.table5;
+            tableId[6] = cafes.table6;
+
+            getTableImage(cafe, function(response) {
+                var res = JSON.parse(response);
+                var hasImage = false;
+                var imgId;
+                var imgData
+                if(!res.hasOwnProperty('empty')){
+                    for(var i=1;i<=6;i++){
+                        hasImage = false;
+                        for(var j=0;j<res.records.length;j++){
+                            if(res.records[j].roomID == tableId[i]) {
+                                imgData = res.records[j].imageData;
+                                if(res.records[j].roomID != currentTable ) {
+                                    initOversee(imgData, '#ddMenu');
+                                }
+                                
+                                hasImage = true;
+                            }
+                            console.log(imgID);
+                        }
+                        if(!hasImage) initOversee("/img/emptyTable.gif", '#ddMenu');
+                        }
+                    }
+                });    
+            }
+        });
+    }
+
+    
+    var h = parseInt($("#menuContainer").css('height')); //height mentioned in css- feel free to change
+    var open = false;
+    $("#menuContainer").resizable({ 
+            handles: {
+                "s":"#grippie"   
+            },
+            maxHeight:200, 
+            minHeight:0,
+            resize: function(){
+                if($(this).height()<=h){
+                    if(open === true) {
+                        $("#ddMenu").hide();
+                        $('#ddMenu').empty();
+                        open = false;
+                    }
+
+                }else{
+                    if(open === false) {
+                        overseeInTable();
+                        $("#ddMenu").show();
+                        open = true;
+                    }
+                }
+                
+            }
+    });
+
+}
+    
 var createToken = function(roomId, userName, role, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'createToken/' + roomId;
@@ -947,15 +1265,6 @@ var overhear = function(roomId) {
             }
         };
 
-        room.addEventListener("room-connected", function (roomEvent) {
-            // Publish my stream
-            room.publish(localStream);
-
-            // Subscribe to other streams
-            subscribeToStreams(roomEvent.streams);
-            console.log("streams: " + roomEvent.streams.length);
-        });
-
         room.addEventListener("stream-subscribed", function(streamEvent) {
             console.log("stream stream-subscribed");
             var stream = streamEvent.stream;
@@ -1008,6 +1317,11 @@ var overhear = function(roomId) {
  
 
         localStream.show("vid1");
+    // Publish my stream
+        room.publish(localStream);
+
+        // Subscribe to other streams
+        subscribeToStreams(room.getStreamsByAttribute('type','media'));
     });
     localStream.init();
 
