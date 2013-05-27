@@ -20,6 +20,7 @@ var isOverhearing = null;
 var overhearGroup;
 var tableId = new Array();
 var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[32/3,-10,0]];
+var tvPosition = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 var overhearStream;
 var streams = [];
 //
@@ -464,6 +465,7 @@ function initOSVideo(stream,pos) {
 var reflection;
 var movieGeometry;
 function initVideo(stream,pos) {
+    console.log("initvideo,zomzomzzozo");
     var x = tvPosition[pos][0];
     var y = tvPosition[pos][1];
     var z = tvPosition[pos][2];
