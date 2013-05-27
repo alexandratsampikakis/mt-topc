@@ -1133,9 +1133,9 @@ var overhear = function(roomId) {
     setVisibility(false, cvGroup); 
 
 
-    /*$('#leaveTableButton').show();
+    $('#leaveTableButton').show();
     $('#videoTab').show();
-    $('#napkinTab').show();*/
+    $('#napkinTab').show();
 
     $('#leaveTableButton').click(function() {
         resetConnection();
