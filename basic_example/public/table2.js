@@ -837,15 +837,6 @@ var overhear = function(roomId) {
             }
         };
 
-        room.addEventListener("room-connected", function (roomEvent) {
-            // Publish my stream
-            room.publish(localStream);
-
-            // Subscribe to other streams
-            subscribeToStreams(roomEvent.streams);
-            console.log("streams: " + roomEvent.streams.length);
-        });
-
         room.addEventListener("stream-subscribed", function(streamEvent) {
             console.log("stream stream-subscribed");
             var stream = streamEvent.stream;
@@ -899,6 +890,12 @@ var overhear = function(roomId) {
  
 
         localStream.show("vid1");
+    // Publish my stream
+        room.publish(localStream);
+
+        // Subscribe to other streams
+        subscribeToStreams(roomEvent.streams);
+        console.log("streams: " + roomEvent.streams.length);
     });
     localStream.init();
 
