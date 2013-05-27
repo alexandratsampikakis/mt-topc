@@ -342,27 +342,29 @@ function onWindowResize() {
 }*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
-    clickTime = new Date().getTime();
-    targetRotation = targetRotationOnMouseDown = 0;
-    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-    event.preventDefault();
-    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
-    projector.unprojectVector( vector, camera );
-    raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( cvGroup.children );
+    if(currentState === "CAFEVIEW") {
+        clickTime = new Date().getTime();
+        targetRotation = targetRotationOnMouseDown = 0;
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+        event.preventDefault();
+        var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+        projector.unprojectVector( vector, camera );
+        raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+        var intersects = raycaster.intersectObjects( cvGroup.children );
 
-    if ( intersects.length > 1 ) {
-        objectToRotate = intersects[ 0 ];
-        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-        document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-        document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+        if ( intersects.length > 1 ) {
+            objectToRotate = intersects[ 0 ];
+            document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+            document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+            document.addEventListener( 'mouseout', onDocumentMouseOut, false );
 
-        mouseXOnMouseDown = event.clientX - windowHalfX;
-        targetRotationOnMouseDown = targetRotation;
+            mouseXOnMouseDown = event.clientX - windowHalfX;
+            targetRotationOnMouseDown = targetRotation;
+        }
+        console.log(intersects);
+        console.log(objectToRotate);
     }
-    console.log(intersects);
-    console.log(objectToRotate);
     /*
     // Parse all the faces
     for ( var i in intersects ) {
@@ -1161,7 +1163,7 @@ var overhear = function(roomId) {
     /*$('#leaveTableButton').show();
     $('#videoTab').show();
     $('#napkinTab').show();*/
-    
+
         //Send chat message
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
