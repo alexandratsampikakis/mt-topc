@@ -1280,6 +1280,10 @@ var overhear = function(roomId) {
                     return;
                 }
             }
+            if(leader === undefined) leader = calculateLeader;
+            if(leader === localStream.getID()) {
+                getSnapshots();
+            } 
 
             console.log("There is no seat available at this table!");
         });
@@ -1296,6 +1300,25 @@ var overhear = function(roomId) {
             if(streamEvent.stream.getID() === localStream.getID()) {
                 initVideo(streamEvent.stream,1);
             }
+            if(streamEvent.stream.getAttributes().type === "media"){
+                hasJoinedTheRoom(streamEvent.stream.getAttributes().username);
+            }
+            //If table is empty, become the leader
+            var currStreams = room.getStreamsByAttribute('type','media');
+            if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
+                console.log('Snapshot sent at ' + Date.now());
+                leader = localStream.getID();
+
+                getSnapshots();
+                setInterval(function(){
+                    console.log('Snapshot sent at ' + Date.now());
+                    getSnapshots();
+                },1000*60*5);
+            } else if(leader === localStream.getID()) {
+                broadcastLeader();
+                sendNapkinToNewUser();
+                isVideoLoaded(streamEvent.stream.getID());
+            }  
         });
 
         room.addEventListener("stream-removed", function (streamEvent) {
@@ -1307,11 +1330,23 @@ var overhear = function(roomId) {
                 console.log('leader: ' + leader);
                 if(stream.getID() === leader) {
                     console.log('kommer jag hit?');
-                    leader = getLeader();
-                    console.log(getLeader());
+                    leader = calculateLeader();
+                    if(leader === localStream.getID()) {
+                        console.log('Snapshot sent at ' + Date.now());
+                        getSnapshots();
+                        setInterval(function(){
+                            console.log('Snapshot sent at ' + Date.now());
+                            getSnapshots();
+                        },1000*60*5);
+                    }
+                    console.log(calculateLeader());
+                } else if (leader === localStream.getID()) {
+                    getSnapshots();
                 }
-                console.log("Removing " + stream.elementID);
-                $('#'+stream.elementID).remove();
+                
+                var streamToRemove = $('#'+stream.elementID);
+                streamToRemove.remove();
+
             }
         });
  
