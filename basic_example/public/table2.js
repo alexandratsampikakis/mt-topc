@@ -1156,6 +1156,7 @@ var overhear = function(roomId) {
 };
 
  var initialize = function(roomId) {
+    currentState = "TABLEVIEW";
     initTableview();
     setVisibility(false, cvGroup); 
     $('#theTable').show();
