@@ -814,6 +814,118 @@ var overhear = function(roomId) {
     initTableview();
     setVisibility(false, cvGroup); 
 
+
+    /*$('#leaveTableButton').show();
+    $('#videoTab').show();
+    $('#napkinTab').show();*/
+
+    $('#leaveTableButton').click(function() {
+        resetConnection();
+        $('#enterName').show();
+        $('#videoTab').hide();
+        $('#napkinTab').hide();
+        currentState = "CAFEVIEW";
+        return false;
+    });
+    $('#getVideoUrl').click(function() {
+        if($('#VideoUrl').val() !== "") {
+            urlVideo = $('#VideoUrl').val();
+            dataStream.sendData({id:'ytplayer', state:3, url: urlVideo});
+            showVideo(urlVideo);
+        }
+        return false;
+    });
+    $('#closeVideo').click(function() {
+        $('#closeVideo').toggle();
+        $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
+        return false;
+    });
+    $('#clearNapkin').click(function() {
+        dataStream.sendData({id:'clearNapkin'});
+        var c = document.getElementById("canvasNapkin");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0,0,c.width,c.height);
+    });
+    $('#saveNapkin').click(function() {
+        var c = document.getElementById("canvasNapkin");
+        ctx = c.getContext("2d");
+        c.toBlob(function(blob) {
+            saveAs(blob, "myNapkin.png");
+        });
+    });
+
+    $('#chatArea').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'30%'
+    });
+    $('#chatMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'30%'
+    });
+    $('#sendMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'63%'
+    });
+    $(window).resize(function() {
+        $('#chatArea').css({
+            position:'absolute', 
+            top: $(window).height() - $('#chatArea').height()*2-56,
+            left:'30%'
+        });
+        $('#chatMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'30%'
+        });
+        $('#sendMessage').css({
+            position:'absolute', 
+            top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+            left:'63%'
+        });
+    });
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+    $('#chatArea').width('40%');
+    $('#chatMessage').width('32.5%');
+    $('#sendMessage').width('7%');
+
+    $('#napkinTab').click(function() {
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+    $('#videoTab').click(function() {
+        $('#videoTab').css({
+            position: 'absolute',
+            marginLeft: '31%',
+            marginTop: '5%',
+            width: '40%',
+            zIndex: '1'
+        });
+        $('#napkinTab').css({
+            position: 'absolute',
+            marginLeft: '30%',
+            marginTop: '2%',
+            width: '40%',
+            zIndex: '0'
+        });
+        return false;
+    });
+
     localStream.addEventListener("access-accepted", function () {
         
         var subscribeToStreams = function (streams) {
