@@ -736,8 +736,31 @@ window.onload = function () {
             });    
         }
     });
-
     
+        //Initializes the audio element used for playing the knocking sound
+    audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '/media/knock.mp3');
+    audioElement.load();
+
+    //Sends a base64 string to server
+    var sendTableImg = function(cafe, imgData, roomId, callback) {
+        var req = new XMLHttpRequest();
+        var url = serverUrl + 'api/sendTableImg/' + roomId;
+        var body = {imgData: imgData,
+                    cafe: cafe};
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4) {
+                callback(req.responseText);
+            }
+        };
+
+        req.open('POST', url, true);
+
+        req.setRequestHeader('Content-Type', 'application/json');
+        //console.log("Sending to " + url + " - " + JSON.stringify(body));
+        req.send(JSON.stringify(body));
+    };
 
     function initOversee(imageData, elementID) {
         var myImage = new Image();
