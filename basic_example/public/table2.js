@@ -29,7 +29,7 @@ var emptyImg = new Image();
 var overhearImg = new Image();
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
 //Tableview
-var tvGroup
+var tvGroup;
 var reflectionCamera;
 
 var MovingCube, textureCamera;
@@ -1161,6 +1161,24 @@ var overhear = function(roomId) {
     /*$('#leaveTableButton').show();
     $('#videoTab').show();
     $('#napkinTab').show();*/
+    
+        //Send chat message
+    $('#sendMessage').click(function() {
+        if($('#chatMessage').val() !== "") {
+            sendChatMessage($('#chatMessage').val());
+        }
+        return false;
+    });
+
+    $('#submitUsername').click(function() {
+        enterName();
+        return false;
+    });
+
+    $('#askToJoinTable').click(function() { //denna används inte???
+        dataStream.sendData({id:'popup', user:nameOfUser});
+        return false;
+    });
 
     $('#leaveTableButton').click(function() {
         resetConnection();
