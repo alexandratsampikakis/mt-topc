@@ -874,6 +874,7 @@ var overhear = function(roomId) {
             //If table is empty, become the leader
             var currStreams = room.getStreamsByAttribute('type','media');
             console.log('InitVideo stream-added');
+            console.log(streamEvent.stream.getID() === localStream.getID());
             if(streamEvent.stream.getID() === localStream.getID()) {
                 initVideo(streamEvent.stream,1);
             }
