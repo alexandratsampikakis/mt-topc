@@ -1,4 +1,4 @@
-var room, cafe, localStream, serverUrl;
+var room, cafe, serverUrl;
 //var tableId = "513dcfda07aa2f143700001c";
 var tableId = new Array();
 serverUrl = "http://satin.research.ltu.se:3001/";
