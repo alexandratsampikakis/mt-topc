@@ -56,12 +56,13 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
 var position = [[],[-12,-14,38],[12,-14,38],[-12,-14,46],[12,-14,46],[-12,-14,51],[12,-14,51]];
+var cameraPos = [[0,-10,61],[0,0,10]];
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight-82);
 document.body.appendChild(renderer.domElement);
 
 THREEx.WindowResize(renderer, camera);
-camera.position.set(0,-10,61);
+camera.position.set(cameraPos[0]);
 
 //Adds room to knocklist
 function addToKnockList(roomId) {
@@ -167,6 +168,7 @@ var initTableview = function() {
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     scene.add(tvGroup);
+    camera.position.set(cameraPos[1]);
 };
 
 function onWindowResize() {
@@ -465,7 +467,6 @@ function initOSVideo(stream,pos) {
 var reflection;
 var movieGeometry;
 function initVideo(stream,pos) {
-    console.log("initvideo,zomzomzzozo");
     var x = tvPosition[pos][0];
     var y = tvPosition[pos][1];
     var z = tvPosition[pos][2];
@@ -865,7 +866,6 @@ var overhear = function(roomId) {
             //If table is empty, become the leader
             var currStreams = room.getStreamsByAttribute('type','media');
             console.log('InitVideo stream-added');
-            console.log(streamEvent.stream.getID() === localStream.getID());
             if(streamEvent.stream.getID() === localStream.getID()) {
                 initVideo(streamEvent.stream,1);
             }
