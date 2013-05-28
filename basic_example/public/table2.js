@@ -1341,9 +1341,7 @@ var overhear = function(roomId) {
                     }).css('width','100%').appendTo('#vid'+i);
                     stream.show("test" + stream.getID());
                     console.log("InitVideo stream-subscribed");
-                    console.log(stream.getAttributes.type === "media");
-                    if(stream.getAttributes.type === "media") {
-                        console.log("bajs");
+                    if(stream.getAttributes().type === "media") {
                         initVideo(stream,i);  
                     }      
                     return;
