@@ -704,7 +704,7 @@ window.onload = function () {
             redrawNapkin();
         }, 100);
     });
-    
+
     //focus "enternametextfield"
     $("#userName").focus();
 
@@ -884,6 +884,22 @@ window.onload = function () {
            default:
         }
     }
+
+    var showVideo = function(urlVideo) {
+        var videoID = urlVideo.split('=')[1];
+        if(videoID !== undefined) {
+            var params = { allowScriptAccess: "always" };
+            var atts = { id: "myytplayer" };
+            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
+                           "youtubeVideo", "80%", "400", "8", null, null, params, atts);
+
+            $('#myytplayer').css ({visibility:'visible'});
+            $('#writeUrl').show();
+            $('#closeVideo').show();
+            $('#VideoUrl').val("");
+        }
+    }
+
         //Sends a base64 string to server
     var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
