@@ -1333,24 +1333,25 @@ var overhear = function(roomId) {
         room.addEventListener("stream-subscribed", function(streamEvent) {
             console.log("stream stream-subscribed");
             var stream = streamEvent.stream;
-            
-            for (var i = 2; i <= 6; i++) {
-                if ($('#vid'+i).children().length === 0) {
-                    $('<div></div>', {
-                        id: 'test'+stream.getID()
-                    }).css('width','100%').appendTo('#vid'+i);
-                    stream.show("test" + stream.getID());
-                    console.log("InitVideo stream-subscribed");
-                    if(stream.getAttributes().type === "media") {
-                        initVideo(stream,i);  
-                    }      
-                    return;
+            if(stream.getAttributes().type === "media") {
+                for (var i = 2; i <= 6; i++) {
+                    if ($('#vid'+i).children().length === 0) {
+                        $('<div></div>', {
+                            id: 'test'+stream.getID()
+                        }).css('width','100%').appendTo('#vid'+i);
+                        stream.show("test" + stream.getID());
+                        console.log("InitVideo stream-subscribed");
+                        
+                            initVideo(stream,i);  
+                        
+                        return;
+                    }
                 }
-            }
-            if(leader === undefined) leader = calculateLeader;
-            if(leader === localStream.getID()) {
-                getSnapshots();
-            } 
+                if(leader === undefined) leader = calculateLeader;
+                if(leader === localStream.getID()) {
+                    getSnapshots();
+                }
+            }       
 
             console.log("There is no seat available at this table!");
         });
