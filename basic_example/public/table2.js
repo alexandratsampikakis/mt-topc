@@ -827,6 +827,8 @@ window.onload = function () {
             }
     });
 
+
+}
     var askToJoinTablePopup = function(nameOfUser) {
         knockSound();
         $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
@@ -843,8 +845,6 @@ window.onload = function () {
            default:
         }
     }
-}
-
         //Sends a base64 string to server
     var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
