@@ -64,6 +64,9 @@ document.body.appendChild(renderer.domElement);
 THREEx.WindowResize(renderer, camera);
 camera.position.set(cameraPos[0][0],cameraPos[0][1],cameraPos[0][2]);
 
+function knockSound() {
+    audioElement.play();
+}
 
 /// NAPKIN
 function redrawNapkin() {
