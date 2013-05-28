@@ -482,7 +482,7 @@ function render() {
             resetOverhearing();
         }
     }
-    
+
     camera.aspect = window.innerWidth / (window.innerHeight-82);
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
@@ -962,6 +962,7 @@ window.onload = function () {
             sendTableImg(cafe, canvas2.toDataURL(), room.roomID, function (response) {
                 console.log(response);
             });
+            document.body.append(myImage);
         }; 
         myImage.src = imgData;
     }
