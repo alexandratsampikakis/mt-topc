@@ -445,7 +445,7 @@ function resetOverhearing() {
     overhearStream.close();
     if(room != undefined) room.disconnect();
     isOverhearing = null;
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:'hejja'}});
+    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
 }
    
 
@@ -687,7 +687,6 @@ function initVideo(stream,pos) {
 
 window.onload = function () {
     cafe = getQueryString('cafe');
-    nameOfUser = 'hejja';
     chairImg.src="/img/emptyChair.jpg";
     //emptyImg.src="/img/emptyTable.gif";
     overhearImg.src = "/img/clicktooverhear.png";
@@ -845,6 +844,7 @@ window.onload = function () {
     };
 
 }
+
     var askToJoinTablePopup = function(nameOfUser) {
         knockSound();
         $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
