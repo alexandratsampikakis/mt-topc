@@ -483,6 +483,9 @@ function render() {
         }
     }
     
+    camera.aspect = window.innerWidth / (window.innerHeight-82);
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight-82 );
     renderer.render( scene, camera );
 
 
@@ -842,7 +845,7 @@ window.onload = function () {
             }
         }
     };
-    
+
     $('#submitUsername').click(function() {
         enterName();
         return false;
