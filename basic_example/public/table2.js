@@ -105,6 +105,13 @@ function drawLine (color, thickness, x1, y1, x2, y2) {
     context.stroke();
 }
 
+function sendNapkinToNewUser() {
+    var c = document.getElementById("canvasNapkin");
+    var ctx = c.getContext("2d");
+    var napkinImgData = c.toDataURL();
+    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
+}
+
 /// END NAPKIN
 
 /// GREJS
@@ -169,13 +176,6 @@ function getLeader() {
 function broadcastLeader() {
     dataStream.sendData({id:'leader',leader:leader});
     console.log('broadcasting leader');
-}
-
-function sendNapkinToNewUser() {
-    var c = document.getElementById("canvasNapkin");
-    var ctx = c.getContext("2d");
-    var napkinImgData = c.toDataURL();
-    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
 
 //Clears textfields
@@ -695,6 +695,16 @@ window.onload = function () {
     overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
 
+    var context = document.getElementById("canvasNapkin").getContext('2d');
+    redrawNapkin();
+    var doit;
+    $(window).resize(function() {
+        clearTimeout(doit);
+        doit = setTimeout(function() {
+            redrawNapkin();
+        }, 100);
+    });
+    
     //focus "enternametextfield"
     $("#userName").focus();
 
