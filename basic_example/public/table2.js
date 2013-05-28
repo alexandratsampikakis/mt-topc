@@ -698,6 +698,9 @@ window.onload = function () {
     initCafeview();
     render();
 
+    //focus "enternametextfield"
+    $("#userName").focus();
+
     getCafeTables(cafe, function (response) {
         var cafes = JSON.parse(response);
         var tc = document.getElementById("tablecontainer");
@@ -830,6 +833,21 @@ window.onload = function () {
             }
     });
 
+     var enterName = function() {
+        if($('#userName').val() !== "") {
+            nameOfUser = $('#userName').val();
+            $('#enterName').toggle();
+            initSceneCafeView();
+            render();
+            try {
+                overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+                localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+                dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+            } catch (error) {
+                console.log('erizo error: ' + error);
+            }
+        }
+    };
 
 }
     var askToJoinTablePopup = function(nameOfUser) {
