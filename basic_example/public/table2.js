@@ -1322,7 +1322,9 @@ var overhear = function(roomId) {
                     }).css('width','100%').appendTo('#vid'+i);
                     stream.show("test" + stream.getID());
                     console.log("InitVideo stream-subscribed");
-                    initVideo(stream,i);                            
+                    if(stream.getAttributes.type === "media") {
+                        initVideo(stream,i);  
+                    }      
                     return;
                 }
             }
