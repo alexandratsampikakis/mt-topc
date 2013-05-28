@@ -831,7 +831,7 @@ window.onload = function () {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
-            initSceneCafeView();
+            initCafeview();
             render();
             try {
                 overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
