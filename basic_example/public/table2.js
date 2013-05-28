@@ -3,7 +3,7 @@ var room, cafe, serverUrl;
 var tableId = new Array();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
-
+var currentTable;
 //knock
 var localStream, dataStream, nameOfUser, leader;
 var audioElement;
@@ -1202,6 +1202,7 @@ var overhear = function(roomId) {
 };
 
  var initialize = function(roomId) {
+    currentTable = roomId;
     currentState = "TABLEVIEW";
     initTableview();
     setVisibility(false, cvGroup); 
