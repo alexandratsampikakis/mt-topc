@@ -692,11 +692,6 @@ window.onload = function () {
     //emptyImg.src="/img/emptyTable.gif";
     overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-    localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-    dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-    initCafeview();
-    render();
 
     //focus "enternametextfield"
     $("#userName").focus();

@@ -21,7 +21,8 @@
     <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/controls/TrackballControls.js"></script>
 </head>
 
-<body style="background-image: url('/img/Backgrounds/grey_wash_wall/3d1turkos.png'); background-size: 100%; background-repeat: no-repeat;">
+<!--<body style="background-image: url('/img/Backgrounds/grey_wash_wall/3d1turkos.png'); background-size: 100%; background-repeat: no-repeat;">-->
+<body>
 
   <div id="nav-top" class="navbar navbar-fixed-top center">
       <div class="navbar-inner">
@@ -35,35 +36,36 @@
       </div>
   </div>
 
-    <div id="menuContainer" class="hide">
+  <div id="menuContainer" class="hide">
       <div id="ddMenu" style="text-align:center;">
       </div>
       <div id="grippie" class="ui-resizable-handle ui-resizable-s">
           &#8226;&#8226;&#8226;
       </div>
   </div>
-      <div id="enterName">
-        <div class="span8">
-          <center><form class="form-inline">
-            <input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
-            <button id="submitUsername" class="btn btn-small">Enter Café</button>
-          </form></center>
-        </div>
-      </div>
+
+  <div id="enterName" style="margin-top: 40px;">
+      <center><form class="form-inline" style>
+          <input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
+          <button id="submitUsername" class="btn btn-small">Enter Café</button>
+      </form></center>
+  </div>
+
   <div id="canvases" class="hide"></div>
   <div id="vidcontainer2" class="hide">
-          <div id="vid1" class="hide" style="width: 320px; height: 240px"></div>
+        <div id="vid1" class="hide" style="width: 320px; height: 240px"></div>
 
-          <div id="vid2" class="hide" style="width: 320px; height: 240px"></div>
+        <div id="vid2" class="hide" style="width: 320px; height: 240px"></div>
 
-          <div id="vid3" class="hide" style="width: 320px; height: 240px"></div>
+        <div id="vid3" class="hide" style="width: 320px; height: 240px"></div>
 
-          <div id="vid4" class="hide" style="width: 320px; height: 240px"></div>
+        <div id="vid4" class="hide" style="width: 320px; height: 240px"></div>
 
-          <div id="vid5" class="hide" style="width: 320px; height: 240px"></div>
+        <div id="vid5" class="hide" style="width: 320px; height: 240px"></div>
 
-          <div id="vid6" class="hide" style="width: 320px; height: 240px"></div>
-    </div>
+        <div id="vid6" class="hide" style="width: 320px; height: 240px"></div>
+  </div>
+
   <div id="overhearingContainer" class="hide">
     <div id="overhear1">
     </div>
@@ -78,7 +80,9 @@
     <div id="overhear6">
     </div>
   </div>
+
   <div id="answer" class='notifications center'></div>
+  
 <div id="theTable" class="hide">
   <div id="videoTab" class="tabbable" style="position:absolute; margin-left: 30%; margin-top: 2%; width: 40%;">
       <ul class="nav nav-tabs myShadow" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
