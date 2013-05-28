@@ -842,6 +842,16 @@ window.onload = function () {
             }
         }
     };
+    
+    $('#submitUsername').click(function() {
+        enterName();
+        return false;
+    });
+
+    $('#askToJoinTable').click(function() { //denna används inte???
+        dataStream.sendData({id:'popup', user:nameOfUser});
+        return false;
+    });
 
 }
 
@@ -1202,16 +1212,6 @@ var overhear = function(roomId) {
         if($('#chatMessage').val() !== "") {
             sendChatMessage($('#chatMessage').val());
         }
-        return false;
-    });
-
-    $('#submitUsername').click(function() {
-        enterName();
-        return false;
-    });
-
-    $('#askToJoinTable').click(function() { //denna används inte???
-        dataStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
 
