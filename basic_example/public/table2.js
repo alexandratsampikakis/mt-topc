@@ -704,7 +704,7 @@ window.onload = function () {
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
         } else {
-            //updateTitle(cafes.name);
+            updateTitle(cafes.name);
             tableId[1] = cafes.table1;
             tableId[2] = cafes.table2;
             tableId[3] = cafes.table3;
