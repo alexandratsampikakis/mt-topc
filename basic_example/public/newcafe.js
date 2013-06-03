@@ -595,9 +595,9 @@ window.onload = function () {
                             }
                             console.log(imgID);
                         }
-                        if(!hasImage && imgID[6] == 2) {initOversee("/img/first.jpg", '#ddMenu');}
-                        else if(!hasImage  && imgID[6] == 4) {initOversee("/img/second.jpg", '#ddMenu');}
-                        else if(!hasImage && imgID[6] == 5) {initOversee("/img/third.jpg", '#ddMenu');}
+                        if(!hasImage && i == 2) {initOversee("/img/first.jpg", '#ddMenu');}
+                        else if(!hasImage  && i == 4) {initOversee("/img/second.jpg", '#ddMenu');}
+                        else if(!hasImage && i == 5) {initOversee("/img/third.jpg", '#ddMenu');}
                         else if(!hasImage) {initOversee("/img/emptyTable.gif", '#ddMenu');}
                         }
                     }
