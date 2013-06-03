@@ -569,20 +569,20 @@ window.onload = function () {
             console.log(cafes.error);
         } else {
             
-            tableId[1] = cafes.table1;
+/*            tableId[1] = cafes.table1;
             tableId[2] = cafes.table2;
             tableId[3] = cafes.table3;
             tableId[4] = cafes.table4;
             tableId[5] = cafes.table5;
-            tableId[6] = cafes.table6;
-
+            tableId[6] = cafes.table6;*/
+//Temporär, fixa!
             getTableImage(cafe, function(response) {
                 var res = JSON.parse(response);
                 var hasImage = false;
                 var imgId;
                 var imgData
                 if(!res.hasOwnProperty('empty')){
-                    for(var i=1;i<=6;i++){
+                    for(var i=2;i<=6;i++){
                         hasImage = false;
                         for(var j=0;j<res.records.length;j++){
                             if(res.records[j].roomID == tableId[i]) {
@@ -595,7 +595,10 @@ window.onload = function () {
                             }
                             console.log(imgID);
                         }
-                        if(!hasImage) initOversee("/img/emptyTable.gif", '#ddMenu');
+                        if(!hasImage && imgID[6] == 2) {initOversee("/img/first.jpg", '#ddMenu');}
+                        else if(!hasImage  && imgID[6] == 4) {initOversee("/img/second.jpg", '#ddMenu');}
+                        else if(!hasImage && imgID[6] == 5) {initOversee("/img/third.jpg", '#ddMenu');}
+                        else if(!hasImage) {initOversee("/img/emptyTable.gif", '#ddMenu');}
                         }
                     }
                 });    
