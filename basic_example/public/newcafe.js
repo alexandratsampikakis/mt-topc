@@ -419,8 +419,10 @@ window.onload = function () {
                             }
                             console.log(imgID);
                         }
-
-                        if(!hasImage) loadImage("/img/emptyTable.gif", imgID);
+                        if(!hasImage && imgID === 2) {loadImage("/img/first.jpg", imgID);}
+                        else if(!hasImage  && imgID === 4) {loadImage("/img/second.jpg", imgID);}
+                        else if(!hasImage && imgID === 5) {loadImage("/img/third.jpg", imgID);}
+                        else if(!hasImage) {loadImage("/img/emptyTable.gif", imgID);}
 
                     }
                 }
