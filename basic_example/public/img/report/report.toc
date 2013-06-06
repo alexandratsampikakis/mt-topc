@@ -16,9 +16,9 @@
 \contentsline {subsection}{\numberline {1.8}Google WebRTC}{9}
 \contentsline {subsubsection}{\numberline {1.8.1}Browser meeting}{9}
 \contentsline {subsubsection}{\numberline {1.8.2}frisB}{9}
-\contentsline {subsubsection}{\numberline {1.8.3}Video Conference in 3D Environment}{9}
+\contentsline {subsubsection}{\numberline {1.8.3}Video Conference in 3D-environment}{9}
 \contentsline {subsection}{\numberline {1.9}Protonsphere}{9}
-\contentsline {subsection}{\numberline {1.10}O.L.I.V.E}{10}
+\contentsline {subsection}{\numberline {1.10}O.L.I.V.E}{9}
 \contentsline {subsection}{\numberline {1.11}OpenQwaq}{10}
 \contentsline {subsection}{\numberline {1.12}Paltalk}{10}
 \contentsline {subsection}{\numberline {1.13}Tinychat}{10}
@@ -31,11 +31,11 @@
 \contentsline {subsection}{\numberline {1.20}Project transparency}{13}
 \contentsline {section}{\numberline {2}What the site looks like}{16}
 \contentsline {subsection}{\numberline {2.1}Index/start page}{16}
-\contentsline {subsection}{\numberline {2.2}Cafeview}{17}
-\contentsline {subsection}{\numberline {2.3}Tableview}{18}
-\contentsline {subsection}{\numberline {2.4}Use cases}{19}
-\contentsline {subsubsection}{\numberline {2.4.1}Use case 1: Enter a caf\IeC {\'e}}{19}
-\contentsline {subsubsection}{\numberline {2.4.2}Use case 2: Oversee and overhear}{19}
+\contentsline {subsection}{\numberline {2.2}Caf\IeC {\'e}view}{18}
+\contentsline {subsection}{\numberline {2.3}Tableview}{19}
+\contentsline {subsection}{\numberline {2.4}Use cases}{20}
+\contentsline {subsubsection}{\numberline {2.4.1}Use case 1: Enter a caf\IeC {\'e}}{20}
+\contentsline {subsubsection}{\numberline {2.4.2}Use case 2: Oversee and overhear}{20}
 \contentsline {subsubsection}{\numberline {2.4.3}Use case 3: Sit down at table}{20}
 \contentsline {section}{\numberline {3}Technologies}{21}
 \contentsline {subsection}{\numberline {3.1}Node.js}{21}
@@ -70,8 +70,8 @@
 \contentsline {subsection}{\numberline {4.5}Setting up a connection}{28}
 \contentsline {section}{\numberline {5}Result}{29}
 \contentsline {subsection}{\numberline {5.1}Design}{29}
-\contentsline {subsubsection}{\numberline {5.1.1}The 2D view}{29}
-\contentsline {subsubsection}{\numberline {5.1.2}The 3D view}{29}
+\contentsline {subsubsection}{\numberline {5.1.1}The 2D-view}{29}
+\contentsline {subsubsection}{\numberline {5.1.2}The 3D-view}{29}
 \contentsline {subsection}{\numberline {5.2}Leader}{30}
 \contentsline {subsection}{\numberline {5.3}Peer-to-peer}{30}
 \contentsline {subsection}{\numberline {5.4}Overhearing}{31}
@@ -90,5 +90,5 @@
 \contentsline {subsection}{\numberline {6.2}The design}{40}
 \contentsline {subsection}{\numberline {6.3}User test}{40}
 \contentsline {subsection}{\numberline {6.4}Performance test}{41}
-\contentsline {subsection}{\numberline {6.5}Future work and improvements}{42}
-\contentsline {subsection}{\numberline {6.6}Conclusion}{42}
+\contentsline {section}{\numberline {7}Conclusion}{43}
+\contentsline {section}{\numberline {8}Future work and improvements}{45}

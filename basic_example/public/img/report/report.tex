@@ -24,7 +24,7 @@
 \begin{abstract}
 Cafés are the home to many interesting ideas, it also a place where people go to meet new interesting people. In this report we discuss how a café environment can be realized online. The problem faced during the project includes overseeing, how one can look around and see other groups of people talking to each other. Overhearing, how one can listen to and find inspiration from other conversations going on in the café. Mingle, how one can move between these conversations in a subtle way.
 
-A prototype was built using WebRTC, HTML5 and Javascript in order to solve these problems. Multiple solutions for each problem, together with a 2- and 3-dimensional views are being presented. The prototype consists of a video chat with multiple extra features for collaboration, like shared napkin to paint on and  synchronized YouTube watching, implemented to enhance the feeling of sitting at the same table. 
+A prototype was built using WebRTC, HTML5 and JavaScript in order to solve these problems. Multiple solutions for each problem, together with 2- and 3-dimensional views are being presented. The prototype consists of a video chat with multiple extra features for collaboration, like shared napkin to paint on and  synchronized YouTube watching, implemented to enhance the feeling of sitting at the same table. 
 \end{abstract}
 \tableofcontents
 \clearpage
@@ -37,10 +37,11 @@ When you are walking by a table in a real café you will hear what their convers
 
 The prototype contains a 2D- and 3D-view where overseeing, overhearing and mingling is realized.
 
+Tables are often mentioned in this report. By table we refer to a video conferencing room where up to six people can video chat.
 \subsection{Problem description}
 The problem we set out to solve was how to create a web based environment for sharing the feeling of being in a Paris Café including how to convey a feeling of overseeing, overhearing and mingling. Unlike traditional video chats where there is only one group of people participating, we want to create a video chat service with multiple rooms and multiple groups in each room. Where users can see the other groups and overhear conversations and move between the tables in an easy way.
 
-Also how we can realize this feeling in a 2 and 3 dimensional view and still keep the café feeling, low latency so it feels like a real life meeting and present it all in a nice way in both views.
+Also how we can realize this feeling in a 2D- and 3D-view and still keep the café feeling, low latency so it feels like a real life meeting and present it all in a nice way in both views.
 \subsection{Project goals}
 The goal of the project is to:
 \begin{itemize}
@@ -48,19 +49,19 @@ The goal of the project is to:
   \item Implement some kind of overhearing
   \item Implement some kind of overseeing
   \item Implement some kind of mingle
-  \item 2D and 3D view
+  \item 2D- and 3D-view
   \item Evaluate the system with a user test
 \end{itemize}
 Implementing some kind of overhearing, overseeing and mingle is vague but here are some ideas for how it can be done.
 \subsubsection{Overseeing}
 How can one see the other participants at the same table while at the same time also see other groups of visitors in the same café. This could be realized with a 3D-environment with videos organized around different tables.
 \subsubsection{Overhearing}
-How can one hear the conversations from the other groups sitting at another table or just walking by that table. This could be realized with spatial sound in a 3D environment or by hover the mouse over a table in a 2D view.
+How can one hear the conversations from the other groups sitting at another table or just walking by that table. This could be realized with spatial sound in a 3D-environment or by hover the mouse over a table in a 2D-view.
 \subsubsection{Mingle}
 How can participants easily move between different conversations? I.e. if I oversee and overhear another interesting conversation, how can I gently move into that without too much interruption? This can be done by, for example, knocking, avatar gestures in a 3D world or writing a message to the group.
 
 \subsection{Project requirements}
-The project had a few restrictions of what technologies to use, WebRTC for media and data communication between clients, javascript and HTML5 for frontend. At the moment WebRTC is still under development. These technologies are used to promote using native browsers without any plugins.
+The project had a few restrictions of what technologies to use, WebRTC for media and data communication between clients, JavaScript and HTML5 for frontend. At the moment WebRTC is still under development. These technologies are used to promote using native browsers without any plugins.
 \subsection{Project delimitations}
 This is a big project and it need some limitations, it is our imagination and time that decides. We decided to limit us to have six cafés, six tables in each café and six persons at each table maximum. The server we are using have limitations and therefore the amount of people at each table is limited.
 \subsection{Research questions}
@@ -118,13 +119,13 @@ The criteria for the comparison of the different services are based on three thi
 \subsection{Related services}
 Here follow some information about each service and what makes them unique. Each service is compared to the list of criterias.
 \subsection{Google WebRTC}
-WebRTC\cite{27} is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple Javascript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{13}.
+WebRTC\cite{27} is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple JavaScript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{13}.
 \subsubsection{Browser meeting}
-Browser meeting\cite{12} is a web application using WebRTC. It's a web conference tool which is very easy to use. Simply create a room and invite your friends.
+Browser meeting\cite{12} is a web application using WebRTC. It's a web conference tool which is very easy to use. Simply create a conference room and invite your friends.
 \subsubsection{frisB}
 FrisB\cite{15} is a web based application and a voice channel that freely 'ring invites' any telephone user on the planet into a conversation. No video or text chat is offered. This application uses WebRTC.
-\subsubsection{Video Conference in 3D Environment}
-By using both WebRTC and WebGL you can for example video chat with your friends in a virtual 3D environment. One application, WebGL Meeting\cite{18}, let you chat in real-time with the people you invite to your room that automatically creates when you enter the website.
+\subsubsection{Video Conference in 3D-environment}
+By using both WebRTC and WebGL you can for example video chat with your friends in a virtual 3D-environment. One application, WebGL Meeting\cite{18}, let you chat in real-time with the people you invite to your room.
 \subsection{Protonsphere}
 Protosphere\cite{2} is a secure private 3D virtual environment where you control an avatar in order to collaborate and socialise with other participants.
 \subsection{O.L.I.V.E}
@@ -138,7 +139,7 @@ Tinychat\cite{35} is a small simple video chat. Create a chat room, invite your 
 \subsection{Skype}
 Skype\cite{10} is a service which aims to make it easy to stay in touch. It does this by enabling free internet calls, instant messages and video chat. What makes Skype special is the ability to buy Skype Credit for which you can make cheap calls to phones and mobiles, get online at public WiFi hotspots and send SMS worldwide. Skype require a client and has a mobile version.
 \subsection{Google Hangout}
-Google hangout\cite{6} allows you to video chat with up to 9 other people in a hangout. One cool thing with Google hangout is that it has apps, for example YouTube, Poker, and Google Docs. These makes it possible to for example, watch videos together or view presentations and diagrams with your co-workers. You can also broadcast your hangout with Hangout on air. Everything you broadcast is recorded and stored on your YouTube channel.
+Google hangout\cite{6} allows you to video chat with up to 9 other people in a hangout. One interesting thing with Google hangout is that it has apps, for example YouTube, Poker, and Google Docs. These makes it possible to for example, watch videos together or view presentations and diagrams with your co-workers. You can also broadcast your hangout with Hangout on air. Everything you broadcast is recorded and stored on your YouTube channel.
 \subsection{ooVoo}
 OoVoo\cite{7} is another interesting video chatting system. In contrast to Google hangout, ooVoo requires a client to be installed. Once installed you can video chat with up to 11 other people, send video messages and text chat. The video chatting can be recorded and uploaded to YouTube.
 \subsection{Second Life}
@@ -156,7 +157,7 @@ environments (ICVE) and video conference, allow people to distinguish being look
 
 Other researchers tried to improve this feeling of presence and realism by using a movable camera\cite{19}. The system has a remote camera which moves forward when a local user approaches the screen. This gives both users a good perspective when looking at the other person during a video chat. It gives the feeling of facing a remote person in the same room.
 
-Microsoft researchers tried a different solution. Instead of using hardware they came up with a software solution\cite{22}. They tracked the participants head and eye movements and used this information to place the head and eyes in a 3D environment. Although the resulting system was kind of slow, it showed that it is definitely possible to do with only software.
+Microsoft researchers tried a different solution. Instead of using hardware they came up with a software solution\cite{22}. They tracked the participants head and eye movements and used this information to place the head and eyes in a 3D-environment. Although the resulting system was kind of slow, it showed that it is definitely possible to do with only software.
 
 Group video conferencing requires some hardware and bandwidth in order to transfer the audio and video between all the participants.
 One paper proposed an architecture for a peer-to-peer multipoint video conferencing system with layered video aimed for end-points with low bandwidth\cite{14}. The system enables the participants to create a group conference using no more bandwidth than a point-to-point system. A prototype is created and the system is validated.
@@ -173,20 +174,21 @@ Overseeing in 3D worlds already exists\cite{2}\cite{3}\cite{4}\cite{5}, in a 2D 
 \subsection{Project transparency}
 One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{37}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
 
-Before this project started we made a gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
+Before this project started we made a Gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
-  \caption{A gantt-chart to guide us through the project and manage deadlines.}
+  \caption{A Gantt-chart to guide us through the project and manage deadlines.}
 \end{figure}
 The work has been shared equally between the two participants in this project. All the prestudy, planning and implementing of the prototype was done together. The first step was the prestudy, Alexandra started finding some related services and Patrik related papers. We then worked together to find more specific services and papers to complete the prestudy.
 
-A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in javascript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. We also practised pair programming which means that we both programmed on the same computer at the same time. This method works really good and we added as much functionality as if we were working separately, but with much higher quality of the code.
+A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in JavaScript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. We also practised pair programming which means that we both programmed on the same computer at the same time. This method works really good and we added as much functionality as if we were working separately, but with much higher quality of the code.
 
-However, Patrik worked more on the backend, creating rooms, setting up routes, the RESTful API and modifying Licode, while Alexandra set up the database and had more focus on the design, and additional features like paint, text chat and YouTube. She also focused more on keeping track of the progress and what needed to be done in order to meet the deadlines. All the solutions to our main problems overseeing, overhearing and mingling were solved together but Alexandra had more focus on the overseeing part and Patrik the overhearing. The mingling part were mostly solved together. We practised pair programming on the harder parts and when someone got stuck.
+However, Patrik worked more on the backend, creating cafés, setting up routes, the RESTful API and modifying Licode, while Alexandra set up the database and had more focus on the design, and additional features like paint, text chat and YouTube. She also focused more on keeping track of the progress and what needed to be done in order to meet the deadlines. All the solutions to our main problems overseeing, overhearing and mingling were solved together but Alexandra had more focus on the overseeing part and Patrik the overhearing. The mingling part were mostly solved together. We practised pair programming on the harder parts and when someone got stuck.
 \section{What the site looks like}
 These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
 \subsection{Index/start page}
+The start page consists of three parts. When you enter the page you will first see the welcome message[Figure 1]. If you scroll down you will see the links to the cafés of the 2D-view[Figure 2]. If you continue scrolling you will see the links to the cafés of the 3D-view[Figure 3].
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage1.png}
@@ -195,35 +197,35 @@ These pictures will give you an idea of how the site is build up and it is easie
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage2.png}
-  \caption{The start page, the buttons are the six cafés the user can visit, this is the 2D view.}
+  \caption{The start page, the buttons are the six cafés the user can visit, this is the 2D-view.}
 \end{figure}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{indexpage3.png}
-  \caption{The start page, the buttons are the six cafés the user can visit, this is the 3D view.}
+  \caption{The start page, the buttons are the six cafés the user can visit, this is the 3D-view.}
 \end{figure}
-\subsection{Cafeview}
+\subsection{Caféview}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{thetables.png}
-  \caption{The 2D view of the tables in the café Unik. In table 1 there is one person sitting down, the other seats is empty at that table.}
+  \caption{The 2D-view of the tables in the café Unik. In table 1 there is one person sitting down, the other seats is empty at that table.}
 \end{figure}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{thetables3D.png}
-  \caption{The 3D view of all the tables in café Unik. At the moment all the tables are empty. The green table is turned around with the mouse, if you click the on the turned table you will overhear the conversation if the table is not empty. If you click at a table you will sit down at the table.}
+  \caption{The 3D-view of all the tables in café Unik. At the moment all the tables are empty. The left middle table has been turned around with the mouse, if you click the on the turned table you will overhear the conversation if the table is not empty. If you click at a table you will sit down at the table.}
 \end{figure}
 
 \subsection{Tableview}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{sittingdown2D.png}
-  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone in the 2D view. You see the text chat and the napkin.}
+  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone in the 2D-view. You see the text chat and the napkin.}
 \end{figure}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{sittingdown3D.png}
-  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone in the 3D view. You see the text chat and the napkin. The video stream in middle to the right has a mouse over it. That is why it looks different.}
+  \caption{This is how it looks like when you sitting down at a table having a video conversation with someone in the 3D-view. You see the text chat and the napkin. The video stream in middle to the right has a mouse over it. That is why it looks different.}
 \end{figure}
 \subsection{Use cases}
 These use cases are made for a better understanding of how the system can be used. Three example will explain this.
@@ -235,7 +237,7 @@ When Lisa is inside a café she can look at the six tables. Each table will disp
 After finding a table to sit down at she clicks “Join table”. Participants of the group will hear a knocking sound and find a notification in the upper right corner. They will now answer yes or no. If the majority answer yes she will sit down at a table where the video chat begins.
 \section{Technologies}
 \subsection{Node.js}
-Node.js\cite{26} is an event-driven, non-blocking I/O JavaScript platform, built on Chrome's V8 JavaScript runtime. The reason for using Node.js is that it makes it easy to build fast and scalable network applications. The server is entirely written under the Node.js platform.
+Node.js\cite{26} is built on Chrome's JavaScript runtime, this enables JavaScript on the server side. Node.js allows us to quickly install Node modules which makes it easy to build fast and scalable web applications. 
 \subsection{WebRTC}
 WebRTC\cite{27} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
 
@@ -249,7 +251,7 @@ Nuve makes it possible to create and manage video conference rooms. It holds inf
 \subsection{MongoDB}
 MongoDB\cite{29} is an open-source, document-oriented database designed for ease of development and scaling. Stores data as JSON-like documents dynamically and making the integration of data and our prototype easier and faster.
 \subsection{Mongoose}
-Mongoose\cite{30} is an object data modeling library for MongoDB. It allows you to create models for your data, creating a structure to MongoDB while maintaining it's flexibility.
+Mongoose\cite{30} is an object data modelling library for MongoDB. It allows you to create models for your data. This gives better structure to MongoDB while maintaining it's flexibility.
 \subsection{Express}
 Express\cite{31} is a fast and small node.js web application framework, providing a powerful routing system which allows you to easily create single and multi-page web applications. It helps you manage everything, from routes, to handling requests and views.
 \subsection{Twitter Bootstrap}
@@ -261,7 +263,7 @@ Three.js\cite{33} is a lightweight cross-browser JavaScript library/API used to 
 \subsubsection{WebGL}
 WebGL (Web Graphics Library) is a JavaScript API that allows the client to render powerful 3D graphics within the browser without plugins. It runs on computers GPU.
 
-Our purpose of using WebGL is to try the café Paris website with a virtual 3D environment. This makes us a good case to try out a mixed reality, by combining a virtual 3D environment with the users video stream we can transfer the feeling of actually being in a real café into our website. Overseeing, overhearing and mingling
+Our purpose of using WebGL is to try the café Paris website with a virtual 3D-environment. This makes us a good case to try out a mixed reality, by combining a virtual 3D-environment with the users video stream we can transfer the feeling of actually being in a real café into our website. Overseeing, overhearing and mingling
 \subsection{GitHub}
 For revision control and code management we use Git. Git is a open source distributed revision control system. To simplify the setup we chose to host the repository at Github\cite{34}.
 
@@ -272,11 +274,11 @@ WebRTC is a new web standard for peer-to-peer communication. WebRTC allow browse
 
 We compared many different WebRTC framework before settling with Licode. Licode offered something that others didn't, and something that is necessary if the system would be used on a larger scale. That feature is a Multipoint Control Unit(MCU). Here follows a short summary of the runner ups.
 \subsubsection{Easy RTC}
-EasyRTC is an open source WebRTC framework with cross browser support. It allows you to easily steup a Node.js server and provides an API for making advanced web applications in no time. EasyRTC uses websockets for fast message passing between clients.
+EasyRTC[38] is an open source WebRTC framework with cross browser support. It allows you to easily steup a Node.js server and provides an API for making advanced web applications in no time. EasyRTC uses websockets for fast message passing between clients.
 \subsubsection{WebRTC.io}
-WebRTC.io aims to make it easier to use the new webstandard. It does this by providing a simple abstraction layer for the otherwise semi-low level WebRTC.
+WebRTC.io[39] aims to make it easier to use the new webstandard. It does this by providing a simple abstraction layer for the otherwise semi-low level WebRTC.
 \subsubsection{Holla}
-Holla is another abstraction layer with the same goal, to make it easier to work with WebRTC. Holla provides a client and a Node.js server module. The server is used to initiate the communication between the clients. Each client registers a username that is used for making calls or sending data to each other.
+Holla[40] is another abstraction layer with the same goal, to make it easier to work with WebRTC. Holla provides a client and a Node.js server module. The server is used to initiate the communication between the clients. Each client registers a username that is used for making calls or sending data to each other.
 \subsection{Survey}
 A survey was made during the early stages of the project. The idea was to get a grasp of how people feel about visiting a virtual café online as well as to capture their opinion on what aspects of a real café makes it such a good place for intimate discussions.
 \subsubsection{Evaluation}
@@ -286,15 +288,15 @@ The result showed that people like the ability to overhear other conversations g
 
 Mingle is big part of the master thesis. How can you ask to participate in a conversation without disturbing the group of people having the conversation. The answers shows that a subtle knock or a short personal message to the group would get their attention without drawing them away from the conversation.
 
-We had a few questions concerning a 3D environment. The answers however were pretty much evenly distributed between “yes” and “no” and due to the amount of participants we can't see any clear result. However, we believe that it can be hard to imagine going to a café in a 3D virtual environment and that a new survey when we have a prototype running would result in different answers.
+We had a few questions concerning a 3D-environment. The answers however were pretty much evenly distributed between “yes” and “no” and due to the amount of participants we can't see any clear result. However, we believe that it can be hard to imagine going to a café in a 3D virtual environment and that a new survey when we have a prototype running would result in different answers.
 \subsection{Prestudy conclusion}
 After doing this research we have noticed the huge amount of different video conferencing systems each with their own solution for specific problems. All from high-end systems designed for big businesses, to small systems for personal use.
 
-The result however, strongly motivates our research questions. While there exists a few good services for video conference and online group collaboration the only ones that support multiple groups is within a 3D environment and not one of these have strong focus on mingling.
+The result however, strongly motivates our research questions. While there exists a few good services for video conference and online group collaboration the only ones that support multiple groups is within a 3D-environment and not one of these have strong focus on mingling.
 
-There is still room for improvements in overhearing and mingling, both inside and outside a 3D environment.
+There is still room for improvements in overhearing and mingling, both inside and outside a 3D-environment.
 
-If using virtual 3D environments, a mixed reality is interesting for us to mix real peoples video stream with an virtual environment. If a person who has joined a conversation at a table does not want to share his video stream he may just get an avatar to represent him instead a video stream. It would also make it possible to enable human expressions and gestures[9].
+If using virtual 3D-environments, a mixed reality is interesting for us to mix real peoples video stream with an virtual environment. If a person who has joined a conversation at a table does not want to share his video stream that person could be represented by an avatar instead of the video stream. It would also make it possible to enable human expressions and gestures[9].
 \subsection{System architecture}
 The system consists of two different parts, the backend and the frontend.
 \begin{figure}[H]
@@ -324,27 +326,29 @@ Nuve is a Licode module that manages the rooms or the tokens to access to a dete
 \subsubsection{Erizo Controller}
 Erizo controller communicates with Erizo. It handles the subscription of streams, sends the streams to all subscribers and controls the rooms. Erizo controller scales well and spawns new instances when the pressure is high.
 \subsubsection{Frontend}
-The frontend is built using HTML5, JQuery, Javascript and Erizo. The frontend communicates with two different parts of the system. It speaks to the server for HTML/CSS/JS files, tokens and database access. All the communication between different clients goes through Erizo controller. This means that all the data (Audio, Video or data) from a stream is sent to Erizo controller and then forwarded to all the client who subscribes to said stream.
+The frontend is built using HTML5, JQuery, JavaScript and Erizo. The frontend communicates with two different parts of the system. It speaks to the server for HTML/CSS/JS files, tokens and database access. All the communication between different clients goes through Erizo controller. This means that all the data (audio, video or data) from a stream is sent to Erizo controller and then forwarded to all the client who subscribes to said stream.
 \subsubsection{Erizo Client}
-Erizo client provides a javascript API for communicating with Erizo Controller. It allows the client to, for example, publish and subscribe streams, create video elements
+Erizo client provides a JavaScript API for communicating with Erizo Controller. It allows the client to, for example, publish and subscribe streams and create video elements.
 \subsection{Setting up a connection}
 The client requests a token from the server which in turn ask Nuve. The token includes an ip-address to Erizo Controller. When you connect to a room the client establishes a websocket connection with Erizo Controller. When you publish your own stream or subscribe to other streams the web client exchanges Session Description Protocol messages with Erizo Controller in order to negotiate media type, format and all associated properties. When the negotiation is done the client and Erizo Controller establish a Secure Real-time Transport Protocol connection to deliver audio and video.
+
+This process usually take 5-10 seconds to accomplish.
 \section{Result}
 Here follows the result of the main features and different pages on the website.
 \subsection{Design}
-The design is an important feature of the system. In order to capture the feeling of being in a cafe, we need to create a modern design that is just as intimate as a real life café. The design is mostly done using Twitter Bootstrap. Bootstrap helped attaining a clean and modern look. A few goals was set up for the design, one was that the site would look just as good and work just as well on big and small resolutions. Therefore, percentage were used on almost all sizes so everything keeps the aspect ratio when the window is resized. 
+The design is an important feature of the system. In order to capture the feeling of being in a café, we need to create a modern design that is just as intimate as a real life café. The design is mostly done using Twitter Bootstrap. Bootstrap helped attaining a clean and modern look. A few goals was set up for the design, one was that the site would look just as good and work just as well on big and small resolutions. Therefore, percentage were used on almost all sizes so everything keeps the aspect ratio when the window is resized. 
 
 Another goal was the site navigation. It should be self-explanatory, easy to navigate and accessible in a few clicks.
-\subsubsection{The 2D view}
-The website has three important pages, index, cafeview and table view.
+\subsubsection{The 2D-view}
+The website has three important pages, index, Caféview and table view.
 
 When the user first enters the site they will see a welcoming message, explaining the purpose of the site. If they scroll down they will see a list of café buttons for each of the view type, 2D and 3D. On the top bar is a link to a user guide and on the bottom a link to send us a feedback mail.
 
-The Cafeview is after you have entered a café. It displays the tables of the café and an image of the participants of each table. The user can chose to sit down at a table or overhear the table by pressing respective button.
+The Caféview is after you have entered a café. It displays the tables of the café and an image of the participants of each table. The user can chose to sit down at a table or overhear the table by pressing respective button.
 
-The Tableview consists of 2 parts. There is what we call a table in the middle of the page, with room for 3 streams on each side. We chose to limit the number of participants in each room to six. There are tabs on the top side of the table. These are filled with features for the users. While video chatting, the users can draw, watch a YouTube clip and chat together. 
-\subsubsection{The 3D view}
-The first idea was to create an environment with the feeling of being in a real café, a room with tables, the video streams in the room of all the participants and also you can walk around in the café to see all the tables. After our market research we found out that this type of environment was not desirable and also we think that we can reach a bigger audience by avoiding it. We decided to reuse the 2D view and represent it in a 3D view to enhance the feeling of being in the same room. 
+The Tableview consists of 2 parts. There is what we call a table in the middle of the page, with room for 3 streams on each side of the table. There are tabs on the top side of the table. These are filled with features for the users. While video chatting, the users can draw, watch a YouTube clip and text- or voice-chat together. 
+\subsubsection{The 3D-view}
+The first idea was to create an environment with the feeling of being in a real café, a room with tables, the video streams in the room of all the participants and also you can walk around in the café to see all the tables. After our market research we found out that this type of environment was not desirable and also we think that we can reach a bigger audience by avoiding it. We decided to reuse the 2D-view and represent it in a 3D-view to enhance the feeling of being in the same room. 
 
 The Caféview has been completely remade. When you enter a cafe you will see a large room with blocks that represents tables. These blocks are rotatable. You will also see a big screen on the wall, after rotating a block and clicking on the backside,  the live video streams will show on that screen.
 
@@ -362,12 +366,12 @@ The audio can not be separated from the video and because of that we chose to di
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{overhear2d.jpg}
-  \caption{Real-time overseeing and overhearing in the 2D view.}
+  \caption{Real-time overseeing and overhearing in the 2D-view.}
 \end{figure}
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{3doverhearing.jpg}
-  \caption{Real-time overseeing and overhearing in the 3D view.}
+  \caption{Real-time overseeing and overhearing in the 3D-view.}
 \end{figure}
 We chose to not display the text chat, drawing or if a video is watched. This is meant to give the users a bit of privacy. 
 
@@ -390,7 +394,7 @@ The third type of overseeing is when you are in a room sitting down at a table. 
 \end{figure}
 To enable overseeing on the website the leader takes a snapshot of every user in the room as mentioned above. The client will then encode the binary data from the image to a base64 string and send it to the server. The server will then store the string in the database.
 
-To see all the snapshots in the Cafeview the client sends an HTTP request to the server and gets a JSON-object in response.
+To see all the snapshots in the Caféview the client sends an HTTP request to the server and gets a JSON-object in response.
 \subsection{Mingle}
 The idea was to have a subtle way of telling the participants at a certain table you want to sit down and join the conversation. We had many ideas for how this could be realised, for example a personal text message to the group, record a voice message or just a simple knock. After the study we decided to go with the knock because reading a text message or listening to a voice message would take the focus away from the conversation. 
 \begin{figure}[H]
@@ -398,25 +402,28 @@ The idea was to have a subtle way of telling the participants at a certain table
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{knock.png}
   \caption{A knock notification. Alexandra wants to join the room.}
 \end{figure}
-After pressing the knock button, a datastream is published and other datastreams are being subscribed to. A message is sent to all the users in the room and a notification[Figure 14] pops up in the upper right corner. All the users in the room gets to vote by pressing “Yes” or “No”. The notification disappears after 20 seconds. Any unanswered notification results in a “No” The answers are sent to the requesters client and depending on how many “Yes”, you have to have more than the total amount of users in the room divided by two plus one, so the majority has to answer “Yes” before a user can connect to the room and publish his or her media stream.
+Instead of having the server keep track of which user is in which table and in which café, we decided to handle the knocking and table joining within the group.
 
-To again save some server load the knocking is done with peer-to-peer connection, means that the server does not have a clue of who is knocking and it is all done between the clients involved.
+After pressing the knock button, a data stream is published and other data streams are being subscribed to. A message is sent to all the users in the room and a notification[Figure 14] pops up in the upper right corner. All the users in the room gets to vote by pressing “Yes” or “No”. The notification disappears after 20 seconds. Any unanswered notification results in a “No” The answers are sent to the requesters client and depending on how many “Yes”, you have to have more than the total amount of users in the room divided by two plus one, so the majority has to answer “Yes” before a user can connect to the room and publish his or her media stream.
+
 \subsection{Paint}
-Many ideas starts on a napkin, maybe in a café just hanging with your colleagues or friends. The napkin at the table is shared between all the users sitting at the same table and they can all draw on it together[Figure 15], real-time collaboration. When a new user sits down at the table he or she will get the current napkin by each tables leader. The napkin can also be saved locally to your computer. The clear napkin button will reset the napkin for all users. Color and thickness can be chosen in the dropdown menus.
+Many ideas starts on a napkin, perhaps in a café just hanging with your colleagues or friends. The napkin is an HTML5 canvas  that works together with mouse listeners to create basic painting functions. When you have finished drawing a line, an array containing all the coordinates to draw will be sent to all other participants at the table. The lines will scale to fit the other participants canvas size.
+
+When a new user sits down at the table he or she will get the current napkin as a base64 string by each tables leader. The napkin can also be saved locally to your computer. The clear napkin button will reset the napkin for all users. Color and thickness can be chosen in the dropdown menus.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{theNapkin.png}
   \caption{A drawing on the napkin shared with all participants in the room.}
 \end{figure}
 \subsection{YouTube}
-A synchronized YouTube player that plays any video from YouTube[Figure 16]. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
+This is a synchronized YouTube player that plays any video from YouTube[Figure 16], it's built using the YouTube API. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{youtubeToReport.png}
-  \caption{The youtube player in the 2D view.}
+  \caption{The youtube player in the 2D-view.}
 \end{figure}
 \subsection{Text chat}
-The text chat is very basic[Figure 17]. You chose a username when you enter a café. This will be displayed whenever you write a message in the chat. The chat is also used for some notifications, for example when someone sits down at a table. All the text messages is shared with all participants at the table.
+The text chat is very basic[Figure 17]. You chose a username when you enter a café. This will be displayed whenever you write a message in the chat. The chat is also used for some notifications, for example when someone sits down at a table. All the text messages are sent to all other participants through a data stream that's published when you sit down at a table.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{chat.png}
@@ -450,7 +457,7 @@ $200*5 + 200*3 = 1600$ KB/s $= 12.8$ Mbps sent from each client in the room\\*
 $200*5 = 1000$ KB/S  $= 8$ Mbps sent to each client in the room\\*
 $200*6 = 1200$ KB/s $= 9.6$ Mbps sent to each overhearing client\\*
 
-The calculations show that for a client to work with our service with streams of $200$ KB/s, it needs a bandwidth of atleast 8 Mbit downstream and atleast 8 Mbit upstream. And this is without anyone overhearing. This is very high bandwidth requirements for one person and service and it also would not work on a larger scale if some table gets too many people overhearing at the same time. If the system instead had a MCU it would not matter which table got overheard since the total amount of data sent from the server would not change depending on if five people are overhearing the same table or five different tables.
+The calculations show that for a client to work with our service with streams of $200$ KB/s, it needs a bandwidth of atleast 8 Mbit downstream and atleast 8 Mbit upstream. And this is without anyone overhearing. This is a very high bandwidth requirement for one client and it also would not work on a larger scale if some table have too many people overhearing at the same time. If the system instead had an MCU it would not matter which table got overheard since the total amount of data sent from the server would not change depending on if five people are overhearing the same table or five different tables.
 \paragraph{With MCU.}
 So same scenario again, this time with the MCU. All clients will now send their stream to the MCU, which forwards it to all subscribers.
 \\*
@@ -506,16 +513,16 @@ The video quality then continued to decrease for every new stream published or s
 \section{Discussion}
 During this project we discovered problems with some features and perhaps a way of solving some of them. All possible solutions will be presented here. Along with that discussions we also present feedback from test users.
 \subsection{Issues}
-We have one issue with the knocking function. If five people having a conversation at a table and two more people wants to join their conversation at the same time, if they both is accepted by the group they will both connect to the table. This only happens if they are trying to connect exactly at the same time, otherwise they will get rejected because we have a limit of maximum six users at once in one table. The time it takes for a user to connect to the table is the problem, the latest user will not get notified that he or she was too late. 
+We have one issue with the knocking function. If five people having a conversation at a table and two more people wants to join their conversation at the same time, if they both is accepted by the group they will both connect to the table. This only happens if they are trying to connect exactly at the same time($\pm$ a few seconds), otherwise they will get rejected because we have a limit of maximum six users at once in one table. The time it takes for a user to connect to the table is the problem, the latest user will not get notified that he or she was too late. 
 \subsection{The design}
 We had almost no experience of web design and WebGL before starting this project. Here follows some improvements we think could be done to enhance the user experience.
 \begin{itemize}
-\item We have blocks representing tables in the 3D version of Cafeview. These could be exchanged with models of a table. 
-\item It would be cool to have models of a person around the tables and map the video stream or snapshots to the face of the model.
-\item Furnish the 3D Cafeview with perhaps bar, paintings and such, to make it look like like a real room.
+\item We have blocks representing tables in the 3D version of Caféview. These could be exchanged with models of a table. 
+\item We think having models of the persons around the tables and map the video stream or snapshots to the face of the model would give a higher sense of reality to the service.
+\item Furnish the 3D Caféview with perhaps a bar, paintings and such, to make it look like a real room.
 \end{itemize}
 \subsection{User test}
-We collected a group of people to test our prototype in an attempt to get answers on our research questions. The test begun with that everybody entered the same café and the same table, all the features were tested, a drawing was made, we watched a YouTube video together and sending text messages to each other. After a time of playing around we sent them out of the room, one by one, to try the features outside the table, in the overview of all tables, overseeing and overhearing. We also tested overseeing when sitting at a table.
+We collected a group of people to test our prototype in an attempt to get answers on our research questions. The test begun with everybody entering the same café and sitting down at the same table in the 2D-view. The next step was to test all the features. A drawing was made, we watched a YouTube video together and chatted together using both text and voice. After a time of playing around we sent them out of the room, one by one, to try the features outside the table, in the overview of all tables, overseeing and overhearing. We also tested overseeing when sitting at a table.
 
 After the whole group tested all the features, they answered a questionnaire based on our research question.
 
@@ -528,27 +535,28 @@ There were mixed feelings about having other people overhearing the conversation
 \subsection{Performance test}
 The test result showed that the system is really heavy on the bandwidth. The MCU helps a lot by taking the stress away from the clients and making it easier for us to decide on a minimum bandwidth requirement. But it's not needed as much when there are few people in a room with no one overhearing. In fact, if there are only two people in the room both alternatives uses as much bandwidth, but a peer-to-peer connection would send the stream directly to each other resulting in less stress on the server without increasing the load on the clients.
 
-So we see that we need an MCU in order for the service to work well with a large amount of clients. But the problem is still the bandwidth requirement and we see two solutions to this problem. The first one is to transcode the streams. This would increase the CPU load but drastically decrease the data sent from the server. The second solution is to limit the bitrate of the streams. The video quality as it is now is really high and limiting it to maybe 125 KB/s would drastically increase the maximum number of users on the system.
-\subsection{Future work and improvements}
-We set out to build a prototype that includes overseeing, overhearing and mingle, and that's what we have done. But this is a project done in limited time so there are of course plenty of ways to improve the system.
+So we see that we need an MCU in order for the service to work well with a large amount of clients. But the problem is still the bandwidth requirement and we see two solutions to this problem. The first one is to transcode the streams. This would increase the CPU load but drastically decrease the data sent from the server. The second solution is to limit the bitrate of the streams. The video quality as it is now is really high compared to other online video conference services and limiting it to for example 125 KB/s would drastically increase the maximum number of users on the system.
 
-We wanted to activate overhearing by simply holding the mouse over a table. We tried it and it worked, but it was far from optimal. Connecting to a room and subscribing to a stream actually takes some time to do. And holding the mouse over a table for all that time is simply not something you want to do. A solution to this problem would be to first connect directly to the other users while waiting for Erizo to connect and then switch over to Erizo when it's done. This would drastically decrease the time required to hover before you start overhearing the users in the room.
-
-To get the feeling that you actually having a conversation face to face with a person online in a video conference, the eyes and body gestures is important. In the related work part we discussed an article about eye gaze. They looked at if it is possible to do eyes correction with movement during a video conference[20]. This can be interesting to test and see if the experience gets better for the user.
-\subsection{Conclusion}
+\section{Conclusion}
 We feel that we have reached the goals we set up earlier in the project. We have explored different solutions for overseeing, overhearing and mingling online, in a 2D and 3D world and created a working prototype using modern technologies. Although we have presented many different solutions for our main problems, we feel that we have only touched the surface of what could be done with each respective problem. But we hope this project makes a stable foundation for future research in the field.
 
-We are happy with how both views turned out, even though both of us lack experience in web design. We believe that both views are perfectly suited for the service, however, there are pros and cons of both views. The 3D view provides a more convincing feeling of being in a room, but the quality of the video streams inside the 3D world decreases. The 2D view is easier to navigate for a first time user or a less experienced user. 
+We are happy with how both views turned out, even though both of us lack experience in web design. We believe that both views are perfectly suited for the service, however, there are pros and cons of both views. The 3D-view provides a more convincing feeling of being in a room, but the quality of the video streams inside the 3D world decreases. The 2D-view is easier to navigate for a first time user or a less experienced user. 
 
-All the key features of the service works just as well in both views. Which view works best depends on the target group. A cool 3D environment probably draws a younger crowd than the traditional 2D view, while the 2D view works for everyone.
+All the key features of the service works just as well in both views. Which view works best depends on the target group. A good looking 3D-environment probably draws a younger crowd than the traditional 2D-view, while the 2D-view works for everyone as it look and work just like a normal web page.
 
 We had four research questions for this project that we now feel comfortable answering. These real life café features like overseeing, overhearing and mingling all has an effect on the experience of online video chat.
 
 They all make it more like a real life experience like going to café. People will have a favorite café with regular visitors. Overseeing helps to recognize friends and help find new interesting people. Recognizing people also makes it feel like a good place to be if your friends might be there.
 
-Overhearing makes the participants think before talking which can lead to more serious conversations but it can also lead to shy people holding back even more. But we think that it is a good effect because people will get use to it and hopefully not have problem with it in the future.
+Overhearing makes the participants think before talking which can lead to more serious conversations compared to other video conference services, especially if it's an anonymous one. But it can also lead to shy people holding back even more. But we think that it is a good effect because people will get use to it and hopefully not have problem with it in the future.
 
 We believe this is a step forward towards achieving more lifelike environments online. Lots of people go to conferences every year to meet interesting people. This costs a lot of for the participants or their companies. Imagine if they instead could use a service like The Online Paris Café, meet and mingle online and get the same experience as you would on a conference. This may one day be possible if more research is done in this field.
+\section{Future work and improvements}
+We set out to build a prototype that includes overseeing, overhearing and mingle, and that's what we have done. But this is a project done in limited time so there are of course plenty of ways to improve the system.
+
+We wanted to activate overhearing by simply holding the mouse over a table. We tried it and it worked, but it was far from optimal. Connecting to a room and subscribing to a stream actually takes some time to do. And holding the mouse over a table for all that time is simply not something you want to do. A solution to this problem would be to first connect directly to the other users while waiting for Erizo to connect and then switch over to Erizo when it's done. This would drastically decrease the time required to hover before you start overhearing the users in the room.
+
+To get the feeling that you actually having a conversation face to face with a person online in a video conference, the eyes and body gestures is important. In the related work part we discussed an article about eye gaze. They looked at if it is possible to do eyes correction with movement during a video conference[20]. This can be interesting to test and see if the experience gets better for the user.
 \begin{thebibliography}{9}
 
 \bibitem{1}
@@ -758,7 +766,24 @@ https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-skype-need.
   Project group,
   \emph{Project blog}.
   May 2013,
-  http://mt-topc.blogspot.se/.       
+  http://mt-topc.blogspot.se/.
+  
+\bibitem{38}
+  Priologic Software Inc.,
+  \emph{EasyRTC}.
+  June 2013,
+  http://easyrtc-wp.com/prod/
+
+\bibitem{39}
+  Ben Brittain, Dennis Mårtensson, David Peter,
+  \emph{WebRTC.io}.
+  June 2013,
+  https://github.com/webRTC/webRTC.io
+\bibitem{40}
+  Fractal,
+  \emph{Holla}.
+  June 2013,
+   http://wearefractal.com/holla/.       
 \end{thebibliography}
 \includepdf[pages={-}]{studie.pdf}
 \includepdf[pages={-}]{feas.pdf}
