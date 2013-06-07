@@ -88,19 +88,33 @@ The questions we want to answer is:
 Imagine a café in Paris where people come and sit down for a coffee and conversation. Around them other things will happen; they will see people, they will overhear conversations, they might meet old friends and engage in conversation with them for a short while. This can be done online with video chat, text chat, view videos and draw together for example on a napkin as you might do in a real café. Good video quality is needed and the fewer steps from the index-page to the actual conversation is better, due to the simplicity for the user and therefore easier to make the users experience as good as possible and hopefully they will come back.
 
 As a part of the research, the prototype will be tested in both 2D- and 3D-view to discover which of them that achieves the most realistic way of presenting a café in Paris online.
-\subsection{Related work}
+\subsection{Project transparency}
+One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{37}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
+
+Before this project started we made a Gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
+  \caption{A Gantt-chart to guide us through the project and manage deadlines.}
+\end{figure}
+The work has been shared equally between the two participants in this project. All the prestudy, planning and implementing of the prototype was done together. The first step was the prestudy, Alexandra started finding some related services and Patrik related papers. We then worked together to find more specific services and papers to complete the prestudy.
+
+A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in JavaScript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. We also practised pair programming which means that we both programmed on the same computer at the same time. This method works really good and we added as much functionality as if we were working separately, but with much higher quality of the code.
+
+However, Patrik worked more on the backend, creating cafés, setting up routes, the RESTful API and modifying Licode, while Alexandra set up the database and had more focus on the design, and additional features like paint, text chat and YouTube. She also focused more on keeping track of the progress and what needed to be done in order to meet the deadlines. All the solutions to our main problems overseeing, overhearing and mingling were solved together but Alexandra had more focus on the overseeing part and Patrik the overhearing. The mingling part were mostly solved together. We practised pair programming on the harder parts and when someone got stuck.
+\section{Related work}
 Online group collaboration is an area that has been investigated and researched for many years and a number of different tools have been made available, both from research and from commercial entities. However, in a video chat, the focus has mostly been in one group chat and not to have several groups in one chat room that allows overhearing and overseeing and an easy way to move between these groups.
 
 Video conferencing tools comes in many forms. Some are web-based like Google Hangout \cite{6}, other require software clients, like Skype\cite{10}. Some uses avatars in a virtual environments or a mixed reality.
-\subsubsection{Traditional video conference}
+\subsection{Traditional video conference}
 There are tons of group video conferencing services out on the market today. In services such as Google Hangout\cite{6} or ooVoo\cite{7}, users transmit video and audio to each other using normal video cameras or web cameras and microphones.
-\subsubsection{3D Virtual environments}
+\subsection{3D Virtual environments}
 In 3D virtual environment you can create an avatar and walk around in a world with other avatars. Depending on the service you might be able to talk using spatial voice chat, text chat, mingle with other participants or explore the world together. An example of this is Second Life\cite{3}.
 
 The key difference from traditional video conference is that you can’t see the faces of the other participants, you can only see their avatars. This can affect the social trust between participants but a study showed that participants get a feeling of being ‘there’ that traditional video conference does not support[1].
-\subsubsection{Mixed reality}
+\subsection{Mixed reality}
 Mixed reality means merging a real world with a virtual world to produce a new world where physical and virtual objects co-exists. Usage of this mixed reality has been done in order to enable human expressions and gestures on avatars in 3D virtual environment\cite{9}.
-\subsubsection{Criteria}
+\subsection{Criteria}
 The criteria for the comparison of the different services are based on three things. What we feel are important aspects of a real life café, what features we would like to see in an online café and the key features of the services in question.
 \begin{itemize}
 \item Video chat - If it has video chat or not
@@ -116,15 +130,15 @@ The criteria for the comparison of the different services are based on three thi
 \item overseeing - If it's possible to oversee other people using the same service
 \item mingling - If it's possible to easily join a conversation without too much disturbance.
 \end{itemize}
-\subsection{Related services}
+\section{Related services}
 Here follow some information about each service and what makes them unique. Each service is compared to the list of criterias.
 \subsection{Google WebRTC}
 WebRTC\cite{27} is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple JavaScript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{13}.
-\subsubsection{Browser meeting}
+\subsection{Browser meeting}
 Browser meeting\cite{12} is a web application using WebRTC. It's a web conference tool which is very easy to use. Simply create a conference room and invite your friends.
-\subsubsection{frisB}
+\subsection{frisB}
 FrisB\cite{15} is a web based application and a voice channel that freely 'ring invites' any telephone user on the planet into a conversation. No video or text chat is offered. This application uses WebRTC.
-\subsubsection{Video Conference in 3D-environment}
+\subsection{Video Conference in 3D-environment}
 By using both WebRTC and WebGL you can for example video chat with your friends in a virtual 3D-environment. One application, WebGL Meeting\cite{18}, let you chat in real-time with the people you invite to your room.
 \subsection{Protonsphere}
 Protosphere\cite{2} is a secure private 3D virtual environment where you control an avatar in order to collaborate and socialise with other participants.
@@ -145,9 +159,9 @@ OoVoo\cite{7} is another interesting video chatting system. In contrast to Googl
 \subsection{Second Life}
 Second Life\cite{3} is a 3D virtual environment where everyone you see is a real person and every place you visit is built by people in the virtual world. Setup and design your own 3D-avatar to join a 3D world. After downloading and installing the client you can start text chat with other people online in the world that you see. It exists different types of room you can visit, for example a night club, beach or London city town. There exists both paid and free versions. Some of the rooms also have voice chat to offer their visitors.
 \subsection{The Word Cafe online community}
-The world cafe online community\cite{8} is a website who offers a place online to have great and meaningful conversations about things you care to discuss about. There is no video chat or sharing media with each other, only text chat, more like a forum. Everybody gets their own blog to share their interest with everybody and start a conversation. The site is free to use, they offer their users to take online courses, some of them are free. The courses are held at the site. It exists a mobile page for your mobile phone or tablet. When register you have to be approved by the administrators before you become a “real” user.
+The world cafe online community\cite{8} is a website who offers a place online to have great and meaningful conversations about things you care to discuss about. There is no video chat or sharing media with each other, only text chat, more like a forum. Everybody gets their own blog to share their interest with everybody and start a conversation. The site is free to use, they offer their users to take online courses, some of them are free. The courses are held at the site. It exists a mobile page for your mobile phone or tablet.
 
-\subsection{Related papers}
+\section{Related papers}
 Online video collaboration has been researched for a long time by many different teams. There exists a large number of solutions for video conferencing systems each using different technologies to solve their specific problems. Back in 1995 some researchers in Japan created a video conferencing system called MAJIC\cite{17}. It was a multi participant system that enabled eye-contact with life-sized images of each other. It also had a shared workspace which enhances the collaboration. Evaluation of the system showed that the background influences the sense of presence and that life-sized images gave a sense of reality.
 
 The MAJIC system was fairly big due to the life-sized images and eye-contact solution. Some other researchers proposed a solution for eye-contact using a single Kinect sensor\cite{21}. They do this by rendering a gaze-corrected 3D model of the scene and transfer the gaze-corrected facial portion onto the original image using a face- tracker. The result was fairly good.
@@ -168,23 +182,9 @@ Many solutions by, for example Cisco and HP, require a large stationary and expe
 
 In contrast, TAM TAM\cite{24} minimalistic video conferencing system designed for the browser and mobile devices. It is built using Adobe Flash and Adobe Air, which makes it possible to run on platforms such as Windows, Android and iOS.
 
-Online mingle and overhearing have received little attention from researchers. One of the few services which allows mingling is Second Life\cite{3}. An evaluation of a big conference in Second Life done by IBM\cite{1} showed that although the avatars helped created a feeling of being there\cite{11}, the sound of people talking travelled too far. This meant groups of people had to walk far away from each other or end up interrupting another or multiple other conversations. Some also said that it was hard to know if it's okay to join a conversation or not due to the lack of human expressions and gestures. An advantage of online mingling is that each avatar may have a name over his head which makes it easy to recognize acquaintances. A disadvantage however is that it does not feel as personal as if you had met face to face\cite{1}.
+Online mingle and overhearing have received little attention from researchers. One of the few services which allows mingling is Second Life\cite{3}. An evaluation of a big conference in Second Life done by IBM\cite{1} showed that although the avatars helped created a feeling of being there, the sound of people talking travelled too far. This meant groups of people had to walk far away from each other or end up interrupting another or multiple other conversations. Some also said that it was hard to know if it's okay to join a conversation or not due to the lack of human expressions and gestures. An advantage of online mingling is that each avatar may have a name over his head which makes it easy to recognize acquaintances. A disadvantage however is that it does not feel as personal as if you had met face to face\cite{1}.
 
 Overseeing in 3D worlds already exists\cite{2}\cite{3}\cite{4}\cite{5}, in a 2D world this can not be realized in the same way as i in a 3D world. That will be a part of our master thesis to discover if there is a way to realize it.
-\subsection{Project transparency}
-One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{37}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
-
-Before this project started we made a Gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
-\begin{figure}[H]
-  \centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
-  \caption{A Gantt-chart to guide us through the project and manage deadlines.}
-\end{figure}
-The work has been shared equally between the two participants in this project. All the prestudy, planning and implementing of the prototype was done together. The first step was the prestudy, Alexandra started finding some related services and Patrik related papers. We then worked together to find more specific services and papers to complete the prestudy.
-
-A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in JavaScript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. We also practised pair programming which means that we both programmed on the same computer at the same time. This method works really good and we added as much functionality as if we were working separately, but with much higher quality of the code.
-
-However, Patrik worked more on the backend, creating cafés, setting up routes, the RESTful API and modifying Licode, while Alexandra set up the database and had more focus on the design, and additional features like paint, text chat and YouTube. She also focused more on keeping track of the progress and what needed to be done in order to meet the deadlines. All the solutions to our main problems overseeing, overhearing and mingling were solved together but Alexandra had more focus on the overseeing part and Patrik the overhearing. The mingling part were mostly solved together. We practised pair programming on the harder parts and when someone got stuck.
 \section{What the site looks like}
 These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
 \subsection{Index/start page}
@@ -237,11 +237,11 @@ When Lisa is inside a café she can look at the six tables. Each table will disp
 After finding a table to sit down at she clicks “Join table”. Participants of the group will hear a knocking sound and find a notification in the upper right corner. They will now answer yes or no. If the majority answer yes she will sit down at a table where the video chat begins.
 \section{Technologies}
 \subsection{Node.js}
-Node.js\cite{26} is built on Chrome's JavaScript runtime, this enables JavaScript on the server side. Node.js allows us to quickly install Node modules which makes it easy to build fast and scalable web applications. 
+Node.js\cite{26} is a framework built on Chrome's JavaScript runtime, this enables JavaScript on the server side. Node.js allows us to quickly install Node modules which makes it easy to build fast and scalable web applications. 
 \subsection{WebRTC}
 WebRTC\cite{27} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
 
-Using peer-to-peer connection instead of sending information through a central server removes the need for a powerful server. A server is still needed to setup the connection between the participants.
+WebRTC allow the browsers to connect directly to each other using peer-to-peer technology. This removes the need for a powerful server. Although server is still needed to establish the connection between the participants.
 \subsection{Licode}
 Licode\cite{28} is an open-source project that is based upon WebRTC technologies. It comes with Erizo, a Multipoint Control Unit(MCU) and an easy to use API for creating video conference rooms directly in the browser. 
 \subsubsection{Erizo}
@@ -621,14 +621,6 @@ To get the feeling that you actually having a conversation face to face with a p
   \emph{Skype}.
   February 2013,
   http://www.skype.com/intl/en/home. 
-
-\bibitem{11}
-  N. Sadat Shami, Li-Te Cheng, Steven Rohall, Andrew Sempere, John Patterson. 
-  \emph{Avatars Meet Meetings: Design Issues in Integrating Avatars in Distributed Corporate Meetings}.
-  IBM TJ Watson Research Center and Center for Social Software.
-  Cambridge, MA USA.
-  November 2010,
-  http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=5444792.
  
 \bibitem{12}
 Team XSockets.NET.\emph{Browser Meeting}. February 2013, http://browsermeeting.com/.

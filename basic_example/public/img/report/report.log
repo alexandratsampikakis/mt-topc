@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  6 JUN 2013 23:00
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.3.23)  7 JUN 2013 17:16
 entering extended mode
 **report.tex
 
-("C:\Users\Seidevall\Documents\GitHub\New folder\mt-topc\basic_example\public\i
+("C:\Users\Seidevall\Documents\github\new folder\mt-topc\basic_example\public\i
 mg\report\report.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
@@ -397,7 +397,7 @@ File: pppdftex.def 2013/05/30 v0.4u Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count92
 \AM@templatesizebox=\box30
 )
-("C:\Users\Seidevall\Documents\GitHub\New folder\mt-topc\basic_example\public\i
+("C:\Users\Seidevall\Documents\github\new folder\mt-topc\basic_example\public\i
 mg\report\report.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
 LaTeX Font Info:    ... okay on input line 21.
@@ -433,7 +433,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("C:\Users\Seidevall\Documents\GitHub\New folder\mt-topc\basic_example\public\i
+("C:\Users\Seidevall\Documents\github\new folder\mt-topc\basic_example\public\i
 mg\report\report.toc"
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 2.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
@@ -475,80 +475,86 @@ File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 48.
- [5] [6] [7] [8]
-Overfull \hbox (12.07068pt too wide) in paragraph at lines 128--129
+ [5] [6]
+<grovplanering.jpg, id=27, 1034.86626pt x 570.13pt>
+File: grovplanering.jpg Graphic file (type jpg)
+ <use grovplanering.jpg>
+Package pdftex.def Info: grovplanering.jpg used on input line 97.
+(pdftex.def)             Requested size: 312.00119pt x 171.88417pt.
+
+[7] [8 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/pu
+blic/img/report/grovplanering.jpg>] [9] [10
+
+] [11]
+Overfull \hbox (12.07068pt too wide) in paragraph at lines 142--143
 \T1/lmr/m/n/12 your friends in a vir-tual 3D-environment. One ap-pli-ca-tion, W
 e-bGL Meeting[[]],
  []
 
-[9] [10] [11] [12] [13] <grovplanering.jpg, id=49, 1034.86626pt x 570.13pt>
-File: grovplanering.jpg Graphic file (type jpg)
+[12
 
-<use grovplanering.jpg>
-Package pdftex.def Info: grovplanering.jpg used on input line 180.
-(pdftex.def)             Requested size: 312.00119pt x 171.88417pt.
- [14 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
-ic/img/report/grovplanering.jpg>] [15]
-<indexpage1.png, id=56, 1030.60031pt x 491.58656pt>
+] [13] [14] [15
+
+] [16] <indexpage1.png, id=59, 1030.60031pt x 491.58656pt>
 File: indexpage1.png Graphic file (type png)
- <use indexpage1.png>
+
+<use indexpage1.png>
 Package pdftex.def Info: indexpage1.png used on input line 194.
 (pdftex.def)             Requested size: 312.00119pt x 148.81978pt.
-
-<indexpage2.png, id=57, 1029.8475pt x 493.0922pt>
+ <indexpage2.png, id=60, 1029.8475pt x 493.0922pt>
 File: indexpage2.png Graphic file (type png)
- <use indexpage2.png>
+
+<use indexpage2.png>
 Package pdftex.def Info: indexpage2.png used on input line 199.
 (pdftex.def)             Requested size: 312.00119pt x 149.38092pt.
-
-<indexpage3.png, id=58, 1026.08344pt x 494.59781pt>
+ <indexpage3.png, id=61, 1026.08344pt x 494.59781pt>
 File: indexpage3.png Graphic file (type png)
- <use indexpage3.png>
+
+<use indexpage3.png>
 Package pdftex.def Info: indexpage3.png used on input line 204.
 (pdftex.def)             Requested size: 312.00119pt x 150.38797pt.
+ [17
 
-[16
-
- <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/public/i
+ <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/public/i
 mg/report/indexpage1.png>]
-<thetables.png, id=62, 1029.09468pt x 493.0922pt>
+<thetables.png, id=65, 1029.09468pt x 493.0922pt>
 File: thetables.png Graphic file (type png)
  <use thetables.png>
 Package pdftex.def Info: thetables.png used on input line 210.
 (pdftex.def)             Requested size: 312.00119pt x 149.49377pt.
 
-<thetables3D.png, id=63, 1029.09468pt x 490.08093pt>
+<thetables3D.png, id=66, 1029.09468pt x 490.08093pt>
 File: thetables3D.png Graphic file (type png)
  <use thetables3D.png>
 Package pdftex.def Info: thetables3D.png used on input line 215.
 (pdftex.def)             Requested size: 312.00119pt x 148.58084pt.
 
-[17 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publi
-c/img/report/indexpage2.png> <C:/Users/Seidevall/Documents/GitHub/New folder/mt
+[18 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publi
+c/img/report/indexpage2.png> <C:/Users/Seidevall/Documents/github/new folder/mt
 -topc/basic_example/public/img/report/indexpage3.png>]
-<sittingdown2D.png, id=67, 1443.14156pt x 727.96968pt>
+<sittingdown2D.png, id=71, 1443.14156pt x 727.96968pt>
 File: sittingdown2D.png Graphic file (type png)
  <use sittingdown2D.png>
 Package pdftex.def Info: sittingdown2D.png used on input line 222.
 (pdftex.def)             Requested size: 312.00119pt x 157.37685pt.
 
-<sittingdown3D.png, id=68, 1443.89438pt x 727.21687pt>
+<sittingdown3D.png, id=72, 1443.89438pt x 727.21687pt>
 File: sittingdown3D.png Graphic file (type png)
  <use sittingdown3D.png>
 Package pdftex.def Info: sittingdown3D.png used on input line 227.
 (pdftex.def)             Requested size: 312.00119pt x 157.13641pt.
 
-[18 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publi
-c/img/report/thetables.png> <C:/Users/Seidevall/Documents/GitHub/New folder/mt-
-topc/basic_example/public/img/report/thetables3D.png>] [19 <C:/Users/Seidevall/
-Documents/GitHub/New folder/mt-topc/basic_example/public/img/report/sittingdown
-2D.png> <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/p
-ublic/img/report/sittingdown3D.png>] [20] [21
+[19 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publi
+c/img/report/thetables.png> <C:/Users/Seidevall/Documents/github/new folder/mt-
+topc/basic_example/public/img/report/thetables3D.png>] [20 <C:/Users/Seidevall/
+Documents/github/new folder/mt-topc/basic_example/public/img/report/sittingdown
+2D.png> <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/p
+ublic/img/report/sittingdown3D.png>] [21] [22
 
-] [22] [23] [24
+] [23] [24] [25
 
-] [25]
-<systemarchitecture.png, id=95, 860.21375pt x 347.2975pt>
+] [26]
+<systemarchitecture.png, id=98, 860.21375pt x 347.2975pt>
 File: systemarchitecture.png Graphic file (type png)
 
 <use systemarchitecture.png>
@@ -572,55 +578,55 @@ Overfull \hbox (5.94153pt too wide) in paragraph at lines 310--320
 f1437000024" 
  []
 
-[26 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publi
-c/img/report/systemarchitecture.png>] [27] [28] [29
+[27 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publi
+c/img/report/systemarchitecture.png>] [28] [29] [30
 
-] [30]
-<overhear2d.jpg, id=114, 665.48625pt x 268.00125pt>
+] [31]
+<overhear2d.jpg, id=117, 665.48625pt x 268.00125pt>
 File: overhear2d.jpg Graphic file (type jpg)
  <use overhear2d.jpg>
 Package pdftex.def Info: overhear2d.jpg used on input line 368.
 (pdftex.def)             Requested size: 312.00119pt x 125.6498pt.
 
-<3doverhearing.jpg, id=115, 1358.07375pt x 537.00626pt>
+<3doverhearing.jpg, id=118, 1358.07375pt x 537.00626pt>
 File: 3doverhearing.jpg Graphic file (type jpg)
 
 <use 3doverhearing.jpg>
 Package pdftex.def Info: 3doverhearing.jpg used on input line 373.
 (pdftex.def)             Requested size: 312.00119pt x 123.36954pt.
- [31 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
-ic/img/report/overhear2d.jpg> <C:/Users/Seidevall/Documents/GitHub/New folder/m
+ [32 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
+ic/img/report/overhear2d.jpg> <C:/Users/Seidevall/Documents/github/new folder/m
 t-topc/basic_example/public/img/report/3doverhearing.jpg>] <overseeing2D.jpg, i
-d=119, 487.8225pt x 391.4625pt>
+d=122, 487.8225pt x 391.4625pt>
 File: overseeing2D.jpg Graphic file (type jpg)
  <use overseeing2D.jpg>
 Package pdftex.def Info: overseeing2D.jpg used on input line 384.
 (pdftex.def)             Requested size: 312.00119pt x 250.37386pt.
 
-<pulldownoversee.jpg, id=120, 1351.0475pt x 618.31pt>
+<pulldownoversee.jpg, id=123, 1351.0475pt x 618.31pt>
 File: pulldownoversee.jpg Graphic file (type jpg)
 
 <use pulldownoversee.jpg>
 Package pdftex.def Info: pulldownoversee.jpg used on input line 392.
 (pdftex.def)             Requested size: 312.00119pt x 142.78381pt.
- [32 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [33 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/overseeing2D.jpg>]
-<knock.png, id=124, 252.19218pt x 78.2925pt>
+<knock.png, id=127, 252.19218pt x 78.2925pt>
 File: knock.png Graphic file (type png)
  <use knock.png>
 Package pdftex.def Info: knock.png used on input line 402.
 (pdftex.def)             Requested size: 312.00119pt x 96.86067pt.
- [33 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
-ic/img/report/pulldownoversee.jpg>] <theNapkin.png, id=128, 822.07124pt x 502.1
+ [34 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
+ic/img/report/pulldownoversee.jpg>] <theNapkin.png, id=131, 822.07124pt x 502.1
 2593pt>
 File: theNapkin.png Graphic file (type png)
 
 <use theNapkin.png>
 Package pdftex.def Info: theNapkin.png used on input line 415.
 (pdftex.def)             Requested size: 312.00119pt x 190.57231pt.
- [34 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [35 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/knock.png>]
-<youtubeToReport.png, id=132, 675.27281pt x 410.2828pt>
+<youtubeToReport.png, id=135, 675.27281pt x 410.2828pt>
 File: youtubeToReport.png Graphic file (type png)
 
 <use youtubeToReport.png>
@@ -632,35 +638,35 @@ Overfull \hbox (18.40071pt too wide) in paragraph at lines 419--424
 m YouTube[Figure
  []
 
-[35 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publi
-c/img/report/theNapkin.png>] <chat.png, id=136, 496.85625pt x 170.13562pt>
+[36 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publi
+c/img/report/theNapkin.png>] <chat.png, id=140, 496.85625pt x 170.13562pt>
 File: chat.png Graphic file (type png)
 
 <use chat.png>
 Package pdftex.def Info: chat.png used on input line 429.
 (pdftex.def)             Requested size: 312.00119pt x 106.83812pt.
- [36 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
-ic/img/report/youtubeToReport.png> <C:/Users/Seidevall/Documents/GitHub/New fol
+ [37 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
+ic/img/report/youtubeToReport.png> <C:/Users/Seidevall/Documents/github/new fol
 der/mt-topc/basic_example/public/img/report/chat.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 445--459
 
  []
 
-[37]
+[38]
 Underfull \hbox (badness 10000) in paragraph at lines 462--469
 
  []
 
-[38]
+[39]
 Overfull \hbox (45.76056pt too wide) in paragraph at lines 500--510
  [] 
  []
 
-[39] [40
+[40] [41
 
-] [41] [42] [43
+] [42] [43] [44
 
-] [44] [45
+] [45] [46
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 571--575
@@ -719,7 +725,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 637--640
 \T1/lmr/m/n/12 http://blog.chromium.org/2013/02/hello-firefox-this-is-chrome-
  []
 
-[46
+[47
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 652--657
@@ -852,7 +858,7 @@ Overfull \hbox (62.96451pt too wide) in paragraph at lines 682--686
 arnumber=4811013 
  []
 
-[47]
+[48]
 Underfull \hbox (badness 10000) in paragraph at lines 688--691
 []\T1/lmr/m/n/12 Jim Gem-mell, Ken-taro Toyama, C. Lawrence Zit-
  []
@@ -919,13 +925,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 705--709
 
  []
 
-[48]
+[49]
 Underfull \hbox (badness 6125) in paragraph at lines 772--776
 []\T1/lmr/m/n/12 Priologic Soft-ware Inc., \T1/lmr/m/it/12 EasyRTC\T1/lmr/m/n/1
 2 . June 2013, http://easyrtc-
  []
 
-<studie.pdf, id=182, 598.235pt x 846.16125pt>
+<studie.pdf, id=185, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf>
 Package pdftex.def Info: studie.pdf used on input line 788.
@@ -935,7 +941,7 @@ File: studie.pdf Graphic file (type pdf)
 <use studie.pdf>
 Package pdftex.def Info: studie.pdf used on input line 788.
 (pdftex.def)             Requested size: 598.23354pt x 846.1592pt.
- [49] <studie.pdf, id=186, page=1, 598.235pt x 846.16125pt>
+ [50] <studie.pdf, id=189, page=1, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 1>
@@ -958,9 +964,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 1>
 Package pdftex.def Info: studie.pdf, page1 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [50 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [51 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<studie.pdf, id=210, page=2, 598.235pt x 846.16125pt>
+<studie.pdf, id=213, page=2, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 2>
 Package pdftex.def Info: studie.pdf, page2 used on input line 788.
@@ -974,9 +980,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 2>
 Package pdftex.def Info: studie.pdf, page2 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [51 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [52 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<studie.pdf, id=217, page=3, 598.235pt x 846.16125pt>
+<studie.pdf, id=220, page=3, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 3>
 Package pdftex.def Info: studie.pdf, page3 used on input line 788.
@@ -990,9 +996,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 3>
 Package pdftex.def Info: studie.pdf, page3 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [52 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [53 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<studie.pdf, id=225, page=4, 598.235pt x 846.16125pt>
+<studie.pdf, id=228, page=4, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 4>
 Package pdftex.def Info: studie.pdf, page4 used on input line 788.
@@ -1006,9 +1012,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 4>
 Package pdftex.def Info: studie.pdf, page4 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [53 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [54 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<studie.pdf, id=232, page=5, 598.235pt x 846.16125pt>
+<studie.pdf, id=236, page=5, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 5>
 Package pdftex.def Info: studie.pdf, page5 used on input line 788.
@@ -1022,9 +1028,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 5>
 Package pdftex.def Info: studie.pdf, page5 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [54 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [55 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<studie.pdf, id=239, page=6, 598.235pt x 846.16125pt>
+<studie.pdf, id=242, page=6, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 6>
 Package pdftex.def Info: studie.pdf, page6 used on input line 788.
@@ -1038,9 +1044,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 6>
 Package pdftex.def Info: studie.pdf, page6 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [55 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [56 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<studie.pdf, id=246, page=7, 598.235pt x 846.16125pt>
+<studie.pdf, id=249, page=7, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 7>
 Package pdftex.def Info: studie.pdf, page7 used on input line 788.
@@ -1054,9 +1060,9 @@ File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 7>
 Package pdftex.def Info: studie.pdf, page7 used on input line 788.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
- [56 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [57 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/studie.pdf>]
-<feas.pdf, id=252, 794.97pt x 614.295pt>
+<feas.pdf, id=255, 794.97pt x 614.295pt>
 File: feas.pdf Graphic file (type pdf)
  <use feas.pdf>
 Package pdftex.def Info: feas.pdf used on input line 789.
@@ -1066,7 +1072,7 @@ File: feas.pdf Graphic file (type pdf)
 Package pdftex.def Info: feas.pdf used on input line 789.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
 
-<feas.pdf, id=253, page=1, 794.97pt x 614.295pt>
+<feas.pdf, id=256, page=1, 794.97pt x 614.295pt>
 File: feas.pdf Graphic file (type pdf)
  <use feas.pdf, page 1>
 Package pdftex.def Info: feas.pdf, page1 used on input line 789.
@@ -1089,32 +1095,29 @@ File: feas.pdf Graphic file (type pdf)
 <use feas.pdf, page 1>
 Package pdftex.def Info: feas.pdf, page1 used on input line 789.
 (pdftex.def)             Requested size: 615.04005pt x 475.25821pt.
- [57 <C:/Users/Seidevall/Documents/GitHub/New folder/mt-topc/basic_example/publ
+ [58 <C:/Users/Seidevall/Documents/github/new folder/mt-topc/basic_example/publ
 ic/img/report/feas.pdf, page is rotated 90 degrees>]
-("C:\Users\Seidevall\Documents\GitHub\New folder\mt-topc\basic_example\public\i
-mg\report\report.aux")
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+("C:\Users\Seidevall\Documents\github\new folder\mt-topc\basic_example\public\i
+mg\report\report.aux") ) 
 Here is how much of TeX's memory you used:
  3404 strings out of 494045
  45778 string characters out of 3148375
- 110508 words of memory out of 3000000
+ 109520 words of memory out of 3000000
  6626 multiletter control sequences out of 15000+200000
  37996 words of font info for 33 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  40i,18n,44p,858b,408s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
-iKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/d
-vips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy
-.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb>
-Output written on report.pdf (58 pages, 7089041 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.e
+nc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/
+MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/
+enc/dvips/lm/lm-mathsy.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
+mbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/lm/lmsy10.pfb>
+Output written on report.pdf (59 pages, 7089421 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
+ 291 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  136 words of extra memory for PDF output out of 10000 (max. 10000000)
 
