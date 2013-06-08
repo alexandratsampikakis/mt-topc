@@ -6,6 +6,8 @@
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{pdfpages}
+\usepackage{tabularx} % in the preamble
+\usepackage[toc,page]{appendix}
 \newcommand{\sectionbreak}{\clearpage}
 \title{The Online Paris Café}
 \author{
@@ -89,7 +91,7 @@ Imagine a café in Paris where people come and sit down for a coffee and convers
 
 As a part of the research, the prototype will be tested in both 2D- and 3D-view to discover which of them that achieves the most realistic way of presenting a café in Paris online.
 \subsection{Project transparency}
-One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{37}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
+One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{1}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
 
 Before this project started we made a Gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
 \begin{figure}[H]
@@ -105,15 +107,15 @@ However, Patrik worked more on the backend, creating cafés, setting up routes, 
 \section{Related work}
 Online group collaboration is an area that has been investigated and researched for many years and a number of different tools have been made available, both from research and from commercial entities. However, in a video chat, the focus has mostly been in one group chat and not to have several groups in one chat room that allows overhearing and overseeing and an easy way to move between these groups.
 
-Video conferencing tools comes in many forms. Some are web-based like Google Hangout \cite{6}, other require software clients, like Skype\cite{10}. Some uses avatars in a virtual environments or a mixed reality.
+Video conferencing tools comes in many forms. Some are web-based like Google Hangout \cite{2}, other require software clients, like Skype\cite{3}. Some uses avatars in a virtual environments or a mixed reality.
 \subsection{Traditional video conference}
-There are tons of group video conferencing services out on the market today. In services such as Google Hangout\cite{6} or ooVoo\cite{7}, users transmit video and audio to each other using normal video cameras or web cameras and microphones.
+There are tons of group video conferencing services out on the market today. In services such as Google Hangout\cite{2} or ooVoo\cite{4}, users transmit video and audio to each other using normal video cameras or web cameras and microphones.
 \subsection{3D Virtual environments}
-In 3D virtual environment you can create an avatar and walk around in a world with other avatars. Depending on the service you might be able to talk using spatial voice chat, text chat, mingle with other participants or explore the world together. An example of this is Second Life\cite{3}.
+In 3D virtual environment you can create an avatar and walk around in a world with other avatars. Depending on the service you might be able to talk using spatial voice chat, text chat, mingle with other participants or explore the world together. An example of this is Second Life\cite{5}.
 
-The key difference from traditional video conference is that you can’t see the faces of the other participants, you can only see their avatars. This can affect the social trust between participants but a study showed that participants get a feeling of being ‘there’ that traditional video conference does not support[1].
+The key difference from traditional video conference is that you can’t see the faces of the other participants, you can only see their avatars. This can affect the social trust between participants but a study showed that participants get a feeling of being ‘there’ that traditional video conference does not support\cite{6}.
 \subsection{Mixed reality}
-Mixed reality means merging a real world with a virtual world to produce a new world where physical and virtual objects co-exists. Usage of this mixed reality has been done in order to enable human expressions and gestures on avatars in 3D virtual environment\cite{9}.
+Mixed reality means merging a real world with a virtual world to produce a new world where physical and virtual objects co-exists. Usage of this mixed reality has been done in order to enable human expressions and gestures on avatars in 3D virtual environment\cite{7}.
 \subsection{Criteria}
 The criteria for the comparison of the different services are based on three things. What we feel are important aspects of a real life café, what features we would like to see in an online café and the key features of the services in question.
 \begin{itemize}
@@ -131,60 +133,60 @@ The criteria for the comparison of the different services are based on three thi
 \item mingling - If it's possible to easily join a conversation without too much disturbance.
 \end{itemize}
 \section{Related services}
-Here follow some information about each service and what makes them unique. Each service is compared to the list of criterias.
+Here follow some information about each service and what makes them unique. Each service is compared to the list of criterias[Appendix A].
 \subsection{Google WebRTC}
-WebRTC\cite{27} is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple JavaScript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{13}.
+WebRTC\cite{8} is a new open-source project which aims to enable real-time communication(RTC) in web browsers with simple JavaScript APIs. It's currently under development but Google Chrome and Mozilla Firefox have recently managed to communicate between the browsers\cite{9}.
 \subsection{Browser meeting}
-Browser meeting\cite{12} is a web application using WebRTC. It's a web conference tool which is very easy to use. Simply create a conference room and invite your friends.
+Browser meeting\cite{10} is a web application using WebRTC. It's a web conference tool which is very easy to use. Simply create a conference room and invite your friends.
 \subsection{frisB}
-FrisB\cite{15} is a web based application and a voice channel that freely 'ring invites' any telephone user on the planet into a conversation. No video or text chat is offered. This application uses WebRTC.
+FrisB\cite{11} is a web based application and a voice channel that freely 'ring invites' any telephone user on the planet into a conversation. No video or text chat is offered. This application uses WebRTC.
 \subsection{Video Conference in 3D-environment}
-By using both WebRTC and WebGL you can for example video chat with your friends in a virtual 3D-environment. One application, WebGL Meeting\cite{18}, let you chat in real-time with the people you invite to your room.
+By using both WebRTC and WebGL you can for example video chat with your friends in a virtual 3D-environment. One application, WebGL Meeting\cite{12}, let you chat in real-time with the people you invite to your room.
 \subsection{Protonsphere}
-Protosphere\cite{2} is a secure private 3D virtual environment where you control an avatar in order to collaborate and socialise with other participants.
+Protosphere\cite{13} is a secure private 3D virtual environment where you control an avatar in order to collaborate and socialise with other participants.
 \subsection{O.L.I.V.E}
-SAIC O.L.I.V.E[4] is an online Interactive virtual environment software platform that delivers interactive multimedia communication capabilities for collaboration, training, operations and education. It is possible to video and text chat through an avatar with voice, you can also record the conversations. During training and education with O.L.I.V.E broadcasts and collaboration is used. You are able see, hear and mingle with the other participants.
+SAIC O.L.I.V.E\cite{14} is an online Interactive virtual environment software platform that delivers interactive multimedia communication capabilities for collaboration, training, operations and education. It is possible to video and text chat through an avatar with voice, you can also record the conversations. During training and education with O.L.I.V.E broadcasts and collaboration is used. You are able see, hear and mingle with the other participants.
 \subsection{OpenQwaq}
-OpenQwaq\cite{5} is an open source software which aims to allow businesses to implement their own virtual world workspaces adjusted for their specific needs. It provides all the tools, data, and interactivity that people need to explore ideas, resolve issues, track progress, and be more productive.
+OpenQwaq\cite{15} is an open source software which aims to allow businesses to implement their own virtual world workspaces adjusted for their specific needs. It provides all the tools, data, and interactivity that people need to explore ideas, resolve issues, track progress, and be more productive.
 \subsection{Paltalk}
-Paltalk\cite{35} is an instant messaging service which allows users to communicate via text, voice and video chat. It lets users create their own public chat rooms where they can talk with their friends or find new ones. Paltalk exists in three different forms. Paltalk messenger which is a downloadable client, Paltalk Mobile, the phone version and Paltalk Express, a web version.
+Paltalk\cite{16} is an instant messaging service which allows users to communicate via text, voice and video chat. It lets users create their own public chat rooms where they can talk with their friends or find new ones. Paltalk exists in three different forms. Paltalk messenger which is a downloadable client, Paltalk Mobile, the phone version and Paltalk Express, a web version.
 \subsection{Tinychat}
-Tinychat\cite{35} is a small simple video chat. Create a chat room, invite your friends or make new ones. An interesting part of Tinychat is their API which allows you to implement your own fully functional chat room wherever you want. Other features are screen sharing, broadcast and more.
+Tinychat\cite{17} is a small simple video chat. Create a chat room, invite your friends or make new ones. An interesting part of Tinychat is their API which allows you to implement your own fully functional chat room wherever you want. Other features are screen sharing, broadcast and more.
 \subsection{Skype}
-Skype\cite{10} is a service which aims to make it easy to stay in touch. It does this by enabling free internet calls, instant messages and video chat. What makes Skype special is the ability to buy Skype Credit for which you can make cheap calls to phones and mobiles, get online at public WiFi hotspots and send SMS worldwide. Skype require a client and has a mobile version.
+Skype\cite{3} is a service which aims to make it easy to stay in touch. It does this by enabling free internet calls, instant messages and video chat. What makes Skype special is the ability to buy Skype Credit for which you can make cheap calls to phones and mobiles, get online at public WiFi hotspots and send SMS worldwide. Skype require a client and has a mobile version.
 \subsection{Google Hangout}
-Google hangout\cite{6} allows you to video chat with up to 9 other people in a hangout. One interesting thing with Google hangout is that it has apps, for example YouTube, Poker, and Google Docs. These makes it possible to for example, watch videos together or view presentations and diagrams with your co-workers. You can also broadcast your hangout with Hangout on air. Everything you broadcast is recorded and stored on your YouTube channel.
+Google hangout\cite{2} allows you to video chat with up to 9 other people in a hangout. One interesting thing with Google hangout is that it has apps, for example YouTube, Poker, and Google Docs. These makes it possible to for example, watch videos together or view presentations and diagrams with your co-workers. You can also broadcast your hangout with Hangout on air. Everything you broadcast is recorded and stored on your YouTube channel.
 \subsection{ooVoo}
-OoVoo\cite{7} is another interesting video chatting system. In contrast to Google hangout, ooVoo requires a client to be installed. Once installed you can video chat with up to 11 other people, send video messages and text chat. The video chatting can be recorded and uploaded to YouTube.
+OoVoo\cite{4} is another interesting video chatting system. In contrast to Google hangout, ooVoo requires a client to be installed. Once installed you can video chat with up to 11 other people, send video messages and text chat. The video chatting can be recorded and uploaded to YouTube.
 \subsection{Second Life}
-Second Life\cite{3} is a 3D virtual environment where everyone you see is a real person and every place you visit is built by people in the virtual world. Setup and design your own 3D-avatar to join a 3D world. After downloading and installing the client you can start text chat with other people online in the world that you see. It exists different types of room you can visit, for example a night club, beach or London city town. There exists both paid and free versions. Some of the rooms also have voice chat to offer their visitors.
+Second Life\cite{5} is a 3D virtual environment where everyone you see is a real person and every place you visit is built by people in the virtual world. Setup and design your own 3D-avatar to join a 3D world. After downloading and installing the client you can start text chat with other people online in the world that you see. It exists different types of room you can visit, for example a night club, beach or London city town. There exists both paid and free versions. Some of the rooms also have voice chat to offer their visitors.
 \subsection{The Word Cafe online community}
-The world cafe online community\cite{8} is a website who offers a place online to have great and meaningful conversations about things you care to discuss about. There is no video chat or sharing media with each other, only text chat, more like a forum. Everybody gets their own blog to share their interest with everybody and start a conversation. The site is free to use, they offer their users to take online courses, some of them are free. The courses are held at the site. It exists a mobile page for your mobile phone or tablet.
+The world cafe online community\cite{18} is a website who offers a place online to have great and meaningful conversations about things you care to discuss about. There is no video chat or sharing media with each other, only text chat, more like a forum. Everybody gets their own blog to share their interest with everybody and start a conversation. The site is free to use, they offer their users to take online courses, some of them are free. The courses are held at the site. It exists a mobile page for your mobile phone or tablet.
 
 \section{Related papers}
-Online video collaboration has been researched for a long time by many different teams. There exists a large number of solutions for video conferencing systems each using different technologies to solve their specific problems. Back in 1995 some researchers in Japan created a video conferencing system called MAJIC\cite{17}. It was a multi participant system that enabled eye-contact with life-sized images of each other. It also had a shared workspace which enhances the collaboration. Evaluation of the system showed that the background influences the sense of presence and that life-sized images gave a sense of reality.
+Online video collaboration has been researched for a long time by many different teams. There exists a large number of solutions for video conferencing systems each using different technologies to solve their specific problems. Back in 1995 some researchers in Japan created a video conferencing system called MAJIC\cite{19}. It was a multi participant system that enabled eye-contact with life-sized images of each other. It also had a shared workspace which enhances the collaboration. Evaluation of the system showed that the background influences the sense of presence and that life-sized images gave a sense of reality.
 
-The MAJIC system was fairly big due to the life-sized images and eye-contact solution. Some other researchers proposed a solution for eye-contact using a single Kinect sensor\cite{21}. They do this by rendering a gaze-corrected 3D model of the scene and transfer the gaze-corrected facial portion onto the original image using a face- tracker. The result was fairly good.
+The MAJIC system was fairly big due to the life-sized images and eye-contact solution. Some other researchers proposed a solution for eye-contact using a single Kinect sensor\cite{20}. They do this by rendering a gaze-corrected 3D model of the scene and transfer the gaze-corrected facial portion onto the original image using a face- tracker. The result was fairly good.
 
-Another gaze correction study is done to establish if it is possible to do this correction even with movement during a video conference\cite{20}. The paper aims to show that, while both integrating eye-trackers into an Immersive collaborative virtual
+Another gaze correction study is done to establish if it is possible to do this correction even with movement during a video conference\cite{21}. The paper aims to show that, while both integrating eye-trackers into an Immersive collaborative virtual
 environments (ICVE) and video conference, allow people to distinguish being looked at and what else is looked at, when someone gazes into their space from another location, ICVE alone can continue to do this as people move. The result shows that only the ICVE supports eye gaze correction movement of the observer.
 
-Other researchers tried to improve this feeling of presence and realism by using a movable camera\cite{19}. The system has a remote camera which moves forward when a local user approaches the screen. This gives both users a good perspective when looking at the other person during a video chat. It gives the feeling of facing a remote person in the same room.
+Other researchers tried to improve this feeling of presence and realism by using a movable camera\cite{22}. The system has a remote camera which moves forward when a local user approaches the screen. This gives both users a good perspective when looking at the other person during a video chat. It gives the feeling of facing a remote person in the same room.
 
-Microsoft researchers tried a different solution. Instead of using hardware they came up with a software solution\cite{22}. They tracked the participants head and eye movements and used this information to place the head and eyes in a 3D-environment. Although the resulting system was kind of slow, it showed that it is definitely possible to do with only software.
+Microsoft researchers tried a different solution. Instead of using hardware they came up with a software solution\cite{23}. They tracked the participants head and eye movements and used this information to place the head and eyes in a 3D-environment. Although the resulting system was kind of slow, it showed that it is definitely possible to do with only software.
 
 Group video conferencing requires some hardware and bandwidth in order to transfer the audio and video between all the participants.
-One paper proposed an architecture for a peer-to-peer multipoint video conferencing system with layered video aimed for end-points with low bandwidth\cite{14}. The system enables the participants to create a group conference using no more bandwidth than a point-to-point system. A prototype is created and the system is validated.
+One paper proposed an architecture for a peer-to-peer multipoint video conferencing system with layered video aimed for end-points with low bandwidth\cite{24}. The system enables the participants to create a group conference using no more bandwidth than a point-to-point system. A prototype is created and the system is validated.
 
-DigiMetro\cite{16} is a proposed design for an application-level multicast system for a small-scale video conferencing tool. It takes use of multiple source-specific trees in order to keep the delay down. DigiMetro allows different bit-rates on different sources which makes it possible to use even with low bandwidth.
+DigiMetro\cite{25} is a proposed design for an application-level multicast system for a small-scale video conferencing tool. It takes use of multiple source-specific trees in order to keep the delay down. DigiMetro allows different bit-rates on different sources which makes it possible to use even with low bandwidth.
 
-Many solutions by, for example Cisco and HP, require a large stationary and expensive setup in order to work and does not even then solve the problems good enough to give the feeling of sitting in the same room. The European FP7 project 3DPresence\cite{23} came up with a concept for a high-end 3D Video conferencing system that aims to solve several of the problems that comes with video conferencing, including life sized participants, mutual gaze and gesture awareness.
+Many solutions by, for example Cisco and HP, require a large stationary and expensive setup in order to work and does not even then solve the problems good enough to give the feeling of sitting in the same room. The European FP7 project 3DPresence\cite{26} came up with a concept for a high-end 3D Video conferencing system that aims to solve several of the problems that comes with video conferencing, including life sized participants, mutual gaze and gesture awareness.
 
-In contrast, TAM TAM\cite{24} minimalistic video conferencing system designed for the browser and mobile devices. It is built using Adobe Flash and Adobe Air, which makes it possible to run on platforms such as Windows, Android and iOS.
+In contrast, TAM TAM\cite{27} minimalistic video conferencing system designed for the browser and mobile devices. It is built using Adobe Flash and Adobe Air, which makes it possible to run on platforms such as Windows, Android and iOS.
 
-Online mingle and overhearing have received little attention from researchers. One of the few services which allows mingling is Second Life\cite{3}. An evaluation of a big conference in Second Life done by IBM\cite{1} showed that although the avatars helped created a feeling of being there, the sound of people talking travelled too far. This meant groups of people had to walk far away from each other or end up interrupting another or multiple other conversations. Some also said that it was hard to know if it's okay to join a conversation or not due to the lack of human expressions and gestures. An advantage of online mingling is that each avatar may have a name over his head which makes it easy to recognize acquaintances. A disadvantage however is that it does not feel as personal as if you had met face to face\cite{1}.
+Online mingle and overhearing have received little attention from researchers. One of the few services which allows mingling is Second Life\cite{5}. An evaluation of a big conference in Second Life done by IBM\cite{1} showed that although the avatars helped created a feeling of being there, the sound of people talking travelled too far. This meant groups of people had to walk far away from each other or end up interrupting another or multiple other conversations. Some also said that it was hard to know if it's okay to join a conversation or not due to the lack of human expressions and gestures. An advantage of online mingling is that each avatar may have a name over his head which makes it easy to recognize acquaintances. A disadvantage however is that it does not feel as personal as if you had met face to face\cite{6}.
 
-Overseeing in 3D worlds already exists\cite{2}\cite{3}\cite{4}\cite{5}, in a 2D world this can not be realized in the same way as i in a 3D world. That will be a part of our master thesis to discover if there is a way to realize it.
+Overseeing in 3D worlds already exists\cite{5}\cite{13}\cite{14}\cite{15}, in a 2D world this can not be realized in the same way as i in a 3D world. That will be a part of our master thesis to discover if there is a way to realize it.
 \section{What the site looks like}
 These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
 \subsection{Index/start page}
@@ -237,35 +239,35 @@ When Lisa is inside a café she can look at the six tables. Each table will disp
 After finding a table to sit down at she clicks “Join table”. Participants of the group will hear a knocking sound and find a notification in the upper right corner. They will now answer yes or no. If the majority answer yes she will sit down at a table where the video chat begins.
 \section{Technologies}
 \subsection{Node.js}
-Node.js\cite{26} is a framework built on Chrome's JavaScript runtime, this enables JavaScript on the server side. Node.js allows us to quickly install Node modules which makes it easy to build fast and scalable web applications. 
+Node.js\cite{28} is a framework built on Chrome's JavaScript runtime, this enables JavaScript on the server side. Node.js allows us to quickly install Node modules which makes it easy to build fast and scalable web applications. 
 \subsection{WebRTC}
-WebRTC\cite{27} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
+WebRTC\cite{8} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
 
 WebRTC allow the browsers to connect directly to each other using peer-to-peer technology. This removes the need for a powerful server. Although server is still needed to establish the connection between the participants.
 \subsection{Licode}
-Licode\cite{28} is an open-source project that is based upon WebRTC technologies. It comes with Erizo, a Multipoint Control Unit(MCU) and an easy to use API for creating video conference rooms directly in the browser. 
+Licode\cite{29} is an open-source project that is based upon WebRTC technologies. It comes with Erizo, a Multipoint Control Unit(MCU) and an easy to use API for creating video conference rooms directly in the browser. 
 \subsubsection{Erizo}
 Erizo is an MCU written in C++. It's fully compatible with WebRTC standards and protocols. Erizo does not currently provide any transcoding of videos but it's being worked on right now. 
 \subsubsection{Nuve}
 Nuve makes it possible to create and manage video conference rooms. It holds information about each room and let's you ask for example a user list. It is designed to scale on the cloud.
 \subsection{MongoDB}
-MongoDB\cite{29} is an open-source, document-oriented database designed for ease of development and scaling. Stores data as JSON-like documents dynamically and making the integration of data and our prototype easier and faster.
+MongoDB\cite{30} is an open-source, document-oriented database designed for ease of development and scaling. Stores data as JSON-like documents dynamically and making the integration of data and our prototype easier and faster.
 \subsection{Mongoose}
-Mongoose\cite{30} is an object data modelling library for MongoDB. It allows you to create models for your data. This gives better structure to MongoDB while maintaining it's flexibility.
+Mongoose\cite{31} is an object data modelling library for MongoDB. It allows you to create models for your data. This gives better structure to MongoDB while maintaining it's flexibility.
 \subsection{Express}
-Express\cite{31} is a fast and small node.js web application framework, providing a powerful routing system which allows you to easily create single and multi-page web applications. It helps you manage everything, from routes, to handling requests and views.
+Express\cite{32} is a fast and small node.js web application framework, providing a powerful routing system which allows you to easily create single and multi-page web applications. It helps you manage everything, from routes, to handling requests and views.
 \subsection{Twitter Bootstrap}
-Twitter Bootstrap\cite{32}is a collection of tools for creating beautiful web applications without being an expert on design. It includes HTML, JS and CSS-based design templates for typography, forms, buttons, charts, navigation and other interface components. The reason for using Twitter Bootstrap is to get a nice interface and it is easy to use.
+Twitter Bootstrap\cite{33}is a collection of tools for creating beautiful web applications without being an expert on design. It includes HTML, JS and CSS-based design templates for typography, forms, buttons, charts, navigation and other interface components. The reason for using Twitter Bootstrap is to get a nice interface and it is easy to use.
 \subsection{HTML5}
 HTML is used to structure and presents information on a website, HTML5 is the newest HTML standard. It's designed to make web programming easier and more interactive. Some of the new features that are interesting for our project is the <video> and <canvas> elements.
 \subsection{Three.js}
-Three.js\cite{33} is a lightweight cross-browser JavaScript library/API used to create and display animated 3D computer graphics on a Web browser. Three.js scripts may be used in conjunction with the HTML5 canvas element, SVG or WebGL. We decided to go with WebGL.
+Three.js\cite{34} is a lightweight cross-browser JavaScript library/API used to create and display animated 3D computer graphics on a Web browser. Three.js scripts may be used in conjunction with the HTML5 canvas element, SVG or WebGL. We decided to go with WebGL.
 \subsubsection{WebGL}
 WebGL (Web Graphics Library) is a JavaScript API that allows the client to render powerful 3D graphics within the browser without plugins. It runs on computers GPU.
 
 Our purpose of using WebGL is to try the café Paris website with a virtual 3D-environment. This makes us a good case to try out a mixed reality, by combining a virtual 3D-environment with the users video stream we can transfer the feeling of actually being in a real café into our website. Overseeing, overhearing and mingling
 \subsection{GitHub}
-For revision control and code management we use Git. Git is a open source distributed revision control system. To simplify the setup we chose to host the repository at Github\cite{34}.
+For revision control and code management we use Git. Git is a open source distributed revision control system. To simplify the setup we chose to host the repository at Github\cite{35}.
 
 \section{Method}
 Some information was collected before implementing the service. A study was made in order to find suitable ways of overhearing, overseeing and mingle. And a comparison of different WebRTC frameworks was necessary for us due to the video conference features.
@@ -274,13 +276,13 @@ WebRTC is a new web standard for peer-to-peer communication. WebRTC allow browse
 
 We compared many different WebRTC framework before settling with Licode. Licode offered something that others didn't, and something that is necessary if the system would be used on a larger scale. That feature is a Multipoint Control Unit(MCU). Here follows a short summary of the runner ups.
 \subsubsection{Easy RTC}
-EasyRTC[38] is an open source WebRTC framework with cross browser support. It allows you to easily steup a Node.js server and provides an API for making advanced web applications in no time. EasyRTC uses websockets for fast message passing between clients.
+EasyRTC[36] is an open source WebRTC framework with cross browser support. It allows you to easily steup a Node.js server and provides an API for making advanced web applications in no time. EasyRTC uses websockets for fast message passing between clients.
 \subsubsection{WebRTC.io}
-WebRTC.io[39] aims to make it easier to use the new webstandard. It does this by providing a simple abstraction layer for the otherwise semi-low level WebRTC.
+WebRTC.io[37] aims to make it easier to use the new webstandard. It does this by providing a simple abstraction layer for the otherwise semi-low level WebRTC.
 \subsubsection{Holla}
-Holla[40] is another abstraction layer with the same goal, to make it easier to work with WebRTC. Holla provides a client and a Node.js server module. The server is used to initiate the communication between the clients. Each client registers a username that is used for making calls or sending data to each other.
+Holla[38] is another abstraction layer with the same goal, to make it easier to work with WebRTC. Holla provides a client and a Node.js server module. The server is used to initiate the communication between the clients. Each client registers a username that is used for making calls or sending data to each other.
 \subsection{Survey}
-A survey was made during the early stages of the project. The idea was to get a grasp of how people feel about visiting a virtual café online as well as to capture their opinion on what aspects of a real café makes it such a good place for intimate discussions.
+A survey was made during the early stages of the project[Appendix B]. The idea was to get a grasp of how people feel about visiting a virtual café online as well as to capture their opinion on what aspects of a real café makes it such a good place for intimate discussions.
 \subsubsection{Evaluation}
 The most important aspects of a café is the intimate environment and the other people in the café. This means that in order for us to capture that intimate feeling of a café, we have to create a design that gives a similar feeling
 
@@ -307,16 +309,16 @@ The system consists of two different parts, the backend and the frontend.
 \subsubsection{Backend}
 The main part is the Node.js server. The server acts like a middleman for the Licode modules and the frontend. It communicates with the clients using standard HTTP requests and a simple RESTful API together with Express.js. It allows the client to easily GET/POST data from/to the server. The server also communicates with Nuve via a token based communication mechanism.
 
-Example: GET /api/getCafe/Unik from the database results in:
-%{
-"name": "Unik",
-"table1": "513dd08a07aa2f143700001f",
-"table2": "513dd08b07aa2f1437000020",
-"table3": "513dd08c07aa2f1437000021",
-"table4": "513dd08d07aa2f1437000022",
-"table5": "513dd08e07aa2f1437000023",
-"table6": "513dd08f07aa2f1437000024"
-%}
+\newpage Example: GET /api/getCafe/Unik from the database results in:\newline
+\{ \newline
+\indent "name": "Unik",\newline
+\indent "table1": "513dd08a07aa2f143700001f",\newline
+\indent "table2": "513dd08b07aa2f1437000020",\newline
+\indent "table3": "513dd08c07aa2f1437000021",\newline
+\indent "table4": "513dd08d07aa2f1437000022",\newline
+\indent "table5": "513dd08e07aa2f1437000023",\newline
+\indent "table6": "513dd08f07aa2f1437000024"\newline
+\} \newline
 \subsubsection{Database}
 The database stores all the information about the cafés, all the rooms and what rooms that belongs to what café and the snapshot taken by all leaders in each room. Each café consists of six rooms. The client communicates with the server in which the server communicated with the database.
 \subsubsection{Server}
@@ -416,7 +418,7 @@ When a new user sits down at the table he or she will get the current napkin as 
   \caption{A drawing on the napkin shared with all participants in the room.}
 \end{figure}
 \subsection{YouTube}
-This is a synchronized YouTube player that plays any video from YouTube[Figure 16], it's built using the YouTube API. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
+This is a synchronized YouTube player that plays any video from YouTube [Figure 16], it's built using the YouTube API. To play a video you paste an URL into a field and it will be shared amongst the group. Pressing play or pause will play and pause the video for all participants in the room. If you decides to close the video it will only close for you and the rest of the group can still watch the video together.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{youtubeToReport.png}
@@ -478,7 +480,7 @@ Now let's assume we have a server with a dedicated 1Gbit connection.
 
 1Gbit $= 131 072$ KB.
 The bandwidth needed to fill a room without overhearing is $6*(5*200) = 6 000 KB/s$
-$131 072/6 000 = 21.8453333333$. So a 1Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that $200$ KB/s equals to over 1.5 Mbps. In comparison, Skype recommends 500 kbps bandwidth for high quality video[25].
+$131 072/6 000 = 21.8453333333$. So a 1Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that $200$ KB/s equals to over 1.5 Mbps. In comparison, Skype recommends 500 kbps bandwidth for high quality video\cite{39}.
 \subsubsection{Performance test}
 
 A performance test was done in order to see how the system would perform under pressure and to get a feeling of the hardware requirements on a larger scale. 4 computers including the server were used during the test.
@@ -497,7 +499,7 @@ As we saw from the theory, the bottleneck lies in data sent from the server. The
 The result of the test followed the theory closely, as you can see in the table.
 
 \begin{center}
-    \begin{tabular}{| l | l | l | l |}
+    \begin{tabularx}{\textwidth}{|X|X|X|l|}
     \hline
     Streams(Nr) & Incoming data(KB/s) & Outgoing data(KB/s) & Comment \\ \hline
     1 & 45 & 0 & \\ \hline
@@ -506,7 +508,7 @@ The result of the test followed the theory closely, as you can see in the table.
     4 & 1000 & 3200 &\\ \hline
     4 & 1000 & 4000 &\\ \hline
     4 & 800 & 4000 & Lower video quality\\ \hline
-    \end{tabular}
+    \end{tabularx}
 \end{center}
 
 The video quality then continued to decrease for every new stream published or subscribed. We believe that once Licode start transcode/mixing the streams, the data sent from the server will be reduced and CPU usage increased. 
@@ -557,226 +559,248 @@ We set out to build a prototype that includes overseeing, overhearing and mingle
 We wanted to activate overhearing by simply holding the mouse over a table. We tried it and it worked, but it was far from optimal. Connecting to a room and subscribing to a stream actually takes some time to do. And holding the mouse over a table for all that time is simply not something you want to do. A solution to this problem would be to first connect directly to the other users while waiting for Erizo to connect and then switch over to Erizo when it's done. This would drastically decrease the time required to hover before you start overhearing the users in the room.
 
 To get the feeling that you actually having a conversation face to face with a person online in a video conference, the eyes and body gestures is important. In the related work part we discussed an article about eye gaze. They looked at if it is possible to do eyes correction with movement during a video conference[20]. This can be interesting to test and see if the experience gets better for the user.
-\begin{thebibliography}{9}
 
+\newpage
+\begin{appendices}
+\section{Comparison}
+This appendix is a comparison of all features of each related service.
+\includepdf[pages={-}]{feas.pdf}
+\section{Survey}
+This appendix is our first survey, the questions and the answers.
+\includepdf[pages={-}]{questions.pdf}
+\includepdf[pages={-}]{studie.pdf}
+\end{appendices}
+
+\begin{thebibliography}{9}
 \bibitem{1}
+  Project group,
+  \emph{Project blog}.
+  May 2013,
+  http://mt-topc.blogspot.se/.
+  
+\bibitem{2}
+  Google,
+  \emph{Google Hangout}.
+  February 2013,
+  http://www.google.com/+/learnmore/hangouts/.
+  
+\bibitem{3}
+  Microsoft,
+  \emph{Skype}.
+  February 2013,
+  http://www.skype.com/intl/en/home.   
+  
+\bibitem{4}
+  ooVoo LLC,
+  \emph{ooVoo}.
+  February 2013,
+  http://www.oovoo.com/home.aspx.  
+
+\bibitem{5}
+  Linden Labs, inc,
+  \emph{Second Life}.
+  February 2013,
+  http://www.secondlife.com/. 
+   
+\bibitem{6}
   Thomas Erickson, N. Sadat Shami, Wendy A. Kellogg, David W. Levine,
   \emph{Synchronous Interaction Among Hundreds: An Evaluation of a Conference in an Avatar-based Virtual Environment}.
  IBM T. J. Watson Research Center, Yorktown Heights, NY USA,
   May 2011,
   http://dl.acm.org/citation.cfm?id=1979013.
 
-
-\bibitem{2}
-  Protonmedia,
-  \emph{Protosphere}.
-  February 2013,
-  http://www.protonmedia.com/.
-
-\bibitem{3}
-  Linden Labs, inc,
-  \emph{Second Life}.
-  February 2013,
-  http://www.secondlife.com/.
-
-\bibitem{4}
-  SAIC,
-  \emph{O.L.I.V.E}.
-  February 2013,
-  http://www.saic.com/products/simulation/olive.
-
-\bibitem{5}
-  teleXLR8,
-  \emph{OpenQwaq}.
-  February 2013,
-  http://telexlr8.net/openqwaq/.
-  
-\bibitem{6}
-  Google,
-  \emph{Google Hangout}.
-  February 2013,
-  http://www.google.com/+/learnmore/hangouts/.
-  
 \bibitem{7}
-  ooVoo LLC,
-  \emph{ooVoo}.
-  February 2013,
-  http://www.oovoo.com/home.aspx.
-  
-\bibitem{8}
-  The World Cafe Community,
-  \emph{The World Cafe Online Community}.
-  February 2013,
-  http://www.theworldcafecommunity.org/. 
-
-\bibitem{9}
   Tuomas Kantonen, Charles Woodward, Neil Katz,
   \emph{Mixed reality in virtual world teleconferencing}.
   VTT Technical Research Centre of Finland,
   March 2010,
   http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=5444792.
 
-\bibitem{10}
-  Microsoft,
-  \emph{Skype}.
-  February 2013,
-  http://www.skype.com/intl/en/home. 
- 
-\bibitem{12}
-Team XSockets.NET.\emph{Browser Meeting}. February 2013, http://browsermeeting.com/.
+\bibitem{8}
+  Google,
+  \emph{WebRTC}.
+  May 2013,
+  http://www.webrtc.org/.
   
-\bibitem{13}
+\bibitem{9}
 Google. 
 \emph{Hello Firefox this is Chrome calling}.
- February 2013, http://blog.chromium.org/2013/02/hello-firefox-this-is-chrome-calling.html.
+ February 2013, http://blog.chromium.org/2013/02/hello-firefox-this-is-chrome-calling.html.    
+ 
+\bibitem{10}
+Team XSockets.NET.\emph{Browser Meeting}. February 2013, http://browsermeeting.com/.
+
+\bibitem{11}
+ frisB. \emph{frisB}, February 2013. http://www.frisb.com/.
+ 
+\bibitem{12}
+Jerome Etienne, \emph{WebGL Meeting}.
+October 2012,
+http://learningthreejs.com/blog/2012/04/12/video-conference-on-top-of-webgl/.	
+
+\bibitem{13}
+  Protonmedia,
+  \emph{Protosphere}.
+  February 2013,
+  http://www.protonmedia.com/.
 
 \bibitem{14}
+  SAIC,
+  \emph{O.L.I.V.E}.
+  February 2013,\linebreak
+  http://www.saic.com/products/simulation/olive.
+
+\bibitem{15}
+  teleXLR8,
+  \emph{OpenQwaq}.
+  February 2013,
+  http://telexlr8.net/openqwaq/.
+  
+\bibitem{16}
+  Paltalk,
+  \emph{Paltalk}.
+  May 2013,
+  http://www.paltalk.com/.
+  
+\bibitem{17}
+  Tinychat Co,
+  \emph{Tinychat}.
+  May 2013,
+  http://tinychat.com/.
+  
+\bibitem{18}
+  The World Cafe Community,
+  \emph{The World Cafe Online Community}.
+  February 2013,
+  http://www.theworldcafecommunity.org/.
+  
+\bibitem{19}
+Yusuke Ichikawa, Ken-ichi Okada, Giseok Jeong, Shunsuke Tanaka and Yutaka Matsushita,
+\emph{MAJIC Videoconferencing System: Experiments, Evaluation and Improvement}.
+ECSCW'95 Proceedings of the fourth conference on European Conference on Computer-Supported Cooperative Work, Pages 279-292, September 2008.
+http://dl.acm.org/citation.cfm?id=1241976 
+
+
+\bibitem{20}
+Claudia Kuster, Tiberiu Popa, Jean-Charles Bazin, Craig Gotsman, Markus Gross,
+\emph{Gaze Correction for Home Video Conferencing}.
+ETH Zurich, Technion - Israel Institute of Technology, November 2012.
+http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumb er=4811013
+
+\bibitem{21}
+David Roberts, Robin Wolff, John Rae, Anthony Steed, Rob Aspin, Moira McIntyre, Adriana Pena, Oyewole Oyekoya, and Will Steptoe,
+\emph{Communicating Eye-gaze Across a Distance: Comparing an Eye-gaze enabled Immersive Collaborative Virtual Environment, Aligned Video Conferencing, and Being Together}.
+University of Salford, University of Roehampton, University College London, University of Reading, Lafayette, Louisiana, USA, March 2009.
+http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumb er=4811013
+
+\bibitem{22}
+Hideyuki Nakanishi, Yuki Murakami, Kei Kato,
+\emph{Movable Cameras Enhance Social Telepresence in Media Spaces}.
+Department of Adaptive Machine Systems. Osaka University, Yamadaoka, Suita, Osaka, Japan, April 2009.
+http://www.academia.edu/3274831/Movable\_cameras\_enhance\_social\linebreak\_telepresence\_in\_media\_spaces
+
+\bibitem{23}
+Jim Gemmell, Kentaro Toyama, C. Lawrence Zitnick, Thomas Kang, Steven Seitz,
+\emph{Gaze Awareness for Videoconferencing: A Software Approach}
+http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumb er=895152
+
+\bibitem{24}
 Istemi Ekin Akkus, Öznur Özkasap, M. Reha Civanlar  
 \emph{Peer-to-peer multipoint video conferencing with layered video}
 Journal of Network and Computer Applications, Volume 34 Issue 1, January, 2011,
 Academic Press Ltd. London, UK.
 http://dl.acm.org/citation.cfm?id=1889430
 
-\bibitem{15}
- frisB. \emph{frisB}, February 2013. http://www.frisb.com/.
-
-\bibitem{16}
+\bibitem{25}
 Chong Luo, Jiang Li, and Shipeng Li,
 \emph{DigiMetro - An Application-Level Multicast System For Multi-Party Video Conferencing}.
 Microsoft Research Asia,
 2004,
 http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=1378106
 
-\bibitem{17}
-Yusuke Ichikawa, Ken-ichi Okada, Giseok Jeong, Shunsuke Tanaka and Yutaka Matsushita,
-\emph{MAJIC Videoconferencing System: Experiments, Evaluation and Improvement}.
-ECSCW'95 Proceedings of the fourth conference on European Conference on Computer-Supported Cooperative Work, Pages 279-292, September 2008.
-http://dl.acm.org/citation.cfm?id=1241976
-
-\bibitem{18}
-Jerome Etienne, \emph{WebGL Meeting}.
-October 2012,
-http://learningthreejs.com/blog/2012/04/12/video-conference-on-top-of-webgl/.	
-
-\bibitem{19}
-Hideyuki Nakanishi, Yuki Murakami, Kei Kato,
-\emph{Movable Cameras Enhance Social Telepresence in Media Spaces}.
-Department of Adaptive Machine Systems. Osaka University, Yamadaoka, Suita, Osaka, Japan, April 2009.
-http://www.academia.edu/3274831/Movable\_cameras\_enhance\_social\_telepresence\_in\_media\_spaces
-
-\bibitem{20}
-David Roberts, Robin Wolff, John Rae, Anthony Steed, Rob Aspin, Moira McIntyre, Adriana Pena, Oyewole Oyekoya, and Will Steptoe,
-\emph{Communicating Eye-gaze Across a Distance: Comparing an Eye-gaze enabled Immersive Collaborative Virtual Environment, Aligned Video Conferencing, and Being Together}.
-University of Salford, University of Roehampton, University College London, University of Reading, Lafayette, Louisiana, USA, March 2009.
-http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumber=4811013
-
-\bibitem{21}
-Claudia Kuster, Tiberiu Popa, Jean-Charles Bazin, Craig Gotsman, Markus Gross,
-\emph{Gaze Correction for Home Video Conferencing}.
-ETH Zurich, Technion - Israel Institute of Technology, November 2012.
-http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumber=4811013
-
-\bibitem{22}
-Jim Gemmell, Kentaro Toyama, C. Lawrence Zitnick, Thomas Kang, Steven Seitz,
-\emph{Gaze Awareness for Videoconferencing: A Software Approach}
-http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumber=895152
-
-\bibitem{23}
+\bibitem{26}
 O. Schreer, I. Feldmann, N. Atzpadin, P. Eisert, P. Kauff, H.J.W. Belt, 
 \emph{3DPRESENCE – A SYSTEM CONCEPT FOR MULTI-USER AND MULTI-PARTY IMMERSIVE 3D VIDEOCONFERENCING}.
 Fraunhofer Institute for Telecommunications/Heinrich-Hertz Institut, Berlin, Germany, November 2008.
-http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumber=4778747
+http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=\&arnumb er=4778747
 
-\bibitem{24}
+\bibitem{27}
 Víctor Torres-Padrosa, Eusebi Calle, Jose L. Marzo, Mercè Rovira,
 \emph{Towards a Mobile, Assistive and Intuitive Videoconferencing}.
 Broadband Communications and Distributed Systems Research Group Informatics and Applications Institute, Universitat de Girona (Spain), 2012.
-http://www.thinkmind.org/download.php?articleid=etelemed\_2012\_1\_50\_40110
+http://www.thinkmind.org/download.php?articleid=etelemed\_2012\_1\_ 50\_40110
 
-\bibitem{25}
-Microsoft,
-\emph{ How much bandwidth does Skype need?}.
-May 2013,
-https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-skype-need.
-
-\bibitem{26}
+\bibitem{28}
   Joyent, Inc,
   \emph{Node.js}.
   May 2013,
   http://nodejs.org/.
   
-\bibitem{27}
-  Google,
-  \emph{WebRTC}.
-  May 2013,
-  http://www.webrtc.org/.  
-\bibitem{28}
+\bibitem{29}
   Lynckia,
   \emph{Licode}.
   May 2013,
   http://lynckia.com/licode/.
-\bibitem{29}
+  
+\bibitem{30}
   10gen, Inc,
   \emph{MongoDB}.
   May 2013,
   http://www.mongodb.org/
-\bibitem{30}
+  
+\bibitem{31}
   LearnBoost,
   \emph{Mongoose}.
   May 2013,
   http://mongoosejs.com/
-\bibitem{31}
+  
+\bibitem{32}
   Google,
   \emph{Express}.
   May 2013,
   http://expressjs.com/.
-\bibitem{32}
+  
+\bibitem{33}
   Twitter,
   \emph{Bootstrap}.
   May 2013,
   http://twitter.github.io/bootstrap/
-\bibitem{33}
+  
+\bibitem{34}
   \emph{Three.js}.
   May 2013,
   http://threejs.org/.
-\bibitem{34}
+  
+\bibitem{35}
   GitHub, Inc,
   \emph{GitHub}.
   May 2013,
   https://github.com/.
-\bibitem{35}
-  Paltalk,
-  \emph{Paltalk}.
-  May 2013,
-  http://www.paltalk.com/.
-\bibitem{36}
-  Tinychat Co,
-  \emph{Tinychat}.
-  May 2013,
-  http://tinychat.com/.
-\bibitem{37}
-  Project group,
-  \emph{Project blog}.
-  May 2013,
-  http://mt-topc.blogspot.se/.
   
-\bibitem{38}
+\bibitem{36}
   Priologic Software Inc.,
   \emph{EasyRTC}.
   June 2013,
   http://easyrtc-wp.com/prod/
 
-\bibitem{39}
+\bibitem{37}
   Ben Brittain, Dennis Mårtensson, David Peter,
   \emph{WebRTC.io}.
   June 2013,
   https://github.com/webRTC/webRTC.io
-\bibitem{40}
+  
+\bibitem{38}
   Fractal,
   \emph{Holla}.
   June 2013,
-   http://wearefractal.com/holla/.       
+   http://wearefractal.com/holla/. 
+
+\bibitem{39}
+Microsoft,
+\emph{ How much bandwidth does Skype need?}.
+May 2013,
+https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-skype-need.
+
 \end{thebibliography}
-\includepdf[pages={-}]{studie.pdf}
-\includepdf[pages={-}]{feas.pdf}
+
 \end{document}

@@ -65,8 +65,8 @@
 \contentsline {subsubsection}{\numberline {7.4.3}Server}{28}
 \contentsline {subsubsection}{\numberline {7.4.4}Nuve}{28}
 \contentsline {subsubsection}{\numberline {7.4.5}Erizo Controller}{28}
-\contentsline {subsubsection}{\numberline {7.4.6}Frontend}{28}
-\contentsline {subsubsection}{\numberline {7.4.7}Erizo Client}{28}
+\contentsline {subsubsection}{\numberline {7.4.6}Frontend}{29}
+\contentsline {subsubsection}{\numberline {7.4.7}Erizo Client}{29}
 \contentsline {subsection}{\numberline {7.5}Setting up a connection}{29}
 \contentsline {section}{\numberline {8}Result}{30}
 \contentsline {subsection}{\numberline {8.1}Design}{30}
@@ -92,3 +92,6 @@
 \contentsline {subsection}{\numberline {9.4}Performance test}{42}
 \contentsline {section}{\numberline {10}Conclusion}{44}
 \contentsline {section}{\numberline {11}Future work and improvements}{46}
+\contentsline {section}{Appendices}{47}
+\contentsline {section}{\numberline {A}Comparison}{47}
+\contentsline {section}{\numberline {B}Survey}{49}
