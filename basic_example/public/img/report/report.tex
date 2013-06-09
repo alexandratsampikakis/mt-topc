@@ -24,26 +24,24 @@
 %\maketitle
 \newpage
 \begin{abstract}
-Cafés are the home to many interesting ideas, it also a place where people go to meet new interesting people. In this report we discuss how a café environment can be realized online. The problem faced during the project includes overseeing, how one can look around and see other groups of people talking to each other. Overhearing, how one can listen to and find inspiration from other conversations going on in the café. Mingle, how one can move between these conversations in a subtle way.
+Cafés are the home to many interesting ideas, it also a place where people go to meet new interesting people. In this report it is discussed how a café environment can be realized online. The problem faced during the project includes overseeing, how one can look around and see other groups of people talking to each other. Overhearing, how one can listen to and find inspiration from other conversations going on in the café. Mingle, how one can move between these conversations in a subtle way.
 
-A prototype was built using WebRTC, HTML5 and JavaScript in order to solve these problems. Multiple solutions for each problem, together with 2- and 3-dimensional views are being presented. The prototype consists of a video chat with multiple extra features for collaboration, like shared napkin to paint on and  synchronized YouTube watching, implemented to enhance the feeling of sitting at the same table. 
+A prototype was built using WebRTC, HTML5 and JavaScript in order to solve these problems. Multiple solutions for each problem, together with 2- and 3-dimensional views are being presented. The prototype consists of a video chat with multiple extra features for collaboration, like shared napkin to paint on and  synchronized YouTube watching, implemented to enhance the feeling of sitting at the same table in a café-like environment online. 
 \end{abstract}
 \tableofcontents
 \clearpage
 \section{Introduction}
-A café is a very stimulating environment to many people. It’s a place where you can easily meet other interesting people. A place where you can walk by a table, overhear a conversation and oversee the whole café. We have all seen the group of girls sitting at a table drinking coffee and having conversations about anything, or the writer who finds inspiration for his next book from the environment and people around himself. Another scenario is all the people travelling to conferences each year. Businesses could save a lot of money if there existed a stimulating environment where one can meet people, collaborate in groups and mingle just like in the real world.
+A café is a very stimulating environment to many people. It’s a place where you can easily meet other interesting people. A place where you can walk by a table, overhear a conversation and oversee the whole café. Everyone has seen the group of girls sitting at a table drinking coffee and having conversations about anything, or the writer who finds inspiration for his next book from the environment and people around himself. Another scenario is all the people travelling to conferences each year. Businesses could save a lot of money if there existed a stimulating environment where one can meet people, collaborate in groups and mingle just like in the real world.
 
-We want to transfer this feeling of being in a real café online. With the ability of seeing each other through video conference, collaborate together on a drawing, watch YouTube videos, reading pdfs together and of course being able to communicate through a text chat with all the participants sitting down at a table. Three other important aspects of transferring this feeling is overseeing, overhearing and mingling. These parts will be investigated and tested with a prototype.
+The goal is to transfer this feeling of being in a real café online. With the ability of seeing each other through video conference, collaborate together on a drawing, watch YouTube videos, reading pdfs together and of course being able to communicate through a text chat with all the participants sitting down at a table. Three other important aspects of transferring this feeling is overseeing, overhearing and mingling. These parts will be investigated and tested with a prototype.
 
-When you are walking by a table in a real café you will hear what their conversation is about and also see all the participants, this is what we call overhearing and overseeing. Before you can sit down at a table and join a conversation you will gently ask if it is okay without trying to disturb their conversation too much.
+When you are walking by a table in a real café you will hear what their conversation is about and also see all the participants, this is called overhearing and overseeing. Before you can sit down at a table and join a conversation you will gently ask if it is okay without trying to disturb their conversation too much.
 
 The prototype contains a 2D- and 3D-view where overseeing, overhearing and mingling is realized.
 
-Tables are often mentioned in this report. By table we refer to a video conferencing room where up to six people can video chat.
+Tables are often mentioned in this report. A table is referred to a video conferencing room where up to six people can video chat.
 \subsection{Problem description}
-The problem we set out to solve was how to create a web based environment for sharing the feeling of being in a Paris Café including how to convey a feeling of overseeing, overhearing and mingling. Unlike traditional video chats where there is only one group of people participating, we want to create a video chat service with multiple rooms and multiple groups in each room. Where users can see the other groups and overhear conversations and move between the tables in an easy way.
-
-Also how we can realize this feeling in a 2D- and 3D-view and still keep the café feeling, low latency so it feels like a real life meeting and present it all in a nice way in both views.
+The problem that was set out to be solved was how to create a web based environment for sharing the feeling of being in a Paris Café including how to convey a feeling of overseeing, overhearing and mingling. Unlike traditional video chats where there is only one group of people participating, the goal is to create a video chat service with multiple rooms and multiple groups in each room. Where users can see the other groups and overhear conversations and move between the tables in an easy way.
 \subsection{Project goals}
 The goal of the project is to:
 \begin{itemize}
@@ -65,9 +63,9 @@ How can participants easily move between different conversations? I.e. if I over
 \subsection{Project requirements}
 The project had a few restrictions of what technologies to use, WebRTC for media and data communication between clients, JavaScript and HTML5 for frontend. At the moment WebRTC is still under development. These technologies are used to promote using native browsers without any plugins.
 \subsection{Project delimitations}
-This is a big project and it need some limitations, it is our imagination and time that decides. We decided to limit us to have six cafés, six tables in each café and six persons at each table maximum. The server we are using have limitations and therefore the amount of people at each table is limited.
+This is a big project and it need some limitations, it is our imagination and time that decides. It was decided to limit the prototype to have six cafés, six tables in each café and six persons at each table maximum. The reason for having six tables in each café was to keep the intimate feeling of a café. Having more than six people in each table would make the bandwidth requirement really high for the clients.
 \subsection{Research questions}
-The questions we want to answer is:
+The questions to be answered are:
 \begin{itemize}
 	\item Does the ability to oversee other groups of people in the same virtual room affect the experience of online video chat?
 		\begin{itemize}
@@ -93,13 +91,13 @@ As a part of the research, the prototype will be tested in both 2D- and 3D-view 
 \subsection{Project transparency}
 One thing that our supervisor, Peter Parnes usually requests in all his courses is that the progress of the project should be periodically updated in blog posts\cite{1}. The idea is that everyone should understand the posts and it makes it easy for us to see what problems we run into during the project.
 
-Before this project started we made a Gantt-chart, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. We had to make some small adjustments to the 3D-view, and delimit some features due to the lack of time. The last three weeks was used to fix some bugs, writing report and the final presentation.
+Before this project started a Gantt-chart was made, a rough plan of our milestones of all 20 weeks. The first five weeks was dedicated to competitive intelligence, research what technologies that is suitable for our prototype and feature planning. The next 12 weeks were spent implementing the prototype, bugfix, find improvements and writing report. The last three weeks were used to fix some bugs, writing report and the final presentation.
 \begin{figure}[H]
   \centering
 	\includegraphics[width=0.8\textwidth,keepaspectratio]{grovplanering.jpg}
   \caption{A Gantt-chart to guide us through the project and manage deadlines.}
 \end{figure}
-The work has been shared equally between the two participants in this project. All the prestudy, planning and implementing of the prototype was done together. The first step was the prestudy, Alexandra started finding some related services and Patrik related papers. We then worked together to find more specific services and papers to complete the prestudy.
+The work has been shared equally between the two participants in this project. All the prestudy, planning and implementing of the prototype was done working closely together. 
 
 A huge part of project was new for us, we had no prior experience with WebGL, close to no experience in design and we had only written one application in JavaScript before. Because of this, and because we are only two people in the project, we decided not to have any specific roles. All the planning and research were done together and any important decision were discussed before implementing it. We tried to split the programming equally between the two of us, because both wanted to learn everything that was new to us. We also practised pair programming which means that we both programmed on the same computer at the same time. This method works really good and we added as much functionality as if we were working separately, but with much higher quality of the code.
 
@@ -166,14 +164,14 @@ The world cafe online community\cite{18} is a website who offers a place online 
 \section{Related papers}
 Online video collaboration has been researched for a long time by many different teams. There exists a large number of solutions for video conferencing systems each using different technologies to solve their specific problems. Back in 1995 some researchers in Japan created a video conferencing system called MAJIC\cite{19}. It was a multi participant system that enabled eye-contact with life-sized images of each other. It also had a shared workspace which enhances the collaboration. Evaluation of the system showed that the background influences the sense of presence and that life-sized images gave a sense of reality.
 
-The MAJIC system was fairly big due to the life-sized images and eye-contact solution. Some other researchers proposed a solution for eye-contact using a single Kinect sensor\cite{20}. They do this by rendering a gaze-corrected 3D model of the scene and transfer the gaze-corrected facial portion onto the original image using a face- tracker. The result was fairly good.
+The MAJIC system was big due to the life-sized images and eye-contact solution. Some other researchers proposed a solution for eye-contact using a single Kinect sensor\cite{20}. They do this by rendering a gaze-corrected 3D model of the scene and transfer the gaze-corrected facial portion onto the original image using a face- tracker. The result was okay but not good enough to compete with reality.
 
 Another gaze correction study is done to establish if it is possible to do this correction even with movement during a video conference\cite{21}. The paper aims to show that, while both integrating eye-trackers into an Immersive collaborative virtual
 environments (ICVE) and video conference, allow people to distinguish being looked at and what else is looked at, when someone gazes into their space from another location, ICVE alone can continue to do this as people move. The result shows that only the ICVE supports eye gaze correction movement of the observer.
 
 Other researchers tried to improve this feeling of presence and realism by using a movable camera\cite{22}. The system has a remote camera which moves forward when a local user approaches the screen. This gives both users a good perspective when looking at the other person during a video chat. It gives the feeling of facing a remote person in the same room.
 
-Microsoft researchers tried a different solution. Instead of using hardware they came up with a software solution\cite{23}. They tracked the participants head and eye movements and used this information to place the head and eyes in a 3D-environment. Although the resulting system was kind of slow, it showed that it is definitely possible to do with only software.
+Microsoft researchers tried a different solution. Instead of using hardware they came up with a software solution\cite{23}. They tracked the participants head and eye movements and used this information to place the head and eyes in a 3D-environment. Although the resulting system were slow, it showed that it is definitely possible to do with only software.
 
 Group video conferencing requires some hardware and bandwidth in order to transfer the audio and video between all the participants.
 One paper proposed an architecture for a peer-to-peer multipoint video conferencing system with layered video aimed for end-points with low bandwidth\cite{24}. The system enables the participants to create a group conference using no more bandwidth than a point-to-point system. A prototype is created and the system is validated.
@@ -182,11 +180,11 @@ DigiMetro\cite{25} is a proposed design for an application-level multicast syste
 
 Many solutions by, for example Cisco and HP, require a large stationary and expensive setup in order to work and does not even then solve the problems good enough to give the feeling of sitting in the same room. The European FP7 project 3DPresence\cite{26} came up with a concept for a high-end 3D Video conferencing system that aims to solve several of the problems that comes with video conferencing, including life sized participants, mutual gaze and gesture awareness.
 
-In contrast, TAM TAM\cite{27} minimalistic video conferencing system designed for the browser and mobile devices. It is built using Adobe Flash and Adobe Air, which makes it possible to run on platforms such as Windows, Android and iOS.
+In contrast, TAM TAM\cite{27} is a minimalistic video conferencing system designed for the browser and mobile devices. It is built using Adobe Flash and Adobe Air, which makes it possible to run on platforms such as Windows, Android and iOS.
 
 Online mingle and overhearing have received little attention from researchers. One of the few services which allows mingling is Second Life\cite{5}. An evaluation of a big conference in Second Life done by IBM\cite{1} showed that although the avatars helped created a feeling of being there, the sound of people talking travelled too far. This meant groups of people had to walk far away from each other or end up interrupting another or multiple other conversations. Some also said that it was hard to know if it's okay to join a conversation or not due to the lack of human expressions and gestures. An advantage of online mingling is that each avatar may have a name over his head which makes it easy to recognize acquaintances. A disadvantage however is that it does not feel as personal as if you had met face to face\cite{6}.
 
-Overseeing in 3D worlds already exists\cite{5}\cite{13}\cite{14}\cite{15}, in a 2D world this can not be realized in the same way as i in a 3D world. That will be a part of our master thesis to discover if there is a way to realize it.
+Overseeing in 3D worlds already exists\cite{5}\cite{13}\cite{14}\cite{15}, in a 2D world this can not be realized in the same way as in a 3D world and this is something we will try to accomplish in this project.
 \section{What the site looks like}
 These pictures will give you an idea of how the site is build up and it is easier to understand the idea, technologies, features and of course the design.
 \subsection{Index/start page}
@@ -241,7 +239,7 @@ After finding a table to sit down at she clicks “Join table”. Participants o
 \subsection{Node.js}
 Node.js\cite{28} is a framework built on Chrome's JavaScript runtime, this enables JavaScript on the server side. Node.js allows us to quickly install Node modules which makes it easy to build fast and scalable web applications. 
 \subsection{WebRTC}
-WebRTC\cite{8} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it in conjunction with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
+WebRTC\cite{8} (Web Real-Time Communication) enable browser to browser applications for voice calling, video chat and peer-to-peer file sharing without any plugins. A requirement for WebRTC is to use it together with HTML5. WebRTC is available in Chrome's stable version and in Firefox's Nightly version.
 
 WebRTC allow the browsers to connect directly to each other using peer-to-peer technology. This removes the need for a powerful server. Although server is still needed to establish the connection between the participants.
 \subsection{Licode}
@@ -338,7 +336,7 @@ This process usually take 5-10 seconds to accomplish.
 \section{Result}
 Here follows the result of the main features and different pages on the website.
 \subsection{Design}
-The design is an important feature of the system. In order to capture the feeling of being in a café, we need to create a modern design that is just as intimate as a real life café. The design is mostly done using Twitter Bootstrap. Bootstrap helped attaining a clean and modern look. A few goals was set up for the design, one was that the site would look just as good and work just as well on big and small resolutions. Therefore, percentage were used on almost all sizes so everything keeps the aspect ratio when the window is resized. 
+The design is an important feature of the system. In order to capture the feeling of being in a café, we need to create a modern design that is just as intimate as a real life café. Find a nice way to present the parts overseeing, overhearing and mingling to get the feeling of being in a café.The design is mostly done using Twitter Bootstrap. Bootstrap helped attaining a clean and modern look. A few goals were set up for the design, one was that the site would look just as good and work just as well on big and small resolutions. Therefore, percentage were used on almost all sizes so everything keeps the aspect ratio when the window is resized.
 
 Another goal was the site navigation. It should be self-explanatory, easy to navigate and accessible in a few clicks.
 \subsubsection{The 2D-view}
@@ -437,7 +435,7 @@ The reason for using an MCU is to reduce the required bandwidth for every client
 Using peer-to-peer would mean that every user sends his or her stream to every other user in the room, as well as to everyone that is overhearing. Instead by using an MCU, each user sends a stream to the MCU, Erizo. Erizo then perform some basic transcoding, if any, before forwarding the data to each other user in the same room, as well as to everyone who is overhearing.
 
 %Table
-\subsubsection{Theory}
+\subsubsection{PeerConnection vs MCU}
 To understand the importance of an MCU, we will now compare the required bandwidth on both server and client, with and without the MCU.
 \paragraph{Without MCU.}
 Scenario: A room with 6 users and 2 people overhearing and overseeing in real-time.
@@ -447,40 +445,89 @@ Let U denote amount of users in a room, O the amount of users overhearing a cert
 Each client then send his or her stream to each other client in the room, plus each overhearing client.
 \\*
 \\*
-The data sent from each client is then $S*(U-1)+S*O$\\*
-The data received at each client is $S*(U-1)$\\*
-The data received at each overhearing client is $S*U$\\*
+The data sent from and received at each client can be calculated with the following equations.\\\\
+The data sent from each client:
+\begin{equation}
+S*(U-1)+S*O
+\end{equation}
+The data received at each client: 
+\begin{equation}
+S*(U-1)
+\end{equation}
+The data received at each overhearing client:
+\begin{equation}
+S*U
+\end{equation}
 The data sent from and to the server is close to zero and will not be counted.
 \\*\\*
 Let's say each stream has a bandwidth of 200 KB/s and calculate the above scenario.
-\\*
-\\*
-$200*5 + 200*3 = 1600$ KB/s $= 12.8$ Mbps sent from each client in the room\\*
-$200*5 = 1000$ KB/S  $= 8$ Mbps sent to each client in the room\\*
-$200*6 = 1200$ KB/s $= 9.6$ Mbps sent to each overhearing client\\*
+\begin{equation}
+200*5 + 200*3 = 1600 KB/s = 12.8 Mbps
+\end{equation}
+\begin{equation}
+200*5 = 1000 KB/S  = 8 Mbps
+\end{equation}
+\begin{equation}
+200*6 = 1200 KB/s = 9.6 Mbps
+\end{equation}
+Equation 4 shows the amount of data sent from each client in the room. Equation 5 shows the amount of data sent to each client in the room. Equation 6 shows the amount of data sent to each overhearing client.
+
 
 The calculations show that for a client to work with our service with streams of $200$ KB/s, it needs a bandwidth of atleast 8 Mbit downstream and atleast 8 Mbit upstream. And this is without anyone overhearing. This is a very high bandwidth requirement for one client and it also would not work on a larger scale if some table have too many people overhearing at the same time. If the system instead had an MCU it would not matter which table got overheard since the total amount of data sent from the server would not change depending on if five people are overhearing the same table or five different tables.
 \paragraph{With MCU.}
-So same scenario again, this time with the MCU. All clients will now send their stream to the MCU, which forwards it to all subscribers.
+The Multipoint Control Unit decreases the bandwidth load of the clients. Instead of sending the stream to all other participants, each client will send the local stream to the MCU. The MCU then forwards it to all subscribers.
+So same scenario again, this time with the MCU.
 \\*
 \\*
-The data sent from the server is $U((U-1)*S) + O*U*S$.\\* 
-The date sent to the server is $U*S$.\\*
-The data received at each client is $S*(U-1)$.\\*
-The data received at each overhearing client is $S*U$.\\*
+The data sent from and received at each client can be calculated with the following equations.\\\\
+The MCU forward each stream to all the subscribers in a room and to all overhearing client. The data sent from the server:
+\begin{equation}
+U((U-1)*S) + O*U*S
+\end{equation} 
+Each client sends the local stream to the MCU. The data sent to the server:
+\begin{equation}
+U*S
+\end{equation} 
+The data received at each client:
+\begin{equation}
+S*(U-1)
+\end{equation} 
+The data received at each overhearing client:
+\begin{equation}
+S*U
+\end{equation} 
 
 An example. If we have one room with 6 users and 3 people overhearing with a bitrate of $200$ KB/s results in:
-
-$6*200 = 1 200$ KB/s $= 9.6$ Mbps sent to the server.
-$6*(5*200) + 3*6*200 = 9 600$ KB/s = $76.80$ Mbps sent from the server.
-$200*5 = 1000$ KB/S  $= 8$ Mbps sent to each client in the room
-$200*6 = 1200$ KB/s $= 9.6$ Mbps sent to each overhearing client
-
-Now let's assume we have a server with a dedicated 1Gbit connection.
-
-1Gbit $= 131 072$ KB.
-The bandwidth needed to fill a room without overhearing is $6*(5*200) = 6 000 KB/s$
-$131 072/6 000 = 21.8453333333$. So a 1Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that $200$ KB/s equals to over 1.5 Mbps. In comparison, Skype recommends 500 kbps bandwidth for high quality video\cite{39}.
+\begin{equation}
+6*200 = 1200 KB/s = 9.6 Mbps
+\end{equation}
+9.6 Mbps sent to the server.
+\begin{equation}
+6*(5*200) + 3*6*200 = 9 600 KB/s = 76.80 Mbps
+\end{equation}
+76.8 Mbps sent from the server.
+\begin{equation}
+200*5 = 1000 KB/S  = 8 Mbps
+\end{equation}
+8 Mbps sent to each client in the room.
+\begin{equation}
+200*6 = 1200 KB/s = 9.6 Mbps
+\end{equation}
+9.6 Mbps sent to each overhearing client.
+\\\\
+Now let's assume we have a server with a dedicated 1 Gbit connection. 
+\begin{equation}
+1 Gbit = 131 072 KB
+\end{equation}
+A 1 Gbit can in theory send and receive up to 131 072 KB of data each second. The bandwidth needed to fill a room without overhearing is 
+\begin{equation}
+6*(5*200) = 6 000 KB/s
+\end{equation}
+We can now calculate the maximum amount of video conferencing rooms that the system can handle with a 1 Gbit connection.
+\begin{equation}
+131 072/6 000 = 21.8453333333
+\end{equation}
+So a 1 Gbit connection can manage almost 22 filled rooms at a time. However, we need to keep in mind that $200$ KB/s equals to over 1.5 Mbps. In comparison, Skype recommends 500 kbps bandwidth for high quality video\cite{39}.
 \subsubsection{Performance test}
 
 A performance test was done in order to see how the system would perform under pressure and to get a feeling of the hardware requirements on a larger scale. 4 computers including the server were used during the test.
@@ -506,16 +553,16 @@ The result of the test followed the theory closely, as you can see in the table.
     2 & 250 & 500 & \\ \hline
     3 & 800 & 1600 & \\ \hline
     4 & 1000 & 3200 &\\ \hline
-    4 & 1000 & 4000 &\\ \hline
-    4 & 800 & 4000 & Lower video quality\\ \hline
+    5 & 1000 & 4000 &\\ \hline
+    6 & 800 & 4000 & Lower video quality\\ \hline
     \end{tabularx}
 \end{center}
 
 The video quality then continued to decrease for every new stream published or subscribed. We believe that once Licode start transcode/mixing the streams, the data sent from the server will be reduced and CPU usage increased. 
 \section{Discussion}
-During this project we discovered problems with some features and perhaps a way of solving some of them. All possible solutions will be presented here. Along with that discussions we also present feedback from test users.
+During this project we discovered problems with some features. Along with that discussions we also present feedback from test users.
 \subsection{Issues}
-We have one issue with the knocking function. If five people having a conversation at a table and two more people wants to join their conversation at the same time, if they both is accepted by the group they will both connect to the table. This only happens if they are trying to connect exactly at the same time($\pm$ a few seconds), otherwise they will get rejected because we have a limit of maximum six users at once in one table. The time it takes for a user to connect to the table is the problem, the latest user will not get notified that he or she was too late. 
+We have one issue with the knocking function. If a table has five participants, two more can be accepted to sit down, even though the maximum amount of users for a table is six. This happens because of the delay when connecting to a room and publishing a stream. The room does not count as being full until it has six published media streams. So if two or more users connect to the room at roughly the same time, they will both be able to publish their streams.
 \subsection{The design}
 We had almost no experience of web design and WebGL before starting this project. Here follows some improvements we think could be done to enhance the user experience.
 \begin{itemize}
@@ -544,15 +591,15 @@ We feel that we have reached the goals we set up earlier in the project. We have
 
 We are happy with how both views turned out, even though both of us lack experience in web design. We believe that both views are perfectly suited for the service, however, there are pros and cons of both views. The 3D-view provides a more convincing feeling of being in a room, but the quality of the video streams inside the 3D world decreases. The 2D-view is easier to navigate for a first time user or a less experienced user. 
 
-All the key features of the service works just as well in both views. Which view works best depends on the target group. A good looking 3D-environment probably draws a younger crowd than the traditional 2D-view, while the 2D-view works for everyone as it look and work just like a normal web page.
+All the key features of the service works just as well in both views. Which view works best depends on the target group. A good looking 3D-environment probably draws a younger crowd than the traditional 2D-view.
 
 We had four research questions for this project that we now feel comfortable answering. These real life café features like overseeing, overhearing and mingling all has an effect on the experience of online video chat.
 
-They all make it more like a real life experience like going to café. People will have a favorite café with regular visitors. Overseeing helps to recognize friends and help find new interesting people. Recognizing people also makes it feel like a good place to be if your friends might be there.
+They all make it more like a real life experience like going to café. People will have a favorite café with regular visitors. Overseeing helps to recognize friends and help find new interesting people. 
 
 Overhearing makes the participants think before talking which can lead to more serious conversations compared to other video conference services, especially if it's an anonymous one. But it can also lead to shy people holding back even more. But we think that it is a good effect because people will get use to it and hopefully not have problem with it in the future.
 
-We believe this is a step forward towards achieving more lifelike environments online. Lots of people go to conferences every year to meet interesting people. This costs a lot of for the participants or their companies. Imagine if they instead could use a service like The Online Paris Café, meet and mingle online and get the same experience as you would on a conference. This may one day be possible if more research is done in this field.
+We believe this is a step forward towards achieving more lifelike environments online. Lots of people go to conferences every year to meet interesting people. This costs a lot of money for the participants or their companies. Imagine if they instead could use a service like The Online Paris Café, meet and mingle online and get the same experience as you would on a conference. This may one day be possible if more research is done in this field.
 \section{Future work and improvements}
 We set out to build a prototype that includes overseeing, overhearing and mingle, and that's what we have done. But this is a project done in limited time so there are of course plenty of ways to improve the system.
 

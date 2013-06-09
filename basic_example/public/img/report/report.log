@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.5.13)  7 JUN 2013 23:34
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.5.13)  10 JUN 2013 00:52
 entering extended mode
 **report.tex
 
@@ -491,25 +491,25 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 50.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 50.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 48.
  [5] [6]
 <grovplanering.jpg, id=27, 1034.86626pt x 570.13pt>
 File: grovplanering.jpg Graphic file (type jpg)
  <use grovplanering.jpg>
-Package pdftex.def Info: grovplanering.jpg used on input line 99.
+Package pdftex.def Info: grovplanering.jpg used on input line 97.
 (pdftex.def)             Requested size: 312.00119pt x 171.88417pt.
 
 [7] [8 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_examp
 le/public/img/report/grovplanering.jpg>] [9] [10
 
 ] [11]
-Overfull \hbox (12.07068pt too wide) in paragraph at lines 144--145
+Overfull \hbox (12.07068pt too wide) in paragraph at lines 142--143
 \T1/lmr/m/n/12 your friends in a vir-tual 3D-environment. One ap-pli-ca-tion, W
 e-bGL Meeting[[]],
  []
@@ -522,19 +522,19 @@ e-bGL Meeting[[]],
 File: indexpage1.png Graphic file (type png)
 
 <use indexpage1.png>
-Package pdftex.def Info: indexpage1.png used on input line 196.
+Package pdftex.def Info: indexpage1.png used on input line 194.
 (pdftex.def)             Requested size: 312.00119pt x 148.81978pt.
  <indexpage2.png, id=60, 1029.8475pt x 493.0922pt>
 File: indexpage2.png Graphic file (type png)
 
 <use indexpage2.png>
-Package pdftex.def Info: indexpage2.png used on input line 201.
+Package pdftex.def Info: indexpage2.png used on input line 199.
 (pdftex.def)             Requested size: 312.00119pt x 149.38092pt.
  <indexpage3.png, id=61, 1026.08344pt x 494.59781pt>
 File: indexpage3.png Graphic file (type png)
 
 <use indexpage3.png>
-Package pdftex.def Info: indexpage3.png used on input line 206.
+Package pdftex.def Info: indexpage3.png used on input line 204.
 (pdftex.def)             Requested size: 312.00119pt x 150.38797pt.
  [17
 
@@ -543,13 +543,13 @@ lic/img/report/indexpage1.png>]
 <thetables.png, id=65, 1029.09468pt x 493.0922pt>
 File: thetables.png Graphic file (type png)
  <use thetables.png>
-Package pdftex.def Info: thetables.png used on input line 212.
+Package pdftex.def Info: thetables.png used on input line 210.
 (pdftex.def)             Requested size: 312.00119pt x 149.49377pt.
 
 <thetables3D.png, id=66, 1029.09468pt x 490.08093pt>
 File: thetables3D.png Graphic file (type png)
  <use thetables3D.png>
-Package pdftex.def Info: thetables3D.png used on input line 217.
+Package pdftex.def Info: thetables3D.png used on input line 215.
 (pdftex.def)             Requested size: 312.00119pt x 148.58084pt.
 
 [18 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example/
@@ -558,13 +558,13 @@ bb/code/mt-topc/basic_example/public/img/report/indexpage3.png>]
 <sittingdown2D.png, id=71, 1443.14156pt x 727.96968pt>
 File: sittingdown2D.png Graphic file (type png)
  <use sittingdown2D.png>
-Package pdftex.def Info: sittingdown2D.png used on input line 224.
+Package pdftex.def Info: sittingdown2D.png used on input line 222.
 (pdftex.def)             Requested size: 312.00119pt x 157.37685pt.
 
 <sittingdown3D.png, id=72, 1443.89438pt x 727.21687pt>
 File: sittingdown3D.png Graphic file (type png)
  <use sittingdown3D.png>
-Package pdftex.def Info: sittingdown3D.png used on input line 229.
+Package pdftex.def Info: sittingdown3D.png used on input line 227.
 (pdftex.def)             Requested size: 312.00119pt x 157.13641pt.
 
 [19 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example/
@@ -581,11 +581,11 @@ topc/basic_example/public/img/report/sittingdown3D.png>] [21] [22
 File: systemarchitecture.png Graphic file (type png)
 
 <use systemarchitecture.png>
-Package pdftex.def Info: systemarchitecture.png used on input line 306.
+Package pdftex.def Info: systemarchitecture.png used on input line 304.
 (pdftex.def)             Requested size: 312.00119pt x 125.96498pt.
  [27 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/systemarchitecture.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 312--322
+Underfull \hbox (badness 10000) in paragraph at lines 310--320
 
  []
 
@@ -595,13 +595,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 312--322
 File: overhear2d.jpg Graphic file (type jpg)
 
 <use overhear2d.jpg>
-Package pdftex.def Info: overhear2d.jpg used on input line 370.
+Package pdftex.def Info: overhear2d.jpg used on input line 368.
 (pdftex.def)             Requested size: 312.00119pt x 125.6498pt.
  <3doverhearing.jpg, id=118, 1358.07375pt x 537.00626pt>
 File: 3doverhearing.jpg Graphic file (type jpg)
 
 <use 3doverhearing.jpg>
-Package pdftex.def Info: 3doverhearing.jpg used on input line 375.
+Package pdftex.def Info: 3doverhearing.jpg used on input line 373.
 (pdftex.def)             Requested size: 312.00119pt x 123.36954pt.
  [32 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/overhear2d.jpg> <C:/Users/Alex/Documents/Skolarbete ar 5/Exj
@@ -610,20 +610,20 @@ g2D.jpg, id=122, 487.8225pt x 391.4625pt>
 File: overseeing2D.jpg Graphic file (type jpg)
 
 <use overseeing2D.jpg>
-Package pdftex.def Info: overseeing2D.jpg used on input line 386.
+Package pdftex.def Info: overseeing2D.jpg used on input line 384.
 (pdftex.def)             Requested size: 312.00119pt x 250.37386pt.
  <pulldownoversee.jpg, id=123, 1351.0475pt x 618.31pt>
 File: pulldownoversee.jpg Graphic file (type jpg)
 
 <use pulldownoversee.jpg>
-Package pdftex.def Info: pulldownoversee.jpg used on input line 394.
+Package pdftex.def Info: pulldownoversee.jpg used on input line 392.
 (pdftex.def)             Requested size: 312.00119pt x 142.78381pt.
  [33 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/overseeing2D.jpg>]
 <knock.png, id=127, 252.19218pt x 78.2925pt>
 File: knock.png Graphic file (type png)
  <use knock.png>
-Package pdftex.def Info: knock.png used on input line 404.
+Package pdftex.def Info: knock.png used on input line 402.
 (pdftex.def)             Requested size: 312.00119pt x 96.86067pt.
  [34 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/pulldownoversee.jpg>] <theNapkin.png, id=131, 822.07124pt x 
@@ -631,7 +631,7 @@ Package pdftex.def Info: knock.png used on input line 404.
 File: theNapkin.png Graphic file (type png)
 
 <use theNapkin.png>
-Package pdftex.def Info: theNapkin.png used on input line 417.
+Package pdftex.def Info: theNapkin.png used on input line 415.
 (pdftex.def)             Requested size: 312.00119pt x 190.57231pt.
  [35 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/knock.png>]
@@ -639,66 +639,71 @@ Package pdftex.def Info: theNapkin.png used on input line 417.
 File: youtubeToReport.png Graphic file (type png)
 
 <use youtubeToReport.png>
-Package pdftex.def Info: youtubeToReport.png used on input line 424.
+Package pdftex.def Info: youtubeToReport.png used on input line 422.
 (pdftex.def)             Requested size: 312.00119pt x 189.57127pt.
  [36 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/theNapkin.png>]
 <chat.png, id=140, 496.85625pt x 170.13562pt>
 File: chat.png Graphic file (type png)
  <use chat.png>
-Package pdftex.def Info: chat.png used on input line 431.
+Package pdftex.def Info: chat.png used on input line 429.
 (pdftex.def)             Requested size: 312.00119pt x 106.83812pt.
  [37 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/youtubeToReport.png> <C:/Users/Alex/Documents/Skolarbete ar 
 5/Exjobb/code/mt-topc/basic_example/public/img/report/chat.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 447--461
+Underfull \hbox (badness 10000) in paragraph at lines 445--450
 
  []
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 464--471
+Underfull \hbox (badness 10000) in paragraph at lines 478--484
 
  []
 
 [39]
-Underfull \hbox (badness 10000) in paragraph at lines 511--511
+Underfull \hbox (badness 10000) in paragraph at lines 515--519
+
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 558--558
 []|\T1/lmr/m/n/12 Incoming
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 511--511
+Underfull \hbox (badness 10000) in paragraph at lines 558--558
 []|\T1/lmr/m/n/12 Outgoing
  []
 
-[40] [41
+[41] [42
 
-] [42] [43] [44
+] [43] [44] [45
 
-] [45] [46
+] [46
 
 ] [47]
 <feas.pdf, id=179, page=1, 794.97pt x 614.295pt>
 File: feas.pdf Graphic file (type pdf)
  <use feas.pdf, page 1>
-Package pdftex.def Info: feas.pdf, page1 used on input line 567.
+Package pdftex.def Info: feas.pdf, page1 used on input line 614.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
 File: feas.pdf Graphic file (type pdf)
 
 <use feas.pdf, page 1>
-Package pdftex.def Info: feas.pdf, page1 used on input line 567.
+Package pdftex.def Info: feas.pdf, page1 used on input line 614.
 (pdftex.def)             Requested size: 615.04005pt x 475.25821pt.
 File: feas.pdf Graphic file (type pdf)
  <use feas.pdf, page 1>
-Package pdftex.def Info: feas.pdf, page1 used on input line 567.
+Package pdftex.def Info: feas.pdf, page1 used on input line 614.
 (pdftex.def)             Requested size: 615.04005pt x 475.25821pt.
 File: feas.pdf Graphic file (type pdf)
  <use feas.pdf, page 1>
-Package pdftex.def Info: feas.pdf, page1 used on input line 567.
+Package pdftex.def Info: feas.pdf, page1 used on input line 614.
 (pdftex.def)             Requested size: 615.04005pt x 475.25821pt.
 File: feas.pdf Graphic file (type pdf)
 
 <use feas.pdf, page 1>
-Package pdftex.def Info: feas.pdf, page1 used on input line 567.
+Package pdftex.def Info: feas.pdf, page1 used on input line 614.
 (pdftex.def)             Requested size: 615.04005pt x 475.25821pt.
  [48 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/feas.pdf, page is rotated 90 degrees>] [49
@@ -707,25 +712,25 @@ Package pdftex.def Info: feas.pdf, page1 used on input line 567.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 1>
-Package pdftex.def Info: questions.pdf, page1 used on input line 570.
+Package pdftex.def Info: questions.pdf, page1 used on input line 617.
 (pdftex.def)             Requested size: 598.23354pt x 846.1592pt.
 File: questions.pdf Graphic file (type pdf)
  <use questions.pdf, page 1>
-Package pdftex.def Info: questions.pdf, page1 used on input line 570.
+Package pdftex.def Info: questions.pdf, page1 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 1>
-Package pdftex.def Info: questions.pdf, page1 used on input line 570.
+Package pdftex.def Info: questions.pdf, page1 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
  <use questions.pdf, page 1>
-Package pdftex.def Info: questions.pdf, page1 used on input line 570.
+Package pdftex.def Info: questions.pdf, page1 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 1>
-Package pdftex.def Info: questions.pdf, page1 used on input line 570.
+Package pdftex.def Info: questions.pdf, page1 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [50 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/questions.pdf>]
@@ -733,16 +738,16 @@ Package pdftex.def Info: questions.pdf, page1 used on input line 570.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 2>
-Package pdftex.def Info: questions.pdf, page2 used on input line 570.
+Package pdftex.def Info: questions.pdf, page2 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
  <use questions.pdf, page 2>
-Package pdftex.def Info: questions.pdf, page2 used on input line 570.
+Package pdftex.def Info: questions.pdf, page2 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 2>
-Package pdftex.def Info: questions.pdf, page2 used on input line 570.
+Package pdftex.def Info: questions.pdf, page2 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [51 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/questions.pdf>]
@@ -750,16 +755,16 @@ Package pdftex.def Info: questions.pdf, page2 used on input line 570.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 3>
-Package pdftex.def Info: questions.pdf, page3 used on input line 570.
+Package pdftex.def Info: questions.pdf, page3 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
  <use questions.pdf, page 3>
-Package pdftex.def Info: questions.pdf, page3 used on input line 570.
+Package pdftex.def Info: questions.pdf, page3 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 3>
-Package pdftex.def Info: questions.pdf, page3 used on input line 570.
+Package pdftex.def Info: questions.pdf, page3 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [52 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/questions.pdf>]
@@ -767,57 +772,57 @@ Package pdftex.def Info: questions.pdf, page3 used on input line 570.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 4>
-Package pdftex.def Info: questions.pdf, page4 used on input line 570.
+Package pdftex.def Info: questions.pdf, page4 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
  <use questions.pdf, page 4>
-Package pdftex.def Info: questions.pdf, page4 used on input line 570.
+Package pdftex.def Info: questions.pdf, page4 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: questions.pdf Graphic file (type pdf)
 
 <use questions.pdf, page 4>
-Package pdftex.def Info: questions.pdf, page4 used on input line 570.
+Package pdftex.def Info: questions.pdf, page4 used on input line 617.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [53 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/questions.pdf>]
 <studie.pdf, id=392, page=1, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 1>
-Package pdftex.def Info: studie.pdf, page1 used on input line 571.
+Package pdftex.def Info: studie.pdf, page1 used on input line 618.
 (pdftex.def)             Requested size: 598.23354pt x 846.1592pt.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 1>
-Package pdftex.def Info: studie.pdf, page1 used on input line 571.
+Package pdftex.def Info: studie.pdf, page1 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 1>
-Package pdftex.def Info: studie.pdf, page1 used on input line 571.
+Package pdftex.def Info: studie.pdf, page1 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 1>
-Package pdftex.def Info: studie.pdf, page1 used on input line 571.
+Package pdftex.def Info: studie.pdf, page1 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 1>
-Package pdftex.def Info: studie.pdf, page1 used on input line 571.
+Package pdftex.def Info: studie.pdf, page1 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [54 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/studie.pdf>]
 <studie.pdf, id=417, page=2, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 2>
-Package pdftex.def Info: studie.pdf, page2 used on input line 571.
+Package pdftex.def Info: studie.pdf, page2 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 2>
-Package pdftex.def Info: studie.pdf, page2 used on input line 571.
+Package pdftex.def Info: studie.pdf, page2 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 2>
-Package pdftex.def Info: studie.pdf, page2 used on input line 571.
+Package pdftex.def Info: studie.pdf, page2 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [55 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/studie.pdf>] <studie.pdf, id=424, page=3, 598.235pt x 846.16
@@ -825,15 +830,15 @@ Package pdftex.def Info: studie.pdf, page2 used on input line 571.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 3>
-Package pdftex.def Info: studie.pdf, page3 used on input line 571.
+Package pdftex.def Info: studie.pdf, page3 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 3>
-Package pdftex.def Info: studie.pdf, page3 used on input line 571.
+Package pdftex.def Info: studie.pdf, page3 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 3>
-Package pdftex.def Info: studie.pdf, page3 used on input line 571.
+Package pdftex.def Info: studie.pdf, page3 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 
 [56 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example/
@@ -841,16 +846,16 @@ public/img/report/studie.pdf>]
 <studie.pdf, id=432, page=4, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 4>
-Package pdftex.def Info: studie.pdf, page4 used on input line 571.
+Package pdftex.def Info: studie.pdf, page4 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 4>
-Package pdftex.def Info: studie.pdf, page4 used on input line 571.
+Package pdftex.def Info: studie.pdf, page4 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 4>
-Package pdftex.def Info: studie.pdf, page4 used on input line 571.
+Package pdftex.def Info: studie.pdf, page4 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [57 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/studie.pdf>] <studie.pdf, id=439, page=5, 598.235pt x 846.16
@@ -858,15 +863,15 @@ Package pdftex.def Info: studie.pdf, page4 used on input line 571.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 5>
-Package pdftex.def Info: studie.pdf, page5 used on input line 571.
+Package pdftex.def Info: studie.pdf, page5 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 5>
-Package pdftex.def Info: studie.pdf, page5 used on input line 571.
+Package pdftex.def Info: studie.pdf, page5 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 5>
-Package pdftex.def Info: studie.pdf, page5 used on input line 571.
+Package pdftex.def Info: studie.pdf, page5 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 
 [58 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example/
@@ -874,16 +879,16 @@ public/img/report/studie.pdf>]
 <studie.pdf, id=445, page=6, 598.235pt x 846.16125pt>
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 6>
-Package pdftex.def Info: studie.pdf, page6 used on input line 571.
+Package pdftex.def Info: studie.pdf, page6 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 6>
-Package pdftex.def Info: studie.pdf, page6 used on input line 571.
+Package pdftex.def Info: studie.pdf, page6 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 6>
-Package pdftex.def Info: studie.pdf, page6 used on input line 571.
+Package pdftex.def Info: studie.pdf, page6 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
  [59 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example
 /public/img/report/studie.pdf>] <studie.pdf, id=452, page=7, 598.235pt x 846.16
@@ -891,82 +896,82 @@ Package pdftex.def Info: studie.pdf, page6 used on input line 571.
 File: studie.pdf Graphic file (type pdf)
 
 <use studie.pdf, page 7>
-Package pdftex.def Info: studie.pdf, page7 used on input line 571.
+Package pdftex.def Info: studie.pdf, page7 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 7>
-Package pdftex.def Info: studie.pdf, page7 used on input line 571.
+Package pdftex.def Info: studie.pdf, page7 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 File: studie.pdf Graphic file (type pdf)
  <use studie.pdf, page 7>
-Package pdftex.def Info: studie.pdf, page7 used on input line 571.
+Package pdftex.def Info: studie.pdf, page7 used on input line 618.
 (pdftex.def)             Requested size: 562.14015pt x 795.10765pt.
 
 [60 <C:/Users/Alex/Documents/Skolarbete ar 5/Exjobb/code/mt-topc/basic_example/
 public/img/report/studie.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 582--586
+Underfull \hbox (badness 10000) in paragraph at lines 629--633
 []\T1/lmr/m/n/12 Google, \T1/lmr/m/it/12 Google Hang-out\T1/lmr/m/n/12 . Febru-
 ary 2013,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--604
+Underfull \hbox (badness 10000) in paragraph at lines 647--651
 []\T1/lmr/m/n/12 Linden Labs, inc, \T1/lmr/m/it/12 Sec-ond Life\T1/lmr/m/n/12 .
  Febru-ary 2013,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 613--618
+Underfull \hbox (badness 10000) in paragraph at lines 660--665
 []\T1/lmr/m/n/12 Tuomas Kan-to-nen, Charles Wood-ward, Neil Katz,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 613--618
+Underfull \hbox (badness 10000) in paragraph at lines 660--665
 \T1/lmr/m/it/12 Mixed re-al-ity in vir-tual world tele-con-fer-enc-ing\T1/lmr/m
 /n/12 . VTT
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 613--618
+Underfull \hbox (badness 10000) in paragraph at lines 660--665
 \T1/lmr/m/n/12 Tech-ni-cal Re-search Cen-tre of Fin-land, March 2010,
  []
 
 
-Underfull \hbox (badness 6910) in paragraph at lines 626--629
+Underfull \hbox (badness 6910) in paragraph at lines 673--676
 []\T1/lmr/m/n/12 Google. \T1/lmr/m/it/12 Hello Fire-fox this is Chrome call-ing
 \T1/lmr/m/n/12 . Febru-ary 2013,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 626--629
+Underfull \hbox (badness 10000) in paragraph at lines 673--676
 \T1/lmr/m/n/12 http://blog.chromium.org/2013/02/hello-firefox-this-is-chrome-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 631--632
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
 []\T1/lmr/m/n/12 Team XSock-ets.NET.\T1/lmr/m/it/12 Browser Meet-ing\T1/lmr/m/n
 /12 . Febru-ary 2013,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 637--640
+Underfull \hbox (badness 10000) in paragraph at lines 684--687
 []\T1/lmr/m/n/12 Jerome Eti-enne, \T1/lmr/m/it/12 We-bGL Meet-ing\T1/lmr/m/n/12
  . Oc-to-ber 2012,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 637--640
+Underfull \hbox (badness 10000) in paragraph at lines 684--687
 \T1/lmr/m/n/12 http://learningthreejs.com/blog/2012/04/12/video-conference-on-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 642--646
+Underfull \hbox (badness 10000) in paragraph at lines 689--693
 []\T1/lmr/m/n/12 Protonmedia, \T1/lmr/m/it/12 Pro-to-sphere\T1/lmr/m/n/12 . Feb
 ru-ary 2013,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 648--652
+Underfull \hbox (badness 10000) in paragraph at lines 695--699
 []\T1/lmr/m/n/12 SAIC, \T1/lmr/m/it/12 O.L.I.V.E\T1/lmr/m/n/12 . Febru-ary 2013
 ,
  []
@@ -974,193 +979,193 @@ Underfull \hbox (badness 10000) in paragraph at lines 648--652
 [61
 
 ]
-Underfull \hbox (badness 3078) in paragraph at lines 678--682
+Underfull \hbox (badness 3078) in paragraph at lines 725--729
 \T1/lmr/m/n/12 and Yu-taka Mat-sushita, \T1/lmr/m/it/12 MA-JIC Video-con-fer-en
 c-ing Sys-tem: Ex-
  []
 
 
-Underfull \hbox (badness 4518) in paragraph at lines 678--682
+Underfull \hbox (badness 4518) in paragraph at lines 725--729
 \T1/lmr/m/it/12 per-i-ments, Eval-u-a-tion and Im-prove-ment\T1/lmr/m/n/12 . EC
 -SCW'95 Pro-ceed-ings
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 678--682
+Underfull \hbox (badness 2142) in paragraph at lines 725--729
 \T1/lmr/m/n/12 of the fourth con-fer-ence on Eu-ro-pean Con-fer-ence on Compute
 r-
  []
 
 
-Underfull \hbox (badness 5817) in paragraph at lines 678--682
+Underfull \hbox (badness 5817) in paragraph at lines 725--729
 \T1/lmr/m/n/12 Supported Co-op-er-a-tive Work, Pages 279-292, Septem-ber 2008.
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 685--689
+Underfull \hbox (badness 1616) in paragraph at lines 732--736
 []\T1/lmr/m/n/12 Claudia Kuster, Tiberiu Popa, Jean-Charles Bazin, Craig Gots-
  []
 
 
-Overfull \hbox (2.5829pt too wide) in paragraph at lines 685--689
+Overfull \hbox (2.5829pt too wide) in paragraph at lines 732--736
 \T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
 arnumb
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 691--695
+Underfull \hbox (badness 1221) in paragraph at lines 738--742
 \T1/lmr/m/n/12 pin, Moira McIn-tyre, Adri-ana Pena, Oye-wole Oyekoya, and Will
  []
 
 
-Underfull \hbox (badness 1881) in paragraph at lines 691--695
+Underfull \hbox (badness 1881) in paragraph at lines 738--742
 \T1/lmr/m/n/12 Step-toe, \T1/lmr/m/it/12 Com-mu-ni-cat-ing Eye-gaze Across a Di
 s-tance: Com-par-ing
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 691--695
+Underfull \hbox (badness 1424) in paragraph at lines 738--742
 \T1/lmr/m/it/12 an Eye-gaze en-abled Im-mer-sive Col-lab-o-ra-tive Vir-tual En-
 vi-ron-ment,
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 691--695
+Underfull \hbox (badness 4752) in paragraph at lines 738--742
 \T1/lmr/m/it/12 Aligned Video Con-fer-enc-ing, and Be-ing To-gether\T1/lmr/m/n/
 12 . Uni-ver-sity of
  []
 
 
-Underfull \hbox (badness 4673) in paragraph at lines 691--695
+Underfull \hbox (badness 4673) in paragraph at lines 738--742
 \T1/lmr/m/n/12 Sal-ford, Uni-ver-sity of Roe-hamp-ton, Uni-ver-sity Col-lege Lo
 n-don,
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 691--695
+Underfull \hbox (badness 2903) in paragraph at lines 738--742
 \T1/lmr/m/n/12 Uni-ver-sity of Read-ing, Lafayette, Louisiana, USA, March 2009.
 
  []
 
 
-Overfull \hbox (2.5829pt too wide) in paragraph at lines 691--695
+Overfull \hbox (2.5829pt too wide) in paragraph at lines 738--742
 \T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
 arnumb
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--701
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
 []\T1/lmr/m/n/12 Hideyuki Nakan-ishi, Yuki Mu-rakami, Kei Kato, \T1/lmr/m/it/12
  Mov-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--701
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
 \T1/lmr/m/it/12 able Cam-eras En-hance So-cial Telep-res-ence in Me-dia Spaces\
 T1/lmr/m/n/12 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--701
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
 \T1/lmr/m/n/12 De-part-ment of Adap-tive Ma-chine Sys-tems. Os-aka Uni-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--701
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
 \T1/lmr/m/n/12 ver-sity, Ya-madaoka, Suita, Os-aka, Japan, April 2009.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--701
+Underfull \hbox (badness 10000) in paragraph at lines 744--748
 \T1/lmr/m/n/12 http://www.academia.edu/3274831/Movable_cameras_enhance_social
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--706
+Underfull \hbox (badness 10000) in paragraph at lines 750--753
 []\T1/lmr/m/n/12 Jim Gem-mell, Ken-taro Toyama, C. Lawrence Zit-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--706
+Underfull \hbox (badness 10000) in paragraph at lines 750--753
 \T1/lmr/m/n/12 nick, Thomas Kang, Steven Seitz, \T1/lmr/m/it/12 Gaze Aware-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--706
+Underfull \hbox (badness 10000) in paragraph at lines 750--753
 \T1/lmr/m/it/12 ness for Video-con-fer-enc-ing: A Soft-ware Ap-proach
  []
 
 
-Overfull \hbox (2.5829pt too wide) in paragraph at lines 703--706
+Overfull \hbox (2.5829pt too wide) in paragraph at lines 750--753
 \T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
 arnumb
  []
 
 [62]
-Underfull \hbox (badness 10000) in paragraph at lines 715--720
+Underfull \hbox (badness 10000) in paragraph at lines 762--767
 []\T1/lmr/m/n/12 Chong Luo, Jiang Li, and Shipeng Li, \T1/lmr/m/it/12 DigiMetro
  -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--720
+Underfull \hbox (badness 10000) in paragraph at lines 762--767
 \T1/lmr/m/it/12 An Application-Level Mul-ti-cast Sys-tem For Multi-Party
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--720
+Underfull \hbox (badness 10000) in paragraph at lines 762--767
 \T1/lmr/m/it/12 Video Con-fer-enc-ing\T1/lmr/m/n/12 . Mi-crosoft Re-search Asia
 , 2004,
  []
 
 
-Underfull \hbox (badness 5022) in paragraph at lines 722--726
+Underfull \hbox (badness 5022) in paragraph at lines 769--773
 \T1/lmr/m/n/12 Belt, \T1/lmr/m/it/12 3DP-RES-ENCE  A SYS-TEM CON-CEPT FOR MULT
 I-
  []
 
 
-Underfull \hbox (badness 4036) in paragraph at lines 722--726
+Underfull \hbox (badness 4036) in paragraph at lines 769--773
 \T1/lmr/m/it/12 USER AND MULTI-PARTY IM-MER-SIVE 3D VIDEO-CON-FER-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 722--726
+Underfull \hbox (badness 10000) in paragraph at lines 769--773
 \T1/lmr/m/it/12 ENC-ING\T1/lmr/m/n/12 . Fraun-hofer In-sti-tute for Telecommuni
 cations/Heinrich-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 722--726
+Underfull \hbox (badness 10000) in paragraph at lines 769--773
 \T1/lmr/m/n/12 Hertz In-sti-tut, Berlin, Ger-many, Novem-ber 2008.
  []
 
 
-Overfull \hbox (2.5829pt too wide) in paragraph at lines 722--726
+Overfull \hbox (2.5829pt too wide) in paragraph at lines 769--773
 \T1/lmr/m/n/12 http://ieeexplore.ieee.org.proxy.lib.ltu.se/stamp/stamp.jsp?tp=&
 arnumb
  []
 
 
-Overfull \hbox (1.32878pt too wide) in paragraph at lines 728--732
+Overfull \hbox (1.32878pt too wide) in paragraph at lines 775--779
 \T1/lmr/m/n/12 http://www.thinkmind.org/download.php?articleid=etelemed_2012_1_
 
  []
 
 [63]
-Underfull \hbox (badness 6125) in paragraph at lines 781--785
+Underfull \hbox (badness 6125) in paragraph at lines 828--832
 []\T1/lmr/m/n/12 Priologic Soft-ware Inc., \T1/lmr/m/it/12 EasyRTC\T1/lmr/m/n/1
 2 . June 2013, http://easyrtc-
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 799--803
+Underfull \hbox (badness 1762) in paragraph at lines 846--850
 []\T1/lmr/m/n/12 Microsoft,  \T1/lmr/m/it/12 How much band-width does Skype nee
 d?\T1/lmr/m/n/12 . May 2013,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 799--803
+Underfull \hbox (badness 10000) in paragraph at lines 846--850
 \T1/lmr/m/n/12 https://support.skype.com/en/faq/FA1417/how-much-bandwidth-does-
 
  []
@@ -1184,7 +1189,7 @@ onts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public
 :/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/public/lm/lmsy10.pfb>
-Output written on report.pdf (65 pages, 7263521 bytes).
+Output written on report.pdf (65 pages, 7265040 bytes).
 PDF statistics:
  496 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

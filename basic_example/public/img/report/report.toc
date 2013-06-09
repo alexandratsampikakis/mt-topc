@@ -81,16 +81,16 @@
 \contentsline {subsection}{\numberline {8.8}YouTube}{36}
 \contentsline {subsection}{\numberline {8.9}Text chat}{37}
 \contentsline {subsection}{\numberline {8.10}Server performance}{37}
-\contentsline {subsubsection}{\numberline {8.10.1}Theory}{38}
+\contentsline {subsubsection}{\numberline {8.10.1}PeerConnection vs MCU}{38}
 \contentsline {paragraph}{Without MCU.}{38}
 \contentsline {paragraph}{With MCU.}{39}
-\contentsline {subsubsection}{\numberline {8.10.2}Performance test}{39}
-\contentsline {section}{\numberline {9}Discussion}{41}
-\contentsline {subsection}{\numberline {9.1}Issues}{41}
-\contentsline {subsection}{\numberline {9.2}The design}{41}
-\contentsline {subsection}{\numberline {9.3}User test}{41}
-\contentsline {subsection}{\numberline {9.4}Performance test}{42}
-\contentsline {section}{\numberline {10}Conclusion}{44}
+\contentsline {subsubsection}{\numberline {8.10.2}Performance test}{40}
+\contentsline {section}{\numberline {9}Discussion}{42}
+\contentsline {subsection}{\numberline {9.1}Issues}{42}
+\contentsline {subsection}{\numberline {9.2}The design}{42}
+\contentsline {subsection}{\numberline {9.3}User test}{42}
+\contentsline {subsection}{\numberline {9.4}Performance test}{43}
+\contentsline {section}{\numberline {10}Conclusion}{45}
 \contentsline {section}{\numberline {11}Future work and improvements}{46}
 \contentsline {section}{Appendices}{47}
 \contentsline {section}{\numberline {A}Comparison}{47}
