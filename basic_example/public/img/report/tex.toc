@@ -1,0 +1,98 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {subsection}{\numberline {1.1}Problem description}{4}
+\contentsline {subsection}{\numberline {1.2}Project goals}{5}
+\contentsline {subsubsection}{\numberline {1.2.1}Overseeing}{5}
+\contentsline {subsubsection}{\numberline {1.2.2}Overhearing}{5}
+\contentsline {subsubsection}{\numberline {1.2.3}Mingle}{5}
+\contentsline {subsection}{\numberline {1.3}Project requirements}{6}
+\contentsline {subsection}{\numberline {1.4}Project delimitations}{6}
+\contentsline {subsection}{\numberline {1.5}Research questions}{6}
+\contentsline {subsection}{\numberline {1.6}Project transparency}{7}
+\contentsline {section}{\numberline {2}Related work}{10}
+\contentsline {subsection}{\numberline {2.1}Traditional video conference}{10}
+\contentsline {subsection}{\numberline {2.2}3D Virtual environments}{10}
+\contentsline {subsection}{\numberline {2.3}Mixed reality}{10}
+\contentsline {subsection}{\numberline {2.4}Criteria}{11}
+\contentsline {section}{\numberline {3}Related services}{12}
+\contentsline {subsection}{\numberline {3.1}Google WebRTC}{12}
+\contentsline {subsection}{\numberline {3.2}Browser meeting}{12}
+\contentsline {subsection}{\numberline {3.3}frisB}{12}
+\contentsline {subsection}{\numberline {3.4}Video Conference in 3D-environment}{12}
+\contentsline {subsection}{\numberline {3.5}Protonsphere}{12}
+\contentsline {subsection}{\numberline {3.6}O.L.I.V.E}{13}
+\contentsline {subsection}{\numberline {3.7}OpenQwaq}{13}
+\contentsline {subsection}{\numberline {3.8}Paltalk}{13}
+\contentsline {subsection}{\numberline {3.9}Tinychat}{13}
+\contentsline {subsection}{\numberline {3.10}Skype}{13}
+\contentsline {subsection}{\numberline {3.11}Google Hangout}{14}
+\contentsline {subsection}{\numberline {3.12}ooVoo}{14}
+\contentsline {subsection}{\numberline {3.13}Second Life}{14}
+\contentsline {subsection}{\numberline {3.14}The Word Cafe online community}{14}
+\contentsline {section}{\numberline {4}Related papers}{15}
+\contentsline {section}{\numberline {5}What the site looks like}{17}
+\contentsline {subsection}{\numberline {5.1}Index/start page}{17}
+\contentsline {subsection}{\numberline {5.2}Caf\IeC {\'e}view}{19}
+\contentsline {subsection}{\numberline {5.3}Tableview}{20}
+\contentsline {subsection}{\numberline {5.4}Use cases}{21}
+\contentsline {subsubsection}{\numberline {5.4.1}Use case 1: Enter a caf\IeC {\'e}}{21}
+\contentsline {subsubsection}{\numberline {5.4.2}Use case 2: Oversee and overhear}{21}
+\contentsline {subsubsection}{\numberline {5.4.3}Use case 3: Sit down at table}{21}
+\contentsline {section}{\numberline {6}Technologies}{22}
+\contentsline {subsection}{\numberline {6.1}Node.js}{22}
+\contentsline {subsection}{\numberline {6.2}WebRTC}{22}
+\contentsline {subsection}{\numberline {6.3}Licode}{22}
+\contentsline {subsubsection}{\numberline {6.3.1}Erizo}{22}
+\contentsline {subsubsection}{\numberline {6.3.2}Nuve}{22}
+\contentsline {subsection}{\numberline {6.4}MongoDB}{23}
+\contentsline {subsection}{\numberline {6.5}Mongoose}{23}
+\contentsline {subsection}{\numberline {6.6}Express}{23}
+\contentsline {subsection}{\numberline {6.7}Twitter Bootstrap}{23}
+\contentsline {subsection}{\numberline {6.8}HTML5}{23}
+\contentsline {subsection}{\numberline {6.9}Three.js}{23}
+\contentsline {subsubsection}{\numberline {6.9.1}WebGL}{24}
+\contentsline {subsection}{\numberline {6.10}GitHub}{24}
+\contentsline {section}{\numberline {7}Method}{25}
+\contentsline {subsection}{\numberline {7.1}WebRTC comparison}{25}
+\contentsline {subsubsection}{\numberline {7.1.1}Easy RTC}{25}
+\contentsline {subsubsection}{\numberline {7.1.2}WebRTC.io}{25}
+\contentsline {subsubsection}{\numberline {7.1.3}Holla}{25}
+\contentsline {subsection}{\numberline {7.2}Survey}{26}
+\contentsline {subsubsection}{\numberline {7.2.1}Evaluation}{26}
+\contentsline {subsection}{\numberline {7.3}Prestudy conclusion}{26}
+\contentsline {subsection}{\numberline {7.4}System architecture}{27}
+\contentsline {subsubsection}{\numberline {7.4.1}Backend}{27}
+\contentsline {subsubsection}{\numberline {7.4.2}Database}{28}
+\contentsline {subsubsection}{\numberline {7.4.3}Server}{28}
+\contentsline {subsubsection}{\numberline {7.4.4}Nuve}{28}
+\contentsline {subsubsection}{\numberline {7.4.5}Erizo Controller}{28}
+\contentsline {subsubsection}{\numberline {7.4.6}Frontend}{29}
+\contentsline {subsubsection}{\numberline {7.4.7}Erizo Client}{29}
+\contentsline {subsection}{\numberline {7.5}Setting up a connection}{29}
+\contentsline {section}{\numberline {8}Result}{30}
+\contentsline {subsection}{\numberline {8.1}Design}{30}
+\contentsline {subsubsection}{\numberline {8.1.1}The 2D-view}{30}
+\contentsline {subsubsection}{\numberline {8.1.2}The 3D-view}{30}
+\contentsline {subsection}{\numberline {8.2}Leader}{31}
+\contentsline {subsection}{\numberline {8.3}Peer-to-peer}{31}
+\contentsline {subsection}{\numberline {8.4}Overhearing}{32}
+\contentsline {subsection}{\numberline {8.5}Overseeing}{33}
+\contentsline {subsection}{\numberline {8.6}Mingle}{34}
+\contentsline {subsection}{\numberline {8.7}Paint}{35}
+\contentsline {subsection}{\numberline {8.8}YouTube}{36}
+\contentsline {subsection}{\numberline {8.9}Text chat}{37}
+\contentsline {subsection}{\numberline {8.10}Server performance}{37}
+\contentsline {subsubsection}{\numberline {8.10.1}PeerConnection vs MCU}{38}
+\contentsline {paragraph}{Without MCU.}{38}
+\contentsline {paragraph}{With MCU.}{39}
+\contentsline {subsubsection}{\numberline {8.10.2}Performance test}{40}
+\contentsline {section}{\numberline {9}Discussion}{42}
+\contentsline {subsection}{\numberline {9.1}Issues}{42}
+\contentsline {subsection}{\numberline {9.2}The design}{42}
+\contentsline {subsection}{\numberline {9.3}User test}{42}
+\contentsline {subsection}{\numberline {9.4}Privacy Issues}{43}
+\contentsline {subsection}{\numberline {9.5}Performance test}{44}
+\contentsline {section}{\numberline {10}Conclusion}{45}
+\contentsline {section}{\numberline {11}Future work and improvements}{46}
+\contentsline {section}{Appendices}{47}
+\contentsline {section}{\numberline {A}Comparison}{47}
+\contentsline {section}{\numberline {B}Survey}{49}
