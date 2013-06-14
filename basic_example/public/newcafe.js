@@ -9,7 +9,7 @@ var knocker = 0;
 var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var currentTable;
-
+var pingArray = new Array(3);
 //Plays the knocking sound
 function knockSound() {
     audioElement.play();
@@ -306,24 +306,23 @@ var pingServer = function(callback) {
     req.send();
 };
 
-function pingForLeader() {    
+function pingNow(pingNumber) {
     var pingTime = 0;
     var prePingTime = new Date().getTime();
     pingServer(function(response) {
         pingTime = new Date().getTime() - prePingTime;
-        prePingTime = new Date().getTime();
 
-        pingServer(function(response) {
-            pingTime = pingTime + new Date().getTime() - prePingTime;
-            prePingTime = new Date().getTime();
-
-            pingServer(function(response) {
-                pingTime = pingTime + new Date().getTime() - prePingTime;
-                pingTime = pingTime/3;
-            }); 
-        }); 
     });
-    return pingTime; 
+    pingArray[pingNumber] = pingTime;
+    if(pingArray[0] != undefined && pingArray[1] != undefined && pingArray[2] != undefined ) {
+        return (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
+    }
+}
+
+function pingForLeader() {    
+   pingNow(0);
+   pingNow(1);
+   pingNow(2);
 }
 
 //Retrieves cafe tables
