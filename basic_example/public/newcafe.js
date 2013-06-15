@@ -311,15 +311,16 @@ function pingNow(pingNumber) {
     var prePingTime = new Date().getTime();
     pingServer(function(response) {
         pingTime = new Date().getTime() - prePingTime;
-
+        pingArray[pingNumber] = pingTime;
+        if(pingArray[0] != undefined && pingArray[1] != undefined && pingArray[2] != undefined ) {
+            return (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
+        }
     });
-    pingArray[pingNumber] = pingTime;
-    if(pingArray[0] != undefined && pingArray[1] != undefined && pingArray[2] != undefined ) {
-        return (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
-    }
+
 }
 
-function pingForLeader() {    
+function pingForLeader() {
+    pingArray = new Array(3);    
    pingNow(0);
    pingNow(1);
    pingNow(2);
