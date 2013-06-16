@@ -227,9 +227,8 @@ function calculateLeader() {
     return highest;
 }
 
-function setLeader(id,ms) {
-    leader[0] = id;
-    leader[1] = ms;
+function setLeader(id) {
+    leader = id;
 }
 
 function getLeader() {
@@ -238,7 +237,7 @@ function getLeader() {
 
 //Tells the room who the leader is.
 function broadcastLeader() {
-    dataStream.sendData({id:'leader',leader:leader[0], ms:leader[1]});
+    dataStream.sendData({id:'leader',leader:leader});
     console.log('broadcasting leader');
 }
 
@@ -973,7 +972,7 @@ window.onload = function () {
                         console.log("There is no seat available at this table!");
                     }
                     //if(leader[0] === 0) leader[0] = calculateLeader;
-                    if(leader[0] === localStream.getID()) {
+                    if(leader === localStream.getID()) {
                         getSnapshots();
                     } 
                     console.log('HÄÄÄÄÄÄÄR TVÅ: ' + room.getStreamsByAttribute('type','media'));
@@ -1007,7 +1006,7 @@ window.onload = function () {
                                 console.log('Snapshot sent at ' + Date.now());
                                 getSnapshots();
                             },1000*60*5);
-                        } else if(leader[0] === localStream.getID()) {
+                        } else if(leader === localStream.getID()) {
                             broadcastLeader();
                             sendNapkinToNewUser();
                             isVideoLoaded(streamEvent.stream.getID());
@@ -1022,7 +1021,7 @@ window.onload = function () {
                     var stream = streamEvent.stream;
                     if (stream.elementID !== undefined) {
                         
-                        if(stream.getID() === leader[0]) {
+                        if(stream.getID() === leader) {
                            /* console.log('kommer jag hit?');
                             leader = calculateLeader();
                             if(leader === localStream.getID()) {
@@ -1035,7 +1034,7 @@ window.onload = function () {
                             }
                             console.log(calculateLeader());*/
                             pingForLeader();
-                        } else if (leader[0] === localStream.getID()) {
+                        } else if (leader === localStream.getID()) {
                             getSnapshots();
                         }
                         
