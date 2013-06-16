@@ -1,15 +1,18 @@
 //(function(){
-var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, leader, urlVideo;
+var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, urlVideo;
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
 var tableId = new Array();
+var leader = [0,0];
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var currentTable;
 var pingArray = new Array(3);
+var groupLatency;
+var isPingDone = false;
 //Plays the knocking sound
 function knockSound() {
     audioElement.play();
@@ -224,8 +227,9 @@ function calculateLeader() {
     return highest;
 }
 
-function setLeader(id) {
-    leader = id;
+function setLeader(id,ms) {
+    leader[0] = id;
+    leader[1] = ms;
 }
 
 function getLeader() {
@@ -234,7 +238,7 @@ function getLeader() {
 
 //Tells the room who the leader is.
 function broadcastLeader() {
-    dataStream.sendData({id:'leader',leader:leader});
+    dataStream.sendData({id:'leader',leader:leader[0], ms:leader[1]});
     console.log('broadcasting leader');
 }
 
@@ -313,19 +317,43 @@ function pingNow(pingNumber) {
         pingTime = new Date().getTime() - prePingTime;
         pingArray[pingNumber] = pingTime;
         if(pingArray[0] != undefined && pingArray[1] != undefined && pingArray[2] != undefined ) {
-            return (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
+            var ms = (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
+            dataStream.sendData({id:'ping', latency:ms, id:localStream.getID()});
         }
     });
 
 }
 
 function pingForLeader() {
-    pingArray = new Array(3);    
-   pingNow(0);
-   pingNow(1);
-   pingNow(2);
+    isPingDone = false;
+    pingArray = new Array(3);
+    groupLatency = new Array(room.getStreamsByAttribute('type','media').length);    
+    pingNow(0);
+    pingNow(1);
+    pingNow(2);
 }
 
+function addPingResult(latency, streamId) {
+    for (var i = 0; i < groupLatency.length; i++) {
+        if(groupLatency[i] == undefined) {
+            groupLatency[i] = [latency,streamId];
+            if(i === (groupLatency.length-1)) {
+                isPingDone = true;
+            }
+        }
+        
+    }
+}
+
+function decideNewLeader() {
+    var lowestPing = groupLatency[0];
+    for (var i = 1; i < groupLatency.length; i++) {
+        if(groupLatency[i][0] < lowestPing[0]) {
+            lowestPing = groupLatency[i];
+        }
+    }
+    setLeader(lowestPing[1], lowestPing[0]);
+}
 //Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
@@ -944,8 +972,8 @@ window.onload = function () {
                         }
                         console.log("There is no seat available at this table!");
                     }
-                    if(leader === undefined) leader = calculateLeader;
-                    if(leader === localStream.getID()) {
+                    //if(leader[0] === 0) leader[0] = calculateLeader;
+                    if(leader[0] === localStream.getID()) {
                         getSnapshots();
                     } 
                     console.log('HÄÄÄÄÄÄÄR TVÅ: ' + room.getStreamsByAttribute('type','media'));
@@ -972,14 +1000,14 @@ window.onload = function () {
                         var currStreams = room.getStreamsByAttribute('type','media');
                         if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
                             console.log('Snapshot sent at ' + Date.now());
-                            leader = localStream.getID();
+                            setLeader(localStream.getID(), 99999);
 
                             getSnapshots();
                             setInterval(function(){
                                 console.log('Snapshot sent at ' + Date.now());
                                 getSnapshots();
                             },1000*60*5);
-                        } else if(leader === localStream.getID()) {
+                        } else if(leader[0] === localStream.getID()) {
                             broadcastLeader();
                             sendNapkinToNewUser();
                             isVideoLoaded(streamEvent.stream.getID());
@@ -993,11 +1021,9 @@ window.onload = function () {
                     // Remove stream from DOM
                     var stream = streamEvent.stream;
                     if (stream.elementID !== undefined) {
-                        console.log('stream: ' + stream.getID());
-                        console.log(stream.getID() === leader);
-                        console.log('leader: ' + leader);
-                        if(stream.getID() === leader) {
-                            console.log('kommer jag hit?');
+                        
+                        if(stream.getID() === leader[0]) {
+                           /* console.log('kommer jag hit?');
                             leader = calculateLeader();
                             if(leader === localStream.getID()) {
                                 console.log('Snapshot sent at ' + Date.now());
@@ -1007,8 +1033,9 @@ window.onload = function () {
                                     getSnapshots();
                                 },1000*60*5);
                             }
-                            console.log(calculateLeader());
-                        } else if (leader === localStream.getID()) {
+                            console.log(calculateLeader());*/
+                            pingForLeader();
+                        } else if (leader[0] === localStream.getID()) {
                             getSnapshots();
                         }
                         
@@ -1174,6 +1201,12 @@ window.onload = function () {
                                             setLeader(evt.msg.leader);
                                         }
                                         break;
+                                    case "ping":
+                                        addPingResult(evt.message.latency, evt.message.id);
+                                        if(isPingDone === true) {
+                                            decideNewLeader();
+                                            console.log(leader);
+                                        }
                                     case "ytplayer":
                                         if(localStream.showing === true) {
                                             if(evt.msg.state === 1) {
