@@ -318,6 +318,7 @@ function pingNow(pingNumber) {
         if(pingArray[0] != undefined && pingArray[1] != undefined && pingArray[2] != undefined ) {
             var ms = (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
             dataStream.sendData({id:'ping', latency:ms, id:localStream.getID()});
+            addPingResult(ms, localStream.getID());
         }
     });
 
@@ -338,7 +339,9 @@ function addPingResult(latency, streamId) {
             groupLatency[i] = [latency,streamId];
             if(i === (groupLatency.length-1)) {
                 isPingDone = true;
+                decideNewLeader();
             }
+            break;
         }
         
     }
@@ -1202,10 +1205,6 @@ window.onload = function () {
                                         break;
                                     case "ping":
                                         addPingResult(evt.message.latency, evt.message.id);
-                                        if(isPingDone === true) {
-                                            decideNewLeader();
-                                            console.log(leader);
-                                        }
                                     case "ytplayer":
                                         if(localStream.showing === true) {
                                             if(evt.msg.state === 1) {
