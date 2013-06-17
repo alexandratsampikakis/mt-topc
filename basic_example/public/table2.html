@@ -1,227 +1,215 @@
 <html>
-<head>
-    <title>Café</title>
+  <head>
+    <title>iDipity</title>
 
-        <!-- Notify CSS -->
+    <!-- Notify CSS -->
     <link href="/lib/bootstrap-notify-master/css/bootstrap-notify.css" rel="stylesheet">
     <link href="/lib/bootstrap-notify-master/css/styles/alert-bangtidy.css" rel="stylesheet">
     <link href="/lib/bootstrap-notify-master/css/styles/alert-blackgloss.css" rel="stylesheet">
     <link href="/lib/bootstrap-notify-master/css/styles/alert-notification-animations.css" rel="stylesheet">
-
     <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="css/cafeView.css" />
     <link rel="stylesheet" type="text/css" href="css/napkin.css" />
+
     <script type="text/javascript" src="erizo.js"></script>
     <script type="text/javascript" src="napkin.js"></script>
     <script type="text/javascript" src="feedback.js"></script>
     <script src="/lib/three.js/mrdoob-three.js-28136e7/build/three.js"></script>
     <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/loaders/ColladaLoader.js"></script>
     <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/controls/TrackballControls.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
 
-  <div id="nav-top" class="navbar navbar-fixed-top center">
+    <div id="nav-top" class="navbar navbar-fixed-top center">
       <div class="navbar-inner">
-      <a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
-      <a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
-      <a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+        <a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
+        <a class="brand BrandTop" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
+        <a class="brand BrandTop" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
         <ul class="nav">
-          <li><a style="margin-left:-190px;" id="cafeVideoTitle" href="#">Cafés</a></li>
+          <li><a id="cafeVideoTitle" href="#">Cafés</a></li>
         </ul>
         <div id="knocking" class='notifications top-right'></div>
       </div>
-  </div>
+    </div>
 
-  <div id="menuContainer" class="hide">
-      <div id="ddMenu" style="text-align:center;">
+    <div id="menuContainer" class="hide">
+      <div id="ddMenu">
       </div>
       <div id="grippie" class="ui-resizable-handle ui-resizable-s">
-          &#8226;&#8226;&#8226;
+        &#8226;&#8226;&#8226;
       </div>
-  </div>
+    </div>
 
-  <div id="enterName" style="margin-top: 40px;">
-      <center><form class="form-inline" style>
+    <div id="enterName">
+      <center>
+        <form class="form-inline" style>
           <input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
           <button id="submitUsername" class="btn btn-small">Enter Café</button>
-      </form></center>
-  </div>
-
-  <div id="canvases" class="hide"></div>
-  <div id="vidcontainer2" class="hide">
-        <div id="vid1" class="hide" style="width: 320px; height: 240px"></div>
-
-        <div id="vid2" class="hide" style="width: 320px; height: 240px"></div>
-
-        <div id="vid3" class="hide" style="width: 320px; height: 240px"></div>
-
-        <div id="vid4" class="hide" style="width: 320px; height: 240px"></div>
-
-        <div id="vid5" class="hide" style="width: 320px; height: 240px"></div>
-
-        <div id="vid6" class="hide" style="width: 320px; height: 240px"></div>
-  </div>
-
-  <div id="overhearingContainer" class="hide">
-    <div id="overhear1">
+        </form>
+      </center>
     </div>
-    <div id="overhear2">
-    </div>
-    <div id="overhear3">
-    </div>
-    <div id="overhear4">
-    </div>
-    <div id="overhear5">
-    </div>
-    <div id="overhear6">
-    </div>
-  </div>
 
-  <div id="answer" class='notifications center'></div>
+    <div id="canvases" class="hide"></div>
+    <div id="vidcontainer2" class="hide">
+      <div id="vid1" class="hide vidSize"></div>
+      <div id="vid2" class="hide vidSize"></div>
+      <div id="vid3" class="hide vidSize"></div>
+      <div id="vid4" class="hide vidSize"></div>
+      <div id="vid5" class="hide vidSize"></div>
+      <div id="vid6" class="hide vidSize"></div>
+    </div>
 
-<div id="theTable" class="hide">
-  <div id="videoTab" class="tabbable" style="position:absolute; margin-left: 30%; margin-top: 2%; width: 40%;">
-      <ul class="nav nav-tabs myShadow" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
-          <li class="active"><a href="#shareYTVideo" data-toggle="tab" style="border: 1px solid #ddd; color: #555555; background-color: #ffffff; border-bottom-color: white; ">Share video</a></li>
+    <div id="overhearingContainer" class="hide">
+      <div id="overhear1">
+      </div>
+      <div id="overhear2">
+      </div>
+      <div id="overhear3">
+      </div>
+      <div id="overhear4">
+      </div>
+      <div id="overhear5">
+      </div>
+      <div id="overhear6">
+      </div>
+    </div>
+
+    <div id="answer" class='notifications center'></div>
+    <div id="theTable" class="hide">
+      <div id="videoTab" class="tabbable">
+        <ul class="nav nav-tabs myShadow" id="myTab">
+          <li class="active tabStyle"><a href="#shareYTVideo" data-toggle="tab">Share video</a></li>
           <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
-      </ul>
-
-      <div class="tab-content tableBox myShadow" style="border: 1px solid #ddd; margin-left: -0.5px;">
+        </ul>
+        <div class="tab-content tableBox myShadow">
           <div class="tab-pane active" id="shareYTVideo">
-              <center>
-                  <div id="writeUrl" style="margin-top: 10px;">
-                      <form class="form-inline">
-                          <input type="text" id="VideoUrl" class="input-xlarge">
-                          <button type="submit" id="getVideoUrl" class="btn btn-mini">Show video</button>
-                          <button id="closeVideo" class="btn btn-mini hide" style="float: right; margin-right: 10px;">Close video</button>
-                      </form>
-                  </div>
-                  <p><div id="youtubeVideo" class="embed-container hide">
-                  <a href="javascript:void(0);" onclick="play();">Play</a>
-                  </div></p>
-              </center>
+            <center>
+              <div id="writeUrl" style="margin-top: 10px;">
+                <form class="form-inline">
+                  <input type="text" id="VideoUrl" class="input-xlarge">
+                  <button type="submit" id="getVideoUrl" class="btn btn-mini">Show video</button>
+                  <button id="closeVideo" class="btn btn-mini hide" style="float: right; margin-right: 10px;">Close video</button>
+                </form>
+              </div>
+              <p>
+              <div id="youtubeVideo" class="embed-container hide">
+                <a href="javascript:void(0);" onclick="play();">Play</a>
+              </div>
+              </p>
+            </center>
           </div>
+        </div>
       </div>
-  </div>
-
-  <div id="napkinTab" class="tabbable" style="position:absolute; margin-left: 31%; margin-top: 5%; width: 40%;">
-      <ul class="nav nav-tabs myShadow" id="myTab" style="margin-top: 10px; margin-bottom: 10px;">
-          <li class="active"><a href="#napkin" data-toggle="tab" style="border: 1px solid #ddd; color: #555555; background-color: #ffffff; border-bottom-color: white; ">Napkin</a></li>
-          <!--<button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>-->
-      </ul>
-
-      <div class="tab-content tableBox myShadow" style="padding-bottom: 10px; border: 1px solid #ddd; margin-left: -0.5px;">
+      <div id="napkinTab" class="tabbable">
+        <ul class="nav nav-tabs myShadow" id="myTab">
+          <li class="active tabStyle"><a href="#napkin" data-toggle="tab">Napkin</a></li>
+        </ul>
+        <div class="tab-content tableBox myShadow">
           <div class="tab-pane active" id="napkin">
-            <center><div id="controls" style="padding-top: 10px;">
-              <select id="thickness" class="selectpicker" data-width="80px" title='Size' data-style="btn btn-mini" style="width: 15%;">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-
-          <select id="color" class="selectpicker" data-width="80px" title='Color' data-style="btn btn-mini" style="width: 15%;">
-            <option value="#FFFFFF">Grey</option>
-            <option value="#000000">Black</option>
-            <option value="#61b7e2">Blue</option>
-            <option value="#e261b7">Pink</option>
-            <option value="#ffff4d">Yellow</option>
-            <option value="#b7e261">Green</option>
-            <option value="#a5682a">Brown</option>
-            <option value="#ff0000">Red</option>
-          </select>
-
-          <button id="saveNapkin" style="margin-top: -10px" class="btn btn-mini">Save napkin</button>
-          <button id="clearNapkin" style="margin-top: -10px" class="btn btn-mini">Clear napkin</button>
-      </div></center>
-
-      <center><canvas id="canvasNapkin" onselectstart="return false;"></canvas></center>
-      <img id="myNapkinImg">
+            <center>
+              <div id="controls" class="napkinControl">
+                <select id="thickness" class="selectpicker selectpickerWidth" data-width="80px" title='Size' data-style="btn btn-mini">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                </select>
+                <select id="color" class="selectpicker selectpickerWidth" data-width="80px" title='Color' data-style="btn btn-mini">
+                  <option value="#FFFFFF">Grey</option>
+                  <option value="#000000">Black</option>
+                  <option value="#61b7e2">Blue</option>
+                  <option value="#e261b7">Pink</option>
+                  <option value="#ffff4d">Yellow</option>
+                  <option value="#b7e261">Green</option>
+                  <option value="#a5682a">Brown</option>
+                  <option value="#ff0000">Red</option>
+                </select>
+                <button id="saveNapkin" class="btn btn-mini napkinMargin">Save napkin</button>
+                <button id="clearNapkin" class="btn btn-mini napkinMargin">Clear napkin</button>
+              </div>
+            </center>
+            <center>
+              <canvas id="canvasNapkin" onselectstart="return false;"></canvas>
+            </center>
+            <img id="myNapkinImg">
           </div>
-
+        </div>
       </div>
-  </div>
-        <textarea rows="6" id="chatArea" style="font-size:9pt;"></textarea>
-      <form class="form-inline" style="margin:0px;">
-          <input type="text" id="chatMessage" class="input-xlarge">
-          <button type="submit" id="sendMessage" class="btn btn-small">Send</button>
+      <textarea rows="6" id="chatArea"></textarea>
+      <form class="form-inline chatMargin">
+        <input type="text" id="chatMessage" class="input-xlarge">
+        <button type="submit" id="sendMessage" class="btn btn-small">Send</button>
       </form>
+    </div>
 
-</div>
-
-  <div id="feedbackModal" class="modal hide fade in" style="display: none; ">
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
-            <h3>Leave some feedback</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="feedbackMail">Your email:</label>
-                <div class="controls">
-                    <input type="text" id="feedbackMail" class="input-xlarge">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="feedbackSubject">Subject</label>
-                <div class="controls">
-                    <input type="text" id="feedbackSubject" class="input-xlarge">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="feedbackMessage">Message</label>
-                <div class="controls">
-                    <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
-                </div>
-            </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-              <a href="#" id="sendFeedback" class="btn btn-small btn-success">Send feedback</a>
-              <a href="#" id="closeFeedback" class="btn btn-small" data-dismiss="modal">Close</a>
-        </div>
-  </div>
-  <div class="navbar navbar-fixed-bottom">
-      <div class="navbar-inner">
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
-        <a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
-        <a class="brand" style="font-size: 14px;" href="#feedbackModal" data-toggle="modal"><b>Feedback / Bug report</b></a>
+    <div id="feedbackModal" class="modal hide fade in styleDisplayNone">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Leave some feedback</h3>
       </div>
-  </div>   
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label" for="feedbackMail">Your email:</label>
+            <div class="controls">
+              <input type="text" id="feedbackMail" class="input-xlarge">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="feedbackSubject">Subject</label>
+            <div class="controls">
+              <input type="text" id="feedbackSubject" class="input-xlarge">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="feedbackMessage">Message</label>
+            <div class="controls">
+              <textarea type="text" rows="8" id="feedbackMessage" Class="widthHundredProcent"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" id="sendFeedback" class="btn btn-small btn-success">Send feedback</a>
+        <a href="#" id="closeFeedback" class="btn btn-small" data-dismiss="modal">Close</a>
+      </div>
+    </div>
 
-  <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
-  <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
+        <a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+        <a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
+        <a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
+        <a class="brand brandBot" href="#feedbackModal" data-toggle="modal"><b>Feedback / Bug report</b></a>
+      </div>
+    </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-
-  <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.WindowResize.js"></script>
-  <script type="text/javascript" src="table2.js"></script>
-
-
-
-  <script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
-  <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
-  <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
-  <script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
+    <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/lib/three.js/mrdoob-three.js-28136e7/examples/js/THREEx.WindowResize.js"></script>
+    <script type="text/javascript" src="table2.js"></script>
+    <script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
+    <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
+    <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
     <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-  <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
-  <script type="text/javascript" src="/lib/swfobject/src/swfobject.js"></script>
+    <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/lib/swfobject/src/swfobject.js"></script>
     <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tab.js"></script>
     <script type="text/javascript" src="/tab.js"></script>
     <script type="text/javascript" src="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.js"></script>
     <script type="text/javascript" src="/lib/FileSaver.js-master/FileSaver.min.js"></script>
     <script type="text/javascript" src="/lib/canvas-toBlob.js-master/canvas-toBlob.js"></script>
-</body>
+  </body>
 </html>

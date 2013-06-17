@@ -1,9 +1,9 @@
 var room, cafe, serverUrl;
-//var tableId = "513dcfda07aa2f143700001c";
 var tableId = new Array();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var currentTable;
+
 //knock
 var localStream, dataStream, nameOfUser, leader;
 var audioElement;
@@ -12,9 +12,10 @@ var knockListNo = new Object();
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 
-//
+
 var cvGroup = new THREE.Object3D();
 var currentState = "CAFEVIEW";
+
 //overhear
 var isOverhearing = null;
 var overhearGroup;
@@ -23,11 +24,12 @@ var oSeePosition = [[],[-32/3,0,0],[0,0,0],[32/3,0,0],[-32/3,-10,0],[0,-10,0],[3
 var tvPosition = [[],[-10,4,0,0.2*Math.PI],[10,4,0,-0.2*Math.PI],[-10,0,0,0.2*Math.PI],[10,0,0,-0.2*Math.PI],[-10,-4,0,0.2*Math.PI],[10,-4,0,-0.2*Math.PI]];
 var overhearStream;
 var streams = [];
-//
+
 var chairImg = new Image();
 var emptyImg = new Image();
 var overhearImg = new Image();
 var vid, videoTexture, geometry, streamer, videoImageContext, dae, skin;
+
 //Tableview
 var tvGroup;
 var reflectionCamera;
@@ -49,7 +51,7 @@ var mouseXOnMouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 
 var clickTime;
-//
+
 var placeHolderData;
 
 var scene = new THREE.Scene();
@@ -293,14 +295,11 @@ var initCafeview = function() {
     raycaster = new THREE.Raycaster();
 
     var movieMaterial = new THREE.MeshBasicMaterial( { color:'#000000' } );
-    // the geometry on which the movie will be displayed;
-    //      movie image will be scaled to fit these dimensions.
     movieGeometry = new THREE.PlaneGeometry(  32, 20);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(0,-5,-0.01);
     cvGroup.add(movieScreen);
     scene.add(cvGroup);
-    //document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
    
@@ -308,7 +307,6 @@ var initCafeview = function() {
 
 var initTableview = function() {
     // CAMERAS
-    // camera 2
     tvGroup = new THREE.Object3D();
     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
     tvGroup.add(textureCamera);
@@ -321,6 +319,7 @@ var initTableview = function() {
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
+
     for (var i = 0; i < 6; i++)
        materialArray[i].side = THREE.BackSide;
     var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
@@ -340,9 +339,6 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
 }
 
-/*function onDocumentMouseMove( event ) {
-    
-}*/
 var intersects = null;
 function onDocumentMouseDown( event ) {
     if(currentState === "CAFEVIEW") {
@@ -368,14 +364,6 @@ function onDocumentMouseDown( event ) {
         console.log(intersects);
         console.log(objectToRotate);
     }
-    /*
-    // Parse all the faces
-    for ( var i in intersects ) {
-
-        intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xffffff | 0x80000000 );
-
-    }
-    */
 }
 
 function onDocumentMouseMove( event ) {
@@ -463,15 +451,11 @@ function render() {
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
                 if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
-                //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
                 INTERSECTED = intersects[ 0 ].object;
-                /*INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-                INTERSECTED.material.emissive.setHex( 0xff0000 );*/
                 rotationY = INTERSECTED.rotation.y;
                 INTERSECTED.rotation.y = 0;
             }
         } else {
-            //if ( INTERSECTED ) //INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
             if(INTERSECTED)INTERSECTED.rotation.y = rotationY;
             INTERSECTED = null;
         }
@@ -487,8 +471,6 @@ function render() {
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight-82 );
     renderer.render( scene, camera );
-
-
 }
 
 var StreamObject = function(video, texture, context){
@@ -577,10 +559,6 @@ function loadImage(imageData, elementID, pos) {
         videoTexture2.minFilter = THREE.LinearFilter;
         videoTexture2.magFilter = THREE.LinearFilter;
         videoTexture2.needsUpdate = true;
-        //var x = room.getStreamsByAttribute('type','media').length;
-        //var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
-        // the geometry on which the movie will be displayed;
-        //movie image will be scaled to fit these dimensions.
         var materialArray = [];
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
@@ -588,16 +566,14 @@ function loadImage(imageData, elementID, pos) {
         materialArray.push(new THREE.MeshBasicMaterial( { color: '#000000' }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture }));
         materialArray.push(new THREE.MeshBasicMaterial( { map: videoTexture2 }));
-        /*for (var i = 0; i < 6; i++)
-            materialArray[i].side = THREE.BackSide;*/
         var skyboxMaterial = new THREE.MeshFaceMaterial( materialArray );
         var skyboxGeom = new THREE.CubeGeometry( 4, 3, 0.3, 1, 1, 1 );
-        //var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
         var movieScreen = new THREE.Mesh( skyboxGeom, skyboxMaterial );
         movieScreen.position.set(x,y,z);
         movieScreen.name = pos;
         cvGroup.add(movieScreen);
     };
+
     myImage.src = imageData;
     myImage.className = 'centerImage';
 }
@@ -609,7 +585,6 @@ function initOSVideo(stream,pos) {
     var vid, canvas;
 
     vid = stream.player.video;
-    //document.getElementById('streamundefined');
     
     vid.style.width = '320px';
     vid.style.height = '240px';
@@ -620,10 +595,7 @@ function initOSVideo(stream,pos) {
     videoTexture = new THREE.Texture( canvas );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
-    //var x = room.getStreamsByAttribute('type','media').length;
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true } );
-    // the geometry on which the movie will be displayed;
-    //      movie image will be scaled to fit these dimensions.
     movieGeometry = new THREE.PlaneGeometry(  32/3, 10);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(x,y,z);
@@ -655,10 +627,7 @@ function initVideo(stream,pos) {
     videoTexture = new THREE.Texture( canvas );
     videoTexture.minFilter = THREE.LinearFilter;
     videoTexture.magFilter = THREE.LinearFilter;
-    //var x = room.getStreamsByAttribute('type','media').length;
     var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
-    // the geometry on which the movie will be displayed;
-    //      movie image will be scaled to fit these dimensions.
     movieGeometry = new THREE.PlaneGeometry(  4, 4);
     var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
     movieScreen.position.set(x,y,z);
@@ -668,8 +637,6 @@ function initVideo(stream,pos) {
     streams.push(newStream);
     if(pos === 5) {
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.3 } );
-        // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
         var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
         reflection.position.set(-8.69,-6,0.71);
@@ -678,8 +645,6 @@ function initVideo(stream,pos) {
     }
     if(pos === 6) {
         var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide , transparent: true, opacity: 0.5 } );
-        // the geometry on which the movie will be displayed;
-        //      movie image will be scaled to fit these dimensions.
         var movieGeometry = new THREE.PlaneGeometry(  4.16, 4.16);
         reflection = new THREE.Mesh( movieGeometry, movieMaterial );
         reflection.position.set(8.69,-6,0.71);
@@ -691,7 +656,6 @@ function initVideo(stream,pos) {
 window.onload = function () {
     cafe = getQueryString('cafe');
     chairImg.src="/img/emptyChair.jpg";
-    //emptyImg.src="/img/emptyTable.gif";
     overhearImg.src = "/img/clicktooverhear.png";
     loadPlaceholder();
 
@@ -705,7 +669,6 @@ window.onload = function () {
         }, 100);
     });
 
-    //focus "enternametextfield"
     $("#userName").focus();
 
     getCafeTables(cafe, function (response) {
@@ -737,9 +700,6 @@ window.onload = function () {
                                 imgData = res.records[j].imageData;
                                 loadImage(imgData, imgID,i);
                                 hasImage = true;
-                                //
-                                //
-
                             }
                             console.log(imgID);
                         }
@@ -752,7 +712,7 @@ window.onload = function () {
         }
     });
     
-        //Initializes the audio element used for playing the knocking sound
+    //Initializes the audio element used for playing the knocking sound
     audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
@@ -813,7 +773,7 @@ window.onload = function () {
     }
 
     
-    var h = parseInt($("#menuContainer").css('height')); //height mentioned in css- feel free to change
+    var h = parseInt($("#menuContainer").css('height'));
     var open = false;
     $("#menuContainer").resizable({ 
             handles: {
@@ -865,7 +825,6 @@ window.onload = function () {
         dataStream.sendData({id:'popup', user:nameOfUser});
         return false;
     });
-
 }
 
     var askToJoinTablePopup = function(nameOfUser) {
@@ -919,11 +878,13 @@ window.onload = function () {
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
-//loops through and takes a snapshot of each stream. Merges into one image, sends to server.
+    
+    //loops through and takes a snapshot of each stream. Merges into one image, sends to server.
     function getSnapshots() {
         //Width and height of popover where the image will be displayed.
         var w = 320;
         var h = 200
+
         //Get all media streams
         var streams = room.getStreamsByAttribute('type','media');
         var length = streams.length;
@@ -982,8 +943,7 @@ window.onload = function () {
         canvas2.height = 200;
         myImage.onload = function(){
             context2.drawImage(myImage, 0, 0,w,h);
-            //console.log(canvas);
-            //document.body.appendChild(canvas2);
+
             //Convert to base64 and send to server.
             sendTableImg(cafe, canvas2.toDataURL(), room.roomID, function (response) {
                 console.log(response);
@@ -1007,7 +967,6 @@ var createToken = function(roomId, userName, role, callback) {
     req.open('POST', url, true);
 
     req.setRequestHeader('Content-Type', 'application/json');
-    //console.log("Sending to " + url + " - " + JSON.stringify(body));
     req.send(JSON.stringify(body));
 };
 
@@ -1050,12 +1009,15 @@ var knock = function(roomId) {
                 };
 
                 room.addEventListener("room-connected", function (roomEvent) {
+
                     // Publish my stream
                     room.publish(dataStream);
+
                     //If table is empty
                     if(room.getStreamsByAttribute('type','media').length === 0) {
                         initialize(roomId);
                     }
+
                     // Subscribe to other streams
                     subscribeToStreams(room.getStreamsByAttribute('type','data'));
                 });
@@ -1184,12 +1146,14 @@ var overhear = function(roomId) {
             };
 
             room.addEventListener("room-connected", function (roomEvent) {
+
                 // Publish my stream
                 //room.publish(overhearStream);
                 //If table is empty
                 if(room.getStreamsByAttribute('type','media').length === 0) {
                     console.log('Room is empty!')
                 } else {
+
                     // Subscribe to other streams
                     subscribeToStreams(room.getStreamsByAttribute('type','media'));
                 }
@@ -1213,6 +1177,7 @@ var overhear = function(roomId) {
             });
 
             room.addEventListener("stream-removed", function (streamEvent) {
+
                 // Remove stream from DOM
                 var stream = streamEvent.stream;
                 if (stream.elementID !== undefined) {
@@ -1234,11 +1199,8 @@ var overhear = function(roomId) {
     setVisibility(false, cvGroup); 
     $('#theTable').show();
     $('#menuContainer').show();
-    /*$('#leaveTableButton').show();
-    $('#videoTab').show();
-    $('#napkinTab').show();*/
 
-        //Send chat message
+    //Send chat message
     $('#sendMessage').click(function() {
         if($('#chatMessage').val() !== "") {
             sendChatMessage($('#chatMessage').val());
@@ -1401,6 +1363,7 @@ var overhear = function(roomId) {
         });
 
         room.addEventListener("stream-added", function (streamEvent) {
+
             // Subscribe to added streams
             var streams = [];
             streams.push(streamEvent.stream);
@@ -1415,6 +1378,7 @@ var overhear = function(roomId) {
             if(streamEvent.stream.getAttributes().type === "media"){
                 hasJoinedTheRoom(streamEvent.stream.getAttributes().username);
             }
+
             //If table is empty, become the leader
             var currStreams = room.getStreamsByAttribute('type','media');
             if(currStreams.length === 1 && parseInt(currStreams[0].getID()) === localStream.getID()) {
@@ -1434,6 +1398,7 @@ var overhear = function(roomId) {
         });
 
         room.addEventListener("stream-removed", function (streamEvent) {
+
             // Remove stream from DOM
             var stream = streamEvent.stream;
             if (stream.elementID !== undefined) {
@@ -1464,7 +1429,8 @@ var overhear = function(roomId) {
  
 
         localStream.show("vid1");
-    // Publish my stream
+        
+        // Publish my stream
         room.publish(localStream);
 
         // Subscribe to other streams
