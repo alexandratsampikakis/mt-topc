@@ -20,12 +20,6 @@
 	margin-top: -12px;
 }
 
-.myShadow {
-	-webkit-box-shadow: -9px 8px 8px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow:    -9px 8px 8px rgba(50, 50, 50, 0.75);
-	box-shadow:         -9px 8px 8px rgba(50, 50, 50, 0.75);
-}
-
 .myTextStyle {
 	text-align: justify;
 }
