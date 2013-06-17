@@ -1,0 +1,55 @@
+.BrandTop {
+	font-size: 14px;
+	margin-top:2px;
+}
+
+.brandBot {
+	font-size: 14px;
+}
+
+.backgroundBox {
+	height: 300px;
+	padding: 100px;
+	margin-top: 30px;
+	background-image: url('/img/Backgrounds/p5/pinkp5_@2X.png');
+	background-repeat: repeat;
+}
+
+.tableBox {
+	background-color: white;
+	margin-top: -12px;
+}
+
+.myShadow {
+	-webkit-box-shadow: -9px 8px 8px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    -9px 8px 8px rgba(50, 50, 50, 0.75);
+	box-shadow:         -9px 8px 8px rgba(50, 50, 50, 0.75);
+}
+
+.myTextStyle {
+	text-align: justify;
+}
+
+.backgroundBoxTwoD {
+	background-image: url('/img/Backgrounds/p5/p5_@2X.png');
+	background-repeat: repeat;
+}
+
+.backgroundBoxThreeD {
+	background-image: url('/img/Backgrounds/grey_wash_wall/bluegrey_wash_wall_@2X.png');
+	background-repeat: repeat;
+}
+
+.h1Welcome {
+	font-size: 50px;
+}
+
+.h1To {
+	font-size: 40px;
+	margin-left: 30px;
+}
+
+.h1iDipity {
+	font-size: 60px;
+	margin-left: 10px;
+}
