@@ -1204,7 +1204,7 @@ window.onload = function () {
                                         }
                                         break;
                                     case "ping":
-                                        addPingResult(evt.message.latency, evt.message.streamId);
+                                        addPingResult(evt.msg.latency, evt.msg.streamId);
                                     case "ytplayer":
                                         if(localStream.showing === true) {
                                             if(evt.msg.state === 1) {
