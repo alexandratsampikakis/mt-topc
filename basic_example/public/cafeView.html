@@ -1,118 +1,106 @@
 <html>
-<head>
-    <title id="cafeTitle">iDipity</title>
-    <link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<head>
+		<title id="cafeTitle">iDipity</title>
+		<link href="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
-    <!-- Notify CSS -->
-    <link href="/lib/bootstrap-notify-master/css/bootstrap-notify.css" rel="stylesheet">
-    <link href="/lib/bootstrap-notify-master/css/styles/alert-bangtidy.css" rel="stylesheet">
-    <link href="/lib/bootstrap-notify-master/css/styles/alert-blackgloss.css" rel="stylesheet">
-    <link href="/lib/bootstrap-notify-master/css/styles/alert-notification-animations.css" rel="stylesheet">
+		<!-- Notify CSS -->
+		<link href="/lib/bootstrap-notify-master/css/bootstrap-notify.css" rel="stylesheet">
+		<link href="/lib/bootstrap-notify-master/css/styles/alert-bangtidy.css" rel="stylesheet">
+		<link href="/lib/bootstrap-notify-master/css/styles/alert-blackgloss.css" rel="stylesheet">
+		<link href="/lib/bootstrap-notify-master/css/styles/alert-notification-animations.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/cafeView.css" />
+		<link rel="stylesheet" type="text/css" href="css/napkin.css" />
+		<link rel="stylesheet" type="text/css" href="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.css" />
+		<script type="text/javascript" src="erizo.js"></script>
+		<script type="text/javascript" src="newcafe.js"></script>
+		<script type="text/javascript" src="feedback.js"></script>
+		<script type="text/javascript" src="napkin.js"></script>
+	</head>
+	<body>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/cafeView.css" />
-    <link rel="stylesheet" type="text/css" href="css/napkin.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.css" />
-
-    <script type="text/javascript" src="erizo.js"></script>
-    <script type="text/javascript" src="newcafe.js"></script>
-    <script type="text/javascript" src="feedback.js"></script>
-    <script type="text/javascript" src="napkin.js"></script>
-</head>
-
-<body>
-
-	<div id="nav-top" class="navbar navbar-fixed-top center">
-  		<div class="navbar-inner">
-			<a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
-			<a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
-			<a class="brand" style="font-size: 14px; margin-top:2px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-	    		<!--<a href="#" class="brand"style="float: right; font-size: 14px;">Login</a>-->
-	    	<ul class="nav">
-		      <li><a style="margin-left:-190px;" id="cafeVideoTitle" href="#"></a></li>
-		    </ul>
-	    	<div id="knocking" class='notifications top-right'></div>
-  		</div>
-	</div>
-
-	<div id="menuContainer" class="hide">
-	    <div id="ddMenu" style="text-align:center;">
-	    </div>
-	    <div id="grippie" class="ui-resizable-handle ui-resizable-s">
-	        &#8226;&#8226;&#8226;
-	    </div>
-	</div>
-
-	<div class="container-fluid" style="margin-top: 30px; height:100%;">
-		<div id="enterNameRow" class="row-fluid">
-
-    		<div class="span2" id="menuList">
-      			<!--<ul class="nav nav-list">
-      				<li class="nav-header">Menu</li>
-      				<li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
-					<li class="nav-header">Café</li>
-					<li><a href="#">User guide</a></li>
-					<li><a href="#">Favorites</a></li>
-					<li><a href="#">Recent</a></li>
-					<li><a href="#">Hot</a></li>
-					<li><a href="#">Find cafés</a></li>
-
-					<li class="nav-header">Events</li>
-					<li><a href="#">Calendar</a></li>		
-
-					<li class="nav-header">My pages</li>
-					<li><a href="#">Profile</a></li>  
-					<li><a href="#">Friends</a></li> 
-				</ul>-->
-    		</div>
-
-			<div id="enterName">
-				<div class="span8">
-					<center><form class="form-inline">
-						<input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
-						<button id="submitUsername" class="btn btn-small">Enter Café</button>
-					</form></center>
-				</div>
+		<div id="nav-top" class="navbar navbar-fixed-top center">
+			<div class="navbar-inner">
+				<a class="brand" href="http://satin.research.ltu.se:3001/">iDipity</a>
+				<a class="brand BrandTop" href="http://satin.research.ltu.se:3001/"><small>Home</small></a>
+				<a class="brand BrandTop" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+				<ul class="nav">
+					<li><a id="cafeVideoTitle" href="#"></a></li>
+				</ul>
+				<div id="knocking" class='notifications top-right'></div>
 			</div>
+		</div>
 
-	    	<div id="tablecontainer" class="span6 offset1 hide">
-		    		<div id="answer" class='notifications center'></div>
+		<div id="menuContainer" class="hide">
+			<div id="ddMenu">
+			</div>
+			<div id="grippie" class="ui-resizable-handle ui-resizable-s">
+				&#8226;&#8226;&#8226;
+			</div>
+		</div>
 
-		    		<div id="rooms">
-		    			<div class="row-fluid">
-			    			<ul class="thumbnails">
+		<div class="container-fluid container-fluidStyle">
+			<div id="enterNameRow" class="row-fluid">
+				<div class="span2" id="menuList">
+				</div>
+
+				<div id="enterName">
+					<div class="span8">
+						<center>
+							<form class="form-inline">
+								<input class="input-xlarge" type="text" id="userName" placeholder="Enter name">
+								<button id="submitUsername" class="btn btn-small">Enter Café</button>
+							</form>
+						</center>
+					</div>
+				</div>
+
+				<div id="tablecontainer" class="span6 offset1 hide">
+					<div id="answer" class='notifications center'></div>
+					<div id="rooms">
+						<div class="row-fluid">
+							<ul class="thumbnails">
 								<li class="span4">
-								  	<div class="thumbnail" style="background-color:rgb(27,27,27);">
-										<center><h3 style="color:rgb(236,236,236);">Table 1</h3></center>
-								    	<div id="table1img" class="tableImg"></div>
-								    	<div id="overhearingContainer1"></div>
-									    <div class="caption">
-											<p align="center"><a id="table1" href="#" class="btn btn-mini" style="width: 37%;">Join table</a>
-								        	<a href="#" id="ohtable1" class="btn btn-mini ohbutton" style="width: 37%; margin-left: 5;">Overhear</a><a href="#" id="stopohtable1" class="btn btn-mini hide stopohbutton" style="width: 37%; margin-left: 5;">Stop</a></p>
-								        </div>
+									<div class="thumbnail thumbnailBackground">
+										<center>
+											<h3 class="textColorLightGrey">Table 1</h3>
+										</center>
+										<div id="table1img" class="tableImg"></div>
+										<div id="overhearingContainer1"></div>
+										<div class="caption">
+											<p align="center"><a id="table1" href="#" class="btn btn-mini widthStyleOne">Join table</a>
+												<a href="#" id="ohtable1" class="btn btn-mini ohbutton widthStyleTwo">Overhear</a><a href="#" id="stopohtable1" class="btn btn-mini hide stopohbutton widthStyleTwo">Stop</a>
+											</p>
+										</div>
 									</div>
 								</li>
 								<li class="span4">
-									<div class="thumbnail" style="background-color:rgb(27,27,27);">
-										<center><h3 style="color:rgb(236,236,236);">Table 2</h3></center>
-								    	<div id="table2img" class="tableImg"></div>
-								    	<div id="overhearingContainer2"></div>
-									    <div class="caption">
-											<p align="center"><a id="table2" href="#" class="btn btn-mini" style="width: 37%;">Join table</a>
-								        	<a href="#" id="ohtable2" class="btn btn-mini ohbutton" style="width: 37%; margin-left: 5;">Overhear</a><a href="#" id="stopohtable2" class="btn btn-mini hide stopohbutton" style="width: 37%; margin-left: 5;">Stop</a></p>			
-								        </div>
-								    </div>
+									<div class="thumbnail thumbnailBackground">
+										<center>
+											<h3 class="textColorLightGrey">Table 2</h3>
+										</center>
+										<div id="table2img" class="tableImg"></div>
+										<div id="overhearingContainer2"></div>
+										<div class="caption">
+											<p align="center"><a id="table2" href="#" class="btn btn-mini widthStyleOne">Join table</a>
+												<a href="#" id="ohtable2" class="btn btn-mini ohbutton widthStyleTwo">Overhear</a><a href="#" id="stopohtable2" class="btn btn-mini hide stopohbutton widthStyleTwo">Stop</a>
+											</p>
+										</div>
+									</div>
 								</li>
 								<li class="span4">
-								    <div class="thumbnail" style="background-color:rgb(27,27,27);">
-								    	<center><h3 style="color:rgb(236,236,236);">Table 3</h3></center>
-									    <div id="table3img" class="tableImg"></div>
-									    <div id="overhearingContainer3"></div>
-									    <div class="caption">
-											<p align="center"><a id="table3" href="#" class="btn btn-mini" style="width: 37%;">Join table</a>
-								        	<a href="#" id="ohtable3" class="btn btn-mini ohbutton" style="width: 37%; margin-left: 5;">Overhear</a><a href="#" id="stopohtable3" class="btn btn-mini hide stopohbutton" style="width: 37%; margin-left: 5;">Stop</a></p>
-								        </div>
+									<div class="thumbnail thumbnailBackground">
+										<center>
+											<h3 class="textColorLightGrey">Table 3</h3>
+										</center>
+										<div id="table3img" class="tableImg"></div>
+										<div id="overhearingContainer3"></div>
+										<div class="caption">
+											<p align="center"><a id="table3" href="#" class="btn btn-mini widthStyleOne">Join table</a>
+												<a href="#" id="ohtable3" class="btn btn-mini ohbutton widthStyleTwo">Overhear</a><a href="#" id="stopohtable3" class="btn btn-mini hide stopohbutton widthStyleTwo">Stop</a>
+											</p>
+										</div>
 									</div>
 								</li>
 							</ul>
@@ -120,277 +108,233 @@
 						<div class="row-fluid">
 							<ul class="thumbnails">
 								<li class="span4">
-								  	<div class="thumbnail" style="background-color:rgb(27,27,27);">
-								  		<center><h3 style="color:rgb(236,236,236);">Table 4</h3></center>
-									    <div id="table4img" class="tableImg"></div>
-									    <div id="overhearingContainer4"></div>
-									    <div class="caption">
-											<p align="center"><a id="table4" href="#" class="btn btn-mini" style="width: 37%;">Join table</a>
-								        	<a href="#" id="ohtable4" class="btn btn-mini ohbutton" style="width: 37%; margin-left: 5;">Overhear</a><a href="#" id="stopohtable4" class="btn btn-mini hide stopohbutton" style="width: 37%; margin-left: 5;">Stop</a></p>
-									    </div>
-								    </div>
-								</li>
-							    <li class="span4">
-							    	<div class="thumbnail" style="background-color:rgb(27,27,27);">
-							    		<center><h3 style="color:rgb(236,236,236);">Table 5</h3></center>				
-							    		<div id="table5img" class="tableImg"></div>
-							    		<div id="overhearingContainer5"></div>
-									    <div class="caption">
-											<p align="center"><a id="table5" href="#" class="btn btn-mini" style="width: 37%;">Join table</a>
-								        	<a href="#" id="ohtable5" class="btn btn-mini ohbutton" style="width: 37%; margin-left: 5;">Overhear</a><a href="#" id="stopohtable5" class="btn btn-mini hide stopohbutton" style="width: 37%; margin-left: 5;">Stop</a></p>
-									    </div>
-								    </div>
+									<div class="thumbnail thumbnailBackground">
+										<center>
+											<h3 class="textColorLightGrey">Table 4</h3>
+										</center>
+										<div id="table4img" class="tableImg"></div>
+										<div id="overhearingContainer4"></div>
+										<div class="caption">
+											<p align="center"><a id="table4" href="#" class="btn btn-mini widthStyleOne">Join table</a>
+												<a href="#" id="ohtable4" class="btn btn-mini ohbutton widthStyleTwo">Overhear</a><a href="#" id="stopohtable4" class="btn btn-mini hide stopohbutton widthStyleTwo">Stop</a>
+											</p>
+										</div>
+									</div>
 								</li>
 								<li class="span4">
-								   	<div class="thumbnail" style="background-color:rgb(27,27,27);">
-								   		<center><h3 style="color:rgb(236,236,236);">Table 6</h3></center>
-								   		<div id="table6img" class="tableImg"></div>
-								   		<div id="overhearingContainer6"></div>
-								    	<div class="caption">
-								        	<p align="center"><a id="table6" href="#" class="btn btn-mini" style="width: 37%;">Join table</a>
-								        	<a href="#" id="ohtable6" class="btn btn-mini ohbutton" style="width: 37%; margin-left: 5;">Overhear</a><a href="#" id="stopohtable6" class="btn btn-mini hide stopohbutton" style="width: 37%; margin-left: 5;">Stop</a></p>
-								    	</div>
-								    </div>
+									<div class="thumbnail thumbnailBackground">
+										<center>
+											<h3 class="textColorLightGrey">Table 5</h3>
+										</center>
+										<div id="table5img" class="tableImg"></div>
+										<div id="overhearingContainer5"></div>
+										<div class="caption">
+											<p align="center"><a id="table5" href="#" class="btn btn-mini widthStyleOne">Join table</a>
+												<a href="#" id="ohtable5" class="btn btn-mini ohbutton widthStyleTwo">Overhear</a><a href="#" id="stopohtable5" class="btn btn-mini hide stopohbutton widthStyleTwo">Stop</a>
+											</p>
+										</div>
+									</div>
+								</li>
+								<li class="span4">
+									<div class="thumbnail thumbnailBackground">
+										<center>
+											<h3 class="textColorLightGrey">Table 6</h3>
+										</center>
+										<div id="table6img" class="tableImg"></div>
+										<div id="overhearingContainer6"></div>
+										<div class="caption">
+											<p align="center"><a id="table6" href="#" class="btn btn-mini widthStyleOne">Join table</a>
+												<a href="#" id="ohtable6" class="btn btn-mini ohbutton widthStyleTwo">Overhear</a><a href="#" id="stopohtable6" class="btn btn-mini hide stopohbutton widthStyleTwo">Stop</a>
+											</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 						</div>
-		      		</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="inTableRow" class="row-fluid hide roundedCorners inTableRowStyle">
+				<div id="vidcontainer1" class="span3 spanVid">
+					<div id="vid1" class="">
+						<div id="myVideo" class="widthHundredProcent"></div>
+					</div>
+					<div id="vid3" class="widthHundredProcent">
+					</div>
+					<div id="vid5" class="widthHundredProcent">
+					</div>
 				</div>
 
-		    		<!--<div id="rooms">
-			      		<p>
-			      			<div class="span3 offset1 tableBox" id="table1" rel="popover" data-animation="true">
-			      				<b><big>Table 1</big></b>
-			      			</div>
+				<style type="text/css">
+					.bgimg {
+						background-image: url(/img/wood.jpg);
+					}
+				</style>
 
-			      			<div class="span3 tableBox" id="table2"><b><big>Table 2</big></b></div>
-
-			      			<div class="span3 tableBox" id="table3"><b><big>Table 3</big></b></div>
-			      		</p>
-
-			      		<p>
-			      			<div class="span3 offset1 tableBox" id="table4"><b><big>Table 4</big></b></div>
-			      			<div class="span3 tableBox" id="table5"><b><big>Table 5</big></b></div>
-			      			<div class="span3 tableBox" id="table6"><b><big>Table 6</big></b></div>
-			      		</p>
-		      		</div>
-				</div>-->
-		</div>
-
-		<div id="inTableRow" class="row-fluid hide roundedCorners" style="border: 1px solid #1b1b1b; background-color:rgb(27,27,27); margin-bottom: 100px;">
-		<div id="vidcontainer1" class="span3 spanVid" style="margin-left: 1.06478846154%; margin-top: 8px;">
-			<!--<ul class="dropdown" style="margin-left: 0px;">
-			    <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Menu <i class="icon-arrow-down"></i></a>
-			    <ul class="dropdown-menu">
-			        <li><a href="http://satin.research.ltu.se:3001/">Home</a></li>
-			        <li class="nav-header">Café</li>
-			        <li><a href="#">User guide</a></li>
-			        <li><a href="#">Favorites</a></li>
-			        <li><a href="#">Recent</a></li>
-			        <li><a href="#">Hot</a></li>
-			        <li><a href="#">Find cafés</a></li>
-
-			        <li class="nav-header">Events</li>
-			        <li><a href="#">Calendar</a></li>   
-
-			        <li class="nav-header">My pages</li>
-			        <li><a href="#">Profile</a></li>  
-			        <li><a href="#">Friends</a></li> 
-		    	</ul>
-		    </ul>-->
-			<div id="vid1" class="">
-				<div id="myVideo" style="width: 100%;"></div>
-			</div>
-	        <div id="vid3" class="" style="width: 100%;">
-	        </div>
-	        <div id="vid5" class="" style="width: 100%;">
-	        </div>
-		</div>
-
-		<style type="text/css">
-			.bgimg {
-			    background-image: url(/img/wood.jpg);
-			}
-		</style>
-		<div class="span6 bgimg spanTable" id="theTable" style="position: relative; height: 100%; margin-left: 1.06478846154%;">
-			<!--<center><p class="nav-header"><i class="icon-heart"></i><big id="cafeVideoTitle"></big></center></p>-->
-				<!--<button id="shareVideo" class="btn btn-small">Share video</button>-->
-
-			<div class="tabbable span12">
-		        <ul class="nav nav-tabs" id="myTab" style="margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
-		            <li class="active"><a href="#napkin" data-toggle="tab">Napkin</a></li>
-		            <li><a href="#shareYTVideo" data-toggle="tab">Share video</a></li>
-		            <li><a href="#shareDoc" data-toggle="tab">Share documents</a></li>
-		            <button id="leaveTableButton" class="btn btn-mini" style="float: right;">Leave table</button>
-		        </ul>
-
-		        <div class="tab-content">
-		          	<div class="tab-pane active" id="napkin">
-		          		<center><div id="controls">
-			          		<select id="thickness" class="selectpicker" data-width="80px" title='Size' data-style="btn btn-mini">
-						    	<option value="1">1</option>
-							    <option value="2">2</option>
-							    <option value="3">3</option>
-						    	<option value="4">4</option>
-							    <option value="5">5</option>
-							    <option value="10">10</option>
-							    <option value="20">20</option>
-						  	</select>
-
-						  	<select id="color" class="selectpicker" data-width="80px" title='Color' data-style="btn btn-mini">
-						    	<option value="#FFFFFF">Grey</option>
-							    <option value="#000000">Black</option>
-							    <option value="#61b7e2">Blue</option>
-						    	<option value="#e261b7">Pink</option>
-							    <option value="#ffff4d">Yellow</option>
-							    <option value="#b7e261">Green</option>
-							    <option value="#a5682a">Brown</option>
-							    <option value="#ff0000">Red</option>
-						  	</select>
-
-						  	<button id="saveNapkin" style="margin-top: -10px" class="btn btn-mini">Save napkin</button>
-						  	<button id="clearNapkin" style="margin-top: -10px" class="btn btn-mini">Clear napkin</button>
-						</div></center>
-
-						<center><canvas id="canvasNapkin" onselectstart="return false;"></canvas></center>
-						<img id="myNapkinImg">
-		          	</div>
-
-		          	<div class="tab-pane" id="shareYTVideo">
-		          		<center>
-			                <div id="writeUrl">
-								<form class="form-inline">
-									<input type="text" id="VideoUrl" class="input-xlarge">
-									<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
-									<button id="closeVideo" class="btn btn-mini hide" style="float: right; margin-right: 10px;">Close video</button>
-								</form>
+				<div class="span6 bgimg spanTable" id="theTable" style="position: relative; height: 100%; margin-left: 1.06478846154%;">
+					<div class="tabbable span12">
+						<ul class="nav nav-tabs" id="myTab">
+							<li class="active"><a href="#napkin" data-toggle="tab">Napkin</a></li>
+							<li><a href="#shareYTVideo" data-toggle="tab">Share video</a></li>
+							<li><a href="#shareDoc" data-toggle="tab">Share documents</a></li>
+							<button id="leaveTableButton" class="btn btn-mini">Leave table</button>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="napkin">
+								<center>
+									<div id="controls">
+										<select id="thickness" class="selectpicker" data-width="80px" title='Size' data-style="btn btn-mini">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="10">10</option>
+											<option value="20">20</option>
+										</select>
+										<select id="color" class="selectpicker" data-width="80px" title='Color' data-style="btn btn-mini">
+											<option value="#FFFFFF">Grey</option>
+											<option value="#000000">Black</option>
+											<option value="#61b7e2">Blue</option>
+											<option value="#e261b7">Pink</option>
+											<option value="#ffff4d">Yellow</option>
+											<option value="#b7e261">Green</option>
+											<option value="#a5682a">Brown</option>
+											<option value="#ff0000">Red</option>
+										</select>
+										<button id="saveNapkin" class="btn btn-mini napkinMargin">Save napkin</button>
+										<button id="clearNapkin" class="btn btn-mini napkinMargin">Clear napkin</button>
+									</div>
+								</center>
+								<center>
+									<canvas id="canvasNapkin" onselectstart="return false;"></canvas>
+								</center>
+								<img id="myNapkinImg">
 							</div>
-							<p><div id="youtubeVideo" class="embed-container hide">
-									<a href="javascript:void(0);" onclick="play();">Play</a>
-							</div></p>
-						</center>
-		          	</div>
-		          	<div class="tab-pane" id="shareDoc">Show document</div>
-
-		        </div>
-		    </div>
-
-			<textarea rows="6" id="chatArea" style="font-size:9pt;"></textarea>
-			<form class="form-inline">
-				<input type="text" id="chatMessage" class="input-xlarge">
-				<button type="submit" id="sendMessage" class="btn btn-small">Send</button>
-			</form>
-
+							<div class="tab-pane" id="shareYTVideo">
+								<center>
+									<div id="writeUrl">
+										<form class="form-inline">
+											<input type="text" id="VideoUrl" class="input-xlarge">
+											<button type="submit" id="getVideoUrl" class="btn btn-small">Show video</button>
+											<button id="closeVideo" class="btn btn-mini hide">Close video</button>
+										</form>
+									</div>
+									<p>
+									<div id="youtubeVideo" class="embed-container hide">
+										<a href="javascript:void(0);" onclick="play();">Play</a>
+									</div>
+									</p>
+								</center>
+							</div>
+							<div class="tab-pane" id="shareDoc">Show document</div>
+						</div>
+					</div>
+					<textarea rows="6" id="chatArea"></textarea>
+					<form class="form-inline">
+						<input type="text" id="chatMessage" class="input-xlarge">
+						<button type="submit" id="sendMessage" class="btn btn-small">Send</button>
+					</form>
+				</div>
+				<div id="vidcontainer2" class="span3 spanVid">
+					<div id="vid2" class="widthHundredProcent">
+					</div>
+					<div id="vid4" class="widthHundredProcent">
+					</div>
+					<div id="vid6" class="widthHundredProcent">
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<div id="vidcontainer2" class="span3 spanVid" style="margin-left: 1.06478846154%; margin-right: 1.06478846154%; margin-top: 8px;">
-	        <div id="vid2" style="width:100%;">
-	        </div>
-	        <div id="vid4" style="width:100%;">
-	        </div>
-	        <div id="vid6" style="width:100%;">
-	        </div>
+		<div id="overhearingContainer" class="hide">
+			<div id="overhear1">
+			</div>
+			<div id="overhear2">
+			</div>
+			<div id="overhear3">
+			</div>
+			<div id="overhear4">
+			</div>
+			<div id="overhear5">
+			</div>
+			<div id="overhear6">
+			</div>
 		</div>
 
-	    	<!--<div class="span2">
-	      		<ul class="nav nav-list">
-				  	<li class="nav-header">Friends online</li> 
-				</ul>
-	    	</div> -->
-  		</div>
-	</div>
-
-	<div id="overhearingContainer" class="hide">
-		<div id="overhear1">
+		<div id="feedbackModal" class="modal hide fade in styleDisplayNone">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">×</a>
+				<h3>Leave some feedback</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="feedbackMail">Your email:</label>
+						<div class="controls">
+							<input type="text" id="feedbackMail" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="feedbackSubject">Subject</label>
+						<div class="controls">
+							<input type="text" id="feedbackSubject" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="feedbackMessage">Message</label>
+						<div class="controls">
+							<textarea type="text" rows="8" id="feedbackMessage" class="widthHundredProcent"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" id="sendFeedback" class="btn btn-small btn-success">Send feedback</a>
+				<a href="#" id="closeFeedback" class="btn btn-small" data-dismiss="modal">Close</a>
+			</div>
 		</div>
-		<div id="overhear2">
+
+		<div id="nav-bot" class="navbar navbar-fixed-bottom">
+			<div class="navbar-inner">
+				<a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
+				<a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
+				<a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
+				<a class="brand brandBot" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
+				<a class="brand brandBot" href="#feedbackModal" data-toggle="modal"><b>Feedback / Bug report</b></a>
+			</div>
 		</div>
-		<div id="overhear3">
-		</div>
-		<div id="overhear4">
-		</div>
-		<div id="overhear5">
-		</div>
-		<div id="overhear6">
-		</div>
-	</div>
 
-	<div id="feedbackModal" class="modal hide fade in" style="display: none; ">
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
-            <h3>Leave some feedback</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="feedbackMail">Your email:</label>
-                <div class="controls">
-                    <input type="text" id="feedbackMail" class="input-xlarge">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="feedbackSubject">Subject</label>
-                <div class="controls">
-                    <input type="text" id="feedbackSubject" class="input-xlarge">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="feedbackMessage">Message</label>
-                <div class="controls">
-                    <textarea type="text" rows="8" id="feedbackMessage" style="width: 100%;"></textarea>
-                </div>
-            </div>
-          </form>
-        </div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
+		<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
+		<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
+		<script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
+		<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+		<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+		<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
+		<script type="text/javascript" src="/lib/swfobject/src/swfobject.js"></script>
+		<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tab.js"></script>
+		<script type="text/javascript" src="/tab.js"></script>
+		<script type="text/javascript" src="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.js"></script>
+		<script type="text/javascript" src="/lib/FileSaver.js-master/FileSaver.min.js"></script>
+		<script type="text/javascript" src="/lib/canvas-toBlob.js-master/canvas-toBlob.js"></script>
 
-        <div class="modal-footer">
-              <a href="#" id="sendFeedback" class="btn btn-small btn-success">Send feedback</a>
-              <a href="#" id="closeFeedback" class="btn btn-small" data-dismiss="modal">Close</a>
-        </div>
-  </div>
-
-	<div id="nav-bot" class="navbar navbar-fixed-bottom">
-  		<div class="navbar-inner">
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>About</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>User guide</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>FAQ</small></a>
-  			<a class="brand" style="font-size: 14px;" href="http://satin.research.ltu.se:3001/"><small>Contact us</small></a>
-  			<a class="brand" style="font-size: 14px;" href="#feedbackModal" data-toggle="modal"><b>Feedback / Bug report</b></a>
-  		</div>
-	</div>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
-
-	<script type="text/javascript" src="/lib/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script>
-	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>  
-	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
-	<script type="text/javascript" src="/lib/bootstrap-notify-master/js/bootstrap-notify.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-	<script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
-	<script type="text/javascript" src="/lib/swfobject/src/swfobject.js"></script>
-    <script src="/lib/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tab.js"></script>
-    <script type="text/javascript" src="/tab.js"></script>
-    <script type="text/javascript" src="/lib/silviomoreto-bootstrap-select-2dd1ff9/bootstrap-select.js"></script>
-    <script type="text/javascript" src="/lib/FileSaver.js-master/FileSaver.min.js"></script>
-    <script type="text/javascript" src="/lib/canvas-toBlob.js-master/canvas-toBlob.js"></script>
-
-	<script type="text/javascript">
-		$(document).ready(function () {
-      		/*$('.dropdown-toggle').dropdown();*/
-      		$('.selectpicker').selectpicker();
-	    });
-	    
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		ga('create', 'UA-40049760-1', 'idipity.com');
-		ga('send', 'pageview');
-	</script>
-
-</body>
+		<script type="text/javascript">
+			$(document).ready(function () {
+			    		$('.selectpicker').selectpicker();
+			   });
+			   
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-40049760-1', 'idipity.com');
+			ga('send', 'pageview');
+		</script>
+	</body>
 </html>
