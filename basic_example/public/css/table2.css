@@ -164,11 +164,11 @@
 }
 
 #chatArea {
-    font-size: 9pt;
+    font-size: 9pt !important;
 }
 
 .chatMargin {
-  margin: 0px;
+  margin: 0px !important;
 }
 
 .styleDisplayNone {
