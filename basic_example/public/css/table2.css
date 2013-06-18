@@ -135,18 +135,18 @@ a {
 }
 
 .tabPos1{
-  position: 'absolute';
-  margin-left: '31%';
-  margin-top: '5%';
-  width: '40%';
-  z-index: '1';
+  position: absolute;
+  margin-left: 31%;
+  margin-top: 5%;
+  width: 40%;
+  z-index: 1;
 }
 .tabPos2 {
-  position: 'absolute';
-  margin-left: '30%';
-  margin-top: '2%';
-  width: '40%';
-  z-index: '0';
+  position: absolute;
+  margin-left: 30%;
+  margin-top: 2%;
+  width: 40%;
+  z-index: 0;
 }
 #myTab {
     margin-top: 10px;
