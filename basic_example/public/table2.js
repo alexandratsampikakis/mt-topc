@@ -1288,11 +1288,13 @@ var overhear = function(roomId) {
     $('#videoTab').click(function() {
         $('#napkinTab').attr("class","tabbable tabPos2");
         $('#videoTab').attr("class","tabbable tabPos1");
-        $('videoTab').height($('napkinTab').height());
+        
         return false;
     });
-    
+
+    $('videoTab').height($('napkinTab').height());
     $(window).resize(function() {
+        console.log("resize!!!!!!!!!!");
        $('videoTab').height($('napkinTab').height());
     });
 
