@@ -661,11 +661,14 @@ window.onload = function () {
 
     var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
+    $('#shareYTVideo').height($('#napkin').height());
+
     var doit;
     $(window).resize(function() {
         clearTimeout(doit);
         doit = setTimeout(function() {
             redrawNapkin();
+            $('#shareYTVideo').height($('#napkin').height());
         }, 100);
     });
 
@@ -1290,11 +1293,6 @@ var overhear = function(roomId) {
         $('#videoTab').attr("class","tabbable tabPos1");
         
         return false;
-    });
-
-    $('#shareYTVideo').height($('#napkin').height());
-    $(window).resize(function() {
-        $('#shareYTVideo').height($('#napkin').height());
     });
 
     localStream.addEventListener("access-accepted", function () {
