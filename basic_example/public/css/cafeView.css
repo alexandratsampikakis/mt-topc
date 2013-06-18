@@ -112,13 +112,13 @@
 }
 
 .widthHundredProcent {
-    width: 100%;
+    width: 100% !important;
 }
 
 .inTableRowStyle {
-    border: 1px solid #1b1b1b;
-    background-color: rgb(27,27,27);
-    margin-bottom: 100px;
+    border: 1px solid #1b1b1b !important;
+    background-color: rgb(27,27,27) !important;
+    margin-bottom: 100px !important;
 }
 
 #vidcontainer1 {
