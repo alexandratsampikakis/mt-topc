@@ -1,10 +1,10 @@
-.BrandTop {
-	font-size: 14px;
-	margin-top:2px;
+.brandTop {
+	font-size: 14px !important;
+	margin-top:2px !important;
 }
 
 .brandBot {
-	font-size: 14px;
+	font-size: 14px !important;
 }
 
 .backgroundBox {
