@@ -1,18 +1,18 @@
 //(function(){
-var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, urlVideo;
+/*var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, urlVideo;
 var audioElement;
 var knockListYes = new Object();
 var knockListNo = new Object();
 var tableId = new Array();
-var leader = [0,0];
+var leader;
 var knockTimer = 20 * 1000; //20 seconds
 var knocker = 0;
 var chairImg = new Image();
 serverUrl = "http://satin.research.ltu.se:3001/";
 var currentTable;
-var pingArray = new Array(3);
-var groupLatency;
-var isPingDone = false;
+//var pingArray = new Array(3);//privat
+//var groupLatency;//privat
+var isPingDone = false; //global*/
 //Plays the knocking sound
 function knockSound() {
     audioElement.play();
@@ -216,7 +216,7 @@ function pause() {
 
 //Calculates leader. Highest stream ID wins. Only counts 'media' streams.
 //Leader is used for sending snapshots to server
-function calculateLeader() {
+/*function calculateLeader() {
     var keys = [];
     var highest = parseInt(localStream.getID());
     for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
@@ -239,7 +239,7 @@ function getLeader() {
 function broadcastLeader() {
     dataStream.sendData({id:'leader',leader:leader});
     console.log('broadcasting leader');
-}
+}*/
 
 function sendNapkinToNewUser() {
     var c = document.getElementById("canvasNapkin");
@@ -292,7 +292,7 @@ var updateTitle = function(title) {
     $('#cafeTableTitle').html(title);
     $('#cafeVideoTitle').html(title);
 }  
-
+/*
 //Retrieves cafe tables
 var pingServer = function(callback) {
     var req = new XMLHttpRequest();
@@ -356,6 +356,7 @@ function decideNewLeader() {
     }
     setLeader(lowestPing[1], lowestPing[0]);
 }
+*/
 //Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
