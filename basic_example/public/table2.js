@@ -365,6 +365,9 @@ function onDocumentMouseDown( event ) {
         console.log(objectToRotate);
     }
 }
+function onDocumentMouseDown( event ) {
+    console.log('test');
+}
 
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
