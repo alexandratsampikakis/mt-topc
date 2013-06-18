@@ -1083,6 +1083,7 @@ var knock = function(roomId) {
                                     break;
                                 case "paint":
                                     if(localStream.showing === true) {
+                                        console.log("Paint message sent!!!!!!!!!!!!!!!!!!!!!!");
                                         drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
                                     }
                                     break;
@@ -1373,6 +1374,7 @@ var overhear = function(roomId) {
             } else if(leader === localStream.getID()) {
                 broadcastLeader();
                 sendNapkinToNewUser();
+                console.log("Napkin sent to new user!!!!!!!!!!!!!!!!!!!");
                 isVideoLoaded(streamEvent.stream.getID());
             }  
         });
