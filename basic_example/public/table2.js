@@ -1292,9 +1292,9 @@ var overhear = function(roomId) {
         return false;
     });
 
-    $('shareYTVideo').height($('napkin').height());
+    $('#shareYTVideo').height($('#napkin').height());
     $(window).resize(function() {
-        $('shareYTVideo').height($('napkin').height());
+        $('#shareYTVideo').height($('#napkin').height());
     });
 
     localStream.addEventListener("access-accepted", function () {
