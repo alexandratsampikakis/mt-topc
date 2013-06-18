@@ -1290,6 +1290,10 @@ var overhear = function(roomId) {
         $('#videoTab').attr("class","tabbable tabPos1");
         return false;
     });
+    $('videoTab').height($('napkinTab').height());
+    $(window).resize(function() {
+       $('videoTab').height($('napkinTab').height());
+    });
 
     localStream.addEventListener("access-accepted", function () {
         
