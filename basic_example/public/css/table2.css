@@ -132,7 +132,9 @@
   height: 300px;
   padding: 100px;
 }
-
+a {
+  color:black;
+}
 .myShadow {
   -webkit-box-shadow: -9px 8px 8px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    -9px 8px 8px rgba(50, 50, 50, 0.75);
