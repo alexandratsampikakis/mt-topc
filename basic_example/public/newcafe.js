@@ -450,11 +450,7 @@ window.onload = function () {
                             }
                             console.log(imgID);
                         }
-                        if(!hasImage && imgID[6] == 2) {loadImage("/img/first.jpg", imgID);}
-                        else if(!hasImage  && imgID[6] == 4) {loadImage("/img/second.jpg", imgID);}
-                        else if(!hasImage && imgID[6] == 5) {loadImage("/img/third.jpg", imgID);}
-                        else if(!hasImage) {loadImage("/img/emptyTable.gif", imgID);}
-
+                        if(!hasImage) {loadImage("/img/emptyTable.gif", imgID);}
                     }
                 }
             });    
@@ -466,7 +462,7 @@ window.onload = function () {
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
 
-    //Sends a base64 string to server
+   /* //Sends a base64 string to server
     var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
@@ -484,7 +480,7 @@ window.onload = function () {
         req.setRequestHeader('Content-Type', 'application/json');
         //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
-    };
+    };*/
 
     //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
@@ -507,7 +503,7 @@ window.onload = function () {
         req.send(JSON.stringify(body));
     };
 
-    //loops through and takes a snapshot of each stream. Merges into one image, sends to server.
+    /*//loops through and takes a snapshot of each stream. Merges into one image, sends to server.
     function getSnapshots() {
         //Width and height of popover where the image will be displayed.
         var w = 320;
@@ -578,7 +574,7 @@ window.onload = function () {
             });
         }; 
         myImage.src = imgData;
-    }
+    }*/
 
     function initOversee(imageData, elementID) {
         var myImage = new Image();
@@ -626,14 +622,10 @@ window.onload = function () {
                             }
                             console.log(imgID);
                         }
-                        if(!hasImage && i == 2) {initOversee("/img/first.jpg", '#ddMenu');}
-                        else if(!hasImage  && i == 4) {initOversee("/img/second.jpg", '#ddMenu');}
-                        else if(!hasImage && i == 5) {initOversee("/img/third.jpg", '#ddMenu');}
-                        else if(!hasImage) {initOversee("/img/emptyTable.gif", '#ddMenu');}
-                        }
+                        if(!hasImage) {initOversee("/img/emptyTable.gif", '#ddMenu');}
                     }
-                });    
-            }
+                }
+            });    
         });
     }
 
@@ -891,14 +883,27 @@ window.onload = function () {
     }
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
 
-    var initialize = function(roomId) {
-        currentTable = roomId;
-        $('#enterNameRow').toggle();
-        $('#inTableRow').toggle();
-        $('#menuContainer').toggle();
+function initTableGUI() {
+    $('#enterNameRow').toggle();
+    $('#inTableRow').toggle();
+    $('#menuContainer').toggle();
+    $('#chatArea').css({
+        position:'absolute', 
+        top: $(window).height() - $('#chatArea').height()*2-56,
+        left:'0'
+    });
+    $('#chatMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'0'
+    });
+    $('#sendMessage').css({
+        position:'absolute', 
+        top:  $('#chatArea').height()+$('#chatArea').position().top+20,
+        left:'81%'
+    });
+    $(window).resize(function() {
         $('#chatArea').css({
             position:'absolute', 
             top: $(window).height() - $('#chatArea').height()*2-56,
@@ -914,27 +919,18 @@ window.onload = function () {
             top:  $('#chatArea').height()+$('#chatArea').position().top+20,
             left:'81%'
         });
-        $(window).resize(function() {
-            $('#chatArea').css({
-                position:'absolute', 
-                top: $(window).height() - $('#chatArea').height()*2-56,
-                left:'0'
-            });
-            $('#chatMessage').css({
-                position:'absolute', 
-                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-                left:'0'
-            });
-            $('#sendMessage').css({
-                position:'absolute', 
-                top:  $('#chatArea').height()+$('#chatArea').position().top+20,
-                left:'81%'
-            });
-        });
-        $('#chatArea').scrollTop($('#chatArea').scrollHeight);
-        $('#chatArea').width('100%');
-        $('#chatMessage').width('80%');
-        $('#sendMessage').width('19%');
+    });
+    $('#chatArea').scrollTop($('#chatArea').scrollHeight);
+    $('#chatArea').width('100%');
+    $('#chatMessage').width('80%');
+    $('#sendMessage').width('19%');
+}
+//---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
+
+    var initialize = function(roomId) {
+        currentTable = roomId;
+        initTableGUI();
 
         localStream.addEventListener("access-accepted", function () {
             if (room.getStreamsByAttribute('type','media').length < 6) {
@@ -1026,17 +1022,6 @@ window.onload = function () {
                     if (stream.elementID !== undefined) {
                         
                         if(stream.getID() === leader) {
-                           /* console.log('kommer jag hit?');
-                            leader = calculateLeader();
-                            if(leader === localStream.getID()) {
-                                console.log('Snapshot sent at ' + Date.now());
-                                getSnapshots();
-                                setInterval(function(){
-                                    console.log('Snapshot sent at ' + Date.now());
-                                    getSnapshots();
-                                },1000*60*5);
-                            }
-                            console.log(calculateLeader());*/
                             pingForLeader();
                         } else if (leader === localStream.getID()) {
                             getSnapshots();
@@ -1047,6 +1032,7 @@ window.onload = function () {
                         var vidElementNr = parseInt(streamToRemove.parent()[0].id[3])+1;
                         streamToRemove.remove();
                         
+                        //MOVE STREAMS WHEN A USER LEAVES THE TABLE
                         streams = room.getStreamsByAttribute('type','media');                    
                         while($('#vid'+vidElementNr).children().length != 0) {
                             var prevStream = '#vid'+(vidElementNr-1);
@@ -1067,6 +1053,7 @@ window.onload = function () {
                             }
                             vidElementNr++;
                         }
+                        ////////////
                     }
                 }); 
 
@@ -1107,6 +1094,90 @@ window.onload = function () {
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
+
+function messageHandler(message) {
+    switch (message.id) {
+        case "chat":
+            if(localStream.showing === true) {
+                appendChatMessage(message.user, message.text);
+            }   
+            break;
+        case "popup":
+            if(localStream.showing === true) {
+                askToJoinTablePopup(message.user);
+            }
+            break;
+        case "popup-answer":
+            if(message.user === nameOfUser && message.answer === true) {
+                addYesCount(roomId);
+                console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                console.log(getYesCount(roomId));
+                console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
+                if(room.getStreamsByAttribute('type','media').length === 1) {
+                    removeRoomFromKnocklist(roomId);
+                    initialize(roomId);
+                    
+                } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
+                    removeRoomFromKnocklist(roomId);
+                    initialize(roomId);          
+                } 
+            } else if (message.user === nameOfUser && message.answer === false) {
+                addNoCount(roomId);
+                if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
+                    deniedNotification(1);
+                    resetConnection();
+                }
+            } 
+            break;  
+        case "leader":
+            if(localStream.showing === true) {
+                console.log('message received :E');
+                setLeader(message.leader);
+            }
+            break;
+        case "ping":
+            addPingResult(message.latency, message.streamId);
+        case "ytplayer":
+            if(localStream.showing === true) {
+                if(message.state === 1) {
+                    play();
+                } else if (message.state === 2) {
+                    pause();
+                } else if (message.state === 3) {
+                    showVideo(message.url);
+                    console.log('Visa video stream');
+                };
+            }
+            break;
+        case "paint":
+            if(localStream.showing === true) {
+                drawPath(message.color, message.thickness, message.path, message.width, message.height);
+            }
+            break;
+        case "currentNapkin":
+            if(localStream.showing === true) {
+                var c = document.getElementById("canvasNapkin");
+                var ctx = c.getContext("2d");
+                var myImage = new Image();
+                myImage.onload = function(){
+                    ctx.drawImage(myImage, 0, 0,c.width,c.height);
+                }; 
+                myImage.src = message.napkinImgData;
+            }
+            break;
+        case "clearNapkin":
+            if(localStream.showing === true) {
+                var c = document.getElementById("canvasNapkin");
+                var ctx = c.getContext("2d");
+                ctx.clearRect(0,0,c.width,c.height);
+                console.log('Clear napkin');
+            }
+            break;
+       default:
+          
+    }
+}
+
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 
@@ -1164,87 +1235,7 @@ window.onload = function () {
                         var stream = streamEvent.stream;
                         if (stream.getAttributes().type === 'data') {
                             stream.addEventListener("stream-data", function(evt){
-                                console.log(evt.msg);
-                                switch (evt.msg.id) {
-                                    case "chat":
-                                        if(localStream.showing === true) {
-                                            appendChatMessage(evt.msg.user, evt.msg.text);
-                                        }   
-                                        break;
-                                    case "popup":
-                                        if(localStream.showing === true) {
-                                            askToJoinTablePopup(evt.msg.user);
-                                        }
-                                        break;
-                                    case "popup-answer":
-                                        if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
-                                            addYesCount(roomId);
-                                            console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
-                                            console.log(getYesCount(roomId));
-                                            console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
-                                            if(room.getStreamsByAttribute('type','media').length === 1) {
-                                                removeRoomFromKnocklist(roomId);
-                                                initialize(roomId);
-                                                
-                                            } else if(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
-                                                removeRoomFromKnocklist(roomId);
-                                                initialize(roomId);          
-                                            } 
-                                        } else if (evt.msg.user === nameOfUser && evt.msg.answer === false) {
-                                            addNoCount(roomId);
-                                            if(getNoCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1) {
-                                                deniedNotification(1);
-                                                resetConnection();
-                                            }
-                                        } 
-                                        break;  
-                                    case "leader":
-                                        if(localStream.showing === true) {
-                                            console.log('message received :E');
-                                            setLeader(evt.msg.leader);
-                                        }
-                                        break;
-                                    case "ping":
-                                        addPingResult(evt.msg.latency, evt.msg.streamId);
-                                    case "ytplayer":
-                                        if(localStream.showing === true) {
-                                            if(evt.msg.state === 1) {
-                                                play();
-                                            } else if (evt.msg.state === 2) {
-                                                pause();
-                                            } else if (evt.msg.state === 3) {
-                                                showVideo(evt.msg.url);
-                                                console.log('Visa video stream');
-                                            };
-                                        }
-                                        break;
-                                    case "paint":
-                                        if(localStream.showing === true) {
-                                            drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
-                                        }
-                                        break;
-                                    case "currentNapkin":
-                                        if(localStream.showing === true) {
-                                            var c = document.getElementById("canvasNapkin");
-                                            var ctx = c.getContext("2d");
-                                            var myImage = new Image();
-                                            myImage.onload = function(){
-                                                ctx.drawImage(myImage, 0, 0,c.width,c.height);
-                                            }; 
-                                            myImage.src = evt.msg.napkinImgData;
-                                        }
-                                        break;
-                                    case "clearNapkin":
-                                        if(localStream.showing === true) {
-                                            var c = document.getElementById("canvasNapkin");
-                                            var ctx = c.getContext("2d");
-                                            ctx.clearRect(0,0,c.width,c.height);
-                                            console.log('Clear napkin');
-                                        }
-                                        break;
-                                   default:
-                                      
-                                }
+                                messageHandler(evt.msg);
                             });
                         }
                     });
