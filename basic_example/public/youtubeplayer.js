@@ -1,4 +1,4 @@
-
+//Takes an url of a youtube video and creates a player.
 var showVideo = function(urlVideo) {
     var videoID = urlVideo.split('=')[1];
     if(videoID !== undefined) {
@@ -14,7 +14,7 @@ var showVideo = function(urlVideo) {
     }
 }
 
-    //Adds eventlisteners to youtubeplayer
+//Adds eventlisteners to youtubeplayer
 function onYouTubePlayerReady(playerId) {
   ytplayer = document.getElementById("myytplayer");
   ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
