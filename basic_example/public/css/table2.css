@@ -126,10 +126,6 @@
   padding: 100px;
 }
 
-.videoHeight {
-  height: 400 px;
-}
-
 a {
   color: #555555;
 }
@@ -161,7 +157,7 @@ a {
 }
 
 .napkinControl {
-  padding-top: 10px;
+  padding-top: 10px !important;
 }
 
 .selectpickerWidth {
