@@ -140,6 +140,7 @@ function clientAttributeUpdateListener (attrScope,
 //==============================================================================
 // Triggered when the mouse is pressed down
 function pointerDownListener (e) {
+  console.log('fehruia');
   // Retrieve a reference to the Event object for this mousedown event.
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
