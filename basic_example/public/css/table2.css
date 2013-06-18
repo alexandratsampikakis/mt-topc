@@ -125,8 +125,13 @@
   height: 300px;
   padding: 100px;
 }
+
+.videoHeight {
+  height: 400 px;
+}
+
 a {
-  color:black;
+  color: #555555;
 }
 .myShadow {
   -webkit-box-shadow: -9px 8px 8px rgba(50, 50, 50, 0.75);
@@ -141,6 +146,7 @@ a {
   width: 40%;
   z-index: 1;
 }
+
 .tabPos2 {
   position: absolute;
   margin-left: 30%;
@@ -148,6 +154,7 @@ a {
   width: 40%;
   z-index: 0;
 }
+
 #myTab {
     margin-top: 10px;
     margin-bottom: 10px;
