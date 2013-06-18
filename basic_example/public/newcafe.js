@@ -1,19 +1,3 @@
-//(function(){
-/*var room, cafe, localStream, dataStream, overhearStream, serverUrl, nameOfUser, urlVideo;
-var audioElement;
-var knockListYes = new Object();
-var knockListNo = new Object();
-var tableId = new Array();
-var leader;
-var knockTimer = 20 * 1000; //20 seconds
-var knocker = 0;
-var chairImg = new Image();
-serverUrl = "http://satin.research.ltu.se:3001/";
-var currentTable;
-//var pingArray = new Array(3);//privat
-//var groupLatency;//privat
-var isPingDone = false; //global*/
-//Plays the knocking sound
 function knockSound() {
     audioElement.play();
 }
@@ -102,152 +86,6 @@ function stopOverhear() {
     //toggles
 }
 
-//Adds room to knocklist
-function addToKnockList(roomId) {
-    if(!knockListYes.hasOwnProperty(roomId)) {
-        knockListYes[roomId] = 0;
-        setTimeout(function () {removeRoomFromKnocklist(roomId)}, knockTimer+7000);
-    }
-    if(!knockListNo.hasOwnProperty(roomId)) {
-        knockListNo[roomId] = 0;
-    }
-}
-
-function addYesCount (roomId) {
-    if(knockListYes.hasOwnProperty(roomId)) {
-        knockListYes[roomId] += 1;
-    }
-}
-
-function getYesCount(roomId) {
-    if(knockListYes.hasOwnProperty(roomId)) {
-        return knockListYes[roomId];
-    }
-}
-
-function getNoCount(roomId) {
-    if(knockListNo.hasOwnProperty(roomId)) {
-        return knockListNo[roomId];
-    }
-}
-
-function addNoCount (roomId) {
-    if(knockListNo.hasOwnProperty(roomId)) {
-        knockListNo[roomId] += 1;
-    }
-}
-
-//Removes room from knocklist
-function removeRoomFromKnocklist(roomId) {
-    if(knockListYes.hasOwnProperty(roomId)) {
-        delete knockListYes[roomId];
-    }
-    if(knockListNo.hasOwnProperty(roomId)) {
-        delete knockListNo[roomId];
-    }
-}
-
-function redrawNapkin() {
-    var c = $('#canvasNapkin')[0];
-    var imgData = c.toDataURL();
-    var ctx = c.getContext("2d");
-    var myImage = new Image();
-    myImage.onload = function(){
-        ctx.drawImage(myImage, 0, 0,c.width,c.height);
-    }; 
-    myImage.src = imgData;
-    c.height = $(window).height() - 415;
-    c.width = 1.5*c.height;
-}
-
-function drawPath(color, thickness, path, width, height) {
-    var widthRatio = $('#canvasNapkin')[0].width/width;
-    var heightRatio = $('#canvasNapkin')[0].height/height;
-    for (var i = 0; i < path.length; i+=2) {
-        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
-    };
-}
-
-function drawLine (color, thickness, x1, y1, x2, y2) {
-    context.strokeStyle = color;
-    context.lineWidth   = thickness;
-
-    context.beginPath();
-    context.moveTo(x1, y1)
-    context.lineTo(x2, y2);
-    context.stroke();
-}
-
-//Adds eventlisteners to youtubeplayer
-function onYouTubePlayerReady(playerId) {
-  ytplayer = document.getElementById("myytplayer");
-  ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
-}
-
-//handler for youtube player state change
-function onytplayerStateChange(newState) {
-    switch (newState) {
-        case 1:
-            //play
-            dataStream.sendData({id:'ytplayer', state:1});
-            console.log("play video");
-            break;
-        case 2:
-            //pause
-            dataStream.sendData({id:'ytplayer', state:2});
-            break;
-       default:
-    }
-}
-
-//Plays the youtube video
-function play() {
-    if (ytplayer) {
-        ytplayer.playVideo();
-    }
-}
-
-//Pauses the youtube video
-function pause() {
-    if (ytplayer) {
-        ytplayer.pauseVideo();
-    }
-}
-
-//Calculates leader. Highest stream ID wins. Only counts 'media' streams.
-//Leader is used for sending snapshots to server
-/*function calculateLeader() {
-    var keys = [];
-    var highest = parseInt(localStream.getID());
-    for(i = 0; i<room.getStreamsByAttribute('type','media').length;i++) {
-        var streamID = parseInt(room.getStreamsByAttribute('type','media')[i].getID());
-        if (streamID > highest) highest=streamID;
-    }
-    console.log(highest);
-    return highest;
-}
-
-function setLeader(id) {
-    leader = id;
-}
-
-function getLeader() {
-    return leader;
-}
-
-//Tells the room who the leader is.
-function broadcastLeader() {
-    dataStream.sendData({id:'leader',leader:leader});
-    console.log('broadcasting leader');
-}*/
-
-function sendNapkinToNewUser() {
-    var c = document.getElementById("canvasNapkin");
-    var ctx = c.getContext("2d");
-    var napkinImgData = c.toDataURL();
-    dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
-}
-
 //Clears textfields
 function clearTextFields() {
     $('#chatArea').val("");
@@ -292,71 +130,7 @@ var updateTitle = function(title) {
     $('#cafeTableTitle').html(title);
     $('#cafeVideoTitle').html(title);
 }  
-/*
-//Retrieves cafe tables
-var pingServer = function(callback) {
-    var req = new XMLHttpRequest();
-    var url = serverUrl + 'api/ping';
 
-    req.onreadystatechange = function () {
-        if (req.readyState === 4) {
-            callback(req.responseText);
-        }
-    };
-
-    req.open('GET', url, true);
-
-    req.send();
-};
-
-function pingNow(pingNumber) {
-    var pingTime = 0;
-    var prePingTime = new Date().getTime();
-    pingServer(function(response) {
-        pingTime = new Date().getTime() - prePingTime;
-        pingArray[pingNumber] = pingTime;
-        if(pingArray[0] != undefined && pingArray[1] != undefined && pingArray[2] != undefined ) {
-            var ms = (pingArray[0] +  pingArray[1] +  pingArray[2])/3;
-            dataStream.sendData({id:'ping', latency:ms, streamId:localStream.getID()});
-            addPingResult(ms, localStream.getID());
-        }
-    });
-
-}
-
-function pingForLeader() {
-    isPingDone = false;
-    pingArray = new Array(3);
-    groupLatency = new Array(room.getStreamsByAttribute('type','media').length);    
-    pingNow(0);
-    pingNow(1);
-    pingNow(2);
-}
-
-function addPingResult(latency, streamId) {
-    for (var i = 0; i < groupLatency.length; i++) {
-        if(groupLatency[i] == undefined) {
-            groupLatency[i] = [latency,streamId];
-            if(i === (groupLatency.length-1)) {
-                isPingDone = true;
-                decideNewLeader();
-            }
-            break;
-        }
-        
-    }
-}
-
-function decideNewLeader() {
-    var lowestPing = groupLatency[0];
-    for (var i = 1; i < groupLatency.length; i++) {
-        if(groupLatency[i][0] < lowestPing[0]) {
-            lowestPing = groupLatency[i];
-        }
-    }
-    setLeader(lowestPing[1], lowestPing[0]);
-}
-*/
 //Retrieves cafe tables
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
@@ -462,26 +236,6 @@ window.onload = function () {
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
 
-   /* //Sends a base64 string to server
-    var sendTableImg = function(cafe, imgData, roomId, callback) {
-        var req = new XMLHttpRequest();
-        var url = serverUrl + 'api/sendTableImg/' + roomId;
-        var body = {imgData: imgData,
-                    cafe: cafe};
-
-        req.onreadystatechange = function () {
-            if (req.readyState === 4) {
-                callback(req.responseText);
-            }
-        };
-
-        req.open('POST', url, true);
-
-        req.setRequestHeader('Content-Type', 'application/json');
-        //console.log("Sending to " + url + " - " + JSON.stringify(body));
-        req.send(JSON.stringify(body));
-    };*/
-
     //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
         console.log(getQueryString('cafe'));
@@ -503,79 +257,6 @@ window.onload = function () {
         req.send(JSON.stringify(body));
     };
 
-    /*//loops through and takes a snapshot of each stream. Merges into one image, sends to server.
-    function getSnapshots() {
-        //Width and height of popover where the image will be displayed.
-        var w = 320;
-        var h = 200
-        //Get all media streams
-        var streams = room.getStreamsByAttribute('type','media');
-        var length = streams.length;
-
-        var canvas = document.createElement('canvas');
-        var context = canvas.getContext('2d');
-
-        var height = $('#myVideo').height();
-        var width = $('#myVideo').width();
-
-        //what the image will look like with 6 media streams
-        //'''''''''''''//
-        //  1   2   3  //
-        //  4   5   6  //
-        //,,,,,,,,,,,,,//
-        canvas.width = 3*width;
-        canvas.height = 2*height;
-        for(var i = 0; i<length;i++) {
-            var y = 0;
-            //if i>2, go to "second row" of image
-            if (i>2) {
-                var y = height;
-            }
-            
-            //For some reason, the stream you get from room.getStreamsByAttribute
-            // and room.remoteStreams that equals localStream, does not contain 
-            //all the things localStream does, therefor, special case for LocalStream.
-            if(streams[i].getID() === localStream.getID()) {
-                var bitmap;
-                bitmap = localStream.getVideoFrame();
-                context.putImageData(bitmap, (i%3)*width, y);        
-            } else {
-                var bitmap;
-                bitmap = streams[i].getVideoFrame();
-                context.putImageData(bitmap, (i%3)*width, y);
-            }
-
-        }
-
-        for(var i = length; i<6;i++) {
-            var y = 0;
-            //if i>2, go to "second row" of image
-            if (i>2) {
-                var y = height;
-            }
-            context.drawImage(chairImg, (i%3)*width, y, width, height);        
-        }
-
-        //Draw the image on a new canvas in order to rescale.
-        var canvas2 = document.createElement('canvas');
-        var context2 = canvas2.getContext('2d');
-
-        var imgData = canvas.toDataURL();
-        var myImage = new Image();
-        canvas2.width = 320;
-        canvas2.height = 200;
-        myImage.onload = function(){
-            context2.drawImage(myImage, 0, 0,w,h);
-            //console.log(canvas);
-            //document.body.appendChild(canvas2);
-            //Convert to base64 and send to server.
-            sendTableImg(cafe, canvas2.toDataURL(), room.roomID, function (response) {
-                console.log(response);
-            });
-        }; 
-        myImage.src = imgData;
-    }*/
-
     function initOversee(imageData, elementID) {
         var myImage = new Image();
         myImage.onload = function(){
@@ -591,42 +272,35 @@ window.onload = function () {
         var maxHeight = ($(window).width()/6)/1.6
         $("#menuContainer").resizable({maxHeight:maxHeight});
         getCafeTables(cafe, function (response) {
-        var cafes = JSON.parse(response);
-        if(cafes.hasOwnProperty('error')) {
-            console.log(cafes.error);
-        } else {
-            
-/*            tableId[1] = cafes.table1;
-            tableId[2] = cafes.table2;
-            tableId[3] = cafes.table3;
-            tableId[4] = cafes.table4;
-            tableId[5] = cafes.table5;
-            tableId[6] = cafes.table6;*/
-//Temporär, fixa!
-            getTableImage(cafe, function(response) {
-                var res = JSON.parse(response);
-                var hasImage = false;
-                var imgId;
-                var imgData
-                if(!res.hasOwnProperty('empty')){
-                    for(var i=2;i<=6;i++){
-                        hasImage = false;
-                        for(var j=0;j<res.records.length;j++){
-                            if(res.records[j].roomID == tableId[i]) {
-                                imgData = res.records[j].imageData;
-                                if(res.records[j].roomID != currentTable ) {
-                                    initOversee(imgData, '#ddMenu');
+            var cafes = JSON.parse(response);
+            if(cafes.hasOwnProperty('error')) {
+                console.log(cafes.error);
+            } else {
+                getTableImage(cafe, function(response) {
+                    var res = JSON.parse(response);
+                    var hasImage = false;
+                    var imgId;
+                    var imgData
+                    if(!res.hasOwnProperty('empty')){
+                        for(var i=2;i<=6;i++){
+                            hasImage = false;
+                            for(var j=0;j<res.records.length;j++){
+                                if(res.records[j].roomID == tableId[i]) {
+                                    imgData = res.records[j].imageData;
+                                    if(res.records[j].roomID != currentTable ) {
+                                        initOversee(imgData, '#ddMenu');
+                                    }
+                                    
+                                    hasImage = true;
                                 }
-                                
-                                hasImage = true;
+                                console.log(imgID);
                             }
-                            console.log(imgID);
+                            if(!hasImage) {initOversee("/img/emptyTable.gif", '#ddMenu');}
                         }
-                        if(!hasImage) {initOversee("/img/emptyTable.gif", '#ddMenu');}
                     }
-                }
-            });    
-        });
+                });    
+            } 
+        });       
     }
 
     
@@ -837,37 +511,8 @@ window.onload = function () {
         }
     };
 
-    var askToJoinTablePopup = function(nameOfUser) {
-        knockSound();
-        $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
-    };
 
-    var deniedNotification = function(whatCase) {
-        switch (whatCase) {
-            case 1:
-                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, seems that the users want some privacy at the moment. Try again later!</p>' }}).show();
-                break;
-            case 2:
-                $('#answer').notify({ fadeOut: { enabled: true, delay: 5000 }, type: 'bangTidy', question: false, message: { html: '<p style="color: grey"><b>Hey</b>, all the seats are taken at the moment. Try again later!</p>' }}).show();
-                break;
-           default:
-        }
-    }
 
-    var showVideo = function(urlVideo) {
-        var videoID = urlVideo.split('=')[1];
-        if(videoID !== undefined) {
-            var params = { allowScriptAccess: "always" };
-            var atts = { id: "myytplayer" };
-            swfobject.embedSWF("http://www.youtube.com/v/" + videoID + "?enablejsapi=1&playerapiid=ytplayer&version=3",
-                           "youtubeVideo", "80%", "400", "8", null, null, params, atts);
-
-            $('#myytplayer').css ({visibility:'visible'});
-            $('#writeUrl').show();
-            $('#closeVideo').show();
-            $('#VideoUrl').val("");
-        }
-    }
 
     var isVideoLoaded = function(streamId) {
         setTimeout(function(){
@@ -1095,7 +740,7 @@ function initTableGUI() {
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 
-function messageHandler(message) {
+function messageHandler(message, roomId) {
     switch (message.id) {
         case "chat":
             if(localStream.showing === true) {
