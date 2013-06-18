@@ -43,13 +43,13 @@
 }
 
 #menuContainer {
-     position:absolute;
+    position:absolute;
     width:100%;
-     background-color:#A3155C;
-     overflow:hidden;
-     height:10px;
-     padding:0px 0px 12px 0px;
-     z-index: 1;
+    background-color:#A3155C;
+    overflow:hidden;
+    height:10px;
+    padding:0px 0px 12px 0px;
+    z-index: 1;
 }
 
 #ddMenu {
@@ -86,7 +86,7 @@
 }
 
 #cafeVideoTitle {
-    margin-left:-190px;
+  margin-left:-190px;
 }
 
 #enterName {
@@ -106,21 +106,31 @@
 }
 
 #myTab {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .tabStyle {
-  border: 1px solid #ddd;
-  color: #555555;
-  background-color: #ffffff;
-  border-bottom-color: white;
+  border: 1px solid #ddd !important;
+  color: #555555 !important;
+  background-color: #ffffff !important;
+  border-bottom-color: white !important;
 }
 
 .tableBox {
+  background-color: white;
+  margin-top: -12px;
+}
+
+.tableBoxLine {
   padding-bottom: 10px;
   border: 1px solid #ddd;
   margin-left: -0.5px;
+}
+
+.backgroundBox {
+  height: 300px;
+  padding: 100px;
 }
 
 .myShadow {
@@ -130,10 +140,10 @@
 }
 
 #napkinTab {
-  position:absolute;
-  margin-left: 31%;
-  margin-top: 5%;
-  width: 40%;
+  position:absolute !important;
+  margin-left: 31% !important;
+  margin-top: 5% !important;
+  width: 40% !important;
 }
 
 #myTab {
@@ -167,4 +177,13 @@
 
 .widthHundredProcent {
     width: 100%;
+}
+
+#writeUrl {
+  margin-top: 10px;
+}
+
+#closeVideo{
+  float: right;
+  margin-right: 10px;
 }
