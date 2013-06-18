@@ -1281,7 +1281,7 @@ var overhear = function(roomId) {
     $('#sendMessage').width('7%');
 
     $('#napkinTab').click(function() {
-        $('#napkinTab').css({
+        /*$('#napkinTab').css({
             position: 'absolute',
             marginLeft: '31%',
             marginTop: '5%',
@@ -1294,11 +1294,13 @@ var overhear = function(roomId) {
             marginTop: '2%',
             width: '40%',
             zIndex: '0'
-        });
+        });*/
+        $('#napkinTab').attr("class","tabbable tabPos1");
+        $('#videoTab').attr("class","tabbable tabPos2");
         return false;
     });
     $('#videoTab').click(function() {
-        $('#videoTab').css({
+        /*$('#videoTab').css({
             position: 'absolute',
             marginLeft: '31%',
             marginTop: '5%',
@@ -1311,7 +1313,9 @@ var overhear = function(roomId) {
             marginTop: '2%',
             width: '40%',
             zIndex: '0'
-        });
+        });*/
+        $('#napkinTab').attr("class","tabbable tabPos2");
+        $('#videoTab').attr("class","tabbable tabPos1");
         return false;
     });
 
