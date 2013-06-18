@@ -618,8 +618,8 @@ window.onload = function () {
                         }
                     }
                 });    
-            });
-        }   
+            } 
+        });       
     }
 
     
