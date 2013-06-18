@@ -1,7 +1,9 @@
+//Plays the knocking sound
 function knockSound() {
     audioElement.play();
 }
 
+//Toggle Hide/Show on button element
 function toggleButton(element) {
    if(element.css('display') === 'none') {
        element.css('display','inline-block') 
@@ -10,6 +12,7 @@ function toggleButton(element) {
    }
 }
 
+//Resets overhearing by closing stream and disconnecting from room.
 function resetOverhearing() {
     $('.ohbutton').show();
     $('.stopohbutton').hide();
@@ -20,6 +23,7 @@ function resetOverhearing() {
     overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
 }
 
+//Adds overhearing elements and sets the size.
 function appendOverhearing(id) {
     $('#overhearingContainer'+id).append('<div class="row-fluid overhearing">\
                     <div id="overhear1" class="span4 overhearVidContainer">\
@@ -50,7 +54,7 @@ function appendOverhearing(id) {
     });
 }
 
-//Notifys users of newly joined user by writing in chat
+//Notifies users of newly joined user by writing in chat
 function hasJoinedTheRoom(username) {
     var message = username + " sat down at the table.";
     if($('#chatArea').val() !== "") {
@@ -77,13 +81,6 @@ function resetConnection() {
     localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
     dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
     clearTextFields();
-}
-
-function stopOverhear() {
-    overhearStream.close();
-    room.disconnect();
-    overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-    //toggles
 }
 
 //Clears textfields
@@ -163,6 +160,7 @@ var getTableImage = function(cafe, callback) {
     req.send();
 };
 
+//Loads imagedata to an image and appends it to an element
 function loadImage(imageData, elementID) {
     var myImage = new Image();
     myImage.onload = function(){
@@ -172,22 +170,23 @@ function loadImage(imageData, elementID) {
     myImage.className = 'centerImage';
 }
 
-
-window.onload = function () {
+function onPageLoad() {
+    //Loads empty chair image
     chairImg.src="/img/emptyChair.jpg";
+    //
     cafe = getQueryString('cafe');
 
-    var context = document.getElementById("canvasNapkin").getContext('2d');
+    //var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
-    var doit;
+    var redrawOnResize;
     $(window).resize(function() {
-        clearTimeout(doit);
-        doit = setTimeout(function() {
+        clearTimeout(redrawOnResize);
+        redrawOnResize = setTimeout(function() {
             redrawNapkin();
         }, 100);
     });
 
-    //focus "enternametextfield"
+    //focus "enternametextfield" when page is loaded
     $("#userName").focus();
 
     //Retrieves the IDs of the table for the chosen café
@@ -197,6 +196,7 @@ window.onload = function () {
         if(cafes.hasOwnProperty('error')) {
             console.log(cafes.error);
         } else {
+            //Update titles and store the table IDs
             updateTitle(cafes.name);
             tableId[1] = cafes.table1;
             tableId[2] = cafes.table2;
@@ -205,6 +205,7 @@ window.onload = function () {
             tableId[5] = cafes.table5;
             tableId[6] = cafes.table6;
 
+            //Retrieves the snapshot images from the server.
             getTableImage(cafe, function(response) {
                 var res = JSON.parse(response);
                 var hasImage = false;
@@ -216,15 +217,13 @@ window.onload = function () {
                         imgID = '#table'+i+'img';
                         for(var j=0;j<res.records.length;j++){
                             if(res.records[j].roomID == tableId[i]) {
-                                console.log('i: ' + i + ', j: ' + j);
                                 imgData = res.records[j].imageData;
                                 loadImage(imgData, imgID);
                                 hasImage = true;
 
                             }
-                            console.log(imgID);
                         }
-                        if(!hasImage) {loadImage("/img/emptyTable.gif", imgID);}
+                        if(!hasImage) loadImage("/img/emptyTable.gif", imgID);
                     }
                 }
             });    
@@ -235,6 +234,27 @@ window.onload = function () {
     audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '/media/knock.mp3');
     audioElement.load();
+}
+
+window.onload = function () {
+    onPageLoad();
+
+    //Stores the chosen username and initiates the streams.
+    var enterName = function() {
+        if($('#userName').val() !== "") {
+            nameOfUser = $('#userName').val();
+            $('#enterName').toggle();
+            $('#tablecontainer').toggle();
+
+            try {
+                overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
+                localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
+                dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
+            } catch (error) {
+                console.log('erizo error: ' + error);
+            }
+        }
+    };
 
     //Creates token for the chosen café
     var createToken = function(roomId, userName, role, callback) {
@@ -257,6 +277,7 @@ window.onload = function () {
         req.send(JSON.stringify(body));
     };
 
+    //Loads a snapeshot and appends it to an element
     function initOversee(imageData, elementID) {
         var myImage = new Image();
         myImage.onload = function(){
@@ -267,7 +288,8 @@ window.onload = function () {
         myImage.height = myImage.width/1.6;
     }
 
-
+    //Enables overseeing in tableview.
+    //Retrieves snapshot images from server and displays in a pulldown menu
     function overseeInTable() {
         var maxHeight = ($(window).width()/6)/1.6
         $("#menuContainer").resizable({maxHeight:maxHeight});
@@ -438,11 +460,6 @@ window.onload = function () {
         return false;
     });
 
-    $('#askToJoinTable').click(function() { //denna används inte???
-        dataStream.sendData({id:'popup', user:nameOfUser});
-        return false;
-    });
-
     $('#leaveTableButton').click(function() {
         resetConnection();
         $('#enterNameRow').toggle();
@@ -495,37 +512,8 @@ window.onload = function () {
         });
     });
 
-    var enterName = function() {
-        if($('#userName').val() !== "") {
-            nameOfUser = $('#userName').val();
-            $('#enterName').toggle();
-            $('#tablecontainer').toggle();
-
-            try {
-                overhearStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'overhear',username:nameOfUser}});
-                localStream = Erizo.Stream({audio: true, video: true, data: false, attributes:{type:'media',username:nameOfUser}});
-                dataStream = Erizo.Stream({audio: false, video: false, data: true, attributes:{type:'data',username:nameOfUser}});
-            } catch (error) {
-                console.log('erizo error: ' + error);
-            }
-        }
-    };
 
 
-
-
-    var isVideoLoaded = function(streamId) {
-        setTimeout(function(){
-            console.log("strömID: " + streamId);
-            if($('#stream'+streamId).length > 0 && $('#stream'+streamId)[0].readyState === 4) {
-                console.log('Snapshot sent at ' + Date.now());
-                getSnapshots();
-            } else {
-                console.log("nope!");
-                isVideoLoaded(streamId);
-            }
-        },1000*5);
-    }
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 

@@ -90,3 +90,17 @@
         }; 
         myImage.src = imgData;
     }
+
+    //Checks if a new users video stream is ready for snapshot
+    var isVideoLoaded = function(streamId) {
+        setTimeout(function(){
+            console.log("strömID: " + streamId);
+            if($('#stream'+streamId).length > 0 && $('#stream'+streamId)[0].readyState === 4) {
+                console.log('Snapshot sent at ' + Date.now());
+                getSnapshots();
+            } else {
+                console.log("nope!");
+                isVideoLoaded(streamId);
+            }
+        },1000*5);
+    }
