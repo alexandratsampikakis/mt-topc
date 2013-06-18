@@ -881,7 +881,7 @@ function messageHandler(message, roomId) {
                         var stream = streamEvent.stream;
                         if (stream.getAttributes().type === 'data') {
                             stream.addEventListener("stream-data", function(evt){
-                                messageHandler(evt.msg);
+                                messageHandler(evt.msg, roomId);
                             });
                         }
                     });
