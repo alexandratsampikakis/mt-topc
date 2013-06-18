@@ -340,7 +340,7 @@ function onWindowResize() {
 }
 
 var intersects = null;
-function onDocumentMouseDown( event ) {
+/*function onDocumentMouseDown( event ) {
     if(currentState === "CAFEVIEW") {
         clickTime = new Date().getTime();
         targetRotation = targetRotationOnMouseDown = 0;
@@ -364,10 +364,7 @@ function onDocumentMouseDown( event ) {
         console.log(intersects);
         console.log(objectToRotate);
     }
-}
-function onDocumentMouseDown( event ) {
-    console.log('test');
-}
+}*/
 
 function onDocumentMouseMove( event ) {
     if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
