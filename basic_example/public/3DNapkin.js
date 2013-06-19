@@ -260,15 +260,7 @@ function penUp () {
 // DRAWING
 //==============================================================================
 // Draws a line on the HTML5 canvas
-function drawLine (color, thickness, x1, y1, x2, y2) {
-  context.strokeStyle = color;
-  context.lineWidth   = thickness;
- 
-  context.beginPath();
-  context.moveTo(x1, y1)
-  context.lineTo(x2, y2);
-  context.stroke();
-}
+
  
 //==============================================================================
 // STATUS
@@ -314,6 +306,8 @@ function drawPath(color, thickness, path, width, height) {
 }
 
 function drawLine (color, thickness, x1, y1, x2, y2) {
+    console.log(context);
+    console.log(context.strokeStyle);
     context.strokeStyle = color;
     context.lineWidth   = thickness;
 
