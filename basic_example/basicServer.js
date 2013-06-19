@@ -207,7 +207,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[4] = myRoom;
         if(isArrayFull === true) {
-            storeCaferes);
+            storeCafe(res);
         }
     });
 
