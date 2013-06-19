@@ -170,12 +170,6 @@ function penDown (x, y) {
 // Draws a line if the pen is down.
 function penMove (x, y) {
   if (isPenDown) {
-    // Buffer the new position for broadcast to other users. Buffer a maximum
-    // of 100 points per second.
-    if ((new Date().getTime() - lastBufferTime) > 10) {
-      bufferedPath.push(x + "," + y);
-      lastBufferTime = new Date().getTime();
-    }
     pathToSend.push(x);
     pathToSend.push(y);
     // Draw the line locally.
