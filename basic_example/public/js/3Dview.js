@@ -313,6 +313,7 @@ function onWindowResize() {
 }
 
 var intersects = null;
+
 //Event when mouse is down.
 function onDocumentMouseDown( event ) {
     if(currentState === "CAFEVIEW") {
@@ -430,6 +431,7 @@ function resetOverhearing() {
    
 
 var rotationY;
+
 //Renders the 3D scene.
 function render() {   
     requestAnimationFrame(render);
@@ -605,6 +607,7 @@ function initOSVideo(stream,pos) {
 
 var reflection;
 var movieGeometry;
+
 //Initializing the table view.
 function initVideo(stream,pos) {
     var x = tvPosition[pos][0];
@@ -866,11 +869,8 @@ window.onload = function () {
         }
     }
 
-<<<<<<< HEAD
+
     //Sends a base64 string to server
-=======
-    /*    //Sends a base64 string to server
->>>>>>> 753cb512a3e2e9f2df524e0340a2b3969b02ab0f
     var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
@@ -962,7 +962,7 @@ window.onload = function () {
             document.body.append(myImage);
         }; 
         myImage.src = imgData;
-    }*/
+    }
     
 //Create token when a user subscribes to a table.
 var createToken = function(roomId, userName, role, callback) {
@@ -1435,6 +1435,5 @@ var overhear = function(roomId) {
         subscribeToStreams(room.getStreamsByAttribute('type','media'));
     });
     localStream.init();
-
 }
 
