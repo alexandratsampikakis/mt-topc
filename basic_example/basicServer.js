@@ -163,16 +163,71 @@ app.get("/api/getTableImg/:cafe", function (req, res) {
     });
 });
 
-/*app.get('/createNewCafe/', function (req, res) {
+app.get('/createNewCafe/', function (req, res) {
     "use strict";
-    var tables = new Array();
-    for (var i = 0; i <= 5; i++) {
+    var tables = new Array(6);
+    
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[0] = myRoom;
+        if(isArrayFull(tables) === true) {
+            storeCafe(res,tables);
+        }
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
-            tables[i] = myRoom;
+            tables[1] = myRoom;
+            if(isArrayFull(tables) === true) {
+                storeCafe(res,tables);
+            }
+            N.API.createRoom('myRoom', function (roomID) {
+                myRoom = roomID._id;
+                console.log('Created room ', myRoom);
+                tables[2] = myRoom;
+                if(isArrayFull(tables) === true) {
+                    storeCafe(res,tables);
+                }
+                N.API.createRoom('myRoom', function (roomID) {
+                    myRoom = roomID._id;
+                    console.log('Created room ', myRoom);
+                    tables[3] = myRoom;
+                    if(isArrayFull(tables) === true) {
+                        storeCafe(res,tables);
+                    }
+                    N.API.createRoom('myRoom', function (roomID) {
+                        myRoom = roomID._id;
+                        console.log('Created room ', myRoom);
+                        tables[4] = myRoom;
+                        if(isArrayFull(tables) === true) {
+                            storeCafe(res,tables);
+                        }
+                        N.API.createRoom('myRoom', function (roomID) {
+                            myRoom = roomID._id;
+                            console.log('Created room ', myRoom);
+                            tables[5] = myRoom;
+                            if(isArrayFull(tables) === true) {
+                                storeCafe(res,tables);
+                            }
+                        });                        
+                    });
+                });
+            });
         });
+    });  
+});
+
+function isArrayFull(array) {
+    for (var i = 0; i < array.length; i++) {
+        if(array[i] === undefined) {
+            console.log("false");
+            return false;
+        }
     }
+    console.log(true);
+    return true;
+} 
+function storeCafe(res,tables) {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
@@ -184,11 +239,10 @@ app.get("/api/getTableImg/:cafe", function (req, res) {
     newCafe.save(function (err) {
       if (err) console.log("Failed to create cafe");
     });
-    cafeModel.find(function (err, newCafes) {
-      if (err) // TODO handle err
-      console.log(newCafes)
+    res.json({
+        cafe: "created"
     });
-});*/
+}
 
 app.get("/api/getcafes", function (req, res) {
     var cafe = [];
