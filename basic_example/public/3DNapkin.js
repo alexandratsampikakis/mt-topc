@@ -306,6 +306,8 @@ function drawPath(color, thickness, path, width, height) {
 }
 
 function drawLine (color, thickness, x1, y1, x2, y2) {
+    var c = $('#canvasNapkin')[0];
+    var context = c.getContext("2d");
     console.log(context);
     console.log(context.strokeStyle);
     context.strokeStyle = color;
