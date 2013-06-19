@@ -163,51 +163,51 @@ app.get("/api/getTableImg/:cafe", function (req, res) {
     });
 });
 
-app.get('/createNewCafe/', function (req, res) {
+app.get('/createNewCafe/:name', function (req, res) {
     "use strict";
     var tables = new Array(6);
-    
+    var name = req.params.name;
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[0] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res,tables);
+            storeCafe(name,res,tables);
         }
         N.API.createRoom('myRoom', function (roomID) {
             myRoom = roomID._id;
             console.log('Created room ', myRoom);
             tables[1] = myRoom;
             if(isArrayFull(tables) === true) {
-                storeCafe(res,tables);
+                storeCafe(name,res,tables);
             }
             N.API.createRoom('myRoom', function (roomID) {
                 myRoom = roomID._id;
                 console.log('Created room ', myRoom);
                 tables[2] = myRoom;
                 if(isArrayFull(tables) === true) {
-                    storeCafe(res,tables);
+                    storeCafe(name,res,tables);
                 }
                 N.API.createRoom('myRoom', function (roomID) {
                     myRoom = roomID._id;
                     console.log('Created room ', myRoom);
                     tables[3] = myRoom;
                     if(isArrayFull(tables) === true) {
-                        storeCafe(res,tables);
+                        storeCafe(name,res,tables);
                     }
                     N.API.createRoom('myRoom', function (roomID) {
                         myRoom = roomID._id;
                         console.log('Created room ', myRoom);
                         tables[4] = myRoom;
                         if(isArrayFull(tables) === true) {
-                            storeCafe(res,tables);
+                            storeCafe(name,res,tables);
                         }
                         N.API.createRoom('myRoom', function (roomID) {
                             myRoom = roomID._id;
                             console.log('Created room ', myRoom);
                             tables[5] = myRoom;
                             if(isArrayFull(tables) === true) {
-                                storeCafe(res,tables);
+                                storeCafe(name,res,tables);
                             }
                         });                        
                     });
@@ -227,9 +227,10 @@ function isArrayFull(array) {
     console.log(true);
     return true;
 } 
-function storeCafe(res,tables) {
+function storeCafe(name, res, tables) {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
-    var newCafe = new cafeModel({table1: tables[0], 
+    var newCafe = new cafeModel({name: name,
+                                 table1: tables[0], 
                                  table2: tables[1],
                                  table3: tables[2], 
                                  table4: tables[3], 
