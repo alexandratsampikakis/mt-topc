@@ -172,7 +172,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[0] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res);
+            storeCafe(res,tables);
         }
     });
     N.API.createRoom('myRoom', function (roomID) {
@@ -180,7 +180,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[1] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res);
+            storeCafe(res,tables);
         }
     });
 
@@ -189,7 +189,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[2] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res);
+            storeCafe(res,tables);
         }
     });
 
@@ -198,7 +198,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[3] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res);
+            storeCafe(res,tables);
         }
     });
 
@@ -207,7 +207,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[4] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res);
+            storeCafe(res,tables);
         }
     });
 
@@ -216,7 +216,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[5] = myRoom;
         if(isArrayFull(tables) === true) {
-            storeCafe(res);
+            storeCafe(res,tables);
         }
     });
 
@@ -232,7 +232,7 @@ function isArrayFull(array) {
     }
     return true;
 } 
-function storeCafe(res) {
+function storeCafe(res,tables) {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
