@@ -163,16 +163,46 @@ app.get("/api/getTableImg/:cafe", function (req, res) {
     });
 });
 
-/*app.get('/createNewCafe/', function (req, res) {
+app.get('/createNewCafe/', function (req, res) {
     "use strict";
     var tables = new Array();
-    for (var i = 0; i <= 5; i++) {
-        N.API.createRoom('myRoom', function (roomID) {
-            myRoom = roomID._id;
-            console.log('Created room ', myRoom);
-            tables[i] = myRoom;
-        });
-    }
+    
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[0] = myRoom;
+    });
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[1] = myRoom;
+    });
+
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[2] = myRoom;
+    });
+
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[3] = myRoom;
+    });
+
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[4] = myRoom;
+    });
+
+    N.API.createRoom('myRoom', function (roomID) {
+        myRoom = roomID._id;
+        console.log('Created room ', myRoom);
+        tables[5] = myRoom;
+    });
+
+
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
@@ -188,7 +218,7 @@ app.get("/api/getTableImg/:cafe", function (req, res) {
       if (err) // TODO handle err
       console.log(newCafes)
     });
-});*/
+});
 
 app.get("/api/getcafes", function (req, res) {
     var cafe = [];
