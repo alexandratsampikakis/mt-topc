@@ -165,44 +165,74 @@ app.get("/api/getTableImg/:cafe", function (req, res) {
 
 app.get('/createNewCafe/', function (req, res) {
     "use strict";
-    var tables = new Array();
+    var tables = new Array(6);
     
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[0] = myRoom;
+        if(isArrayFull === true) {
+            storeCafe();
+        }
     });
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[1] = myRoom;
+        if(isArrayFull === true) {
+            storeCafe();
+        }
     });
 
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[2] = myRoom;
+        if(isArrayFull === true) {
+            storeCafe();
+        }
     });
 
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[3] = myRoom;
+        if(isArrayFull === true) {
+            storeCafe();
+        }
     });
 
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[4] = myRoom;
+        if(isArrayFull === true) {
+            storeCafe();
+        }
     });
 
     N.API.createRoom('myRoom', function (roomID) {
         myRoom = roomID._id;
         console.log('Created room ', myRoom);
         tables[5] = myRoom;
+        if(isArrayFull === true) {
+            storeCafe();
+        }
     });
 
 
+   
+});
+
+function isArrayFull(array) {
+    for (var i = 0; i < array.length; i++) {
+        if(array[i] != undefined) {
+            return false;
+        }
+    }
+    return true;
+} 
+function storeCafe() {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
@@ -218,7 +248,7 @@ app.get('/createNewCafe/', function (req, res) {
       if (err) // TODO handle err
       console.log(newCafes)
     });
-});
+}
 
 app.get("/api/getcafes", function (req, res) {
     var cafe = [];
