@@ -114,102 +114,6 @@ function sendNapkinToNewUser() {
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
 
-//==============================================================================
-// MOUSE-INPUT EVENT LISTENERS
-//==============================================================================
-// Triggered when the mouse is pressed down
-function pointerDownListener (e) {
-  // Retrieve a reference to the Event object for this mousedown event.
-  // Internet Explorer uses window.event; other browsers use the event parameter
-  var event = e || window.event;
-  // Determine where the user clicked the mouse.
-  var mouseX = event.clientX - $('#canvasNapkin').offset().left;//canvas.offsetLeft;
-  var mouseY = event.clientY - $('#canvasNapkin').offset().top;//canvas.offsetTop;
- 
-  // Move the drawing pen to the position that was clicked
-  penDown(mouseX, mouseY);
- 
-  // We want mouse input to be used for drawing only, so we need to stop the
-  // browser from/ performing default mouse actions, such as text selection.
-  // In Internet Explorer, we "prevent default actions" by returning false. In
-  // other browsers, we invoke event.preventDefault().
-  if (event.preventDefault) {
-    if (event.target.nodeName != "SELECT") {
-      event.preventDefault();
-    }
-  }
-}
- 
-// Triggered when the mouse moves
-function pointerMoveListener (e) {
-  var event = e || window.event; // IE uses window.event, not e
-  var mouseX = event.clientX - $('#canvasNapkin').offset().left;// - canvas.offsetLeft;
-  var mouseY = event.clientY - $('#canvasNapkin').offset().top;// - canvas.offsetTop;
- 
-  // Draw a line if the pen is down
-  penMove(mouseX, mouseY);
- 
-  // Prevent default browser actions, such as text selection
-  if (event.preventDefault) {
-    event.preventDefault();
-  }
-}
- 
-// Triggered when the mouse button is released
-function pointerUpListener (e) {
-  // "Lift" the drawing pen
-  penUp();
-}
-
-//==============================================================================
-// PEN
-//==============================================================================
-// Places the pen in the specified location without drawing a line. If the pen
-// subsequently moves, a line will be drawn.
-function penDown (x, y) {
-  isPenDown = true;
-  localPen.x = x;
-  localPen.y = y;
-  pathToSend.push(x);
-  pathToSend.push(y);
-  // Send this user's new pen position to other users.
-  //broadcastMove(x, y);
- 
-  // Begin sending this user's drawing path to other users every 500 milliseconds.
-  //broadcastPathIntervalID = setInterval(broadcastPath, 500);
-}
- 
-// Draws a line if the pen is down.
-function penMove (x, y) {
-  if (isPenDown) {
-    // Buffer the new position for broadcast to other users. Buffer a maximum
-    // of 100 points per second.
-    if ((new Date().getTime() - lastBufferTime) > 10) {
-      bufferedPath.push(x + "," + y);
-      lastBufferTime = new Date().getTime();
-    }
-    pathToSend.push(x);
-    pathToSend.push(y);
-    // Draw the line locally.
-    drawLine(localLineColor, localLineThickness, localPen.x, localPen.y, x, y);
- 
-    // Move the pen to the end of the line that was just drawn.
-    localPen.x = x;
-    localPen.y = y;
-  }
-}
- 
-// "Lifts" the drawing pen, so that lines are no longer draw when the mouse or
-// touch-input device moves.
-function penUp () {
-  isPenDown = false;
-  if(pathToSend.length > 0) {
-    dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend, width:$('#canvasNapkin')[0].width, height:$('#canvasNapkin')[0].height});
-    pathToSend = [];
-  }
-  
-}
-
 /// END NAPKIN
 
 /// GREJS
@@ -500,6 +404,102 @@ function onDocumentMouseOut( event ) {
     document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
     document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
     objectToRotate = null;
+}
+
+//==============================================================================
+// MOUSE-INPUT EVENT LISTENERS
+//==============================================================================
+// Triggered when the mouse is pressed down
+function pointerDownListener (e) {
+  // Retrieve a reference to the Event object for this mousedown event.
+  // Internet Explorer uses window.event; other browsers use the event parameter
+  var event = e || window.event;
+  // Determine where the user clicked the mouse.
+  var mouseX = event.clientX - $('#canvasNapkin').offset().left;//canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvasNapkin').offset().top;//canvas.offsetTop;
+ 
+  // Move the drawing pen to the position that was clicked
+  penDown(mouseX, mouseY);
+ 
+  // We want mouse input to be used for drawing only, so we need to stop the
+  // browser from/ performing default mouse actions, such as text selection.
+  // In Internet Explorer, we "prevent default actions" by returning false. In
+  // other browsers, we invoke event.preventDefault().
+  if (event.preventDefault) {
+    if (event.target.nodeName != "SELECT") {
+      event.preventDefault();
+    }
+  }
+}
+ 
+// Triggered when the mouse moves
+function pointerMoveListener (e) {
+  var event = e || window.event; // IE uses window.event, not e
+  var mouseX = event.clientX - $('#canvasNapkin').offset().left;// - canvas.offsetLeft;
+  var mouseY = event.clientY - $('#canvasNapkin').offset().top;// - canvas.offsetTop;
+ 
+  // Draw a line if the pen is down
+  penMove(mouseX, mouseY);
+ 
+  // Prevent default browser actions, such as text selection
+  if (event.preventDefault) {
+    event.preventDefault();
+  }
+}
+ 
+// Triggered when the mouse button is released
+function pointerUpListener (e) {
+  // "Lift" the drawing pen
+  penUp();
+}
+
+//==============================================================================
+// PEN
+//==============================================================================
+// Places the pen in the specified location without drawing a line. If the pen
+// subsequently moves, a line will be drawn.
+function penDown (x, y) {
+  isPenDown = true;
+  localPen.x = x;
+  localPen.y = y;
+  pathToSend.push(x);
+  pathToSend.push(y);
+  // Send this user's new pen position to other users.
+  //broadcastMove(x, y);
+ 
+  // Begin sending this user's drawing path to other users every 500 milliseconds.
+  //broadcastPathIntervalID = setInterval(broadcastPath, 500);
+}
+ 
+// Draws a line if the pen is down.
+function penMove (x, y) {
+  if (isPenDown) {
+    // Buffer the new position for broadcast to other users. Buffer a maximum
+    // of 100 points per second.
+    if ((new Date().getTime() - lastBufferTime) > 10) {
+      bufferedPath.push(x + "," + y);
+      lastBufferTime = new Date().getTime();
+    }
+    pathToSend.push(x);
+    pathToSend.push(y);
+    // Draw the line locally.
+    drawLine(localLineColor, localLineThickness, localPen.x, localPen.y, x, y);
+ 
+    // Move the pen to the end of the line that was just drawn.
+    localPen.x = x;
+    localPen.y = y;
+  }
+}
+ 
+// "Lifts" the drawing pen, so that lines are no longer draw when the mouse or
+// touch-input device moves.
+function penUp () {
+  isPenDown = false;
+  if(pathToSend.length > 0) {
+    dataStream.sendData({id:'paint', color:localLineColor, thickness:localLineThickness,path:pathToSend, width:$('#canvasNapkin')[0].width, height:$('#canvasNapkin')[0].height});
+    pathToSend = [];
+  }
+  
 }
 
 function setVisibility(state, group) {
