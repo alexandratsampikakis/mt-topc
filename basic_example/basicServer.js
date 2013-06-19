@@ -172,7 +172,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[0] = myRoom;
         if(isArrayFull === true) {
-            storeCafe();
+            storeCafe(res);
         }
     });
     N.API.createRoom('myRoom', function (roomID) {
@@ -180,7 +180,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[1] = myRoom;
         if(isArrayFull === true) {
-            storeCafe();
+            storeCafe(res);
         }
     });
 
@@ -189,7 +189,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[2] = myRoom;
         if(isArrayFull === true) {
-            storeCafe();
+            storeCafe(res);
         }
     });
 
@@ -198,7 +198,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[3] = myRoom;
         if(isArrayFull === true) {
-            storeCafe();
+            storeCafe(res);
         }
     });
 
@@ -207,7 +207,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[4] = myRoom;
         if(isArrayFull === true) {
-            storeCafe();
+            storeCaferes);
         }
     });
 
@@ -216,7 +216,7 @@ app.get('/createNewCafe/', function (req, res) {
         console.log('Created room ', myRoom);
         tables[5] = myRoom;
         if(isArrayFull === true) {
-            storeCafe();
+            storeCafe(res);
         }
     });
 
@@ -232,7 +232,7 @@ function isArrayFull(array) {
     }
     return true;
 } 
-function storeCafe() {
+function storeCafe(res) {
     var cafeModel = mongoose.model('cafeModel', cafeSchema);
     var newCafe = new cafeModel({table1: tables[0], 
                                  table2: tables[1],
@@ -244,9 +244,8 @@ function storeCafe() {
     newCafe.save(function (err) {
       if (err) console.log("Failed to create cafe");
     });
-    cafeModel.find(function (err, newCafes) {
-      if (err) // TODO handle err
-      console.log(newCafes)
+    res.json({
+        cafe: "created"
     });
 }
 
