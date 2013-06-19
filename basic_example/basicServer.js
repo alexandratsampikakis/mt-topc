@@ -241,7 +241,7 @@ function storeCafe(name, res, tables) {
       if (err) console.log("Failed to create cafe");
     });
     res.json({
-        cafe: "created"
+        cafe: "Café " + name + " created."
     });
 }
 
