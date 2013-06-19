@@ -70,42 +70,42 @@ function knockSound() {
     audioElement.play();
 }
 
-/// NAPKIN
-function redrawNapkin() {
-    var c = $('#canvasNapkin')[0];
-    var imgData = c.toDataURL();
-    var ctx = c.getContext("2d");
-    var myImage = new Image();
-    myImage.onload = function() {
-        ctx.drawImage(myImage, 0, 0,c.width,c.height);
-    };
+// /// NAPKIN
+// function redrawNapkin() {
+//     var c = $('#canvasNapkin')[0];
+//     var imgData = c.toDataURL();
+//     var ctx = c.getContext("2d");
+//     var myImage = new Image();
+//     myImage.onload = function() {
+//         ctx.drawImage(myImage, 0, 0,c.width,c.height);
+//     };
 
-    $('.tabbable').css({
-        position:'absolute'
-    });
+//     $('.tabbable').css({
+//         position:'absolute'
+//     });
 
-    myImage.src = imgData;
-    c.height = $(window).height() - 550; //415;
-    c.width = 1.5*c.height;
-}
+//     myImage.src = imgData;
+//     c.height = $(window).height() - 550; //415;
+//     c.width = 1.5*c.height;
+// }
 
-function drawPath(color, thickness, path, width, height) {
-    var widthRatio = $('#canvasNapkin')[0].width/width;
-    var heightRatio = $('#canvasNapkin')[0].height/height;
-    for (var i = 0; i < path.length; i+=2) {
-        drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
-    };
-}
+// function drawPath(color, thickness, path, width, height) {
+//     var widthRatio = $('#canvasNapkin')[0].width/width;
+//     var heightRatio = $('#canvasNapkin')[0].height/height;
+//     for (var i = 0; i < path.length; i+=2) {
+//         drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
+//     };
+// }
 
-function drawLine (color, thickness, x1, y1, x2, y2) {
-    context.strokeStyle = color;
-    context.lineWidth   = thickness;
+// function drawLine (color, thickness, x1, y1, x2, y2) {
+//     context.strokeStyle = color;
+//     context.lineWidth   = thickness;
 
-    context.beginPath();
-    context.moveTo(x1, y1)
-    context.lineTo(x2, y2);
-    context.stroke();
-}
+//     context.beginPath();
+//     context.moveTo(x1, y1)
+//     context.lineTo(x2, y2);
+//     context.stroke();
+// }
 
 function sendNapkinToNewUser() {
     var c = document.getElementById("canvasNapkin");
