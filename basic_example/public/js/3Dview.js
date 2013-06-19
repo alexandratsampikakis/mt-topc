@@ -54,6 +54,7 @@ var clickTime;
 
 var placeHolderData;
 
+//Scene and camera
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
 var mirrorCube, mirrorCubeCamera; // for mirror material
@@ -70,53 +71,16 @@ function knockSound() {
     audioElement.play();
 }
 
-// /// NAPKIN
-// function redrawNapkin() {
-//     var c = $('#canvasNapkin')[0];
-//     var imgData = c.toDataURL();
-//     var ctx = c.getContext("2d");
-//     var myImage = new Image();
-//     myImage.onload = function() {
-//         ctx.drawImage(myImage, 0, 0,c.width,c.height);
-//     };
-
-//     $('.tabbable').css({
-//         position:'absolute'
-//     });
-
-//     myImage.src = imgData;
-//     c.height = $(window).height() - 550; //415;
-//     c.width = 1.5*c.height;
-// }
-
-// function drawPath(color, thickness, path, width, height) {
-//     var widthRatio = $('#canvasNapkin')[0].width/width;
-//     var heightRatio = $('#canvasNapkin')[0].height/height;
-//     for (var i = 0; i < path.length; i+=2) {
-//         drawLine(color, thickness, path[i]*widthRatio, path[i+1]*heightRatio, path[i+2]*widthRatio, path[i+3]*heightRatio);
-//     };
-// }
-
-// function drawLine (color, thickness, x1, y1, x2, y2) {
-//     context.strokeStyle = color;
-//     context.lineWidth   = thickness;
-
-//     context.beginPath();
-//     context.moveTo(x1, y1)
-//     context.lineTo(x2, y2);
-//     context.stroke();
-// }
-
+///NAPKIN: The leader sends the current napkin to a new user who enters the room.
 function sendNapkinToNewUser() {
     var c = document.getElementById("canvasNapkin");
     var ctx = c.getContext("2d");
     var napkinImgData = c.toDataURL();
     dataStream.sendData({id:'currentNapkin', napkinImgData: napkinImgData});
 }
-
 /// END NAPKIN
 
-/// GREJS
+///YOUTUBE PLAYER
 //Adds eventlisteners to youtubeplayer
 function onYouTubePlayerReady(playerId) {
   ytplayer = document.getElementById("myytplayer");
@@ -152,7 +116,9 @@ function pause() {
         ytplayer.pauseVideo();
     }
 }
+///END OF YOUTUBE PLAYER
 
+///LEADER
 //Calculates leader. Highest stream ID wins. Only counts 'media' streams.
 //Leader is used for sending snapshots to server
 function calculateLeader() {
@@ -179,6 +145,7 @@ function broadcastLeader() {
     dataStream.sendData({id:'leader',leader:leader});
     console.log('broadcasting leader');
 }
+///END OF LEADER
 
 //Clears textfields
 function clearTextFields() {
@@ -205,13 +172,14 @@ function sendChatMessage(message) {
     appendChatMessage(nameOfUser, message);
     $("#myTextBox").focus();
 }
-//Update titles
+
+//Update titles like name of a cafe.
 var updateTitle = function(title) {
     $('#cafeTitle').html(title);
     $('#cafeTableTitle').html(title);
     $('#cafeVideoTitle').html(title);
-}  
-/// END GREJS
+}
+
 //Clears feedback text fields
 function clearFeedback() {
     $('#feedbackSubject').val("");
@@ -240,6 +208,7 @@ function addToKnockList(roomId) {
     }
 }
 
+//VOTE: adds the number of yes a user gets.
 function addYesCount (roomId) {
     if(knockListYes.hasOwnProperty(roomId)) {
         knockListYes[roomId] += 1;
@@ -258,6 +227,7 @@ function getNoCount(roomId) {
     }
 }
 
+//VOTE: adds the number of no a user gets.
 function addNoCount (roomId) {
     if(knockListNo.hasOwnProperty(roomId)) {
         knockListNo[roomId] += 1;
@@ -274,6 +244,7 @@ function removeRoomFromKnocklist(roomId) {
     }
 }
 
+//Initialize the view of all the tables.
 var initCafeview = function() { 
 
     // SKYBOX/FOG
@@ -305,13 +276,15 @@ var initCafeview = function() {
    
 };
 
+//Initialize the view when sitting in a table.
 var initTableview = function() {
+
     // CAMERAS
     tvGroup = new THREE.Object3D();
     textureCamera = new THREE.PerspectiveCamera( 70, window.innerWidth/window.innerHeight, 0.1, 1000 );
     tvGroup.add(textureCamera);
     
-    // SKYBOX/FOG
+    // SKYBOX
     var materialArray = [];
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( '/img/Backgrounds/grey_wash_wall/3d1turkos.png' ) }));
@@ -340,6 +313,7 @@ function onWindowResize() {
 }
 
 var intersects = null;
+//Event when mouse is down.
 function onDocumentMouseDown( event ) {
     if(currentState === "CAFEVIEW") {
         clickTime = new Date().getTime();
@@ -370,6 +344,7 @@ function onDocumentMouseDown( event ) {
     } 
 }
 
+//Event when mouse is moved.
 function onDocumentMouseMove( event ) {
     if(currentState === "CAFEVIEW") {
         if(event.clientY > 41 && event.clientY < window.innerHeight-41) {
@@ -385,6 +360,7 @@ function onDocumentMouseMove( event ) {
     }
 }
 
+//Event when mouse is up.
 function onDocumentMouseUp( event ) {
     if (currentState === "CAFEVIEW") {
         var totalClickTime = new Date().getTime() - clickTime;
@@ -426,6 +402,7 @@ function setVisibility(state, group) {
     }
 } 
 
+//Updates the video streams.
 function updateVideos() {
     var vid;
     var videoImageContext;
@@ -442,6 +419,7 @@ function updateVideos() {
     };
 }
 
+//Called when stop overhearing.
 function resetOverhearing() {
     cvGroup.remove(overhearGroup);
     overhearStream.close();
@@ -452,15 +430,16 @@ function resetOverhearing() {
    
 
 var rotationY;
+//Renders the 3D scene.
 function render() {   
     requestAnimationFrame(render);
-
     updateVideos();
 
     var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
     projector.unprojectVector( vector, camera );
     raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-    var intersects = raycaster.intersectObjects( scene.children );
+    var intersects = raycaster.intersectObjects( scene.children ); //Contains the objects that can be clicked on in the environment.
+
     if(currentState === "TABLEVIEW") {
         if ( intersects.length > 1 ) {
             if ( INTERSECTED != intersects[ 0 ].object ) {
@@ -487,6 +466,7 @@ function render() {
     renderer.render( scene, camera );
 }
 
+//Creates an object that links a video stream with three.js texture and a canvas context.
 var StreamObject = function(video, texture, context){
     this.video = video;
     this.videoTexture = texture;
@@ -516,6 +496,7 @@ var getQueryString = function getQueryString(key, default_) {
         return qs[1];
 }
 
+//Gets the tables from the database to a café.
 var getCafeTables = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getcafe/' + cafe;
@@ -531,6 +512,7 @@ var getCafeTables = function(cafe, callback) {
     req.send();
 };
 
+//Gets the tables images from the database to a café.
 var getTableImage = function(cafe, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/getTableImg/' + cafe;
@@ -546,6 +528,7 @@ var getTableImage = function(cafe, callback) {
     req.send();
 };
 
+//Gets an image showing that a table is empty.
 function loadPlaceholder() {
     var myImage = new Image();
     myImage.onload = function(){
@@ -559,6 +542,7 @@ function loadPlaceholder() {
     myImage.src = "/img/emptyTable.gif";
 }
 
+//Gets the images of the users sitting at a table for overseeing.
 function loadImage(imageData, elementID, pos) {
     var x = position[pos][0];
     var y = position[pos][1];
@@ -592,6 +576,7 @@ function loadImage(imageData, elementID, pos) {
     myImage.className = 'centerImage';
 }
 
+///OVERHEARING: Showing the live video streams when overhearing.
 function initOSVideo(stream,pos) {
     var x = oSeePosition[pos][0];
     var y = oSeePosition[pos][1];
@@ -620,6 +605,7 @@ function initOSVideo(stream,pos) {
 
 var reflection;
 var movieGeometry;
+//Initializing the table view.
 function initVideo(stream,pos) {
     var x = tvPosition[pos][0];
     var y = tvPosition[pos][1];
@@ -745,7 +731,7 @@ window.onload = function () {
         myImage.height = myImage.width/1.6;
     }
 
-
+    //Overseeing when sitting at a table.
     function overseeInTable() {
         var maxHeight = ($(window).width()/6)/1.6
         $("#menuContainer").resizable({maxHeight:maxHeight});
@@ -817,7 +803,8 @@ window.onload = function () {
             }
     });
 
-     var enterName = function() {
+    //Gets the name of a user before entering a café.
+    var enterName = function() {
         if($('#userName').val() !== "") {
             nameOfUser = $('#userName').val();
             $('#enterName').toggle();
@@ -838,17 +825,19 @@ window.onload = function () {
         return false;
     });
 
-    $('#askToJoinTable').click(function() { //denna används inte???
-        dataStream.sendData({id:'popup', user:nameOfUser});
-        return false;
-    });
+    // $('#askToJoinTable').click(function() { //denna används inte???
+    //     dataStream.sendData({id:'popup', user:nameOfUser});
+    //     return false;
+    // });
 }
-
+    
+    //A popup showing for everyone in a table when a new user wants to join.
     var askToJoinTablePopup = function(nameOfUser) {
         knockSound();
         $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
     };
 
+    //Notifications to the user who wants to join a room.
     var deniedNotification = function(whatCase) {
         switch (whatCase) {
             case 1:
@@ -861,6 +850,7 @@ window.onload = function () {
         }
     }
 
+    //Show youtube video.
     var showVideo = function(urlVideo) {
         var videoID = urlVideo.split('=')[1];
         if(videoID !== undefined) {
@@ -876,7 +866,7 @@ window.onload = function () {
         }
     }
 
-        //Sends a base64 string to server
+    //Sends a base64 string to server
     var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
@@ -896,7 +886,7 @@ window.onload = function () {
         req.send(JSON.stringify(body));
     };
     
-    //loops through and takes a snapshot of each stream. Merges into one image, sends to server.
+    //Loops through and takes a snapshot of each stream. Merges into one image, sends to server.
     function getSnapshots() {
         //Width and height of popover where the image will be displayed.
         var w = 320;
@@ -919,7 +909,7 @@ window.onload = function () {
         //,,,,,,,,,,,,,//
         canvas.width = 3*width;
         canvas.height = 2*height;
-        for(var i = 0; i<length;i++) {
+        for(var i = 0; i<length; i++) {
             var y = 0;
             //if i>2, go to "second row" of image
             if (i>2) {
@@ -941,7 +931,7 @@ window.onload = function () {
 
         }
 
-        for(var i = length; i<6;i++) {
+        for(var i = length; i<6; i++) {
             var y = 0;
             //if i>2, go to "second row" of image
             if (i>2) {
@@ -970,6 +960,7 @@ window.onload = function () {
         myImage.src = imgData;
     }
     
+//Create token when a user subscribes to a table.
 var createToken = function(roomId, userName, role, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'createToken/' + roomId;
@@ -987,6 +978,7 @@ var createToken = function(roomId, userName, role, callback) {
     req.send(JSON.stringify(body));
 };
 
+//Initializes the knock function when a user wants to join a table.
 var knock = function(roomId) {
     if(!knockListYes.hasOwnProperty(roomId)) {
         createToken(roomId, "user", "role", function (response) {
@@ -1043,7 +1035,8 @@ var knock = function(roomId) {
                     var stream = streamEvent.stream;
                     if (stream.getAttributes().type === 'data') {
                         stream.addEventListener("stream-data", function(evt){
-                            console.log(evt.msg);
+
+                            //All the messages sent to all the users at a table.
                             switch (evt.msg.id) {
                                 case "chat":
                                     if(localStream.showing === true) {
@@ -1058,9 +1051,6 @@ var knock = function(roomId) {
                                 case "popup-answer":
                                     if(evt.msg.user === nameOfUser && evt.msg.answer === true) {
                                         addYesCount(roomId);
-                                        console.log(getYesCount(roomId) === Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
-                                        console.log(getYesCount(roomId));
-                                        console.log(Math.floor(room.getStreamsByAttribute('type','media').length/2)+1);
                                         if(room.getStreamsByAttribute('type','media').length === 1) {
                                             removeRoomFromKnocklist(roomId);
                                             initialize(roomId);
@@ -1079,7 +1069,6 @@ var knock = function(roomId) {
                                     break;  
                                 case "leader":
                                     if(localStream.showing === true) {
-                                        console.log('message received :E');
                                         setLeader(evt.msg.leader);
                                     }
                                     break;
@@ -1097,7 +1086,6 @@ var knock = function(roomId) {
                                     break;
                                 case "paint":
                                     if(localStream.showing === true) {
-                                        console.log("Paint message sent!!!!!!!!!!!!!!!!!!!!!!");
                                         drawPath(evt.msg.color, evt.msg.thickness, evt.msg.path, evt.msg.width, evt.msg.height);
                                     }
                                     break;
@@ -1135,6 +1123,7 @@ var knock = function(roomId) {
     }   
 }
 
+//Initializes overhearing.
 var overhear = function(roomId) {
     overhearGroup = new THREE.Object3D();
     cvGroup.add(overhearGroup);
@@ -1165,8 +1154,6 @@ var overhear = function(roomId) {
 
             room.addEventListener("room-connected", function (roomEvent) {
 
-                // Publish my stream
-                //room.publish(overhearStream);
                 //If table is empty
                 if(room.getStreamsByAttribute('type','media').length === 0) {
                     console.log('Room is empty!')
@@ -1210,6 +1197,7 @@ var overhear = function(roomId) {
     });  
 };
 
+ //Initializes the table view.
  var initialize = function(roomId) {
     currentTable = roomId;
     currentState = "TABLEVIEW";
@@ -1226,6 +1214,7 @@ var overhear = function(roomId) {
         return false;
     });
 
+    //Leave table button is not in use.
     $('#leaveTableButton').click(function() {
         resetConnection();
         $('#enterName').show();
@@ -1234,6 +1223,8 @@ var overhear = function(roomId) {
         currentState = "CAFEVIEW";
         return false;
     });
+
+    //Gets the url to show a youtube video.
     $('#getVideoUrl').click(function() {
         if($('#VideoUrl').val() !== "") {
             urlVideo = $('#VideoUrl').val();
@@ -1242,17 +1233,23 @@ var overhear = function(roomId) {
         }
         return false;
     });
+
+    //Close youtube video (stops subscribing to play and pause messages also).
     $('#closeVideo').click(function() {
         $('#closeVideo').toggle();
         $('#myytplayer').replaceWith('<div id="youtubeVideo" class="embed-container hide"><a href="javascript:void(0);" onclick="play();">Play</a></div>');
         return false;
     });
+
+    //Resets the napkin (to all users who is sharing napkin).
     $('#clearNapkin').click(function() {
         dataStream.sendData({id:'clearNapkin'});
         var c = document.getElementById("canvasNapkin");
         var ctx = c.getContext("2d");
         ctx.clearRect(0,0,c.width,c.height);
     });
+
+    //Saves the napkin to a png file.
     $('#saveNapkin').click(function() {
         var c = document.getElementById("canvasNapkin");
         ctx = c.getContext("2d");
@@ -1261,6 +1258,7 @@ var overhear = function(roomId) {
         });
     });
 
+    //CSS for the chat message area.
     $('#chatArea').css({
         position:'absolute', 
         top: $(window).height() - $('#chatArea').height()*2-56,
@@ -1298,6 +1296,7 @@ var overhear = function(roomId) {
     $('#chatMessage').width('32.5%');
     $('#sendMessage').width('7%');
 
+    //The tabs for showing the napkin or the youtube video.
     $('#napkinTab').click(function() {
         $('#napkinTab').attr("class","tabbable tabPos1");
         $('#videoTab').attr("class","tabbable tabPos2");
@@ -1421,8 +1420,7 @@ var overhear = function(roomId) {
                 streamToRemove.remove();
 
             }
-        });
- 
+        }); 
 
         localStream.show("vid1");
         

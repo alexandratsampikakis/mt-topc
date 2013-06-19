@@ -16,28 +16,7 @@ var localPen = {};
 // The user's line styles
 var localLineColor = defaultLineColor;
 var localLineThickness = defaultLineThickness;
- 
-// A list of points in a path to send to other connected users
-var bufferedPath = [];
-// A timestamp indicating the last time a point was added to the bufferedPath
-var lastBufferTime = new Date().getTime();
- 
-//==============================================================================
-// REMOTE USER VARIABLES
-//==============================================================================
-// A hash of pen positions for remote users, in the following
-// format ("2345" is an example client ID):
-//  {"2345": {x:10, y:10}}
-var userCurrentPositions = {};
-// A hash of pending drawing commands sent by remote users, the following format:
-//  {"2345": [{commandName:moveTo, arg:{x:10, y:10}}, {commandName:lineTo, arg:{x:55, y:35}}]};
-var userCommands = {};
-// A hash of line colors for remote users, in the following format:
-//  {"2345": "#CCCCCC"};
-var userColors = {};
-// A hash of line thicknesses for remote users, in the following format:
-//  {"2345": 5};
-var userThicknesses = {};
+
  
 //==============================================================================
 // DRAWING VARIABLES
@@ -46,32 +25,6 @@ var userThicknesses = {};
 var canvas;
 // The drawing canvas's context, through which drawing commands are performed
 var context;
-// A hash of drawing commands executed by UnionDraw's rendering process
-var DrawingCommands = {LINE_TO:       "lineTo",
-                       MOVE_TO:       "moveTo",
-                       SET_THICKNESS: "setThickness",
-                       SET_COLOR:     "setColor"};
- 
-//==============================================================================
-// TIMER VARIABLES
-//==============================================================================
-// The ID for a timer that sends the user's drawing path on a regular interval
-// var broadcastPathIntervalID;
-// // The ID for a timer that executes drawing commands sent by remote users
-// var processDrawingCommandsIntervalID;
- 
-//==============================================================================
-// INITIALIZATION
-//==============================================================================
-// Trigger init() when the document finishes loading
-//window.onload = init;
-addOnloadHandler(init);
- 
-// Main initialization function
-function init () {
-  initCanvas();
-  registerInputListeners();
-}
 
 function addOnloadHandler (newFunction) {
  var oldevent = window.onload;
@@ -139,11 +92,8 @@ function clientAttributeUpdateListener (attrScope,
 // MOUSE-INPUT EVENT LISTENERS
 //==============================================================================
 // Triggered when the mouse is pressed down
-function pointerDownListener (e) {
-  
-}
+
 function paintOnMouseDown(e) {
-  console.log('fehruia');
   // Retrieve a reference to the Event object for this mousedown event.
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
@@ -164,10 +114,6 @@ function paintOnMouseDown(e) {
     }
   }
 } 
-// Triggered when the mouse moves
-function pointerMoveListener (e) {
-
-}
 
 function paintOnMoveListener (e) {
   var event = e || window.event; // IE uses window.event, not e
@@ -181,11 +127,6 @@ function paintOnMoveListener (e) {
   if (event.preventDefault) {
     event.preventDefault();
   }
-}
- 
-// Triggered when the mouse button is released
-function pointerUpListener (e) {
-  // "Lift" the drawing pen
 }
  
 //==============================================================================
@@ -218,11 +159,6 @@ function penDown (x, y) {
   localPen.y = y;
   pathToSend.push(x);
   pathToSend.push(y);
-  // Send this user's new pen position to other users.
-  //broadcastMove(x, y);
- 
-  // Begin sending this user's drawing path to other users every 500 milliseconds.
-  //broadcastPathIntervalID = setInterval(broadcastPath, 500);
 }
  
 // Draws a line if the pen is down.
@@ -255,12 +191,6 @@ function penUp () {
   }
   
 }
- 
-//==============================================================================
-// DRAWING
-//==============================================================================
-// Draws a line on the HTML5 canvas
-
  
 //==============================================================================
 // STATUS
@@ -308,8 +238,6 @@ function drawPath(color, thickness, path, width, height) {
 function drawLine (color, thickness, x1, y1, x2, y2) {
     var c = $('#canvasNapkin')[0];
     var context = c.getContext("2d");
-    console.log(context);
-    console.log(context.strokeStyle);
     context.strokeStyle = color;
     context.lineWidth   = thickness;
 
