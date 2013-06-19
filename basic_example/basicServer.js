@@ -219,10 +219,12 @@ app.get('/createNewCafe/', function (req, res) {
 
 function isArrayFull(array) {
     for (var i = 0; i < array.length; i++) {
-        if(array[i] != undefined) {
+        if(array[i] === undefined) {
+            console.log("false");
             return false;
         }
     }
+    console.log(true);
     return true;
 } 
 function storeCafe(res,tables) {
