@@ -876,7 +876,7 @@ window.onload = function () {
         }
     }
 
-        //Sends a base64 string to server
+    /*    //Sends a base64 string to server
     var sendTableImg = function(cafe, imgData, roomId, callback) {
         var req = new XMLHttpRequest();
         var url = serverUrl + 'api/sendTableImg/' + roomId;
@@ -968,7 +968,7 @@ window.onload = function () {
             document.body.append(myImage);
         }; 
         myImage.src = imgData;
-    }
+    }*/
     
 var createToken = function(roomId, userName, role, callback) {
     var req = new XMLHttpRequest();
