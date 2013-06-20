@@ -50,7 +50,8 @@ function getSnapshots() {
         if(streams[i].getID() === localStream.getID()) {
             var bitmap;
             bitmap = localStream.getVideoFrame();
-            context.putImageData(bitmap, (i%3)*w, y);        
+            context.putImageData(bitmap, (i%3)*w, y);
+            document.body.appendChild(canvas);        
         } else {
             var bitmap;
             bitmap = streams[i].getVideoFrame();
