@@ -1,6 +1,5 @@
-var room, cafe, serverUrl;
+var room, cafe;
 var tableId = new Array();
-serverUrl = "http://satin.research.ltu.se:3001/";
 var streams = [];
 var currentTable;
 

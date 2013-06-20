@@ -1,4 +1,3 @@
-var serverUrl = "/";
 
 window.onload = function () {
 

@@ -1,0 +1,1 @@
+var serverUrl = "http://satin.research.ltu.se:3001/";
