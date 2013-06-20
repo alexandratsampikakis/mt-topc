@@ -30,21 +30,18 @@ function getSnapshots() {
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
 
-    var height = $('#myVideo').height();
-    var width = $('#myVideo').width();
-
     //what the image will look like with 6 media streams
     //'''''''''''''//
     //  1   2   3  //
     //  4   5   6  //
     //,,,,,,,,,,,,,//
-    canvas.width = 3*width;
-    canvas.height = 2*height;
+    canvas.width = 3*w;
+    canvas.height = 2*h;
     for(var i = 0; i<length;i++) {
         var y = 0;
         //if i>2, go to "second row" of image
         if (i>2) {
-            var y = height;
+            var y = h;
         }
         
         //For some reason, the stream you get from room.getStreamsByAttribute
@@ -53,11 +50,11 @@ function getSnapshots() {
         if(streams[i].getID() === localStream.getID()) {
             var bitmap;
             bitmap = localStream.getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);        
+            context.putImageData(bitmap, (i%3)*w, y);        
         } else {
             var bitmap;
             bitmap = streams[i].getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);
+            context.putImageData(bitmap, (i%3)*w, y);
         }
 
     }
@@ -66,9 +63,9 @@ function getSnapshots() {
         var y = 0;
         //if i>2, go to "second row" of image
         if (i>2) {
-            var y = height;
+            var y = h;
         }
-        context.drawImage(chairImg, (i%3)*width, y, width, height);        
+        context.drawImage(chairImg, (i%3)*w, y, w, h);        
     }
 
     //Draw the image on a new canvas in order to rescale.
