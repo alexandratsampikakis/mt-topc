@@ -827,11 +827,6 @@ window.onload = function () {
         enterName();
         return false;
     });
-
-    // $('#askToJoinTable').click(function() { //denna används inte???
-    //     dataStream.sendData({id:'popup', user:nameOfUser});
-    //     return false;
-    // });
 }
     
     //A popup showing for everyone in a table when a new user wants to join.

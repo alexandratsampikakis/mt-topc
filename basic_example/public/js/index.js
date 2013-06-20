@@ -14,11 +14,10 @@ window.onload = function () {
         };
 
         req.open('GET', url, true);
-
-        //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send();
     };
 
+    //Creates the café buttons.
     getCafeNames(function (response) {
         var cafes = JSON.parse(response);
         var cb = document.getElementById("cafeButtons");
@@ -51,6 +50,7 @@ window.onload = function () {
             $('#feedbackMessage').val("");
     }
 
+    //Sends the feedback as a mail to the group idipity@googlegroups.com
     $('#sendFeedback').click(function() {
         if($('#feedbackMessage').val() !== "" && $('#feedbackSubject').val() !== "" && $('#feedbackMail').val() !== "")
         sendFeedback($('#feedbackSubject').val(), $('#feedbackMail').val(), $('#feedbackMessage').val(), function (response) {

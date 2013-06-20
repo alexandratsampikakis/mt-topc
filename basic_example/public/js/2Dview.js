@@ -273,7 +273,6 @@ window.onload = function () {
         req.open('POST', url, true);
 
         req.setRequestHeader('Content-Type', 'application/json');
-        //console.log("Sending to " + url + " - " + JSON.stringify(body));
         req.send(JSON.stringify(body));
     };
 
@@ -558,6 +557,7 @@ function initTableGUI() {
     $('#chatMessage').width('80%');
     $('#sendMessage').width('19%');
 }
+
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 
@@ -604,7 +604,6 @@ function initTableGUI() {
                         }
                         console.log("There is no seat available at this table!");
                     }
-                    //if(leader[0] === 0) leader[0] = calculateLeader;
                     if(leader === localStream.getID()) {
                         getSnapshots();
                     } 
@@ -650,6 +649,7 @@ function initTableGUI() {
                 });
 
                 room.addEventListener("stream-removed", function (streamEvent) {
+
                     // Remove stream from DOM
                     var stream = streamEvent.stream;
                     if (stream.elementID !== undefined) {
@@ -686,7 +686,6 @@ function initTableGUI() {
                             }
                             vidElementNr++;
                         }
-                        ////////////
                     }
                 }); 
 
@@ -710,9 +709,11 @@ function initTableGUI() {
                 });
 
                 console.log('FÖRST: '+room.getStreamsByAttribute('type','media'));
+
                 // Publish my stream
                 room.publish(localStream);
                 console.log('ANDRA: '+room.getStreamsByAttribute('type','media'));
+
                 // Subscribe to other streams
                 subscribeToStreams(room.getStreamsByAttribute('type','media'));
             } else {
@@ -855,12 +856,15 @@ function messageHandler(message, roomId) {
                     };
 
                     room.addEventListener("room-connected", function (roomEvent) {
+
                         // Publish my stream
                         room.publish(dataStream);
+
                         //If table is empty
                         if(room.getStreamsByAttribute('type','media').length === 0) {
                             initialize(roomId);
                         }
+
                         // Subscribe to other streams
                         subscribeToStreams(room.getStreamsByAttribute('type','data'));
                     });
@@ -882,8 +886,6 @@ function messageHandler(message, roomId) {
         }   
     }
 
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 
@@ -951,9 +953,9 @@ function messageHandler(message, roomId) {
                     } 
                 });
 
-                room.connect();       
-
+                room.connect();
             });
+
             overhearStream.init();
         });  
     }

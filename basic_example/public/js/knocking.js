@@ -9,6 +9,7 @@ function addToKnockList(roomId) {
     }
 }
 
+//VOTE: adds the number of yes a user gets.
 function addYesCount (roomId) {
     if(knockListYes.hasOwnProperty(roomId)) {
         knockListYes[roomId] += 1;
@@ -27,6 +28,7 @@ function getNoCount(roomId) {
     }
 }
 
+//VOTE: adds the number of no a user gets.
 function addNoCount (roomId) {
     if(knockListNo.hasOwnProperty(roomId)) {
         knockListNo[roomId] += 1;
@@ -48,6 +50,7 @@ var askToJoinTablePopup = function(nameOfUser) {
     $('#knocking').notify({ type: 'bangTidy', onYes:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: true})}, onNo:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, onClose:function () {dataStream.sendData({id:'popup-answer',user:nameOfUser, answer: false})}, message: { html: '<p style="color: grey"><b>Hey</b>, ' + nameOfUser +' wants to sit down, is that OK?</p>' }, fadeOut: { enabled: true, delay: knockTimer}}).show();
 };
 
+//Notifications to the user who wants to join a room.
 var deniedNotification = function(whatCase) {
     switch (whatCase) {
         case 1:

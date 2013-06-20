@@ -1,5 +1,5 @@
-var pingArray = new Array(3);//privat
-var groupLatency;//privat
+var pingArray = new Array(3); //privat
+var groupLatency; //privat
 
 //Calculates leader. Highest stream ID wins. Only counts 'media' streams.
 //Leader is used for sending snapshots to server
@@ -41,7 +41,6 @@ var pingServer = function(callback) {
     };
 
     req.open('GET', url, true);
-
     req.send();
 };
 
@@ -58,7 +57,6 @@ function pingNow(pingNumber) {
             addPingResult(ms, localStream.getID());
         }
     });
-
 }
 
 //Pings the server three times in order to get a mean value.
@@ -81,8 +79,7 @@ function addPingResult(latency, streamId) {
                 decideNewLeader();
             }
             break;
-        }
-        
+        }        
     }
 }
 

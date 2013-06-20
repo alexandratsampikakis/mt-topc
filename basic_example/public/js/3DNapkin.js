@@ -1,7 +1,6 @@
  var pathToSend = [];
-//==============================================================================
+
 // LOCAL USER VARIABLES
-//==============================================================================
 // A flag to track whether the user is drawing or not
 var isPenDown = false;
  
@@ -18,11 +17,10 @@ var localLineColor = defaultLineColor;
 var localLineThickness = defaultLineThickness;
 
  
-//==============================================================================
 // DRAWING VARIABLES
-//==============================================================================
 // The HTML5 drawing canvas
 var canvas;
+
 // The drawing canvas's context, through which drawing commands are performed
 var context;
 
@@ -43,6 +41,7 @@ function addOnloadHandler (newFunction) {
  
 // Set up the drawing canvas
 function initCanvas () {
+
   // Retrieve canvas reference
   canvas = document.getElementById("canvasNapkin");
  
@@ -88,15 +87,14 @@ function clientAttributeUpdateListener (attrScope,
   }
 }
  
-//==============================================================================
 // MOUSE-INPUT EVENT LISTENERS
-//==============================================================================
 // Triggered when the mouse is pressed down
-
 function paintOnMouseDown(e) {
+
   // Retrieve a reference to the Event object for this mousedown event.
   // Internet Explorer uses window.event; other browsers use the event parameter
   var event = e || window.event;
+
   // Determine where the user clicked the mouse.
   var mouseX = event.clientX - $('#canvasNapkin').offset().left;//canvas.offsetLeft;
   var mouseY = event.clientY - $('#canvasNapkin').offset().top;//canvas.offsetTop;
@@ -106,13 +104,11 @@ function paintOnMouseDown(e) {
  
   // We want mouse input to be used for drawing only, so we need to stop the
   // browser from/ performing default mouse actions, such as text selection.
-  // In Internet Explorer, we "prevent default actions" by returning false. In
-  // other browsers, we invoke event.preventDefault().
-  if (event.preventDefault) {
-    if (event.target.nodeName != "SELECT") {
-      event.preventDefault();
-    }
-  }
+  // if (event.preventDefault) {
+  //   if (event.target.nodeName != "SELECT") {
+  //     event.preventDefault();
+  //   }
+  // }
 } 
 
 function paintOnMoveListener (e) {
@@ -129,28 +125,28 @@ function paintOnMoveListener (e) {
   }
 }
  
-//==============================================================================
 // CONTROL PANEL MENU-INPUT EVENT LISTENERS
-//==============================================================================
 // Triggered when an option in the "line thickness" menu is selected
 function thicknessSelectListener (e) {
+
   // Determine which option was selected
   var newThickness = this.options[this.selectedIndex].value;
+
   // Locally, set the line thickness to the selected value
   localLineThickness = getValidThickness(newThickness);
 }
  
 // Triggered when an option in the "line color" menu is selected
 function colorSelectListener (e) {
+
   // Determine which option was selected
   var newColor = this.options[this.selectedIndex].value;
+
   // Locally, set the line color to the selected value
   localLineColor = newColor;
 }
  
-//==============================================================================
 // PEN
-//==============================================================================
 // Places the pen in the specified location without drawing a line. If the pen
 // subsequently moves, a line will be drawn.
 function penDown (x, y) {
@@ -166,6 +162,7 @@ function penMove (x, y) {
   if (isPenDown) {
     pathToSend.push(x);
     pathToSend.push(y);
+
     // Draw the line locally.
     drawLine(localLineColor, localLineThickness, localPen.x, localPen.y, x, y);
  
@@ -184,23 +181,6 @@ function penUp () {
     pathToSend = [];
   }
   
-}
- 
-//==============================================================================
-// STATUS
-//==============================================================================
-// Updates the text of the on-screen HTML "status" div tag
-function setStatus (message) {
-  document.getElementById("status").innerHTML = message;
-}
- 
-//==============================================================================
-// DATA VALIDATION
-//==============================================================================
-function getValidThickness (value) {
-  value = parseInt(value);
-  var thickness = isNaN(value) ? defaultLineThickness : value;
-  return Math.max(1, Math.min(thickness, maxLineThickness));
 }
 
 function redrawNapkin() {
@@ -241,6 +221,7 @@ function drawLine (color, thickness, x1, y1, x2, y2) {
     context.stroke();
 }
 
+//The leader sends the current napkin to a new user who enters the room.
 function sendNapkinToNewUser() {
     var c = document.getElementById("canvasNapkin");
     var ctx = c.getContext("2d");
