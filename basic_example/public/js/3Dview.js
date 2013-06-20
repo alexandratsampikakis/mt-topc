@@ -1288,7 +1288,7 @@ var overhear = function(roomId) {
                 setInterval(function(){
                     console.log('Snapshot sent at ' + Date.now());
                     getSnapshots();
-                },1000*60*5);
+                },1000*30);
             } else if(leader === localStream.getID()) {
                 broadcastLeader();
                 sendNapkinToNewUser();
@@ -1314,7 +1314,7 @@ var overhear = function(roomId) {
                         setInterval(function(){
                             console.log('Snapshot sent at ' + Date.now());
                             getSnapshots();
-                        },1000*60*5);
+                        },1000*30);
                     }
                     console.log(calculateLeader());
                 } else if (leader === localStream.getID()) {
