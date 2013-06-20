@@ -83,7 +83,7 @@ function getSnapshots() {
         context2.drawImage(myImage, 0, 0,w,h);
         
         //Convert to base64 and send to server.
-        sendTableImg(cafe, canvas2.toDataURL(), room.roomID, function (response) {
+        sendTableImg(cafe, "fisk"/*canvas2.toDataURL()*/, room.roomID, function (response) {
             console.log(response);
         });
     }; 
