@@ -87,7 +87,7 @@ function getSnapshots() {
             console.log(response);
         });
     }; 
-    myImage.src = imgData;
+    //myImage.src = imgData;
 }
 
 //Checks if a new users video stream is ready for snapshot
