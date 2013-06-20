@@ -77,6 +77,7 @@ function getSnapshots() {
     var context2 = canvas2.getContext('2d');
 
     var imgData = canvas.toDataURL();
+    console.log(imgData);
     var myImage = new Image();
     canvas2.width = 320;
     canvas2.height = 200;
