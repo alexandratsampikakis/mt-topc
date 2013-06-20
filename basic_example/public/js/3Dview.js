@@ -495,7 +495,7 @@ var getQueryString = function getQueryString(key, default_) {
     if(qs == null)
         return default_;
     else
-        return qs[1].replaceAll("%20", " ");
+        return decodeURIComponent(qs[1]);
 }
 
 //Gets the tables from the database to a café.
