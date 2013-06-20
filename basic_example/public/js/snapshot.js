@@ -82,13 +82,13 @@ function getSnapshots() {
     canvas2.height = 200;
     myImage.onload = function(){
         context2.drawImage(myImage, 0, 0,w,h);
-        
+        console.log('bajsjävel');
         //Convert to base64 and send to server.
         sendTableImg(cafe, "fisk"/*canvas2.toDataURL()*/, room.roomID, function (response) {
             console.log(response);
         });
     }; 
-    //myImage.src = imgData;
+    myImage.src = imgData;
 }
 
 //Checks if a new users video stream is ready for snapshot
