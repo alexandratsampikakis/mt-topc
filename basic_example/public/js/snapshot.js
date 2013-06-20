@@ -2,7 +2,7 @@
 var sendTableImg = function(cafe, imgData, roomId, callback) {
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/sendTableImg/' + roomId;
-    var body = {imgData: imgData,
+    var body = {//imgData: imgData,
                 cafe: cafe};
 
     req.onreadystatechange = function () {
