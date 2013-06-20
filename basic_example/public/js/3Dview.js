@@ -403,7 +403,7 @@ function setVisibility(state, group) {
     }
 } 
 
-//Updates the video streams.
+//Updates the video streams with new video frames.
 function updateVideos() {
     var vid;
     var videoImageContext;

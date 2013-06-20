@@ -23,10 +23,6 @@ function getSnapshots() {
     var w = 320;
     var h = 200
 
-    //Get all media streams
-    var streams = room.getStreamsByAttribute('type','media');
-    var length = streams.length;
-
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
 
@@ -40,25 +36,15 @@ function getSnapshots() {
     //,,,,,,,,,,,,,//
     canvas.width = 3*width;
     canvas.height = 2*height;
-    for(var i = 0; i<length;i++) {
+    for(var i = 0; i<streams.length;i++) {
         var y = 0;
         //if i>2, go to "second row" of image
         if (i>2) {
             var y = height;
         }
         
-        //For some reason, the stream you get from room.getStreamsByAttribute
-        //and room.remoteStreams that equals localStream, does not contain 
-        //all the things localStream does, therefor, special case for LocalStream.
-        if(streams[i].getID() === localStream.getID()) {
-            var bitmap;
-            bitmap = localStream.getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);        
-        } else {
-            var bitmap;
-            bitmap = streams[i].getVideoFrame();
-            context.putImageData(bitmap, (i%3)*width, y);
-        }
+        var vid = streams[i].getVideo();
+        context.drawImage( vid,(i%3)*width, y);
 
     }
 
