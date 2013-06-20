@@ -1,5 +1,6 @@
 //Sends a base64 string to server
 var sendTableImg = function(cafe, imgData, roomId, callback) {
+    console.log('sending image');
     var req = new XMLHttpRequest();
     var url = serverUrl + 'api/sendTableImg/' + roomId;
     var body = {imgData: "fisk",
