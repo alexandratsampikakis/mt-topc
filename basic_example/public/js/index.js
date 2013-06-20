@@ -29,7 +29,7 @@ window.onload = function () {
             a.innerHTML += cafeName;
             cb.appendChild(a);
             a.setAttribute("href", "http://satin.research.ltu.se:3001/2Dview.html?cafe=" + cafeName);
-            a.setAttribute("class", "buttonCafe btn btn-info");
+            a.setAttribute("class", "buttonCafe btn");
             a.setAttribute("type", "button");
         };
         for (var i = 0; i < cafes.cafe.length; i++) {
@@ -38,7 +38,7 @@ window.onload = function () {
             a.innerHTML += cafeName;
             dcb.appendChild(a);
             a.setAttribute("href", "http://satin.research.ltu.se:3001/3Dview.html?cafe=" + cafeName);
-            a.setAttribute("class", "buttonCafe btn");
+            a.setAttribute("class", "buttonCafe btn btn-info");
             a.setAttribute("type", "button");
         };
 

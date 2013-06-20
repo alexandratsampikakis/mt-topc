@@ -173,10 +173,8 @@ function loadImage(imageData, elementID) {
 function onPageLoad() {
     //Loads empty chair image
     chairImg.src="/img/emptyChair.jpg";
-    //
     cafe = getQueryString('cafe');
 
-    //var context = document.getElementById("canvasNapkin").getContext('2d');
     redrawNapkin();
     var redrawOnResize;
     $(window).resize(function() {

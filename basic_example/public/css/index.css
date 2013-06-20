@@ -11,7 +11,7 @@
 	height: 300px;
 	padding: 100px;
 	margin-top: 30px;
-	background-image: url('/img/Backgrounds/p5/pinkp5_@2X.png');
+	background-image: url('/img/Backgrounds/p5/p5_@2X.png');
 	background-repeat: repeat;
 }
 
@@ -25,12 +25,12 @@
 }
 
 .backgroundBoxTwoD {
-	background-image: url('/img/Backgrounds/p5/p5_@2X.png');
+	background-image: url('/img/Backgrounds/grey_wash_wall/bluegrey_wash_wall_@2X.png');
 	background-repeat: repeat;
 }
 
 .backgroundBoxThreeD {
-	background-image: url('/img/Backgrounds/grey_wash_wall/bluegrey_wash_wall_@2X.png');
+	background-image: url('/img/Backgrounds/p5/p5_@2X.png');
 	background-repeat: repeat;
 }
 
